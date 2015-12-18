@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:sws="http://www.springframework.org/schema/web-services"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/web-services
+                        http://www.springframework.org/schema/web-services/web-services.xsd">
+
+    <!-- Scans for endpoints -->
+    <context:component-scan base-package="com.wandrell.demo.ws.soap.spring.endpoint" />
+
+    <!-- Registers interceptors -->
+    <sws:interceptors>
+        <bean
+            class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor" />
+        <ref bean="payloadValidatingInterceptor" />
+    </sws:interceptors>
+
+    <bean id="payloadValidatingInterceptor"
+        class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+        <property name="schema" value="${schema.path}" />
+    </bean>
+
+    <!-- Web service WSDL -->
+    <bean id="wsdl" class="${wsdl.class}">
+        <property name="portTypeName" value="${wsdl.portTypeName}" />
+        <property name="locationUri" value="${wsdl.locationUri}" />
+        <property name="targetNamespace" value="${wsdl.targetNamespace}" />
+        <property name="schema" ref="schema" />
+    </bean>
+
+    <!-- Web service schema -->
+    <bean id="schema" class="${schema.class}">
+        <property name="xsd" value="${schema.path}" />
+    </bean>
+
+    <!-- Marshaller adapter -->
+    <bean
+        class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+        <constructor-arg ref="marshaller" />
+    </bean>
+
+    <!-- Marshaller -->
+    <bean id="marshaller" class="${marshaller.class}">
+        <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+    </bean>
+
+</beans>

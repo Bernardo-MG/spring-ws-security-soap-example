@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:sam="http://wandrell.com/demo/ws/sample">
+    <soapenv:Header />
+    <soapenv:Body>
+        <sam:getSampleRequest>
+            <sam:cod1>0.1</sam:cod1>
+            <sam:cod2>2</sam:cod2>
+        </sam:getSampleRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

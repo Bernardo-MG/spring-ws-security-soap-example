@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/util
+                        http://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/jdbc
+                        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/data/jpa
+                        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!-- Scans for repositories -->
+    <jpa:repositories base-package="com.wandrell.demo.ws.soap.spring.repository" />
+
+    <!-- ================================== JPA ================================== -->
+
+    <!-- JPA EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="${jpa.entityManagerFactory.class}">
+        <property name="jpaVendorAdapter" ref="jpaAdapter" />
+        <property name="dataSource" ref="dataSource" />
+        <property name="persistenceUnitName" value="${jpa.persistenceUnitName}" />
+        <property name="packagesToScan" value="${jpa.packagesToScan}" />
+        <property name="jpaProperties" ref="jpaProperties" />
+    </bean>
+
+    <!-- JPA Adapter -->
+    <bean id="jpaAdapter" class="${jpa.adapter.class}">
+        <property name="database" value="${jpa.database}" />
+        <property name="showSql" value="${jpa.showSql}" />
+    </bean>
+
+    <!-- Entity manager -->
+    <bean id="entityManager" class="${jpa.entityManager.class}">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!-- JPA Properties -->
+    <util:map id="jpaProperties">
+        <entry key="hibernate.dialect" value="${hibernate.dialect}" />
+        <entry key="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}" />
+        <entry key="hibernate.ejb.naming_strategy" value="${hibernate.namingStrategy}" />
+        <entry key="hibernate.show_sql" value="${jpa.showSql}" />
+        <entry key="hibernate.format_sql" value="${hibernate.format_sql}" />
+    </util:map>
+
+    <!-- Transaction manager -->
+    <bean id="transactionManager" class="${jpa.transactionManager.class}">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!-- ============================== DATASOURCE =============================== -->
+
+    <!-- Data source -->
+    <bean id="dataSource" class="${jdbc.dataSource.class}">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!-- Database initializer -->
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="${jdbc.initLocation}" />
+        <jdbc:script location="${jdbc.dataLocation}" />
+    </jdbc:initialize-database>
+
+</beans>

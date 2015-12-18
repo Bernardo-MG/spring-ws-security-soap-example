@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SpringWSSDemoIntegration" parallel="instances"
+	thread-count="4">
+
+	<test name="spring_wss_integration">
+		<packages>
+			<package name="com.wandrell.demo.ws.soap.spring.testing.integration.*" />
+		</packages>
+	</test>
+
+</suite>
