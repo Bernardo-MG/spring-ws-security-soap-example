@@ -58,21 +58,6 @@
         <notifiers />
     </ciManagement>
 
-    <distributionManagement>
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>releases</id>
-            <name>Releases Repository</name>
-            <url>https://api.bintray.com/maven/bernardo-mg/maven/spring-soap-ws-security-demo</url>
-        </repository>
-        <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>snapshots</id>
-            <name>Snapshots Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <!-- ********************************************** -->
     <!-- ****************** PROFILES ****************** -->
     <!-- ********************************************** -->
@@ -80,9 +65,9 @@
     <profiles>
         <profile>
             <!-- Profile for the Eclipse Maven plugin -->
-            <!-- Sets the POM so this plugin does not give the usual unregistered
+            <!-- Sets the POM so this plugin does not give the usual unregistered 
                 goals errors -->
-            <!-- It will be activated automatically on Eclipse if this has the m2e
+            <!-- It will be activated automatically on Eclipse if this has the m2e 
                 plugin, by detecting the version property -->
             <id>eclipse-maven</id>
             <activation>
@@ -96,7 +81,7 @@
                         <plugin>
                             <!-- m2e lifecycle mapping -->
                             <!-- This is used to configure the Maven plugin for Eclipse. -->
-                            <!-- Among other things, it allows registering goals,
+                            <!-- Among other things, it allows registering goals, 
                                 which Eclipse would otherwise reject. -->
                             <!-- It has no real effect on Maven. -->
                             <groupId>org.eclipse.m2e</groupId>
@@ -107,33 +92,32 @@
                                     <pluginExecutions>
                                         <pluginExecution>
                                             <!-- jacoco plugin configuration -->
-                                            <!-- Fixes the errors with Eclipse not
+                                            <!-- Fixes the errors with Eclipse not 
                                                 recognizing the plugin configuration -->
                                             <pluginExecutionFilter>
                                                 <groupId>org.jacoco</groupId>
                                                 <artifactId>jacoco-maven-plugin</artifactId>
                                                 <versionRange>[0.5,)</versionRange>
                                                 <goals>
-                                                    <!-- The 'prepare-agent' goal
+                                                    <!-- The 'prepare-agent' goal 
                                                         is registered to m2e. -->
                                                     <goal>prepare-agent</goal>
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <!-- As m2e doesn't know what to
+                                                <!-- As m2e doesn't know what to 
                                                     do with jacoco, it is ignored to avoid error warnings. -->
                                                 <ignore />
                                             </action>
                                         </pluginExecution>
-                                        <!-- jaxb2-maven-plugin -->
                                         <pluginExecution>
                                             <!-- JAXB2 plugin configuration -->
                                             <pluginExecutionFilter>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>jaxb2-maven-plugin</artifactId>
+                                                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                                                <artifactId>maven-jaxb2-plugin</artifactId>
                                                 <versionRange>[0.1,)</versionRange>
                                                 <goals>
-                                                    <goal>xjc</goal>
+                                                    <goal>generate</goal>
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
@@ -185,7 +169,7 @@
                 <site>
                     <id>site</id>
                     <name>Project Documentation Site</name>
-                    <url>ftp://docs.wandrell.com/spring-soap-ws-security-demo</url>
+                    <url>ftp://docs.wandrell.com/spring-soap-ws-security-example</url>
                 </site>
             </distributionManagement>
         </profile>
@@ -197,7 +181,7 @@
                 <site>
                     <id>site-development</id>
                     <name>Project Development Documentation Site</name>
-                    <url>ftp://docs.wandrell.com/spring-soap-ws-security-demo</url>
+                    <url>ftp://docs.wandrell.com/spring-soap-ws-security-example</url>
                 </site>
             </distributionManagement>
         </profile>
@@ -243,7 +227,7 @@
 
     <properties>
         <!-- Manifest data -->
-        <manifest.name>com/wandrell/demo/spring_ws_security_demo</manifest.name>
+        <manifest.name>com/wandrell/demo/spring_soap_ws_security_example</manifest.name>
         <!-- Dependencies versions -->
         <ehcache.version>2.6.11</ehcache.version>
         <guava.version>18.0</guava.version>
@@ -258,7 +242,7 @@
         <javax.servlet.el.version>3.0.0</javax.servlet.el.version>
         <javax.servlet.jsp.version>2.3.1</javax.servlet.jsp.version>
         <javax.servlet.jst.jstl.version>1.2</javax.servlet.jst.jstl.version>
-        <jaxb.version>2.0</jaxb.version>
+        <jaxb.version>2.2.11</jaxb.version>
         <log4j.version>2.5</log4j.version>
         <mockito.version>1.10.19</mockito.version>
         <slf4j.version>1.7.12</slf4j.version>
@@ -269,17 +253,15 @@
         <wsdl4j.version>1.6.3</wsdl4j.version>
         <xwssecurity.version>3.0</xwssecurity.version>
         <!-- Plugins versions -->
-        <plugin.buildhelp.version>1.9.1</plugin.buildhelp.version>
+        <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
         <plugin.changes.version>2.11</plugin.changes.version>
-        <plugin.jaxb2.version>1.6</plugin.jaxb2.version>
+        <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
         <plugin.jetty.version>9.1.5.v20140505 </plugin.jetty.version>
         <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
         <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
         <plugin.war.version>2.6</plugin.war.version>
         <!-- Maven Site -->
         <site.skin.version>0.2.1</site.skin.version>
-        <bintrayURL>https://bintray.com/bernardo-mg/maven/spring-soap-ws-security-demo/view</bintrayURL>
-        <mavenURL>http://mvnrepository.com/artifact/com.wandrell.demo/spring-soap-ws-security-demo</mavenURL>
         <!-- Testing server -->
         <server.test.name>${project.artifactId}-tomcat-development-server</server.test.name>
         <server.test.port>9966</server.test.port>
@@ -533,18 +515,6 @@
             <version>${h2.version}</version>
         </dependency>
         <dependency>
-            <!-- JAXB API -->
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.activation</groupId>
-                    <artifactId>activation</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <!-- Javax activation -->
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
@@ -749,29 +719,73 @@
                         <configuration>
                             <sources>
                                 <!-- JAXB generated sources -->
-                                <source>${project.build.directory}/generated-sources/jaxb</source>
+                                <source>${project.build.directory}/generated-sources/xjc</source>
                             </sources>
                         </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <!-- JAXB implementation -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <!-- JAXB2 -->
                 <!-- Generates source code from the WSDL files -->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>${plugin.jaxb2.version}</version>
                 <executions>
                     <execution>
+                        <id>generate-jaxb</id>
                         <goals>
-                            <goal>xjc</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
                     <schemaDirectory>${project.basedir}/src/main/resources/xsd/</schemaDirectory>
+                    <schemaIncludes>
+                        <include>sample.xsd</include>
+                    </schemaIncludes>
                     <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <!-- JAXB API -->
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>${jaxb.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>javax.activation</groupId>
+                                <artifactId>activation</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <!-- JAXB Core -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-core</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <!-- JAXB Implementation -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <!-- JAXB XJC -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-xjc</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
@@ -795,7 +809,7 @@
             </plugin>
             <plugin>
                 <!-- PMD -->
-                <!-- Checks that the code complies with a series of code quality
+                <!-- Checks that the code complies with a series of code quality 
                     rules -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>

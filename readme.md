@@ -2,9 +2,6 @@
 
 Small web service showing the use of Spring WS Security for a SOAP web service.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.wandrell.demo/spring-soap-ws-security-demo.svg)][maven-repo]
-[![Bintray](https://api.bintray.com/packages/bernardo-mg/maven/spring-soap-ws-security-demo/images/download.svg)][bintray-repo]
-
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
 
