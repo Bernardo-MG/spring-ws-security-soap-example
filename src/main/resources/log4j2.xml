@@ -23,15 +23,15 @@
             <AppenderRef ref="console" />
         </Logger>
 
-        <logger name="org.springframework" level="debug">
+        <logger name="org.springframework" level="debug" additivity="false">
             <AppenderRef ref="console" />
         </logger>
 
-        <logger name="org.springframework.ws.client.MessageTracing" level="trace">
+        <logger name="org.springframework.ws.client.MessageTracing" level="trace" additivity="false">
             <AppenderRef ref="console" />
         </logger>
 
-        <logger name="org.springframework.ws.server.MessageTracing" level="trace">
+        <logger name="org.springframework.ws.server.MessageTracing" level="trace" additivity="false">
             <AppenderRef ref="console" />
         </logger>
 
