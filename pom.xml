@@ -19,7 +19,7 @@
     <!-- ********************************************** -->
 
     <groupId>com.wandrell.demo</groupId>
-    <artifactId>spring-soap-ws-security-demo</artifactId>
+    <artifactId>spring-soap-ws-security-example</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -229,6 +229,7 @@
         <!-- Manifest data -->
         <manifest.name>com/wandrell/demo/spring_soap_ws_security_example</manifest.name>
         <!-- Dependencies versions -->
+        <commons.logging.version>1.2</commons.logging.version>
         <ehcache.version>2.6.11</ehcache.version>
         <guava.version>18.0</guava.version>
         <h2.version>1.4.190</h2.version>
@@ -543,9 +544,21 @@
         <!-- ================== LOGGING =================== -->
         <!-- ============================================== -->
         <dependency>
+            <!-- Commons logging -->
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+        </dependency>
+        <dependency>
             <!-- Log4j core -->
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Log4j Commons Logging Bridge -->
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
             <version>${log4j.version}</version>
         </dependency>
         <dependency>
@@ -553,6 +566,12 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- SL4J API -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <!-- ============================================== -->
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
@@ -688,7 +707,7 @@
                         <id>start-jetty</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>start</goal>
+                            <goal>run-war</goal>
                         </goals>
                         <configuration>
                             <scanIntervalSeconds>0</scanIntervalSeconds>

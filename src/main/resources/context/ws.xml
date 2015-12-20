@@ -23,18 +23,11 @@
         <property name="schema" value="${schema.path}" />
     </bean>
 
-    <!-- Web service WSDL -->
-    <bean id="wsdl" class="${wsdl.class}">
-        <property name="portTypeName" value="${wsdl.portTypeName}" />
-        <property name="locationUri" value="${wsdl.locationUri}" />
-        <property name="targetNamespace" value="${wsdl.targetNamespace}" />
-        <property name="schema" ref="schema" />
-    </bean>
-
-    <!-- Web service schema -->
-    <bean id="schema" class="${schema.class}">
-        <property name="xsd" value="${schema.path}" />
-    </bean>
+    <!-- WSDL -->
+    <sws:dynamic-wsdl id="wsdl" portTypeName="${wsdl.portTypeName}"
+        locationUri="${wsdl.locationUri}" targetNamespace="${wsdl.targetNamespace}">
+        <sws:xsd location="${schema.path}" />
+    </sws:dynamic-wsdl>
 
     <!-- Marshaller adapter -->
     <bean
@@ -45,6 +38,11 @@
     <!-- Marshaller -->
     <bean id="marshaller" class="${marshaller.class}">
         <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+    </bean>
+
+    <bean
+        class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+        <constructor-arg ref="marshaller" />
     </bean>
 
 </beans>

@@ -20,8 +20,12 @@
 
     <Loggers>
         <Logger name="com.wandrell" level="debug" additivity="false">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </Logger>
+
+        <logger name="org.springframework" level="debug">
+            <AppenderRef ref="console" />
+        </logger>
 
         <logger name="org.springframework.ws.client.MessageTracing" level="trace">
             <AppenderRef ref="console" />
