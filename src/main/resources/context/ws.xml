@@ -10,6 +10,9 @@
 
     <!-- Scans for endpoints -->
     <context:component-scan base-package="com.wandrell.demo.ws.soap.spring.endpoint" />
+    <sws:annotation-driven />
+
+    <bean id="testEntityEndpoint" class="com.wandrell.demo.ws.soap.spring.endpoint.TestEntityEndpoint" />
 
     <!-- Registers interceptors -->
     <sws:interceptors>

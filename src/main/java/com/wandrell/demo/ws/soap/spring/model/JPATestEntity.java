@@ -30,6 +30,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Test class serving as a JPA persistence entity.
@@ -40,17 +44,21 @@ import javax.persistence.Table;
  */
 @Entity(name = "TestEntity")
 @Table(name = "test_entities")
+@XmlRootElement(name = "test_entity")
 public final class JPATestEntity implements TestEntity {
 
     /**
      * Serialization ID.
      */
+    @Transient
+    @XmlTransient
     private static final long serialVersionUID = 1328776989450853491L;
     /**
      * Entity's ID.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Integer id = null;
     /**
      * Name of the entity.
@@ -59,6 +67,7 @@ public final class JPATestEntity implements TestEntity {
      * tests.
      */
     @Column(name = "name", nullable = false)
+    @XmlElement
     private String name = "";
 
     /**

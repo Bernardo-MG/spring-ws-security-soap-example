@@ -36,7 +36,7 @@
         </logger>
 
         <Root level="error">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </Root>
     </Loggers>
 

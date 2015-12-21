@@ -586,6 +586,12 @@
             <groupId>com.wandrell</groupId>
             <artifactId>persistence-utils</artifactId>
             <version>${wandrell.persistence}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- ============================================== -->
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->

@@ -13,7 +13,7 @@
 
     <servlet>
         <servlet-name>unsecure-ws</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 

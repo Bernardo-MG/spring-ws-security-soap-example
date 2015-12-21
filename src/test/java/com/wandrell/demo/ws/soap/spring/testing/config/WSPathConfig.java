@@ -13,7 +13,7 @@ public final class WSPathConfig {
     /**
      * Path for the samples endpoint.
      */
-    public static final String ENDPOINT_ENTITIES = "http://localhost:9966/spring-soap-ws-security-demo/unsecure/entities";
+    public static final String ENDPOINT_ENTITIES = "http://localhost:8080/spring-soap-ws-security-example/entities";
 
     /**
      * Private constructor to avoid initialization.

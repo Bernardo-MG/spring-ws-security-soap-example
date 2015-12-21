@@ -18,20 +18,20 @@ import com.wandrell.demo.ws.soap.spring.repository.TestEntityRepository;
 public class TestEntityEndpoint {
 
     /** The Constant NAMESPACE_URI. */
-    private static final String NAMESPACE_URI = "http://wandrell.com/demo/ws/sample";
+    private static final String NAMESPACE_URI = "http://wandrell.com/demo/ws/entity";
 
     /** The sample repository. */
-    private TestEntityRepository sampleRepository;
+    private TestEntityRepository entityRepository;
 
     /**
      * Instantiates a new sample endpoint.
      *
-     * @param sampleRepository
+     * @param entityRepository
      *            the sample repository
      */
     @Autowired
-    public TestEntityEndpoint(final TestEntityRepository sampleRepository) {
-        this.sampleRepository = sampleRepository;
+    public TestEntityEndpoint(final TestEntityRepository entityRepository) {
+        this.entityRepository = entityRepository;
     }
 
     /**
@@ -50,7 +50,7 @@ public class TestEntityEndpoint {
 
         response = new GetEntityResponse();
 
-        entity = sampleRepository.findOne(request.getId());
+        entity = entityRepository.findOne(request.getId());
 
         if (entity != null) {
             entityResponse = new Entity();
