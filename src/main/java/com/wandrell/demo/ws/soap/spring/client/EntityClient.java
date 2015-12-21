@@ -21,7 +21,7 @@ public class EntityClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive(
                         request,
                         new SoapActionCallback(
-                                "http://localhost:9966/ws-security-simple/ws/samples"));
+                                "http://localhost:8080/sws/entities"));
 
         return response;
     }

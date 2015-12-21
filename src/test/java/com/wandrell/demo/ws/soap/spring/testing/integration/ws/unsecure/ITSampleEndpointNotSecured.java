@@ -4,6 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPConnection;
@@ -16,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.wandrell.demo.ws.generated.entity.Entity;
+import com.wandrell.demo.ws.generated.entity.GetEntityResponse;
 import com.wandrell.demo.ws.soap.spring.testing.config.WSPathConfig;
 
 /**
@@ -45,6 +50,8 @@ public final class ITSampleEndpointNotSecured {
         final SOAPMessage message;
         final String messageStr;
         final ByteArrayOutputStream out;
+        final GetEntityResponse response;
+        final Entity entity;
 
         soapConnectionFactory = SOAPConnectionFactory.newInstance();
         soapConnection = soapConnectionFactory.createConnection();
@@ -58,6 +65,15 @@ public final class ITSampleEndpointNotSecured {
         LOGGER.debug(String.format("Response SOAP Message = \n%s", messageStr));
 
         Assert.assertTrue(!messageStr.contains("faultcode"));
+
+        try {
+            entity = parseResponse(message);
+
+            Assert.assertEquals(entity.getId(), 1);
+            Assert.assertEquals(entity.getName(), "entity_1");
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -105,6 +121,20 @@ public final class ITSampleEndpointNotSecured {
         LOGGER.debug(String.format("Request SOAP Message = \n%s", messageStr));
 
         return message;
+    }
+
+    private final Entity parseResponse(final SOAPMessage message)
+            throws JAXBException, SOAPException {
+        final JAXBContext jc;
+        final Unmarshaller um;
+        final GetEntityResponse response;
+
+        jc = JAXBContext.newInstance(GetEntityResponse.class);
+        um = jc.createUnmarshaller();
+        response = (GetEntityResponse) um.unmarshal(message.getSOAPBody()
+                .extractContentAsDocument());
+
+        return response.getEntity();
     }
 
 }
