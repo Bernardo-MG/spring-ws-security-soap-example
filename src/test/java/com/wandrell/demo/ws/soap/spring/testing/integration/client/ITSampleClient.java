@@ -1,11 +1,9 @@
 package com.wandrell.demo.ws.soap.spring.testing.integration.client;
 
-import java.math.BigDecimal;
-
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.testng.annotations.Test;
 
-import com.wandrell.demo.ws.soap.spring.client.SampleClient;
+import com.wandrell.demo.ws.soap.spring.client.EntityClient;
 import com.wandrell.demo.ws.soap.spring.testing.config.WSPathConfig;
 
 /**
@@ -23,15 +21,15 @@ public final class ITSampleClient {
 
     @Test
     public final void testEndpoint() {
-        final SampleClient client;
+        final EntityClient client;
 
-        client = new SampleClient();
+        client = new EntityClient();
 
-        client.setDefaultUri(WSPathConfig.ENDPOINT_SAMPLES);
+        client.setDefaultUri(WSPathConfig.ENDPOINT_ENTITIES);
         client.setMarshaller(getMarshaller());
         client.setUnmarshaller(getMarshaller());
 
-        client.getSample(new BigDecimal(0.1), new BigDecimal(2));
+        client.getEntity(1);
     }
 
     private Jaxb2Marshaller getMarshaller() {

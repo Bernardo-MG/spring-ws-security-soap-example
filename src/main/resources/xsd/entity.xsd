@@ -1,0 +1,37 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wandrell.com/demo/ws/entity"
+    targetNamespace="http://wandrell.com/demo/ws/entity" elementFormDefault="qualified">
+
+    <xs:element name="getEntityRequest">
+        <xs:annotation>
+            <xs:documentation>
+                The request.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getEntityResponse">
+        <xs:annotation>
+            <xs:documentation>
+                The response.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="entity" type="tns:entity" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="entity">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int" />
+            <xs:element name="name" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

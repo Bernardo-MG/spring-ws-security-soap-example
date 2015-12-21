@@ -50,7 +50,7 @@ public class ITSampleEndpointSecured {
         soapConnection = soapConnectionFactory.createConnection();
 
         message = soapConnection.call(createSOAPRequest(),
-                WSPathConfig.ENDPOINT_SAMPLES);
+                WSPathConfig.ENDPOINT_ENTITIES);
 
         out = new ByteArrayOutputStream();
         message.writeTo(out);

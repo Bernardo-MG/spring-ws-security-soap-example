@@ -4,9 +4,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
     version="2.0">
 
-    <jxb:bindings schemaLocation="file:../xsd/sample.xsd">
+    <jxb:bindings schemaLocation="file:../xsd/entity.xsd">
         <jxb:schemaBindings>
-            <jxb:package name="com.wandrell.demo.ws.generated.sample" />
+            <jxb:package name="com.wandrell.demo.ws.generated.entity" />
         </jxb:schemaBindings>
     </jxb:bindings>
 

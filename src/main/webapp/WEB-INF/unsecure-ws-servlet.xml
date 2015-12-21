@@ -8,10 +8,4 @@
                         http://www.springframework.org/schema/web-services
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
-    <!-- Properties -->
-    <context:property-placeholder location="classpath:context/ws.properties" />
-
-    <!-- Imports -->
-    <import resource="classpath:/context/ws.xml" />
-
 </beans>

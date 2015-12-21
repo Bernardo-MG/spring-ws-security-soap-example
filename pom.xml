@@ -65,9 +65,9 @@
     <profiles>
         <profile>
             <!-- Profile for the Eclipse Maven plugin -->
-            <!-- Sets the POM so this plugin does not give the usual unregistered 
+            <!-- Sets the POM so this plugin does not give the usual unregistered
                 goals errors -->
-            <!-- It will be activated automatically on Eclipse if this has the m2e 
+            <!-- It will be activated automatically on Eclipse if this has the m2e
                 plugin, by detecting the version property -->
             <id>eclipse-maven</id>
             <activation>
@@ -81,7 +81,7 @@
                         <plugin>
                             <!-- m2e lifecycle mapping -->
                             <!-- This is used to configure the Maven plugin for Eclipse. -->
-                            <!-- Among other things, it allows registering goals, 
+                            <!-- Among other things, it allows registering goals,
                                 which Eclipse would otherwise reject. -->
                             <!-- It has no real effect on Maven. -->
                             <groupId>org.eclipse.m2e</groupId>
@@ -92,20 +92,20 @@
                                     <pluginExecutions>
                                         <pluginExecution>
                                             <!-- jacoco plugin configuration -->
-                                            <!-- Fixes the errors with Eclipse not 
+                                            <!-- Fixes the errors with Eclipse not
                                                 recognizing the plugin configuration -->
                                             <pluginExecutionFilter>
                                                 <groupId>org.jacoco</groupId>
                                                 <artifactId>jacoco-maven-plugin</artifactId>
                                                 <versionRange>[0.5,)</versionRange>
                                                 <goals>
-                                                    <!-- The 'prepare-agent' goal 
+                                                    <!-- The 'prepare-agent' goal
                                                         is registered to m2e. -->
                                                     <goal>prepare-agent</goal>
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <!-- As m2e doesn't know what to 
+                                                <!-- As m2e doesn't know what to
                                                     do with jacoco, it is ignored to avoid error warnings. -->
                                                 <ignore />
                                             </action>
@@ -246,11 +246,12 @@
         <jaxb.version>2.2.11</jaxb.version>
         <log4j.version>2.5</log4j.version>
         <mockito.version>1.10.19</mockito.version>
-        <slf4j.version>1.7.12</slf4j.version>
-        <spring.data.version>1.9.0.RELEASE</spring.data.version>
-        <spring.version>4.2.2.RELEASE</spring.version>
+        <slf4j.version>1.7.13</slf4j.version>
+        <spring.data.version>1.9.2.RELEASE</spring.data.version>
+        <spring.version>4.2.4.RELEASE</spring.version>
         <spring.ws.version>2.2.2.RELEASE</spring.ws.version>
         <testng.version>6.9.9</testng.version>
+        <wandrell.persistence>0.1.7</wandrell.persistence>
         <wsdl4j.version>1.6.3</wsdl4j.version>
         <xwssecurity.version>3.0</xwssecurity.version>
         <!-- Plugins versions -->
@@ -411,6 +412,12 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
+            <!-- Spring TX -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
             <!-- Spring data -->
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
@@ -501,46 +508,6 @@
             <version>${hikari.version}</version>
         </dependency>
         <!-- ============================================== -->
-        <!-- ============ OTHER DEPENDENCIES ============== -->
-        <!-- ============================================== -->
-        <dependency>
-            <!-- Wsdl4j -->
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>${wsdl4j.version}</version>
-        </dependency>
-        <dependency>
-            <!-- H2 -->
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Javax activation -->
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>${javax.activation.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.wss</groupId>
-            <artifactId>xws-security</artifactId>
-            <version>${xwssecurity.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.xml.crypto</groupId>
-                    <artifactId>xmldsig</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.activation</groupId>
-                    <artifactId>activation</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- ============================================== -->
         <!-- ================== LOGGING =================== -->
         <!-- ============================================== -->
         <dependency>
@@ -572,6 +539,53 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- ============ OTHER DEPENDENCIES ============== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Wsdl4j -->
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>${wsdl4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- H2 -->
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Javax activation -->
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${javax.activation.version}</version>
+        </dependency>
+        <dependency>
+            <!-- XWSS -->
+            <groupId>com.sun.xml.wss</groupId>
+            <artifactId>xws-security</artifactId>
+            <version>${xwssecurity.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.crypto</groupId>
+                    <artifactId>xmldsig</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- Persistence utils -->
+            <groupId>com.wandrell</groupId>
+            <artifactId>persistence-utils</artifactId>
+            <version>${wandrell.persistence}</version>
         </dependency>
         <!-- ============================================== -->
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
@@ -707,7 +721,7 @@
                         <id>start-jetty</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>run-war</goal>
+                            <goal>start</goal>
                         </goals>
                         <configuration>
                             <scanIntervalSeconds>0</scanIntervalSeconds>
@@ -768,9 +782,6 @@
                 </executions>
                 <configuration>
                     <schemaDirectory>${project.basedir}/src/main/resources/xsd/</schemaDirectory>
-                    <schemaIncludes>
-                        <include>sample.xsd</include>
-                    </schemaIncludes>
                     <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
                 </configuration>
                 <dependencies>
@@ -828,7 +839,7 @@
             </plugin>
             <plugin>
                 <!-- PMD -->
-                <!-- Checks that the code complies with a series of code quality 
+                <!-- Checks that the code complies with a series of code quality
                     rules -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
