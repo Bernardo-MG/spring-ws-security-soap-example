@@ -24,5 +24,5 @@
 /**
  * Provides placeholder classes.
  */
-package com.wandrell.demo.ws.soap.spring;
+package com.wandrell.example.ws.soap.spring;
 

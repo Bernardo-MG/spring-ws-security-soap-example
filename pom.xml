@@ -18,14 +18,15 @@
     <!-- **************** PROJECT INFO **************** -->
     <!-- ********************************************** -->
 
-    <groupId>com.wandrell.demo</groupId>
-    <artifactId>spring-soap-ws-security-example</artifactId>
+    <groupId>com.wandrell.example</groupId>
+    <artifactId>swss-soap-example</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Spring SOAP WS Security Example</name>
-    <description>An example showing how to configure Spring SOAP-based WS Security</description>
-    <url>https://github.com/bernardo-mg/spring-soap-ws-security-demo</url>
+    <name>Spring WS Security for SOAP Example</name>
+    <description>An example showing how to configure Spring-WS Security for a SOAP web service</description>
+    <url>https://github.com/bernardo-mg/spring-ws-security-soap-example
+</url>
     <inceptionYear>2015</inceptionYear>
 
     <licenses>
@@ -41,20 +42,20 @@
     <!-- ********************************************** -->
 
     <scm>
-        <connection>scm:git:https://github.com/bernardo-mg/spring-soap-ws-security-demo.git</connection>
-        <developerConnection>scm:git:https://github.com/bernardo-mg/spring-soap-ws-security-demo.git</developerConnection>
+        <connection>scm:git:https://github.com/bernardo-mg/spring-ws-security-soap-example.git</connection>
+        <developerConnection>scm:git:https://github.com/bernardo-mg/spring-ws-security-soap-example.git</developerConnection>
         <tag>head</tag>
-        <url>https://www.github.com/bernardo-mg/spring-soap-ws-security-demo</url>
+        <url>https://www.github.com/bernardo-mg/spring-ws-security-soap-example</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://www.github.com/bernardo-mg/spring-soap-ws-security-demo/issues</url>
+        <url>https://www.github.com/bernardo-mg/spring-ws-security-soap-example/issues</url>
     </issueManagement>
 
     <ciManagement>
         <system>Travis CI</system>
-        <url>https://travis-ci.org/bernardo-mg/spring-soap-ws-security-demo</url>
+        <url>https://travis-ci.org/bernardo-mg/spring-ws-security-soap-example</url>
         <notifiers />
     </ciManagement>
 
@@ -169,7 +170,7 @@
                 <site>
                     <id>site</id>
                     <name>Project Documentation Site</name>
-                    <url>ftp://docs.wandrell.com/spring-soap-ws-security-example</url>
+                    <url>ftp://docs.wandrell.com/swss-soap-example</url>
                 </site>
             </distributionManagement>
         </profile>
@@ -181,7 +182,7 @@
                 <site>
                     <id>site-development</id>
                     <name>Project Development Documentation Site</name>
-                    <url>ftp://docs.wandrell.com/spring-soap-ws-security-example</url>
+                    <url>ftp://docs.wandrell.com/swss-soap-example</url>
                 </site>
             </distributionManagement>
         </profile>

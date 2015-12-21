@@ -1,10 +1,10 @@
-package com.wandrell.demo.ws.soap.spring.client;
+package com.wandrell.example.ws.soap.spring.client;
 
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
-import com.wandrell.demo.ws.generated.entity.GetEntityRequest;
-import com.wandrell.demo.ws.generated.entity.GetEntityResponse;
+import com.wandrell.example.ws.generated.entity.GetEntityRequest;
+import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
  * The Class WeatherClient.

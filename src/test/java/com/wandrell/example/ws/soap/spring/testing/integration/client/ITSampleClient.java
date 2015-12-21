@@ -1,4 +1,4 @@
-package com.wandrell.demo.ws.soap.spring.testing.integration.client;
+package com.wandrell.example.ws.soap.spring.testing.integration.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,9 +6,9 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.demo.ws.generated.entity.Entity;
-import com.wandrell.demo.ws.soap.spring.client.EntityClient;
-import com.wandrell.demo.ws.soap.spring.testing.config.WSPathConfig;
+import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.ws.soap.spring.client.EntityClient;
+import com.wandrell.example.ws.soap.spring.testing.config.WSPathConfig;
 
 /**
  * Basis for an integration test.
@@ -53,7 +53,7 @@ public final class ITSampleClient {
         final Jaxb2Marshaller marshaller;
 
         marshaller = new Jaxb2Marshaller();
-        marshaller.setPackagesToScan("com.wandrell.demo.ws.generated.*");
+        marshaller.setPackagesToScan("com.wandrell.example.ws.generated.*");
 
         return marshaller;
     }

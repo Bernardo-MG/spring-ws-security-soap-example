@@ -84,12 +84,10 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[bintray-repo]: https://bintray.com/bernardo-mg/maven/spring-soap-ws-security-demo/view
-[maven-repo]: http://mvnrepository.com/artifact/com.wandrell.demo/spring-soap-ws-security-demo
-[issues]: https://github.com/bernardo-mg/spring-soap-ws-security-demo/issues
-[javadoc-develop]: http://docs.wandrell.com/maven/spring-soap-ws-security-demo/apidocs
-[javadoc-release]: http://docs.wandrell.com/development/maven/spring-soap-ws-security-demo/apidocs
+[issues]: https://github.com/bernardo-mg/swss-soap-example/issues
+[javadoc-develop]: http://docs.wandrell.com/maven/swss-soap-example/apidocs
+[javadoc-release]: http://docs.wandrell.com/development/maven/swss-soap-example/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
-[scm]: https://github.com/bernardo-mg/spring-soap-ws-security-demo
-[site-develop]: http://docs.wandrell.com/development/maven/spring-soap-ws-security-demo
-[site-release]: http://docs.wandrell.com/maven/spring-soap-ws-security-demo
+[scm]: https://github.com/bernardo-mg/spring-ws-security-soap-example
+[site-develop]: http://docs.wandrell.com/development/maven/swss-soap-example
+[site-release]: http://docs.wandrell.com/maven/swss-soap-example

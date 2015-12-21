@@ -6,7 +6,7 @@
 
     <jxb:bindings schemaLocation="file:../xsd/entity.xsd">
         <jxb:schemaBindings>
-            <jxb:package name="com.wandrell.demo.ws.generated.entity" />
+            <jxb:package name="com.wandrell.example.ws.generated.entity" />
         </jxb:schemaBindings>
     </jxb:bindings>
 

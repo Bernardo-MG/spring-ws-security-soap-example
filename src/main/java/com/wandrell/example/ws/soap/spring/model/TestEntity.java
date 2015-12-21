@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.demo.ws.soap.spring.model;
+package com.wandrell.example.ws.soap.spring.model;
 
 import java.io.Serializable;
 

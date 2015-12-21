@@ -1,4 +1,4 @@
-package com.wandrell.demo.ws.soap.spring.testing.integration.ws.unsecure;
+package com.wandrell.example.ws.soap.spring.testing.integration.ws.unsecure;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.demo.ws.generated.entity.Entity;
-import com.wandrell.demo.ws.generated.entity.GetEntityResponse;
-import com.wandrell.demo.ws.soap.spring.testing.config.WSPathConfig;
+import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.ws.generated.entity.GetEntityResponse;
+import com.wandrell.example.ws.soap.spring.testing.config.WSPathConfig;
 
 /**
  * Basis for an integration test.

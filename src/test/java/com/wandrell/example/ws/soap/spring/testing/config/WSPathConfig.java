@@ -1,4 +1,4 @@
-package com.wandrell.demo.ws.soap.spring.testing.config;
+package com.wandrell.example.ws.soap.spring.testing.config;
 
 /**
  * Configuration class for the WS paths.

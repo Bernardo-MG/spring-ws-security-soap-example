@@ -1,15 +1,15 @@
-package com.wandrell.demo.ws.soap.spring.endpoint;
+package com.wandrell.example.ws.soap.spring.endpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.wandrell.demo.ws.generated.entity.Entity;
-import com.wandrell.demo.ws.generated.entity.GetEntityRequest;
-import com.wandrell.demo.ws.generated.entity.GetEntityResponse;
-import com.wandrell.demo.ws.soap.spring.model.TestEntity;
-import com.wandrell.demo.ws.soap.spring.repository.TestEntityRepository;
+import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.ws.generated.entity.GetEntityRequest;
+import com.wandrell.example.ws.generated.entity.GetEntityResponse;
+import com.wandrell.example.ws.soap.spring.model.TestEntity;
+import com.wandrell.example.ws.soap.spring.repository.TestEntityRepository;
 
 /**
  * The Class EntityEndpoint.

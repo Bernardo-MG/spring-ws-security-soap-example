@@ -5,7 +5,7 @@
 
 	<test name="spring_wss_integration">
 		<packages>
-			<package name="com.wandrell.demo.ws.soap.spring.testing.integration.*" />
+			<package name="com.wandrell.example.ws.soap.spring.testing.integration.*" />
 		</packages>
 	</test>
 
