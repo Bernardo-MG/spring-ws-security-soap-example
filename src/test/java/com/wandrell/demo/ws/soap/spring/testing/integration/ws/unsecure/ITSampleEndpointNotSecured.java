@@ -50,7 +50,6 @@ public final class ITSampleEndpointNotSecured {
         final SOAPMessage message;
         final String messageStr;
         final ByteArrayOutputStream out;
-        final GetEntityResponse response;
         final Entity entity;
 
         soapConnectionFactory = SOAPConnectionFactory.newInstance();
@@ -109,7 +108,7 @@ public final class ITSampleEndpointNotSecured {
         final String messageStr;
 
         streamFile = ClassLoader.class
-                .getResourceAsStream("/soap/sample-not-secured.xml");
+                .getResourceAsStream("/soap/entity-not-secured.xml");
 
         factory = MessageFactory.newInstance();
 
