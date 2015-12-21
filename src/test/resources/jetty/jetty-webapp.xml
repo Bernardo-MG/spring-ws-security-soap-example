@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<Configure class="org.eclipse.jetty.webapp.WebAppContext">
-	<Call name="setAttribute">
-		<Arg>org.eclipse.jetty.server.webapp.contextPath</Arg>
-		<Arg>/</Arg>
-	</Call>
-</Configure>

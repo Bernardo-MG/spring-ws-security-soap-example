@@ -35,6 +35,10 @@
             <AppenderRef ref="file" />
         </logger>
 
+        <logger name="org.eclipse.jetty" level="trace" additivity="false">
+            <AppenderRef ref="console" />
+        </logger>
+
         <Root level="error">
             <AppenderRef ref="console" />
         </Root>

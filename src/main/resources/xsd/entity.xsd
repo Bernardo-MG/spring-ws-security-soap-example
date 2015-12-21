@@ -1,5 +1,5 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wandrell.com/demo/ws/entity"
-    targetNamespace="http://wandrell.com/demo/ws/entity" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wandrell.com/example/ws/entity"
+    targetNamespace="http://wandrell.com/example/ws/entity" elementFormDefault="qualified">
 
     <xs:element name="getEntityRequest">
         <xs:annotation>

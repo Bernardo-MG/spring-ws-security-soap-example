@@ -265,9 +265,10 @@
         <!-- Maven Site -->
         <site.skin.version>0.2.1</site.skin.version>
         <!-- Testing server -->
+        <server.test.host>localhost</server.test.host>
         <server.test.name>${project.artifactId}-tomcat-development-server</server.test.name>
-        <server.test.port>9966</server.test.port>
-        <server.test.path>/</server.test.path>
+        <server.test.port>8080</server.test.port>
+        <server.test.path>/sws</server.test.path>
     </properties>
 
     <!-- ********************************************** -->
@@ -717,17 +718,23 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${plugin.jetty.version}</version>
                 <configuration>
-                    <jettyXml>${project.build.testOutputDirectory}/jetty/jetty-server.xml,${project.build.testOutputDirectory}/jetty/jetty-webapp.xml</jettyXml>
                     <stopKey>STOP</stopKey>
                     <stopPort>9999</stopPort>
                     <stopWait>5</stopWait>
+                    <webApp>
+                        <contextPath>${server.test.path}</contextPath>
+                    </webApp>
+                    <httpConnector>
+                        <host>${server.test.host}</host>
+                        <port>${server.test.port}</port>
+                    </httpConnector>
                 </configuration>
                 <executions>
                     <execution>
                         <id>start-jetty</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>start</goal>
+                            <goal>run-war</goal>
                         </goals>
                         <configuration>
                             <scanIntervalSeconds>0</scanIntervalSeconds>

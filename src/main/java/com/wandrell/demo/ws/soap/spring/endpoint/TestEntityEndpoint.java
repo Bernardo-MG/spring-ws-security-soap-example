@@ -18,7 +18,7 @@ import com.wandrell.demo.ws.soap.spring.repository.TestEntityRepository;
 public class TestEntityEndpoint {
 
     /** The Constant NAMESPACE_URI. */
-    private static final String NAMESPACE_URI = "http://wandrell.com/demo/ws/entity";
+    private static final String NAMESPACE_URI = "http://wandrell.com/example/ws/entity";
 
     /** The sample repository. */
     private TestEntityRepository entityRepository;
