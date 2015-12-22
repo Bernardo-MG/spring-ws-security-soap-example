@@ -19,7 +19,7 @@
 
     <servlet-mapping>
         <servlet-name>unsecure-ws</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/unsecure/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

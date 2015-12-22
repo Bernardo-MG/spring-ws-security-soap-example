@@ -254,13 +254,11 @@
         <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
         <plugin.jetty.version>9.1.5.v20140505 </plugin.jetty.version>
         <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
-        <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
         <plugin.war.version>2.6</plugin.war.version>
         <!-- Maven Site -->
         <site.skin.version>0.2.1</site.skin.version>
         <!-- Testing server -->
         <server.test.host>localhost</server.test.host>
-        <server.test.name>${project.artifactId}-tomcat-development-server</server.test.name>
         <server.test.port>8080</server.test.port>
         <server.test.path>/sws</server.test.path>
     </properties>
@@ -430,7 +428,7 @@
     <!-- ********************************************** -->
 
     <build>
-        <defaultGoal>clean package tomcat7:run-war</defaultGoal>
+        <defaultGoal>clean package jetty:run-war</defaultGoal>
         <plugins>
             <plugin>
                 <!-- Changes -->
@@ -502,18 +500,6 @@
                         <!-- Path to the unit tests suite file -->
                         <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                </configuration>
-            </plugin>
-            <plugin>
-                <!-- Tomcat 7 -->
-                <!-- Embedded web server for developing and checking the project -->
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>${plugin.tomcat7.version}</version>
-                <configuration>
-                    <server>${server.test.name}</server>
-                    <port>${server.test.port}</port>
-                    <warSourceDirectory>${project.build.outputDirectory}/${project.artifactId}-${project.version}</warSourceDirectory>
                 </configuration>
             </plugin>
             <plugin>
