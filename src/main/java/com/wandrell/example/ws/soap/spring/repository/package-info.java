@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Provides placeholder classes.
+ * Provides the repositories used to access the web services data.
  */
-package com.wandrell.example.ws.soap.spring;
+package com.wandrell.example.ws.soap.spring.repository;
 

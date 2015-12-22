@@ -41,19 +41,25 @@ import com.wandrell.example.ws.soap.spring.repository.ExampleEntityRepository;
 @Endpoint
 public class ExampleEntityEndpoint {
 
-    private static final String NAMESPACE_URI = "http://wandrell.com/example/ws/entity";
     private static final String LOCALPART = "getEntityRequest";
+    private static final String NAMESPACE_URI = "http://wandrell.com/example/ws/entity";
+    /**
+     * Repository for the {@code ExampleEntity} instances handled by the
+     * service.
+     * <p>
+     * This is injected by Spring.
+     */
     private ExampleEntityRepository entityRepository;
 
     /**
      * Constructs a {@code ExampleEntityEndpoint}.
      *
-     * @param entityRepository
+     * @param repository
      *            the repository for the {@code ExampleEntity} instances
      */
     @Autowired
-    public ExampleEntityEndpoint(final ExampleEntityRepository entityRepository) {
-        this.entityRepository = entityRepository;
+    public ExampleEntityEndpoint(final ExampleEntityRepository repository) {
+        this.entityRepository = repository;
     }
 
     /**

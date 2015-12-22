@@ -21,36 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+/**
+ * Provides the model used by the web services.
+ */
 package com.wandrell.example.ws.soap.spring.model;
 
-import java.io.Serializable;
-
-import com.wandrell.persistence.PersistenceEntity;
-
-/**
- * Interface representing an entity to be used on the example
- * <p>
- * It just implements {@link PersistenceEntity}, adding a name field as
- * additional data for the tests.
- *
- * @author Bernardo Martínez Garrido
- */
-public interface ExampleEntity extends PersistenceEntity, Serializable {
-
-    /**
-     * Returns the name of the entity.
-     *
-     * @return the entity's name
-     */
-    public String getName();
-
-    /**
-     * Changes the name of the entity.
-     *
-     * @param name
-     *            the name to set on the entity
-     */
-    public void setName(final String name);
-
-}

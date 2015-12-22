@@ -56,8 +56,9 @@ public final class DefaultExampleEntity implements ExampleEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     @XmlElement
-    private Integer id = null;
+    private Integer entityId = null;
     /**
      * Name of the entity.
      * <p>
@@ -66,7 +67,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
      */
     @Column(name = "name", nullable = false)
     @XmlElement
-    private String name = "";
+    private String entityName = "";
 
     /**
      * Constructs a {@code JPAExampleEntity}.
@@ -77,47 +78,59 @@ public final class DefaultExampleEntity implements ExampleEntity {
 
     @Override
     public final boolean equals(final Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+
+        if (getClass() != obj.getClass()) {
             return false;
-        DefaultExampleEntity other = (DefaultExampleEntity) obj;
-        if (id == null) {
-            if (other.id != null)
+        }
+
+        final DefaultExampleEntity other = (DefaultExampleEntity) obj;
+        if (entityId == null) {
+            if (other.entityId != null) {
                 return false;
-        } else if (!id.equals(other.id))
+            }
+        } else if (!entityId.equals(other.entityId)) {
             return false;
+        }
+
         return true;
     }
 
     @Override
     public final Integer getId() {
-        return id;
+        return entityId;
     }
 
     @Override
     public final String getName() {
-        return name;
+        return entityName;
     }
 
     @Override
     public final int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+
+        result = prime * result
+                + ((entityId == null) ? 0 : entityId.hashCode());
+
         return result;
     }
 
     @Override
     public final void setId(final Integer id) {
-        this.id = id;
+        entityId = id;
     }
 
     @Override
     public final void setName(final String name) {
-        this.name = name;
+        entityName = name;
     }
 
 }
