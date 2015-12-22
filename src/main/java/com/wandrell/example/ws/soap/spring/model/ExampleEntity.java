@@ -26,8 +26,6 @@ package com.wandrell.example.ws.soap.spring.model;
 
 import java.io.Serializable;
 
-import com.wandrell.persistence.PersistenceEntity;
-
 /**
  * Interface representing an entity to be used on the example
  * <p>
@@ -36,7 +34,7 @@ import com.wandrell.persistence.PersistenceEntity;
  *
  * @author Bernardo Martínez Garrido
  */
-public interface ExampleEntity extends PersistenceEntity, Serializable {
+public interface ExampleEntity extends Serializable {
 
     /**
      * Returns the name of the entity.
@@ -52,5 +50,23 @@ public interface ExampleEntity extends PersistenceEntity, Serializable {
      *            the name to set on the entity
      */
     public void setName(final String name);
+
+    /**
+     * Returns the ID assigned to this entity.
+     * <p>
+     * If no ID has been assigned yet, then the value will be {@code null} or
+     * lower than zero.
+     *
+     * @return the entity's ID
+     */
+    public Integer getId();
+
+    /**
+     * Sets the ID assigned to this entity.
+     *
+     * @param identifier
+     *            the ID for the entity
+     */
+    public void setId(final Integer identifier);
 
 }

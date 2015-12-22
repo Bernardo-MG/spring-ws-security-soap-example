@@ -235,15 +235,9 @@
         <guava.version>18.0</guava.version>
         <h2.version>1.4.190</h2.version>
         <hibernate.version>5.0.2.Final</hibernate.version>
-        <hibernate.validator.version>5.2.2.Final</hibernate.validator.version>
         <hikari.version>2.3.12</hikari.version>
         <testng.version>6.9.8</testng.version>
-        <jackson.version>2.6.3</jackson.version>
         <javax.activation.version>1.1.1</javax.activation.version>
-        <javax.servlet.version>3.1.0</javax.servlet.version>
-        <javax.servlet.el.version>3.0.0</javax.servlet.el.version>
-        <javax.servlet.jsp.version>2.3.1</javax.servlet.jsp.version>
-        <javax.servlet.jst.jstl.version>1.2</javax.servlet.jst.jstl.version>
         <jaxb.version>2.2.11</jaxb.version>
         <log4j.version>2.5</log4j.version>
         <mockito.version>1.10.19</mockito.version>
@@ -252,7 +246,6 @@
         <spring.version>4.2.4.RELEASE</spring.version>
         <spring.ws.version>2.2.2.RELEASE</spring.ws.version>
         <testng.version>6.9.9</testng.version>
-        <wandrell.persistence>0.1.7</wandrell.persistence>
         <wsdl4j.version>1.6.3</wsdl4j.version>
         <xwssecurity.version>3.0</xwssecurity.version>
         <!-- Plugins versions -->
@@ -277,186 +270,53 @@
     <!-- ********************************************** -->
 
     <dependencies>
-        <dependency>
-            <!-- Guava -->
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-        <!-- ============================================== -->
-        <!-- =============== JAVAEE APIS ================== -->
-        <!-- ============================================== -->
-        <dependency>
-            <!-- Java Servlet API -->
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- Java Servlet JSP API -->
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>${javax.servlet.jsp.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- Java EL API -->
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>${javax.servlet.el.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- JSTL -->
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${javax.servlet.jst.jstl.version}</version>
-            <scope>runtime</scope>
-        </dependency>
         <!-- ============================================== -->
         <!-- ================== SPRING ==================== -->
         <!-- ============================================== -->
         <dependency>
-            <!-- Spring core -->
+            <!-- Spring Beans -->
             <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
+            <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
-            <exclusions>
-                <!-- Exclude Commons Logging in favor of SLF4j -->
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
-            <!-- Spring BOM -->
+            <!-- Spring Context -->
             <groupId>org.springframework</groupId>
-            <artifactId>spring-framework-bom</artifactId>
+            <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
-            <type>pom</type>
+        </dependency>
+        <dependency>
+            <!-- Spring Data JPA -->
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.version}</version>
         </dependency>
         <dependency>
             <!-- Spring WS -->
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
             <version>${spring.ws.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-webmvc</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-web</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- Spring WS Security -->
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-ws-security</artifactId>
-            <version>${spring.ws.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-tx</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-expression</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- Spring Web MVC -->
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Spring Web -->
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Spring TX -->
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Spring data -->
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>${spring.data.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- ============================================== -->
-        <!-- ================= JACKSON ==================== -->
+        <!-- ========= PERSISTENCE DEPENDENCIES =========== -->
         <!-- ============================================== -->
         <dependency>
-            <!-- JSON serialization -->
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
+            <!-- Ehcache -->
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache.version}</version>
         </dependency>
         <dependency>
-            <!-- XML serialization -->
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>${jackson.version}</version>
+            <!-- H2 -->
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Hikari CP -->
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP-java6</artifactId>
+            <version>${hikari.version}</version>
         </dependency>
         <!-- ============================================== -->
         <!-- ================ HIBERNATE =================== -->
@@ -472,54 +332,18 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernate.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>net.sf.ehcache</groupId>
-                    <artifactId>ehcache-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- Ehcache -->
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>${ehcache.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- Validation -->
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate.validator.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jboss.logging</groupId>
-                    <artifactId>jboss-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- Hikari CP -->
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP-java6</artifactId>
-            <version>${hikari.version}</version>
         </dependency>
         <!-- ============================================== -->
         <!-- ================== LOGGING =================== -->
         <!-- ============================================== -->
         <dependency>
-            <!-- Commons logging -->
+            <!-- Commons Logging -->
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>${commons.logging.version}</version>
         </dependency>
         <dependency>
-            <!-- Log4j core -->
+            <!-- Log4j Core -->
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
@@ -546,16 +370,16 @@
         <!-- ============ OTHER DEPENDENCIES ============== -->
         <!-- ============================================== -->
         <dependency>
-            <!-- Wsdl4j -->
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>${wsdl4j.version}</version>
+            <!-- Guava -->
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
-            <!-- H2 -->
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
+            <!-- JAXB API -->
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.version}</version>
         </dependency>
         <dependency>
             <!-- Javax activation -->
@@ -564,36 +388,16 @@
             <version>${javax.activation.version}</version>
         </dependency>
         <dependency>
+            <!-- Wsdl4j -->
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>${wsdl4j.version}</version>
+        </dependency>
+        <dependency>
             <!-- XWSS -->
             <groupId>com.sun.xml.wss</groupId>
             <artifactId>xws-security</artifactId>
             <version>${xwssecurity.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.xml.crypto</groupId>
-                    <artifactId>xmldsig</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.activation</groupId>
-                    <artifactId>activation</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- Persistence utils -->
-            <groupId>com.wandrell</groupId>
-            <artifactId>persistence-utils</artifactId>
-            <version>${wandrell.persistence}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax</groupId>
-                    <artifactId>javaee-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- ============================================== -->
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
@@ -771,14 +575,6 @@
                         </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <!-- JAXB implementation -->
-                        <groupId>com.sun.xml.bind</groupId>
-                        <artifactId>jaxb-impl</artifactId>
-                        <version>${jaxb.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <!-- JAXB2 -->
@@ -799,18 +595,6 @@
                     <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
                 </configuration>
                 <dependencies>
-                    <dependency>
-                        <!-- JAXB API -->
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jaxb-api</artifactId>
-                        <version>${jaxb.version}</version>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
                     <dependency>
                         <!-- JAXB Core -->
                         <groupId>com.sun.xml.bind</groupId>

@@ -24,6 +24,8 @@
 
 package com.wandrell.example.ws.soap.spring.model;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -125,12 +127,12 @@ public final class DefaultExampleEntity implements ExampleEntity {
 
     @Override
     public final void setId(final Integer id) {
-        entityId = id;
+        entityId = checkNotNull(id, "Received a null pointer as id");
     }
 
     @Override
     public final void setName(final String name) {
-        entityName = name;
+        entityName = checkNotNull(name, "Received a null pointer as name");
     }
 
 }

@@ -45,6 +45,9 @@
         <entry key="hibernate.ejb.naming_strategy" value="${hibernate.namingStrategy}" />
         <entry key="hibernate.show_sql" value="${jpa.showSql}" />
         <entry key="hibernate.format_sql" value="${hibernate.format_sql}" />
+        <entry key="hibernate.cache.use_second_level_cache" value="${hibernate.cache.use_second_level_cache}" />
+        <entry key="hibernate.cache.use_query_cache" value="${hibernate.cache.use_query_cache}" />
+        <entry key="hibernate.cache.region.factory_class" value="${hibernate.cache.region.factory_class}" />
     </util:map>
 
     <!-- Transaction manager -->
