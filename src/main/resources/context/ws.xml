@@ -10,41 +10,35 @@
 
     <!-- Scans for endpoints -->
     <context:component-scan base-package="com.wandrell.example.ws.soap.spring.endpoint" />
-    <sws:annotation-driven />
-    <context:annotation-config />
 
     <!-- Registers interceptors -->
     <sws:interceptors>
-        <bean
-            class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor" />
+        <ref bean="soapEnvelopeLoggingInterceptor" />
         <ref bean="payloadValidatingInterceptor" />
     </sws:interceptors>
 
-    <bean id="payloadValidatingInterceptor"
-        class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+    <!-- SOAP logger -->
+    <bean id="soapEnvelopeLoggingInterceptor" class="${interceptor.soapLogger.class}" />
+
+    <!-- Payload validator -->
+    <bean id="payloadValidatingInterceptor" class="${interceptor.payloadValidator.class}">
         <property name="schema" value="${schema.path}" />
     </bean>
 
     <!-- WSDL -->
-    <sws:dynamic-wsdl id="wsdl" portTypeName="${wsdl.portTypeName}"
+    <sws:dynamic-wsdl id="wsdlUnsecure" portTypeName="${wsdl.portTypeName}"
         locationUri="${wsdl.locationUri}" targetNamespace="${wsdl.targetNamespace}">
         <sws:xsd location="${schema.path}" />
     </sws:dynamic-wsdl>
 
     <!-- Marshaller adapter -->
-    <bean
-        class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+    <bean class="${marshaller.adapter.class}">
         <constructor-arg ref="marshaller" />
     </bean>
 
     <!-- Marshaller -->
     <bean id="marshaller" class="${marshaller.class}">
         <property name="packagesToScan" value="${marshaller.packagesToScan}" />
-    </bean>
-
-    <bean
-        class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
-        <constructor-arg ref="marshaller" />
     </bean>
 
 </beans>
