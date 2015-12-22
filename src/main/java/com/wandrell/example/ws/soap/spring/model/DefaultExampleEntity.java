@@ -36,16 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * Test class serving as a JPA persistence entity.
- * <p>
- * This is to be used on the JPA repositories tests.
+ * Implementation of {@link ExampleEntity} for JPA and XML marshalling.
  *
  * @author Bernardo Martínez Garrido
  */
-@Entity(name = "TestEntity")
-@Table(name = "test_entities")
-@XmlRootElement(name = "test_entity")
-public final class JPATestEntity implements TestEntity {
+@Entity(name = "ExampleEntity")
+@Table(name = "example_entities")
+@XmlRootElement(name = "example_entity")
+public final class DefaultExampleEntity implements ExampleEntity {
 
     /**
      * Serialization ID.
@@ -71,9 +69,9 @@ public final class JPATestEntity implements TestEntity {
     private String name = "";
 
     /**
-     * Constructs a {@code JPATestEntity}.
+     * Constructs a {@code JPAExampleEntity}.
      */
-    public JPATestEntity() {
+    public DefaultExampleEntity() {
         super();
     }
 
@@ -85,7 +83,7 @@ public final class JPATestEntity implements TestEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        JPATestEntity other = (JPATestEntity) obj;
+        DefaultExampleEntity other = (DefaultExampleEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

@@ -40,7 +40,7 @@ public final class ITSampleClient {
         client.setMarshaller(getMarshaller());
         client.setUnmarshaller(getMarshaller());
 
-        entity = client.getEntity(1).getEntity();
+        entity = client.getEntity(1);
 
         Assert.assertEquals(entity.getId(), 1);
         Assert.assertEquals(entity.getName(), "entity_1");
