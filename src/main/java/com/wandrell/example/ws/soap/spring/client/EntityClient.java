@@ -58,10 +58,8 @@ public final class EntityClient extends WebServiceGatewaySupport {
         request.setId(id);
 
         response = (GetEntityResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(
-                        request,
-                        new SoapActionCallback(
-                                "http://localhost:8080/sws/entities"));
+                .marshalSendAndReceive(request,
+                        new SoapActionCallback(getDefaultUri()));
 
         return response.getEntity();
     }
