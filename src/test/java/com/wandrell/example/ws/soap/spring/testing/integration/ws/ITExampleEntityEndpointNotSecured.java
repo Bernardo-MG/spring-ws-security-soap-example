@@ -31,12 +31,15 @@ import javax.xml.soap.SOAPConnectionFactory;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.ws.generated.entity.Entity;
-import com.wandrell.example.ws.soap.spring.testing.config.WSPathConfig;
 import com.wandrell.example.ws.soap.spring.testing.util.SOAPParsingUtils;
+import com.wandrell.example.ws.soap.spring.testing.util.config.ContextConfig;
 
 /**
  * Integration tests for
@@ -53,28 +56,35 @@ import com.wandrell.example.ws.soap.spring.testing.util.SOAPParsingUtils;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ITExampleEntityEndpointNotSecured {
+@ContextConfiguration(locations = { ContextConfig.ENDPOINT_UNSECURE })
+public final class ITExampleEntityEndpointNotSecured extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * Id of the returned entity.
      */
-    private final Integer entityId = 1;
+    @Value("${entity.id}")
+    private Integer entityId;
     /**
      * Name of the returned entity.
      */
-    private final String entityName = "entity_1";
+    @Value("${entity.name}")
+    private String entityName;
     /**
      * Path to the file containing the invalid SOAP request.
      */
-    private final String pathInvalid = "/soap/entity-invalid.xml";
+    @Value("${message.invalid.file.path}")
+    private String pathInvalid;
     /**
      * Path to the file containing the valid SOAP request.
      */
-    private final String pathValid = "/soap/entity-not-secured.xml";
+    @Value("${message.valid.file.path}")
+    private String pathValid;
     /**
      * URL to the web service being tested.
      */
-    private final String wsUrl = WSPathConfig.ENDPOINT_ENTITIES;
+    @Value("${ws.url}")
+    private String wsUrl;
 
     /**
      * Default constructor.

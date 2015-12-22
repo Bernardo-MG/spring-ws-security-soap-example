@@ -8,18 +8,6 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/test-client-unsecure.properties" />
-
-    <!-- Client -->
-    <bean id="client" class="${client.class}">
-        <property name="defaultUri" value="${ws.url}" />
-        <property name="marshaller" ref="marshaller" />
-        <property name="unmarshaller" ref="marshaller" />
-    </bean>
-
-    <!-- Marshaller -->
-    <bean id="marshaller" class="${marshaller.class}">
-        <property name="packagesToScan" value="${marshaller.packagesToScan}" />
-    </bean>
+        location="classpath:context/test-endpoint-unsecure.properties" />
 
 </beans>
