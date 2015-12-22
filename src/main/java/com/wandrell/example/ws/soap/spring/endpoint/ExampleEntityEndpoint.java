@@ -35,7 +35,7 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 import com.wandrell.example.ws.soap.spring.config.EndpointConfig;
 import com.wandrell.example.ws.soap.spring.model.ExampleEntity;
-import com.wandrell.example.ws.soap.spring.repository.ExampleEntityRepository;
+import com.wandrell.example.ws.soap.spring.service.ExampleEntityService;
 
 /**
  * Web service endpoint for {@link ExampleEntity}.
@@ -44,22 +44,24 @@ import com.wandrell.example.ws.soap.spring.repository.ExampleEntityRepository;
 public class ExampleEntityEndpoint {
 
     /**
-     * Repository for the {@code ExampleEntity} instances handled by the
+     * Service for the {@code ExampleEntity} instances handled by the web
      * service.
      * <p>
      * This is injected by Spring.
      */
-    private final ExampleEntityRepository entityRepository;
+    private final ExampleEntityService entityService;
 
     /**
      * Constructs a {@code ExampleEntityEndpoint}.
      *
-     * @param repository
-     *            the repository for the {@code ExampleEntity} instances
+     * @param service
+     *            the service for the {@code ExampleEntity} instances
      */
     @Autowired
-    public ExampleEntityEndpoint(final ExampleEntityRepository repository) {
-        this.entityRepository = repository;
+    public ExampleEntityEndpoint(final ExampleEntityService service) {
+        super();
+
+        entityService = service;
     }
 
     /**
@@ -83,7 +85,7 @@ public class ExampleEntityEndpoint {
 
         response = new GetEntityResponse();
 
-        entity = entityRepository.findOne(request.getId());
+        entity = getExampleEntityService().findById(request.getId());
 
         if (entity != null) {
             entityResponse = new Entity();
@@ -93,6 +95,15 @@ public class ExampleEntityEndpoint {
         }
 
         return response;
+    }
+
+    /**
+     * Returns the service used to handle the {@code ExampleEntity} instances.
+     * 
+     * @return the service used to handle the {@code ExampleEntity} instances
+     */
+    private final ExampleEntityService getExampleEntityService() {
+        return entityService;
     }
 
 }

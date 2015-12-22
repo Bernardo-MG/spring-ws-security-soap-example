@@ -11,5 +11,6 @@
 
     <!-- Imports -->
     <import resource="classpath:/context/persistence.xml" />
+    <import resource="classpath:/context/service.xml" />
 
 </beans>
