@@ -27,11 +27,13 @@ package com.wandrell.example.ws.soap.spring.endpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.wandrell.example.ws.generated.entity.Entity;
 import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
+import com.wandrell.example.ws.soap.spring.config.EndpointConfig;
 import com.wandrell.example.ws.soap.spring.model.ExampleEntity;
 import com.wandrell.example.ws.soap.spring.repository.ExampleEntityRepository;
 
@@ -41,8 +43,6 @@ import com.wandrell.example.ws.soap.spring.repository.ExampleEntityRepository;
 @Endpoint
 public class ExampleEntityEndpoint {
 
-    private static final String LOCALPART = "getEntityRequest";
-    private static final String NAMESPACE_URI = "http://wandrell.com/example/ws/entity";
     /**
      * Repository for the {@code ExampleEntity} instances handled by the
      * service.
@@ -70,14 +70,15 @@ public class ExampleEntityEndpoint {
      * classes.
      *
      * @param request
-     *            a SOAP request for the entity
-     * @return a SOAP response with the entity
+     *            JAXB2 representation of a SOAP request for the entity
+     * @return JAXB2 representation of a SOAP response with the entity
      */
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = LOCALPART)
+    @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST, namespace = EndpointConfig.EXAMPLE_ENTITY_NAMESPACE)
     @ResponsePayload
-    public final GetEntityResponse getEntity(final GetEntityRequest request) {
+    public final GetEntityResponse getEntity(
+            @RequestPayload final GetEntityRequest request) {
         final GetEntityResponse response; // SOAP response with the result
-        final ExampleEntity entity;          // Found entity
+        final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return
 
         response = new GetEntityResponse();

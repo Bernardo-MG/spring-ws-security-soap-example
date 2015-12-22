@@ -23,6 +23,8 @@
     <!-- Payload validator -->
     <bean id="payloadValidatingInterceptor" class="${interceptor.payloadValidator.class}">
         <property name="schema" value="${schema.path}" />
+        <property name="validateRequest" value="true" />
+        <property name="validateResponse" value="true" />
     </bean>
 
     <!-- WSDL -->

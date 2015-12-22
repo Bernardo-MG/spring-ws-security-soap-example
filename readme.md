@@ -50,10 +50,8 @@ All other dependencies are handled through Maven, and noted in the included POM 
 To run the demo just use the following Maven command:
 
 ```
-$ mvn clean package tomcat7:run-war
+$ mvn clean package jetty:run-war
 ```
-
-Note that as the project requires files on the WEB-INF folder the simpler tomcat7:run command can not be used.
 
 ### Memory problems with the Tomcat plugin
 
