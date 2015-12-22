@@ -24,7 +24,10 @@
 
 package com.wandrell.example.swss.testing.integration.ws;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.soap.SOAPConnectionFactory;
@@ -50,6 +53,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * <ol>
  * <li>A valid message returns the expected value.</li>
  * <li>A message with invalid content returns a fault.</li>
+ * <li>The WSDL is being generated.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
@@ -81,10 +85,15 @@ public final class ITExampleEntityEndpointNotSecured extends
     @Value("${message.valid.file.path}")
     private String pathValid;
     /**
+     * URL to the WSDL for the web service being tested.
+     */
+    @Value("${ws.wsdl.url}")
+    private String wsdlURL;
+    /**
      * URL to the web service being tested.
      */
     @Value("${ws.url}")
-    private String wsUrl;
+    private String wsURL;
 
     /**
      * Default constructor.
@@ -150,6 +159,25 @@ public final class ITExampleEntityEndpointNotSecured extends
     }
 
     /**
+     * Tests that the WSDL is being generated.
+     *
+     * @throws IOException
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_WSDL() throws IOException {
+        final URL url;           // URL for the WSDL
+        final BufferedReader in; // Reader for the WSDL
+        final String line;       // First line of the WSDL
+
+        url = new URL(wsdlURL);
+        in = new BufferedReader(new InputStreamReader(url.openStream()));
+        line = in.readLine();
+
+        Assert.assertTrue(line.contains("wsdl:definitions"));
+    }
+
+    /**
      * Calls the web service being tested and returns the response.
      *
      * @param request
@@ -164,7 +192,7 @@ public final class ITExampleEntityEndpointNotSecured extends
 
         soapConnectionFactory = SOAPConnectionFactory.newInstance();
 
-        return soapConnectionFactory.createConnection().call(request, wsUrl);
+        return soapConnectionFactory.createConnection().call(request, wsURL);
     }
 
 }

@@ -28,7 +28,7 @@
     </bean>
 
     <!-- WSDL -->
-    <sws:dynamic-wsdl id="wsdlUnsecure" portTypeName="${wsdl.portTypeName}"
+    <sws:dynamic-wsdl id="service" portTypeName="${wsdl.portTypeName}"
         locationUri="${wsdl.locationUri}" targetNamespace="${wsdl.targetNamespace}">
         <sws:xsd location="${schema.path}" />
     </sws:dynamic-wsdl>
