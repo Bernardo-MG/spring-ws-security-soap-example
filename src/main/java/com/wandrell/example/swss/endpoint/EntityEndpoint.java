@@ -41,7 +41,7 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * Web service endpoint for {@link ExampleEntity}.
  */
 @Endpoint
-public class ExampleEntityEndpoint {
+public class EntityEndpoint {
 
     /**
      * Service for the {@code ExampleEntity} instances handled by the web
@@ -58,16 +58,16 @@ public class ExampleEntityEndpoint {
      *            the service for the {@code ExampleEntity} instances
      */
     @Autowired
-    public ExampleEntityEndpoint(final ExampleEntityService service) {
+    public EntityEndpoint(final ExampleEntityService service) {
         super();
 
         entityService = service;
     }
 
     /**
-     * Acquires a {@code ExampleEntity} through a SOAP request.
+     * Acquires an {@code Entity} through a SOAP request.
      * <p>
-     * The entity should be transformed from the {@link ExampleEntity} instance
+     * The entity should be transformed from the {@link Entity} instance
      * returned by the repository to the {@link Entity} used by the SOAP
      * classes.
      *
@@ -75,7 +75,7 @@ public class ExampleEntityEndpoint {
      *            JAXB2 representation of a SOAP request for the entity
      * @return JAXB2 representation of a SOAP response with the entity
      */
-    @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST, namespace = EndpointConfig.EXAMPLE_ENTITY_NAMESPACE)
+    @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST, namespace = EndpointConfig.ENTITY_NS)
     @ResponsePayload
     public final GetEntityResponse getEntity(
             @RequestPayload final GetEntityRequest request) {
@@ -99,7 +99,7 @@ public class ExampleEntityEndpoint {
 
     /**
      * Returns the service used to handle the {@code ExampleEntity} instances.
-     * 
+     *
      * @return the service used to handle the {@code ExampleEntity} instances
      */
     private final ExampleEntityService getExampleEntityService() {

@@ -33,9 +33,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Implementation of {@link ExampleEntity} for JPA and XML marshalling.
@@ -44,14 +41,12 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity(name = "ExampleEntity")
 @Table(name = "example_entities")
-@XmlRootElement(name = "example_entity")
 public final class DefaultExampleEntity implements ExampleEntity {
 
     /**
      * Serialization ID.
      */
     @Transient
-    @XmlTransient
     private static final long serialVersionUID = 1328776989450853491L;
     /**
      * Entity's ID.
@@ -59,7 +54,6 @@ public final class DefaultExampleEntity implements ExampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    @XmlElement
     private Integer entityId;
     /**
      * Name of the entity.
@@ -68,7 +62,6 @@ public final class DefaultExampleEntity implements ExampleEntity {
      * tests.
      */
     @Column(name = "name", nullable = false)
-    @XmlElement
     private String entityName = "";
 
     /**

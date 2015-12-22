@@ -22,9 +22,4 @@
         <url-pattern>/unsecure/*</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>unsecure-ws</servlet-name>
-        <url-pattern>/unsecure/*.wsdl</url-pattern>
-    </servlet-mapping>
-
 </web-app>

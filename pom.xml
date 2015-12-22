@@ -55,7 +55,7 @@
 
     <ciManagement>
         <system>Travis CI</system>
-        <url>https://travis-ci.org/bernardo-mg/spring-ws-security-soap-example</url>
+        <url>https://travis-ci.org/Bernardo-MG/spring-ws-security-soap-example</url>
         <notifiers />
     </ciManagement>
 

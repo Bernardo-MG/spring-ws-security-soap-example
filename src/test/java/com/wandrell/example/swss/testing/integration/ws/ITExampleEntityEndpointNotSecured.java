@@ -46,7 +46,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Integration tests for
- * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
+ * {@link com.wandrell.example.swss.endpoint.EntityEndpoint
  * ExampleEntityEndpoint} testing that it handles unsecured messages correctly.
  * <p>
  * Checks the following cases:

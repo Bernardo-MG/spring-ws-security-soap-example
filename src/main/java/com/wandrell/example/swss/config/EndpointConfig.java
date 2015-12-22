@@ -34,7 +34,7 @@ public final class EndpointConfig {
     /**
      * Namespace for the example entities.
      */
-    public static final String EXAMPLE_ENTITY_NAMESPACE = "http://wandrell.com/example/ws/entity";
+    public static final String ENTITY_NS = "http://wandrell.com/example/ws/entity";
     /**
      * Name for the operation used to acquire an entity.
      */
