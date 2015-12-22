@@ -27,10 +27,7 @@ package com.wandrell.example.swss.model;
 import java.io.Serializable;
 
 /**
- * Interface representing an entity to be used on the example
- * <p>
- * It just implements {@link PersistenceEntity}, adding a name field as
- * additional data for the tests.
+ * Interface representing an entity to be used on the example.
  *
  * @author Bernardo Martínez Garrido
  */
