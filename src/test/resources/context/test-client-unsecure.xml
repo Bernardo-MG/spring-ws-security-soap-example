@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/test-entity-values.properties, classpath:context/test-client-unsecure.properties" />
+
+    <!-- WS URL -->
+    <bean id="urlWebService" class="java.lang.String">
+        <constructor-arg type="java.lang.String" value="${ws.url}" />
+    </bean>
+
+    <!-- Client -->
+    <bean id="client" class="${client.class}">
+        <property name="defaultUri" ref="urlWebService" />
+        <property name="marshaller" ref="marshaller" />
+        <property name="unmarshaller" ref="marshaller" />
+    </bean>
+
+    <!-- Marshaller -->
+    <bean id="marshaller" class="${marshaller.class}">
+        <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+    </bean>
+
+</beans>

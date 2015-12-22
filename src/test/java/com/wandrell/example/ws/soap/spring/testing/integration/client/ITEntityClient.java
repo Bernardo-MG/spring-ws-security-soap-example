@@ -24,13 +24,16 @@
 
 package com.wandrell.example.ws.soap.spring.testing.integration.client;
 
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.ws.generated.entity.Entity;
 import com.wandrell.example.ws.soap.spring.client.EntityClient;
-import com.wandrell.example.ws.soap.spring.testing.config.WSPathConfig;
+import com.wandrell.example.ws.soap.spring.testing.util.config.ContextConfig;
 
 /**
  * Integration tests for {@link EntityClient} testing that it handles unsecured
@@ -46,24 +49,24 @@ import com.wandrell.example.ws.soap.spring.testing.config.WSPathConfig;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ITEntityClient {
+@ContextConfiguration(locations = { ContextConfig.CLIENT_UNSECURE })
+public final class ITEntityClient extends AbstractTestNGSpringContextTests {
 
+    /**
+     * Client being tested.
+     */
+    @Autowired
+    private EntityClient client;
     /**
      * Id of the returned entity.
      */
-    private final Integer entityId = 1;
+    @Value("${entity.id}")
+    private Integer entityId;
     /**
      * Name of the returned entity.
      */
-    private final String entityName = "entity_1";
-    /**
-     * Packages to be scanned by the marshaller.
-     */
-    private final String marshallerPackages = "com.wandrell.example.ws.generated.*";
-    /**
-     * URL to the web service being tested.
-     */
-    private final String wsUrl = WSPathConfig.ENDPOINT_ENTITIES;
+    @Value("${entity.name}")
+    private String entityName;
 
     /**
      * Default constructor.
@@ -77,14 +80,7 @@ public final class ITEntityClient {
      */
     @Test
     public final void testEndpoint_InvalidId_ReturnsNull() {
-        final EntityClient client; // Client being tested
-        final Entity entity;       // Returned entity
-
-        client = new EntityClient();
-
-        client.setDefaultUri(wsUrl);
-        client.setMarshaller(getMarshaller());
-        client.setUnmarshaller(getMarshaller());
+        final Entity entity; // Returned entity
 
         entity = client.getEntity(-1);
 
@@ -96,33 +92,12 @@ public final class ITEntityClient {
      */
     @Test
     public final void testEndpoint_ValidId_ReturnsValid() {
-        final EntityClient client; // Client being tested
-        final Entity entity;       // Returned entity
-
-        client = new EntityClient();
-
-        client.setDefaultUri(wsUrl);
-        client.setMarshaller(getMarshaller());
-        client.setUnmarshaller(getMarshaller());
+        final Entity entity; // Returned entity
 
         entity = client.getEntity(1);
 
         Assert.assertEquals((Integer) entity.getId(), entityId);
         Assert.assertEquals(entity.getName(), entityName);
-    }
-
-    /**
-     * Returns the marshaller for the client.
-     *
-     * @return the marshaller for the client
-     */
-    private Jaxb2Marshaller getMarshaller() {
-        final Jaxb2Marshaller marshaller;
-
-        marshaller = new Jaxb2Marshaller();
-        marshaller.setPackagesToScan(marshallerPackages);
-
-        return marshaller;
     }
 
 }

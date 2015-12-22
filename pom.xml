@@ -410,6 +410,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <!-- Spring Test -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <!-- TestNG -->
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
