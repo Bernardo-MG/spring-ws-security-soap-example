@@ -231,6 +231,7 @@
         <manifest.name>com/wandrell/demo/spring_soap_ws_security_example</manifest.name>
         <!-- Dependencies versions -->
         <commons.codec.version>1.10</commons.codec.version>
+        <commons.httpclient.version>3.1</commons.httpclient.version>
         <commons.logging.version>1.2</commons.logging.version>
         <ehcache.version>2.6.11</ehcache.version>
         <freemarker.version>2.3.23</freemarker.version>
@@ -409,10 +410,17 @@
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
         <!-- ============================================== -->
         <dependency>
-            <!-- Commons codec -->
+            <!-- Commons Codec -->
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>${commons.codec.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Commons HTTP Client -->
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons.httpclient.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

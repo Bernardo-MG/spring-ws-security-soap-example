@@ -50,7 +50,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ContextConfig.CLIENT_UNSECURE })
-public final class ITEntityClient extends AbstractTestNGSpringContextTests {
+public final class ITEntityClientUnsecure extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * Client being tested.
@@ -71,7 +72,7 @@ public final class ITEntityClient extends AbstractTestNGSpringContextTests {
     /**
      * Default constructor.
      */
-    public ITEntityClient() {
+    public ITEntityClientUnsecure() {
         super();
     }
 
