@@ -37,21 +37,6 @@ import java.io.Serializable;
 public interface ExampleEntity extends Serializable {
 
     /**
-     * Returns the name of the entity.
-     *
-     * @return the entity's name
-     */
-    public String getName();
-
-    /**
-     * Changes the name of the entity.
-     *
-     * @param name
-     *            the name to set on the entity
-     */
-    public void setName(final String name);
-
-    /**
      * Returns the ID assigned to this entity.
      * <p>
      * If no ID has been assigned yet, then the value will be {@code null} or
@@ -62,11 +47,26 @@ public interface ExampleEntity extends Serializable {
     public Integer getId();
 
     /**
+     * Returns the name of the entity.
+     *
+     * @return the entity's name
+     */
+    public String getName();
+
+    /**
      * Sets the ID assigned to this entity.
      *
      * @param identifier
      *            the ID for the entity
      */
     public void setId(final Integer identifier);
+
+    /**
+     * Changes the name of the entity.
+     *
+     * @param name
+     *            the name to set on the entity
+     */
+    public void setName(final String name);
 
 }
