@@ -51,12 +51,13 @@ public final class EntityClient extends WebServiceGatewaySupport {
      * @return the {@code Entity} with the received id
      */
     public final Entity getEntity(final Integer id) {
-        final GetEntityRequest request; // Request for acquiring the entity
+        final GetEntityRequest request;   // Request for acquiring the entity
+        final GetEntityResponse response; // Response with the resulting entity
 
         request = new GetEntityRequest();
         request.setId(id);
 
-        GetEntityResponse response = (GetEntityResponse) getWebServiceTemplate()
+        response = (GetEntityResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(
                         request,
                         new SoapActionCallback(

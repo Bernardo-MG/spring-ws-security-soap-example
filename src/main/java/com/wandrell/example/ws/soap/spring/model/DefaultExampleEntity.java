@@ -58,7 +58,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     @XmlElement
-    private Integer entityId = null;
+    private Integer entityId;
     /**
      * Name of the entity.
      * <p>

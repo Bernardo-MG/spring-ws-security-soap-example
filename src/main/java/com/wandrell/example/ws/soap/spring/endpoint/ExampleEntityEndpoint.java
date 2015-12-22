@@ -49,7 +49,7 @@ public class ExampleEntityEndpoint {
      * <p>
      * This is injected by Spring.
      */
-    private ExampleEntityRepository entityRepository;
+    private final ExampleEntityRepository entityRepository;
 
     /**
      * Constructs a {@code ExampleEntityEndpoint}.
