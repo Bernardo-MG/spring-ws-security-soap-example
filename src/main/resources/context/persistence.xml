@@ -14,7 +14,7 @@
                         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!-- Scans for repositories -->
-    <jpa:repositories base-package="com.wandrell.example.ws.soap.spring.repository" />
+    <jpa:repositories base-package="com.wandrell.example.swss.repository" />
 
     <!-- ================================== JPA ================================== -->
 
