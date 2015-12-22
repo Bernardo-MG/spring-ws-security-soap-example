@@ -32,11 +32,15 @@ package com.wandrell.example.swss.testing.util.config;
 public final class ContextConfig {
 
     /**
-     * Unsecure WS context for the client tests.
+     * Unsecure WS context for the client.
      */
     public static final String CLIENT_UNSECURE = "classpath:context/test-client-unsecure.xml";
     /**
-     * Unsecure WS context for the endpoint tests.
+     * WS context with password-based security for the endpoint.
+     */
+    public static final String ENDPOINT_PASSWORD = "classpath:context/test-endpoint-password.xml";
+    /**
+     * Unsecure WS context for the endpoint.
      */
     public static final String ENDPOINT_UNSECURE = "classpath:context/test-endpoint-unsecure.xml";
 

@@ -61,7 +61,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ContextConfig.ENDPOINT_UNSECURE })
-public final class ITExampleEntityEndpointNotSecured extends
+public final class ITEntityEndpointUnsecure extends
         AbstractTestNGSpringContextTests {
 
     /**
@@ -98,7 +98,7 @@ public final class ITExampleEntityEndpointNotSecured extends
     /**
      * Default constructor.
      */
-    public ITExampleEntityEndpointNotSecured() {
+    public ITEntityEndpointUnsecure() {
         super();
     }
 

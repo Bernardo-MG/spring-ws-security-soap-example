@@ -230,8 +230,10 @@
         <!-- Manifest data -->
         <manifest.name>com/wandrell/demo/spring_soap_ws_security_example</manifest.name>
         <!-- Dependencies versions -->
+        <commons.codec.version>1.10</commons.codec.version>
         <commons.logging.version>1.2</commons.logging.version>
         <ehcache.version>2.6.11</ehcache.version>
+        <freemarker.version>2.3.23</freemarker.version>
         <guava.version>18.0</guava.version>
         <h2.version>1.4.190</h2.version>
         <hibernate.version>5.0.2.Final</hibernate.version>
@@ -244,7 +246,7 @@
         <slf4j.version>1.7.13</slf4j.version>
         <spring.data.version>1.9.2.RELEASE</spring.data.version>
         <spring.version>4.2.4.RELEASE</spring.version>
-        <spring.ws.version>2.2.2.RELEASE</spring.ws.version>
+        <spring.ws.version>2.2.4.RELEASE</spring.ws.version>
         <testng.version>6.9.9</testng.version>
         <wsdl4j.version>1.6.3</wsdl4j.version>
         <xwssecurity.version>3.0</xwssecurity.version>
@@ -293,6 +295,12 @@
             <!-- Spring WS -->
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring WS Security -->
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-security</artifactId>
             <version>${spring.ws.version}</version>
         </dependency>
         <!-- ============================================== -->
@@ -400,6 +408,20 @@
         <!-- ============================================== -->
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
         <!-- ============================================== -->
+        <dependency>
+            <!-- Commons codec -->
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons.codec.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Freemarker -->
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <!-- Mockito -->
             <groupId>org.mockito</groupId>
