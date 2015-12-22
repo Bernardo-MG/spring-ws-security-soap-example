@@ -66,9 +66,9 @@
     <profiles>
         <profile>
             <!-- Profile for the Eclipse Maven plugin -->
-            <!-- Sets the POM so this plugin does not give the usual unregistered
+            <!-- Sets the POM so this plugin does not give the usual unregistered 
                 goals errors -->
-            <!-- It will be activated automatically on Eclipse if this has the m2e
+            <!-- It will be activated automatically on Eclipse if this has the m2e 
                 plugin, by detecting the version property -->
             <id>eclipse-maven</id>
             <activation>
@@ -82,7 +82,7 @@
                         <plugin>
                             <!-- m2e lifecycle mapping -->
                             <!-- This is used to configure the Maven plugin for Eclipse. -->
-                            <!-- Among other things, it allows registering goals,
+                            <!-- Among other things, it allows registering goals, 
                                 which Eclipse would otherwise reject. -->
                             <!-- It has no real effect on Maven. -->
                             <groupId>org.eclipse.m2e</groupId>
@@ -93,20 +93,20 @@
                                     <pluginExecutions>
                                         <pluginExecution>
                                             <!-- jacoco plugin configuration -->
-                                            <!-- Fixes the errors with Eclipse not
+                                            <!-- Fixes the errors with Eclipse not 
                                                 recognizing the plugin configuration -->
                                             <pluginExecutionFilter>
                                                 <groupId>org.jacoco</groupId>
                                                 <artifactId>jacoco-maven-plugin</artifactId>
                                                 <versionRange>[0.5,)</versionRange>
                                                 <goals>
-                                                    <!-- The 'prepare-agent' goal
+                                                    <!-- The 'prepare-agent' goal 
                                                         is registered to m2e. -->
                                                     <goal>prepare-agent</goal>
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <!-- As m2e doesn't know what to
+                                                <!-- As m2e doesn't know what to 
                                                     do with jacoco, it is ignored to avoid error warnings. -->
                                                 <ignore />
                                             </action>
@@ -405,6 +405,12 @@
             <groupId>com.sun.xml.wss</groupId>
             <artifactId>xws-security</artifactId>
             <version>${xwssecurity.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.crypto</groupId>
+                    <artifactId>xmldsig</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- ============================================== -->
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
@@ -662,7 +668,7 @@
             </plugin>
             <plugin>
                 <!-- PMD -->
-                <!-- Checks that the code complies with a series of code quality
+                <!-- Checks that the code complies with a series of code quality 
                     rules -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
