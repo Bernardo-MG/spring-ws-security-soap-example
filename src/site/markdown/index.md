@@ -1,25 +1,20 @@
-# Maven-Based Java Library
+# Spring Web Services
 
-This is a base project created with the [Library Maven Archetype][library-archetype], prepared to ease the development of new libraries.
-
-Note that while it is meant to be a working project from the beginning, meaning that it compiles, runs the tests and creates the docs, it is mostly composed of placeholder classes which should be swapped with actual content.
+The [Spring-WS framework][spring-ws] allows creating new SOAP-based web services easily. These are meant to be contract-first services, meaning the service is created from a WSDL definition, and easy to build with Maven, as this example does.
 
 ---
 
-## Where should I start customizing the project?
+## What is the reach of this example?
 
-First of all, check the [Library Maven Archetype][library-archetype] documentation, and then edit the readme file and the Maven site descriptions about the project.
+The project just wants to show how to set up WS-Security for a Spring-based web service. As a side effect it also shows how to set up such a service, but that's not the aim.
 
-After that, of course, the classes and tests included should be replaced with actual code, which also means adding dependencies and changing profiles and plugins as needed on the POM.
+If it is to be run, several versions of the same basic web service will be created, starting from a basic unsecured service, and then adding to it different security protocols in each version.
 
-## Some external requirements
+## The various versions of the web service
 
-While the project can be used just by itself, it won't take full advantage of most of the configuration until it is integrated with a few services:
+The various web services included in the project each offer a different security system:
 
-- Version control system, Github by default.
-- Continuous integration, Travis CI by default.
-- Releases repository, Bintray by default.
-- Test artifacts repository, Sonatype OSS by default.
-- Documentation repository, a FTP by default.
+- No security, for the base service.
+- User with password headers, digested and with nonce code.
 
-[library-archetype]: https://github.com/Bernardo-MG/library-maven-archetype
+[spring-ws]: http://projects.spring.io/spring-ws/

@@ -23,7 +23,7 @@
     <version>0.1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Spring WS Security for SOAP Example</name>
+    <name>Spring Web Services WS-Security Example</name>
     <description>An example showing how to configure Spring-WS Security for a SOAP web service</description>
     <url>https://github.com/bernardo-mg/spring-ws-security-soap-example
 </url>
