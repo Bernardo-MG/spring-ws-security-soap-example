@@ -51,7 +51,10 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * <p>
  * Checks the following cases:
  * <ol>
+ * <li>A valid message returns the expected value.</li>
  * <li>A message without a password returns a fault.</li>
+ * <li>A message with a wrong password returns a fault.</li>
+ * <li>A message with a wrong user returns a fault.</li>
  * <li>The WSDL is being generated.</li>
  * </ol>
  * <p>
@@ -129,13 +132,49 @@ public final class ITEntityEndpointPassword extends
     }
 
     /**
+     * Tests that a message with a wrong password returns a fault.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_InvalidPassword_ReturnsEntity()
+            throws Exception {
+        final SOAPMessage message; // Response message
+
+        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
+                username, "abc123"));
+
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
+    }
+
+    /**
+     * Tests that a message with a wrong user returns a fault.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_InvalidUser_ReturnsEntity() throws Exception {
+        final SOAPMessage message; // Response message
+
+        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
+                "abc123", password));
+
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
+    }
+
+    /**
      * Tests that a valid message returns the expected value.
      *
      * @throws Exception
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_Valid_ReturnsEntity() throws Exception {
+    public final void testEndpoint_ValidUserAndPassword_ReturnsEntity()
+            throws Exception {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
