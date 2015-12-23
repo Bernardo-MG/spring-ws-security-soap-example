@@ -27,21 +27,22 @@ package com.wandrell.example.swss.testing.integration.client;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.AbstractITEntityClient;
+import com.wandrell.example.swss.testing.util.test.AbstractITEntityClientInvalid;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service.
+ * Implementation of {@code AbstractITEntityClientInvalid} for a password
+ * protected web service.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.CLIENT_PASSWORD })
-public final class ITEntityClientPassword extends AbstractITEntityClient {
+@ContextConfiguration(locations = { ContextConfig.CLIENT_PASSWORD_INVALID })
+public final class ITEntityClientPasswordInvalid extends
+        AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.
      */
-    public ITEntityClientPassword() {
+    public ITEntityClientPasswordInvalid() {
         super();
     }
 

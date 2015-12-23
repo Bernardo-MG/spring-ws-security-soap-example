@@ -22,27 +22,52 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.client;
+package com.wandrell.example.swss.testing.util.test;
 
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.ws.soap.client.SoapFaultClientException;
+import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.AbstractITEntityClient;
+import com.wandrell.example.swss.client.EntityClient;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service.
+ * Integration tests for {@link EntityClient} testing that it generates a fault
+ * when the message is invalid.
+ * <p>
+ * Checks the following cases:
+ * <ol>
+ * <li>An invalid message causes a {@code SoapFaultClientException} to be
+ * thrown.</li>
+ * </ol>
+ * <p>
+ * Pay attention to the fact that it requires the WS to be running.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.CLIENT_PASSWORD })
-public final class ITEntityClientPassword extends AbstractITEntityClient {
+public abstract class AbstractITEntityClientInvalid extends
+        AbstractTestNGSpringContextTests {
+
+    /**
+     * Client being tested.
+     */
+    @Autowired
+    private EntityClient client;
 
     /**
      * Default constructor.
      */
-    public ITEntityClientPassword() {
+    public AbstractITEntityClientInvalid() {
         super();
+    }
+
+    /**
+     * Tests that an invalid message causes a {@code SoapFaultClientException}
+     * to be thrown.
+     */
+    @Test(expectedExceptions = SoapFaultClientException.class)
+    public final void testEndpoint_InvalidPassword_Exception() {
+        client.getEntity(1);
     }
 
 }

@@ -24,81 +24,25 @@
 
 package com.wandrell.example.swss.testing.integration.client;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.testing.util.test.AbstractITEntityClient;
 
 /**
- * Integration tests for {@link EntityClient} testing that it handles unsecured
- * messages correctly.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>A valid id returns the expected value.</li>
- * <li>An invalid id returns null.</li>
- * </ol>
- * <p>
- * Pay attention to the fact that it requires the WS to be running.
+ * Implementation of {@code AbstractITEntityClient} for a password protected web
+ * service and using WSS4J.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ContextConfig.CLIENT_PASSWORD_WSS4J })
-public final class ITEntityClientPasswordWSS4J extends
-        AbstractTestNGSpringContextTests {
-
-    /**
-     * Client being tested.
-     */
-    @Autowired
-    private EntityClient client;
-    /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer entityId;
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String entityName;
+public final class ITEntityClientPasswordWSS4J extends AbstractITEntityClient {
 
     /**
      * Default constructor.
      */
     public ITEntityClientPasswordWSS4J() {
         super();
-    }
-
-    /**
-     * Tests that an invalid id returns null.
-     */
-    @Test
-    public final void testEndpoint_InvalidId_ReturnsNull() {
-        final Entity entity; // Returned entity
-
-        entity = client.getEntity(-1);
-
-        Assert.assertNull(entity);
-    }
-
-    /**
-     * Tests that a valid id returns the expected value.
-     */
-    @Test
-    public final void testEndpoint_ValidId_ReturnsValid() {
-        final Entity entity; // Returned entity
-
-        entity = client.getEntity(1);
-
-        Assert.assertEquals((Integer) entity.getId(), entityId);
-        Assert.assertEquals(entity.getName(), entityName);
     }
 
 }
