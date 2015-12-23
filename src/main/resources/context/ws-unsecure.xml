@@ -8,6 +8,11 @@
                         http://www.springframework.org/schema/web-services
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
+    <description>
+        Context for the unsecured WS. This serves as a basis over which
+        the other web services are built.
+    </description>
+
     <!-- Imports base context -->
     <import resource="classpath:/context/ws.xml" />
 

@@ -6,6 +6,10 @@
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <description>
+        Services context. Contains the common services shared by all the web services.
+    </description>
+
     <!-- Scans for data access services -->
     <context:component-scan base-package="com.wandrell.example.swss.service.data" />
 

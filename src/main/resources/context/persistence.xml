@@ -13,6 +13,11 @@
                         http://www.springframework.org/schema/data/jpa
                         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
+    <description>
+        Persistence context. Contains all the classes which handle the
+        persistence and data access layers.
+    </description>
+
     <!-- Scans for repositories -->
     <jpa:repositories base-package="com.wandrell.example.swss.repository" />
 
