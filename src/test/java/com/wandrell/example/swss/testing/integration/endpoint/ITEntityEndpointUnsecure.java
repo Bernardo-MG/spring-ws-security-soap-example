@@ -22,8 +22,12 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.ws;
+package com.wandrell.example.swss.testing.integration.endpoint;
 
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -32,29 +36,25 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.ws.AbstractITEndpoint;
+import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Implementation of {@code AbstractITEndpoint} for a password protected
- * endpoint using WSS4J.
+ * Implementation of {@code AbstractITEndpoint} for an unsecured endpoint.
  * <p>
  * It adds the following cases:
  * <ol>
  * <li>A valid message returns the expected value.</li>
- * <li>A message without a password returns a fault.</li>
- * <li>A message with a wrong password returns a fault.</li>
- * <li>A message with a wrong user returns a fault.</li>
+ * <li>A message with invalid content returns a fault.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.ENDPOINT_PASSWORD_WSS4J })
-public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
+@ContextConfiguration(locations = { ContextConfig.ENDPOINT_UNSECURE })
+public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     /**
      * Id of the returned entity.
@@ -67,11 +67,6 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
     @Value("${entity.name}")
     private String entityName;
     /**
-     * Password for the passworded message.
-     */
-    @Value("${security.credentials.password}")
-    private String password;
-    /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${message.invalid.file.path}")
@@ -81,27 +76,30 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
      */
     @Value("${message.valid.file.path}")
     private String pathValid;
-    /**
-     * Username for the passworded message.
-     */
-    @Value("${security.credentials.user}")
-    private String username;
 
     /**
      * Default constructor.
      */
-    public ITEntityEndpointPasswordWSS4J() {
+    public ITEntityEndpointUnsecure() {
         super();
     }
 
     /**
      * Tests that a message with invalid content returns a fault.
      *
-     * @throws Exception
+     * @throws UnsupportedOperationException
+     *             never, this is a required declaration
+     * @throws SOAPException
+     *             never, this is a required declaration
+     * @throws IOException
+     *             never, this is a required declaration
+     * @throws JAXBException
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
+    public final void testEndpoint_Invalid_ReturnsFault()
+            throws UnsupportedOperationException, SOAPException, IOException,
+            JAXBException {
         final SOAPMessage message; // Response message
 
         message = callWebService(SOAPParsingUtils
@@ -112,54 +110,26 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
     }
 
     /**
-     * Tests that a message with a wrong password returns a fault.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_InvalidPassword_ReturnsFault()
-            throws Exception {
-        final SOAPMessage message; // Response message
-
-        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                username, "abc123"));
-
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
-    }
-
-    /**
-     * Tests that a message with a wrong user returns a fault.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_InvalidUser_ReturnsFault() throws Exception {
-        final SOAPMessage message; // Response message
-
-        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                "abc123", password));
-
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
-    }
-
-    /**
      * Tests that a valid message returns the expected value.
      *
-     * @throws Exception
+     * @throws UnsupportedOperationException
+     *             never, this is a required declaration
+     * @throws SOAPException
+     *             never, this is a required declaration
+     * @throws IOException
+     *             never, this is a required declaration
+     * @throws JAXBException
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_ValidUserAndPassword_ReturnsEntity()
-            throws Exception {
+    public final void testEndpoint_Valid_ReturnsEntity()
+            throws UnsupportedOperationException, SOAPException, IOException,
+            JAXBException {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                username, password));
+        message = callWebService(SOAPParsingUtils
+                .parseMessageFromFile(pathValid));
 
         Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());

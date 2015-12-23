@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.ws;
+package com.wandrell.example.swss.testing.integration.endpoint;
 
 import javax.xml.soap.SOAPMessage;
 
@@ -34,7 +34,7 @@ import org.testng.annotations.Test;
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.ws.AbstractITEndpoint;
+import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**

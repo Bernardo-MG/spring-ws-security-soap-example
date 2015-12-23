@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.test.ws;
+package com.wandrell.example.swss.testing.util.test.endpoint;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,10 +55,9 @@ public abstract class AbstractITEndpoint extends
         AbstractTestNGSpringContextTests {
 
     /**
-     * URL to the WSDL for the web service being tested.
+     * Suffix used to acquire the WSDL from a URL.
      */
-    @Value("${ws.wsdl.url}")
-    private String wsdlURL;
+    private static final String WSDL_SUFFIX = ".wsdl";
     /**
      * URL to the web service being tested.
      */
@@ -84,7 +83,7 @@ public abstract class AbstractITEndpoint extends
         final BufferedReader in; // Reader for the WSDL
         final String line;       // First line of the WSDL
 
-        url = new URL(wsdlURL);
+        url = new URL(wsURL + WSDL_SUFFIX);
         in = new BufferedReader(new InputStreamReader(url.openStream()));
         line = in.readLine();
 
