@@ -32,7 +32,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.wandrell.example.swss.config.EndpointConfig;
 import com.wandrell.example.swss.model.ExampleEntity;
-import com.wandrell.example.swss.service.ExampleEntityService;
+import com.wandrell.example.swss.service.data.ExampleEntityAccessService;
 import com.wandrell.example.ws.generated.entity.Entity;
 import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
@@ -49,7 +49,7 @@ public class EntityEndpoint {
      * <p>
      * This is injected by Spring.
      */
-    private final ExampleEntityService entityService;
+    private final ExampleEntityAccessService entityService;
 
     /**
      * Constructs a {@code ExampleEntityEndpoint}.
@@ -58,7 +58,7 @@ public class EntityEndpoint {
      *            the service for the {@code ExampleEntity} instances
      */
     @Autowired
-    public EntityEndpoint(final ExampleEntityService service) {
+    public EntityEndpoint(final ExampleEntityAccessService service) {
         super();
 
         entityService = service;
@@ -102,7 +102,7 @@ public class EntityEndpoint {
      *
      * @return the service used to handle the {@code ExampleEntity} instances
      */
-    private final ExampleEntityService getExampleEntityService() {
+    private final ExampleEntityAccessService getExampleEntityService() {
         return entityService;
     }
 

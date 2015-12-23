@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.service;
+package com.wandrell.example.swss.service.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,15 +31,16 @@ import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.repository.ExampleEntityRepository;
 
 /**
- * Default implementation of {@link ExampleEntityService}, making use of Spring
- * for dependency injection.
+ * Default implementation of {@link ExampleEntityAccessService}, making use of
+ * Spring for dependency injection.
  * <p>
  * It uses an {@link ExampleEntityRepository} for acquiring the entities.
  *
  * @author Bernardo Martínez Garrido
  */
 @Service
-public class DefaultExampleEntityService implements ExampleEntityService {
+public class DefaultExampleEntityAccessService implements
+        ExampleEntityAccessService {
 
     /**
      * Repository for the {@code ExampleEntity} instances handled by the
@@ -56,7 +57,8 @@ public class DefaultExampleEntityService implements ExampleEntityService {
      *            the repository for the {@code ExampleEntity} instances
      */
     @Autowired
-    public DefaultExampleEntityService(final ExampleEntityRepository repository) {
+    public DefaultExampleEntityAccessService(
+            final ExampleEntityRepository repository) {
         super();
 
         this.entityRepository = repository;
