@@ -6,6 +6,10 @@
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <description>
+        Context for the unsecured servlet.
+    </description>
+
     <!-- Properties -->
     <context:property-placeholder
         location="classpath:context/ws.properties, classpath:context/ws-unsecure.properties" />

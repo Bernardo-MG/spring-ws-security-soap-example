@@ -24,6 +24,7 @@
 
 package com.wandrell.example.swss.client;
 
+import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -41,6 +42,17 @@ public final class EntityClient extends WebServiceGatewaySupport {
      */
     public EntityClient() {
         super();
+    }
+
+    /**
+     * Constructs an {@code EntityClient} with the specified
+     * {@code WebServiceMessageFactory}.
+     *
+     * @param factory
+     *            the {@code WebServiceMessageFactory} to be used by the client
+     */
+    public EntityClient(final WebServiceMessageFactory factory) {
+        super(factory);
     }
 
     /**

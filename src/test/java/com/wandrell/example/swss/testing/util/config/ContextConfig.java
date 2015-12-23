@@ -36,6 +36,10 @@ public final class ContextConfig {
      */
     public static final String CLIENT_PASSWORD = "classpath:context/test-client-password.xml";
     /**
+     * Context with password-based security for the client and using WSS4J.
+     */
+    public static final String CLIENT_PASSWORD_WSS4J = "classpath:context/test-client-password-wss4j.xml";
+    /**
      * Unsecure context for the client.
      */
     public static final String CLIENT_UNSECURE = "classpath:context/test-client-unsecure.xml";
