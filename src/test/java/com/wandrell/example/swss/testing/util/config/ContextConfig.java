@@ -34,23 +34,23 @@ public final class ContextConfig {
     /**
      * Context with password-based security for the client.
      */
-    public static final String CLIENT_PASSWORD = "classpath:context/test-client-password.xml";
+    public static final String CLIENT_PASSWORD = "classpath:context/client/test-client-password.xml";
     /**
      * Context with password-based security for the client and using WSS4J.
      */
-    public static final String CLIENT_PASSWORD_WSS4J = "classpath:context/test-client-password-wss4j.xml";
+    public static final String CLIENT_PASSWORD_WSS4J = "classpath:context/client/test-client-password-wss4j.xml";
     /**
      * Unsecure context for the client.
      */
-    public static final String CLIENT_UNSECURE = "classpath:context/test-client-unsecure.xml";
+    public static final String CLIENT_UNSECURE = "classpath:context/client/test-client-unsecure.xml";
     /**
      * WS context with password-based security for the endpoint.
      */
-    public static final String ENDPOINT_PASSWORD = "classpath:context/test-endpoint-password.xml";
+    public static final String ENDPOINT_PASSWORD = "classpath:context/endpoint/test-endpoint-password.xml";
     /**
      * Unsecure WS context for the endpoint.
      */
-    public static final String ENDPOINT_UNSECURE = "classpath:context/test-endpoint-unsecure.xml";
+    public static final String ENDPOINT_UNSECURE = "classpath:context/endpoint/test-endpoint-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.

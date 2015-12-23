@@ -7,11 +7,23 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Test content calling the password protected WS.
+        Test content for a client which makes use of the unsecured WS.
     </description>
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/test-endpoint-password.properties" />
+        location="classpath:context/client/test-client-unsecure.properties" />
+
+    <!-- Client -->
+    <bean id="client" class="${client.class}">
+        <property name="defaultUri" value="${ws.url}" />
+        <property name="marshaller" ref="marshaller" />
+        <property name="unmarshaller" ref="marshaller" />
+    </bean>
+
+    <!-- Marshaller -->
+    <bean id="marshaller" class="${marshaller.class}">
+        <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+    </bean>
 
 </beans>

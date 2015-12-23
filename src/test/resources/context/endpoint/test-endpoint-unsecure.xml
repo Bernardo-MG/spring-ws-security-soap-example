@@ -12,6 +12,6 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/test-endpoint-unsecure.properties" />
+        location="classpath:context/endpoint/test-endpoint-unsecure.properties" />
 
 </beans>
