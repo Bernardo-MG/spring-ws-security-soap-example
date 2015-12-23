@@ -14,7 +14,7 @@
     </description>
 
     <!-- Imports base context -->
-    <import resource="classpath:/context/ws.xml" />
+    <import resource="classpath:/context/ws/ws.xml" />
 
     <!-- Registers interceptors -->
     <sws:interceptors>

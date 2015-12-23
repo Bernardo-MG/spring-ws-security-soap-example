@@ -12,9 +12,9 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/ws.properties, classpath:context/ws-unsecure.properties" />
+        location="classpath:context/ws/ws.properties, classpath:context/ws/ws-unsecure.properties" />
 
     <!-- Imports -->
-    <import resource="classpath:/context/ws-unsecure.xml" />
+    <import resource="classpath:/context/ws/ws-unsecure.xml" />
 
 </beans>
