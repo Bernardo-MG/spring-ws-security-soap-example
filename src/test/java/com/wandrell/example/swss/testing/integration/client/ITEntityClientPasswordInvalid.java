@@ -27,7 +27,7 @@ package com.wandrell.example.swss.testing.integration.client;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.AbstractITEntityClientInvalid;
+import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
 /**
  * Implementation of {@code AbstractITEntityClientInvalid} for a password

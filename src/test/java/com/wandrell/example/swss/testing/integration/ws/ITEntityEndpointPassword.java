@@ -24,38 +24,29 @@
 
 package com.wandrell.example.swss.testing.integration.ws;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-
-import javax.xml.soap.SOAPConnectionFactory;
-import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.test.ws.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Integration tests for
- * {@link com.wandrell.example.swss.endpoint.EntityEndpoint
- * ExampleEntityEndpoint} testing it with password-based security.
+ * Implementation of {@code AbstractITEndpoint} for a password protected
+ * endpoint.
  * <p>
- * Checks the following cases:
+ * It adds the following cases:
  * <ol>
  * <li>A valid message returns the expected value.</li>
  * <li>A message without a password returns a fault.</li>
  * <li>A message with a wrong password returns a fault.</li>
  * <li>A message with a wrong user returns a fault.</li>
- * <li>The WSDL is being generated.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
@@ -63,8 +54,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ContextConfig.ENDPOINT_PASSWORD })
-public final class ITEntityEndpointPassword extends
-        AbstractTestNGSpringContextTests {
+public final class ITEntityEndpointPassword extends AbstractITEndpoint {
 
     /**
      * Id of the returned entity.
@@ -96,16 +86,6 @@ public final class ITEntityEndpointPassword extends
      */
     @Value("${security.credentials.user}")
     private String username;
-    /**
-     * URL to the WSDL for the web service being tested.
-     */
-    @Value("${ws.wsdl.url}")
-    private String wsdlURL;
-    /**
-     * URL to the web service being tested.
-     */
-    @Value("${ws.url}")
-    private String wsURL;
 
     /**
      * Default constructor.
@@ -188,43 +168,6 @@ public final class ITEntityEndpointPassword extends
 
         Assert.assertEquals((Integer) entity.getId(), entityId);
         Assert.assertEquals(entity.getName(), entityName);
-    }
-
-    /**
-     * Tests that the WSDL is being generated.
-     *
-     * @throws IOException
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_WSDL() throws IOException {
-        final URL url;           // URL for the WSDL
-        final BufferedReader in; // Reader for the WSDL
-        final String line;       // First line of the WSDL
-
-        url = new URL(wsdlURL);
-        in = new BufferedReader(new InputStreamReader(url.openStream()));
-        line = in.readLine();
-
-        Assert.assertTrue(line.contains("wsdl:definitions"));
-    }
-
-    /**
-     * Calls the web service being tested and returns the response.
-     *
-     * @param request
-     *            request to the web service
-     * @return the web service response
-     * @throws SOAPException
-     *             never, this is a required declaration
-     */
-    private final SOAPMessage callWebService(final SOAPMessage request)
-            throws SOAPException {
-        final SOAPConnectionFactory soapConnectionFactory; // Connection factory
-
-        soapConnectionFactory = SOAPConnectionFactory.newInstance();
-
-        return soapConnectionFactory.createConnection().call(request, wsURL);
     }
 
 }

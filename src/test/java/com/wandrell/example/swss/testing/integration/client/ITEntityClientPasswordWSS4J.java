@@ -27,7 +27,7 @@ package com.wandrell.example.swss.testing.integration.client;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.AbstractITEntityClient;
+import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
 /**
  * Implementation of {@code AbstractITEntityClient} for a password protected web

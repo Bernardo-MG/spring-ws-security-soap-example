@@ -22,32 +22,30 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.test;
+package com.wandrell.example.swss.testing.util.test.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Abstract integration tests for {@link EntityClient} testing that it handles
- * messages correctly.
+ * Integration tests for {@link EntityClient} testing that it generates a fault
+ * when the message is invalid.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>A valid id returns the expected value.</li>
- * <li>An invalid id returns null.</li>
+ * <li>An invalid message causes a {@code SoapFaultClientException} to be
+ * thrown.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEntityClient extends
+public abstract class AbstractITEntityClientInvalid extends
         AbstractTestNGSpringContextTests {
 
     /**
@@ -55,47 +53,21 @@ public abstract class AbstractITEntityClient extends
      */
     @Autowired
     private EntityClient client;
-    /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer entityId;
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String entityName;
 
     /**
      * Default constructor.
      */
-    public AbstractITEntityClient() {
+    public AbstractITEntityClientInvalid() {
         super();
     }
 
     /**
-     * Tests that an invalid id returns null.
+     * Tests that an invalid message causes a {@code SoapFaultClientException}
+     * to be thrown.
      */
-    @Test
-    public final void testEndpoint_InvalidId_ReturnsNull() {
-        final Entity entity; // Returned entity
-
-        entity = client.getEntity(-1);
-
-        Assert.assertNull(entity);
-    }
-
-    /**
-     * Tests that a valid id returns the expected value.
-     */
-    @Test
-    public final void testEndpoint_ValidId_ReturnsValid() {
-        final Entity entity; // Returned entity
-
-        entity = client.getEntity(1);
-
-        Assert.assertEquals((Integer) entity.getId(), entityId);
-        Assert.assertEquals(entity.getName(), entityName);
+    @Test(expectedExceptions = SoapFaultClientException.class)
+    public final void testEndpoint_InvalidPassword_Exception() {
+        client.getEntity(1);
     }
 
 }
