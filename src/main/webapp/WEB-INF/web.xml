@@ -23,6 +23,12 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>password-wss4j-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>unsecure-ws</servlet-name>
         <url-pattern>/unsecure/*</url-pattern>
@@ -31,6 +37,11 @@
     <servlet-mapping>
         <servlet-name>password-ws</servlet-name>
         <url-pattern>/password/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>password-wss4j-ws</servlet-name>
+        <url-pattern>/password_wss4j/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

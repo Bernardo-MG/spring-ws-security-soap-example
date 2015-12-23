@@ -39,7 +39,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for a password protected
- * endpoint.
+ * endpoint using XWSS.
  * <p>
  * It adds the following cases:
  * <ol>
@@ -54,7 +54,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ContextConfig.ENDPOINT_PASSWORD })
-public final class ITEntityEndpointPassword extends AbstractITEndpoint {
+public final class ITEntityEndpointPasswordXWSS extends AbstractITEndpoint {
 
     /**
      * Id of the returned entity.
@@ -90,7 +90,7 @@ public final class ITEntityEndpointPassword extends AbstractITEndpoint {
     /**
      * Default constructor.
      */
-    public ITEntityEndpointPassword() {
+    public ITEntityEndpointPasswordXWSS() {
         super();
     }
 
@@ -118,7 +118,7 @@ public final class ITEntityEndpointPassword extends AbstractITEndpoint {
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_InvalidPassword_ReturnsEntity()
+    public final void testEndpoint_InvalidPassword_ReturnsFault()
             throws Exception {
         final SOAPMessage message; // Response message
 
@@ -136,7 +136,7 @@ public final class ITEntityEndpointPassword extends AbstractITEndpoint {
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_InvalidUser_ReturnsEntity() throws Exception {
+    public final void testEndpoint_InvalidUser_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
         message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,

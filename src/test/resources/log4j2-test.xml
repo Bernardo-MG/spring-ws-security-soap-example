@@ -23,10 +23,6 @@
             <AppenderRef ref="file" />
         </Logger>
 
-        <logger name="org.springframework" level="debug" additivity="false">
-            <AppenderRef ref="file" />
-        </logger>
-
         <logger name="org.springframework.ws.client.MessageTracing" level="trace" additivity="false">
             <AppenderRef ref="file" />
         </logger>

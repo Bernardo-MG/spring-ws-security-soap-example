@@ -401,6 +401,12 @@
             <version>${wsdl4j.version}</version>
         </dependency>
         <dependency>
+            <!-- WSS4j -->
+            <groupId>org.apache.ws.security</groupId>
+            <artifactId>wss4j</artifactId>
+            <version>${wss4j.version}</version>
+        </dependency>
+        <dependency>
             <!-- XWSS -->
             <groupId>com.sun.xml.wss</groupId>
             <artifactId>xws-security</artifactId>
@@ -448,14 +454,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <!-- WSS4j -->
-            <groupId>org.apache.ws.security</groupId>
-            <artifactId>wss4j</artifactId>
-            <version>${wss4j.version}</version>
-            <type>jar</type>
             <scope>test</scope>
         </dependency>
     </dependencies>
