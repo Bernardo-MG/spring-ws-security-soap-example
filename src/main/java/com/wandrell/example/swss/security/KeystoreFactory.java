@@ -43,7 +43,6 @@ import java.security.SignatureException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -98,15 +97,18 @@ public class KeystoreFactory {
 
     private static SubjectKeyIdentifier createSubjectKeyIdentifier(Key key)
             throws IOException {
+        final ASN1Sequence seq;
         ASN1InputStream is = null;
+
         try {
             is = new ASN1InputStream(new ByteArrayInputStream(key.getEncoded()));
-            ASN1Sequence seq = (ASN1Sequence) is.readObject();
-            SubjectPublicKeyInfo info = new SubjectPublicKeyInfo(seq);
-            return new BcX509ExtensionUtils().createSubjectKeyIdentifier(info);
+            seq = (ASN1Sequence) is.readObject();
         } finally {
             IOUtils.closeQuietly(is);
         }
+
+        return new BcX509ExtensionUtils()
+                .createSubjectKeyIdentifier(new SubjectPublicKeyInfo(seq));
     }
 
     private final static Certificate generateCertificate(
@@ -121,7 +123,6 @@ public class KeystoreFactory {
         final X509v3CertificateBuilder builder;
         final Date start;
         final Date end;
-        final Calendar c;
         final KeyUsage usage;
         final ASN1EncodableVector purposes;
         final X509Certificate cert;

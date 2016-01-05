@@ -12,9 +12,9 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/client/xwss/client-password-xwss.properties, classpath:context/client/xwss/test-client-password-xwss-to-wss4j.properties" />
+        location="classpath:context/client/xwss/client-signature-xwss.properties, classpath:context/client/xwss/test-client-signature-xwss-to-xwss.properties" />
 
     <!-- Imports base context -->
-    <import resource="classpath:context/client/xwss/client-password-xwss.xml" />
+    <import resource="classpath:context/client/xwss/client-signature-xwss.xml" />
 
 </beans>

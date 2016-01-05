@@ -14,7 +14,7 @@
     <context:property-placeholder location="classpath:context/persistence.properties" />
 
     <!-- Imports -->
-    <import resource="classpath:/context/persistence.xml" />
-    <import resource="classpath:/context/service.xml" />
+    <import resource="classpath:context/persistence.xml" />
+    <import resource="classpath:context/service.xml" />
 
 </beans>

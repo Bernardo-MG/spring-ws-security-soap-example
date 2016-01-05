@@ -15,6 +15,7 @@
         location="classpath:context/ws/ws.properties, classpath:context/ws/xwss/ws-signature-xwss.properties" />
 
     <!-- Imports -->
-    <import resource="classpath:/context/ws/xwss/ws-signature-xwss.xml" />
+    <import resource="classpath:context/keystore.xml" />
+    <import resource="classpath:context/ws/xwss/ws-signature-xwss.xml" />
 
 </beans>

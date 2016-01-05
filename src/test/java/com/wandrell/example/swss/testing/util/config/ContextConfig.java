@@ -52,7 +52,7 @@ public final class ContextConfig {
      * authentication data and using WSS4J for the client but XWSS for the web
      * service.
      */
-    public static final String CLIENT_PASSWORD_WSS4J_TO_XWSS_INVALID = "classpath:context/client/wss4j/test-client-password-wss4j-to-wss4j-invalid.xml";
+    public static final String CLIENT_PASSWORD_WSS4J_TO_XWSS_INVALID = "classpath:context/client/wss4j/test-client-password-wss4j-to-xwss-invalid.xml";
     /**
      * Context with password-based security for the client and using XWSS for
      * the client but WSS4J for the web service.
@@ -75,6 +75,11 @@ public final class ContextConfig {
      * service.
      */
     public static final String CLIENT_PASSWORD_XWSS_TO_XWSS_INVALID = "classpath:context/client/xwss/test-client-password-xwss-to-xwss-invalid.xml";
+    /**
+     * Context with signature-based security for the client and using XWSS for
+     * both the client and the web service.
+     */
+    public static final String CLIENT_SIGNATURE_XWSS_TO_XWSS = "classpath:context/client/xwss/test-client-signature-xwss-to-xwss.xml";
     /**
      * Unsecure context for the client.
      */
