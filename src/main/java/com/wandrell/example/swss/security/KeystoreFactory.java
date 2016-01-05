@@ -184,7 +184,7 @@ public class KeystoreFactory {
         password = "123456".toCharArray();
         ks.load(null, password);
 
-        fos = new FileOutputStream("newKeyStoreFileName");
+        fos = new FileOutputStream("target/newKeyStoreFileName.jks");
 
         // Store away the keystore.
         ks.store(fos, password);
