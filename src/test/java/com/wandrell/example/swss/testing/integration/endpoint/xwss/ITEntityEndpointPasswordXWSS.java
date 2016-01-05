@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.endpoint;
+package com.wandrell.example.swss.testing.integration.endpoint.xwss;
 
 import javax.xml.soap.SOAPMessage;
 
@@ -123,7 +123,7 @@ public final class ITEntityEndpointPasswordXWSS extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
 
         message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                username, "abc123"));
+                username, password + "abc123"));
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());
@@ -140,7 +140,7 @@ public final class ITEntityEndpointPasswordXWSS extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
 
         message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                "abc123", password));
+                username + "abc123", password));
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());
