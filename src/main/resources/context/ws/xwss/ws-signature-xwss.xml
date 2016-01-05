@@ -11,6 +11,9 @@
     <description>
         Context for the password protected WS. It makes use of a users
         service to check the credentials.
+
+        This requires a key store. For this it is recommended loading the key store
+        context file.
     </description>
 
     <!-- Imports base context -->

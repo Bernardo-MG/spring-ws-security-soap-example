@@ -7,7 +7,11 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for a client which makes use of the signature protected WS through XWSS.
+        Context for a client which makes use of the signature protected
+        WS through XWSS.
+
+        This requires a key store. For this it is recommended loading the key store
+        context file.
     </description>
 
     <!-- Client -->
@@ -53,7 +57,7 @@
 
     <!-- Authentication Manager -->
     <bean id="authenticationManager" class="${authentication.manager.class}">
-        <constructor-arg >
+        <constructor-arg>
             <list>
                 <ref bean="authenticationProvider" />
             </list>
@@ -72,8 +76,5 @@
 
     <!-- Security service -->
     <bean id="securityService" class="${service.security.class}" />
-
-    <!-- Key store -->
-    <bean id="keyStore" class="com.wandrell.example.swss.security.KeystoreFactory" factory-method="getKeystore"/>
 
 </beans>

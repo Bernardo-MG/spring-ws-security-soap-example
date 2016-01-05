@@ -15,6 +15,7 @@
         location="classpath:context/client/xwss/client-signature-xwss.properties, classpath:context/client/xwss/test-client-signature-xwss-to-xwss.properties" />
 
     <!-- Imports base context -->
+    <import resource="classpath:context/keystore.xml" />
     <import resource="classpath:context/client/xwss/client-signature-xwss.xml" />
 
 </beans>

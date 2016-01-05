@@ -39,6 +39,7 @@ import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.Security;
 import java.security.SignatureException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
@@ -196,6 +197,7 @@ public class KeystoreFactory {
             X509v3CertificateBuilder certificateBuilder,
             PrivateKey signedWithPrivateKey) throws OperatorCreationException,
             CertificateException {
+        Security.addProvider(new BouncyCastleProvider());
         ContentSigner signer = new JcaContentSignerBuilder(
                 "SHA256WithRSAEncryption").setProvider(
                 BouncyCastleProvider.PROVIDER_NAME).build(signedWithPrivateKey);
