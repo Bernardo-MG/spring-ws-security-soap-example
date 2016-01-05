@@ -53,7 +53,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.ENDPOINT_PASSWORD })
+@ContextConfiguration(locations = { ContextConfig.ENDPOINT_PASSWORD_XWSS })
 public final class ITEntityEndpointPasswordXWSS extends AbstractITEndpoint {
 
     /**
@@ -122,8 +122,8 @@ public final class ITEntityEndpointPasswordXWSS extends AbstractITEndpoint {
             throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                username, password + "abc123"));
+        message = callWebService(SecurityUtils.getDigestedPasswordMessage(
+                pathValid, username, password + "abc123"));
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());
@@ -139,8 +139,8 @@ public final class ITEntityEndpointPasswordXWSS extends AbstractITEndpoint {
     public final void testEndpoint_InvalidUser_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                username + "abc123", password));
+        message = callWebService(SecurityUtils.getDigestedPasswordMessage(
+                pathValid, username + "abc123", password));
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());
@@ -158,8 +158,8 @@ public final class ITEntityEndpointPasswordXWSS extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SecurityUtils.getPasswordedMessage(pathValid,
-                username, password));
+        message = callWebService(SecurityUtils.getDigestedPasswordMessage(
+                pathValid, username, password));
 
         Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());

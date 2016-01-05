@@ -82,11 +82,15 @@ public final class ContextConfig {
     /**
      * WS context with password-based security for the endpoint using WSS4J.
      */
-    public static final String ENDPOINT_PASSWORD = "classpath:context/endpoint/test-endpoint-password-xwss.xml";
-    /**
-     * WS context with password-based security for the endpoint.
-     */
     public static final String ENDPOINT_PASSWORD_WSS4J = "classpath:context/endpoint/test-endpoint-password-wss4j.xml";
+    /**
+     * WS context with password-based security for the endpoint using XWSS.
+     */
+    public static final String ENDPOINT_PASSWORD_XWSS = "classpath:context/endpoint/test-endpoint-password-xwss.xml";
+    /**
+     * WS context with signature-based security for the endpoint using XWSS.
+     */
+    public static final String ENDPOINT_SIGNATURE_XWSS = "classpath:context/endpoint/test-endpoint-signature-xwss.xml";
     /**
      * Unsecure WS context for the endpoint.
      */

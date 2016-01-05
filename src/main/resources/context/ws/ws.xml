@@ -28,7 +28,7 @@
 
     <!-- WSDL -->
     <sws:dynamic-wsdl id="entities" portTypeName="${wsdl.portTypeName}"
-        locationUri="${wsdl.locationUri}" targetNamespace="${wsdl.targetNamespace}">
+        locationUri="/" targetNamespace="${wsdl.targetNamespace}">
         <sws:xsd location="${schema.path}" />
     </sws:dynamic-wsdl>
 

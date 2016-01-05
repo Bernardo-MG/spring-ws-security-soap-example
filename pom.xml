@@ -25,8 +25,7 @@
 
     <name>Spring Web Services WS-Security Example</name>
     <description>An example showing how to configure Spring-WS Security for a SOAP web service</description>
-    <url>https://github.com/bernardo-mg/spring-ws-security-soap-example
-</url>
+    <url>https://github.com/bernardo-mg/spring-ws-security-soap-example</url>
     <inceptionYear>2015</inceptionYear>
 
     <licenses>
@@ -230,7 +229,9 @@
         <!-- Manifest data -->
         <manifest.name>com/wandrell/demo/spring_soap_ws_security_example</manifest.name>
         <!-- Dependencies versions -->
+        <bouncycastle.version>1.54</bouncycastle.version>
         <commons.codec.version>1.10</commons.codec.version>
+        <commons.io.version>2.4</commons.io.version>
         <commons.logging.version>1.2</commons.logging.version>
         <ehcache.version>2.6.11</ehcache.version>
         <freemarker.version>2.3.23</freemarker.version>
@@ -341,6 +342,48 @@
             <version>${hibernate.version}</version>
         </dependency>
         <!-- ============================================== -->
+        <!-- ================= SECURITY =================== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Bouncy Castle Certificate Generation -->
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>${bouncycastle.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Bouncy Castle Provider -->
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>${bouncycastle.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WSS4j -->
+            <groupId>org.apache.ws.security</groupId>
+            <artifactId>wss4j</artifactId>
+            <version>${wss4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- XWSS -->
+            <groupId>com.sun.xml.wss</groupId>
+            <artifactId>xws-security</artifactId>
+            <version>${xwssecurity.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.crypto</groupId>
+                    <artifactId>xmldsig</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- =============== WEB SERVICES ================= -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Wsdl4j -->
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>${wsdl4j.version}</version>
+        </dependency>
+        <!-- ============================================== -->
         <!-- ================== LOGGING =================== -->
         <!-- ============================================== -->
         <dependency>
@@ -377,6 +420,12 @@
         <!-- ============ OTHER DEPENDENCIES ============== -->
         <!-- ============================================== -->
         <dependency>
+            <!-- Commons IO -->
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        <dependency>
             <!-- Guava -->
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -393,30 +442,6 @@
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
             <version>${javax.activation.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Wsdl4j -->
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>${wsdl4j.version}</version>
-        </dependency>
-        <dependency>
-            <!-- WSS4j -->
-            <groupId>org.apache.ws.security</groupId>
-            <artifactId>wss4j</artifactId>
-            <version>${wss4j.version}</version>
-        </dependency>
-        <dependency>
-            <!-- XWSS -->
-            <groupId>com.sun.xml.wss</groupId>
-            <artifactId>xws-security</artifactId>
-            <version>${xwssecurity.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.xml.crypto</groupId>
-                    <artifactId>xmldsig</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- ============================================== -->
         <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->

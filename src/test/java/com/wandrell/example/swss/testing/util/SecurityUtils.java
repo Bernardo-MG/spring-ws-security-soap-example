@@ -70,8 +70,9 @@ public final class SecurityUtils {
      * @throws Exception
      *             when any error occurs during the message creation
      */
-    public static final SOAPMessage getPasswordedMessage(final String path,
-            final String user, final String password) throws Exception {
+    public static final SOAPMessage getDigestedPasswordMessage(
+            final String path, final String user, final String password)
+            throws Exception {
         final MessageFactory factory;
         final SOAPMessage message;
         final InputStream streamMessage;

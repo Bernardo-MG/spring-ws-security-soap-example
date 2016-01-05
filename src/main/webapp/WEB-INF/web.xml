@@ -24,6 +24,12 @@
     </servlet>
 
     <servlet>
+        <servlet-name>signature-xwss-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
         <servlet-name>password-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -37,6 +43,11 @@
     <servlet-mapping>
         <servlet-name>password-xwss-ws</servlet-name>
         <url-pattern>/password/xwss/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>signature-xwss-ws</servlet-name>
+        <url-pattern>/signature/xwss/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

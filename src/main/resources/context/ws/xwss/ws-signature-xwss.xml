@@ -28,17 +28,48 @@
         <property name="policyConfiguration" value="${security.file.path}" />
         <property name="callbackHandlers">
             <list>
-                <ref bean="validationHandler" />
+                <ref bean="keystoreHandler" />
+                <ref bean="certificateHandler" />
             </list>
         </property>
     </bean>
 
-    <!-- Validation callback handler -->
-    <bean id="validationHandler" class="${callbackHandler.validation.class}">
+    <!-- Certificate callback handler -->
+    <bean id="certificateHandler" class="${callbackHandler.validation.certificate.class}">
+        <property name="authenticationManager" ref="authenticationManager" />
+    </bean>
+
+    <!-- Key store callback handler -->
+    <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
+        <property name="keyStore" ref="keyStore" />
+        <property name="trustStore" ref="keyStore" />
+        <property name="privateKeyPassword" value="${keystore.password.private}" />
+        <property name="defaultAlias" value="${keystore.alias}" />
+    </bean>
+
+    <!-- Authentication Manager -->
+    <bean id="authenticationManager" class="${authentication.manager.class}">
+        <constructor-arg >
+            <list>
+                <ref bean="authenticationProvider" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- Authentication Provider -->
+    <bean id="authenticationProvider" class="${authentication.provider.class}">
+        <property name="x509AuthoritiesPopulator" ref="authPopulator" />
+    </bean>
+
+    <!-- X509 authorities populator -->
+    <bean id="authPopulator" class="${authentication.provider.populator.class}">
         <property name="userDetailsService" ref="securityService" />
     </bean>
 
     <!-- Security service -->
     <bean id="securityService" class="${service.security.class}" />
+
+    <!-- Key store -->
+    <bean id="keyStore" class="com.wandrell.example.swss.security.KeystoreFactory" factory-method="getKeystore"/>
 
 </beans>

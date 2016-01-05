@@ -75,7 +75,8 @@ public class EntityEndpoint {
      *            JAXB2 representation of a SOAP request for the entity
      * @return JAXB2 representation of a SOAP response with the entity
      */
-    @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST, namespace = EndpointConfig.ENTITY_NS)
+    @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST,
+            namespace = EndpointConfig.ENTITY_NS)
     @ResponsePayload
     public final GetEntityResponse getEntity(
             @RequestPayload final GetEntityRequest request) {

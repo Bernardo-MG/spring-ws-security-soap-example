@@ -21,30 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.wandrell.example.swss.testing.integration.client.wss4j;
-
-import org.springframework.test.context.ContextConfiguration;
-
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
-
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service using WSS4J for the client and XWSS for the web service.
- *
- * @author Bernardo Martínez Garrido
+ * Provides factories for generating key stores.
  */
-@ContextConfiguration(
-        locations = { ContextConfig.CLIENT_PASSWORD_WSS4J_TO_XWSS })
-public final class ITEntityClientPasswordWSS4JToXWSS extends
-        AbstractITEntityClient {
+package com.wandrell.example.swss.security;
 
-    /**
-     * Default constructor.
-     */
-    public ITEntityClientPasswordWSS4JToXWSS() {
-        super();
-    }
-
-}

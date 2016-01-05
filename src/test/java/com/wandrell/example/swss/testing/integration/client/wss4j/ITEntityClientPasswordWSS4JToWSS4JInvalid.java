@@ -35,7 +35,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.CLIENT_PASSWORD_WSS4J_TO_WSS4J_INVALID })
+@ContextConfiguration(
+        locations = { ContextConfig.CLIENT_PASSWORD_WSS4J_TO_WSS4J_INVALID })
 public final class ITEntityClientPasswordWSS4JToWSS4JInvalid extends
         AbstractITEntityClientInvalid {
 
