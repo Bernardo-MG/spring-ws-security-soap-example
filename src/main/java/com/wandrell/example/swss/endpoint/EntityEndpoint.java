@@ -78,8 +78,8 @@ public class EntityEndpoint {
     @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST,
             namespace = EndpointConfig.ENTITY_NS)
     @ResponsePayload
-    public final GetEntityResponse getEntity(
-            @RequestPayload final GetEntityRequest request) {
+    public final GetEntityResponse
+            getEntity(@RequestPayload final GetEntityRequest request) {
         final GetEntityResponse response; // SOAP response with the result
         final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return

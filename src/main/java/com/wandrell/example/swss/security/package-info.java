@@ -25,4 +25,3 @@
  * Provides factories for generating key stores.
  */
 package com.wandrell.example.swss.security;
-

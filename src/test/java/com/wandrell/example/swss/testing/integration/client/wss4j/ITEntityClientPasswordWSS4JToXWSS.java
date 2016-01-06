@@ -37,8 +37,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(
         locations = { ContextConfig.CLIENT_PASSWORD_WSS4J_TO_XWSS })
-public final class ITEntityClientPasswordWSS4JToXWSS extends
-        AbstractITEntityClient {
+public final class ITEntityClientPasswordWSS4JToXWSS
+        extends AbstractITEntityClient {
 
     /**
      * Default constructor.

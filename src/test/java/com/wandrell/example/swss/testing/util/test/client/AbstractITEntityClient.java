@@ -47,8 +47,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEntityClient extends
-        AbstractTestNGSpringContextTests {
+public abstract class AbstractITEntityClient
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Client being tested.
@@ -59,12 +59,12 @@ public abstract class AbstractITEntityClient extends
      * Id of the returned entity.
      */
     @Value("${entity.id}")
-    private Integer entityId;
+    private Integer      entityId;
     /**
      * Name of the returned entity.
      */
     @Value("${entity.name}")
-    private String entityName;
+    private String       entityName;
 
     /**
      * Default constructor.

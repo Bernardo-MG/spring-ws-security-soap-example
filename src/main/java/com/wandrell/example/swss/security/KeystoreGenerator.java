@@ -22,29 +22,44 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.client.wss4j;
+package com.wandrell.example.swss.security;
 
-import org.springframework.test.context.ContextConfiguration;
+import java.io.FileOutputStream;
+import java.security.KeyStore;
+import java.security.Security;
 
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
- * Implementation of {@code AbstractITEntityClientInvalid} for a password
- * protected web service using WSS4J for the client and XWSS for the web
- * service.
- *
+ * Executable class for generating the key stores used on the tests.
+ * <p>
+ * This is to be used in case the key stores are to be rebuilt for some reason.
+ * 
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ContextConfig.CLIENT_PASSWORD_WSS4J_TO_XWSS_INVALID })
-public final class ITEntityClientPasswordWSS4JToXWSSInvalid
-        extends AbstractITEntityClientInvalid {
+public class KeystoreGenerator {
+
+    public static final void main(final String[] args) throws Exception {
+        final FileOutputStream fos;
+        final KeyStore ks;
+
+        Security.addProvider(new BouncyCastleProvider());
+
+        ks = KeystoreFactory.getKeystore("src/main/resources/keystore.jks",
+                "123456", "alias",
+                "CN=www.wandrell.com, O=Wandrell, L=London, ST=England, C=UK");
+
+        fos = new FileOutputStream("src/main/resources/keystore.jks");
+
+        // Store away the keystore.
+        ks.store(fos, "123456".toCharArray());
+        fos.close();
+    }
 
     /**
-     * Default constructor.
+     * Private constructor to avoid initialization.
      */
-    public ITEntityClientPasswordWSS4JToXWSSInvalid() {
+    private KeystoreGenerator() {
         super();
     }
 

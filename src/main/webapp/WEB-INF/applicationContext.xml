@@ -11,7 +11,7 @@
     </description>
 
     <!-- Properties -->
-    <context:property-placeholder location="classpath:context/persistence.properties" />
+    <context:property-placeholder location="classpath:context/persistence.properties, classpath:context/keystore.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/persistence.xml" />

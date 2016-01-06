@@ -25,4 +25,3 @@
  * Provides the model used by the web services.
  */
 package com.wandrell.example.swss.model;
-

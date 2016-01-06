@@ -65,17 +65,17 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
      * Name of the returned entity.
      */
     @Value("${entity.name}")
-    private String entityName;
+    private String  entityName;
     /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${message.invalid.file.path}")
-    private String pathInvalid;
+    private String  pathInvalid;
     /**
      * Path to the file containing the valid SOAP request.
      */
     @Value("${message.valid.file.path}")
-    private String pathValid;
+    private String  pathValid;
 
     /**
      * Default constructor.
@@ -102,11 +102,11 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
             JAXBException {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathInvalid));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
 
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
     /**
@@ -128,11 +128,11 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathValid));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathValid));
 
-        Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
 
         entity = SOAPParsingUtils.parseEntityFromMessage(message);
 

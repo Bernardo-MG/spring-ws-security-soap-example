@@ -72,14 +72,14 @@ public final class SecurityUtils {
      */
     public static final SOAPMessage getDigestedPasswordMessage(
             final String path, final String user, final String password)
-            throws Exception {
+                    throws Exception {
         final MessageFactory factory;
         final SOAPMessage message;
         final InputStream streamMessage;
         final ByteArrayOutputStream out;
 
-        streamMessage = new ByteArrayInputStream(getMessageContent(path, user,
-                password).getBytes("UTF-8"));
+        streamMessage = new ByteArrayInputStream(
+                getMessageContent(path, user, password).getBytes("UTF-8"));
 
         factory = MessageFactory.newInstance();
 
@@ -109,7 +109,7 @@ public final class SecurityUtils {
      */
     private static final String generateDigest(final String password,
             final String date, final String nonce)
-            throws UnsupportedEncodingException {
+                    throws UnsupportedEncodingException {
         final ByteBuffer buf;
         byte[] toHash;
         byte[] hash;

@@ -25,4 +25,3 @@
  * Provides the services handling security.
  */
 package com.wandrell.example.swss.service.security;
-

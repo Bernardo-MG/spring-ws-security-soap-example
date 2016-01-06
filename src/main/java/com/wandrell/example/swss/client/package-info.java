@@ -25,4 +25,3 @@
  * Provides clients to access the web services.
  */
 package com.wandrell.example.swss.client;
-

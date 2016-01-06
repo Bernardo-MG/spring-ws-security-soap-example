@@ -63,8 +63,8 @@ public final class DefaultUserDetailsService implements UserDetailsService {
 
             user = new User(username, "myPassword", authorities);
         } else {
-            throw new UsernameNotFoundException(String.format(
-                    "Invalid username '%s'", username));
+            throw new UsernameNotFoundException(
+                    String.format("Invalid username '%s'", username));
         }
 
         return user;

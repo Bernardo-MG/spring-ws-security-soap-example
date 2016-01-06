@@ -25,4 +25,3 @@
  * Provides the endpoints for the web services.
  */
 package com.wandrell.example.swss.endpoint;
-

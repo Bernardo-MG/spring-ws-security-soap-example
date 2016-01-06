@@ -25,4 +25,3 @@
  * Provides configuration classes for the web services.
  */
 package com.wandrell.example.swss.config;
-

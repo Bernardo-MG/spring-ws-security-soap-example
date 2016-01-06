@@ -25,4 +25,3 @@
  * Provides the services handling business logic.
  */
 package com.wandrell.example.swss.service;
-

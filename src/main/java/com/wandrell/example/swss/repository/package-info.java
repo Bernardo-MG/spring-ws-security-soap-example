@@ -25,4 +25,3 @@
  * Provides the repositories used to access the web services data.
  */
 package com.wandrell.example.swss.repository;
-

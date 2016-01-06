@@ -66,8 +66,8 @@ public final class SOAPParsingUtils {
 
         jc = JAXBContext.newInstance(GetEntityResponse.class);
         um = jc.createUnmarshaller();
-        response = (GetEntityResponse) um.unmarshal(message.getSOAPBody()
-                .extractContentAsDocument());
+        response = (GetEntityResponse) um
+                .unmarshal(message.getSOAPBody().extractContentAsDocument());
 
         return response.getEntity();
     }

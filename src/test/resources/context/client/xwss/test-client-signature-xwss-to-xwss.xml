@@ -13,16 +13,10 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/client/xwss/client-signature-xwss.properties, classpath:context/client/xwss/test-client-signature-xwss-to-xwss.properties" />
+        location="classpath:context/keystore.properties, classpath:context/client/xwss/client-signature-xwss.properties, classpath:context/client/xwss/test-client-signature-xwss-to-xwss.properties" />
 
     <!-- Imports base context -->
+    <import resource="classpath:context/keystore.xml" />
     <import resource="classpath:context/client/xwss/client-signature-xwss.xml" />
-
-    <!-- Key store -->
-    <bean id="keyStore"
-        class="org.springframework.ws.soap.security.support.KeyStoreFactoryBean">
-        <property name="location" value="target/newKeyStoreFileName.jks" />
-        <property name="password" value="123456" />
-    </bean>
 
 </beans>

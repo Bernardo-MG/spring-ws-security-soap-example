@@ -51,8 +51,8 @@ import org.testng.annotations.Test;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEndpoint extends
-        AbstractTestNGSpringContextTests {
+public abstract class AbstractITEndpoint
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Suffix used to acquire the WSDL from a URL.
@@ -62,7 +62,7 @@ public abstract class AbstractITEndpoint extends
      * URL to the web service being tested.
      */
     @Value("${ws.url}")
-    private String wsURL;
+    private String              wsURL;
 
     /**
      * Default constructor.

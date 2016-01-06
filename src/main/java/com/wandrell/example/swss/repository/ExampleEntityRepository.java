@@ -31,7 +31,7 @@ import com.wandrell.example.swss.model.DefaultExampleEntity;
 /**
  * Spring repository for {@link DefaultExampleEntity}.
  */
-public interface ExampleEntityRepository extends
-        JpaRepository<DefaultExampleEntity, Integer> {
+public interface ExampleEntityRepository
+        extends JpaRepository<DefaultExampleEntity, Integer> {
 
 }

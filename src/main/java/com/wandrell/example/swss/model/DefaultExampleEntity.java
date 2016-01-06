@@ -54,7 +54,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private Integer entityId;
+    private Integer           entityId;
     /**
      * Name of the entity.
      * <p>
@@ -62,7 +62,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
      * tests.
      */
     @Column(name = "name", nullable = false)
-    private String entityName = "";
+    private String            entityName       = "";
 
     /**
      * Constructs a {@code JPAExampleEntity}.
