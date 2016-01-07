@@ -76,22 +76,26 @@ import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
  */
 public class KeystoreFactory {
 
-    public static final KeyStore getKeystore(final String keystorePath,
-            final String password, final String alias, final String issuer)
-                    throws NoSuchAlgorithmException, CertificateException,
-                    KeyStoreException, IOException, InvalidKeyException,
-                    NoSuchProviderException, SecurityException,
-                    SignatureException, OperatorCreationException {
+    public static final KeyStore getKeystore(final String password,
+            final String alias, final String issuer)
+            throws NoSuchAlgorithmException, CertificateException,
+            KeyStoreException, IOException, InvalidKeyException,
+            NoSuchProviderException, SecurityException, SignatureException,
+            OperatorCreationException {
         final KeyStore ks;
         final KeyPair keypair;
         final Certificate certificate;
+        final Certificate[] chain;
 
-        ks = generateKeystore(keystorePath, password);
-        keypair = generateKeyPair();
-        certificate = generateCertificate(keypair.getPublic(),
-                keypair.getPrivate(), issuer);
+        ks = getKeystore(password);
+        keypair = getKeyPair();
+        certificate = getCertificate(keypair, issuer);
 
-        ks.setCertificateEntry(alias, certificate);
+        chain = new Certificate[] { certificate };
+
+        ks.setKeyEntry(alias, keypair.getPrivate(), password.toCharArray(),
+                chain);
+        // ks.setCertificateEntry(alias, certificate);
 
         return ks;
     }
@@ -102,8 +106,7 @@ public class KeystoreFactory {
         ASN1InputStream is = null;
 
         try {
-            is = new ASN1InputStream(
-                    new ByteArrayInputStream(key.getEncoded()));
+            is = new ASN1InputStream(new ByteArrayInputStream(key.getEncoded()));
             seq = (ASN1Sequence) is.readObject();
         } finally {
             IOUtils.closeQuietly(is);
@@ -113,37 +116,40 @@ public class KeystoreFactory {
                 .createSubjectKeyIdentifier(new SubjectPublicKeyInfo(seq));
     }
 
-    private final static Certificate generateCertificate(
-            final PublicKey publicKey, final PrivateKey privateKey,
+    private final static Certificate getCertificate(final KeyPair keypair,
             final String issuer) throws CertIOException, IOException,
-                    OperatorCreationException, CertificateException,
-                    InvalidKeyException, NoSuchAlgorithmException,
-                    NoSuchProviderException, SignatureException {
+            OperatorCreationException, CertificateException,
+            InvalidKeyException, NoSuchAlgorithmException,
+            NoSuchProviderException {
         final X509v3CertificateBuilder builder;
         final X509Certificate certificate;
 
-        builder = getCertificateBuilder(publicKey, issuer);
+        builder = getCertificateBuilder(keypair.getPublic(), issuer);
 
-        certificate = signCertificate(builder, privateKey);
+        certificate = signCertificate(builder, keypair.getPrivate());
         certificate.checkValidity(new Date());
-        certificate.verify(publicKey);
+        try {
+            certificate.verify(keypair.getPublic());
+        } catch (SignatureException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
 
         return certificate;
     }
 
-    private static final KeyPair generateKeyPair()
-            throws NoSuchAlgorithmException, NoSuchProviderException {
-        final KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA",
-                "BC");
+    private static final KeyPair getKeyPair() throws NoSuchAlgorithmException,
+            NoSuchProviderException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(1024, new SecureRandom());
+        KeyPair keypair = keyPairGenerator.generateKeyPair();
 
-        keyGen.initialize(1024, new SecureRandom());
-
-        return keyGen.generateKeyPair();
+        return keypair;
     }
 
-    private static final KeyStore generateKeystore(final String keystorePath,
-            final String password) throws NoSuchAlgorithmException,
-                    CertificateException, IOException, KeyStoreException {
+    private static final KeyStore getKeystore(final String password)
+            throws NoSuchAlgorithmException, CertificateException, IOException,
+            KeyStoreException {
         final KeyStore ks;
         final char[] pass;
 
@@ -199,15 +205,14 @@ public class KeystoreFactory {
 
     private static X509Certificate signCertificate(
             X509v3CertificateBuilder certificateBuilder,
-            PrivateKey signedWithPrivateKey)
-                    throws OperatorCreationException, CertificateException {
+            PrivateKey signedWithPrivateKey) throws OperatorCreationException,
+            CertificateException {
         ContentSigner signer = new JcaContentSignerBuilder(
-                "SHA256WithRSAEncryption")
-                        .setProvider(BouncyCastleProvider.PROVIDER_NAME)
-                        .build(signedWithPrivateKey);
-        return new JcaX509CertificateConverter()
-                .setProvider(BouncyCastleProvider.PROVIDER_NAME)
-                .getCertificate(certificateBuilder.build(signer));
+                "SHA256WithRSAEncryption").setProvider(
+                BouncyCastleProvider.PROVIDER_NAME).build(signedWithPrivateKey);
+        return new JcaX509CertificateConverter().setProvider(
+                BouncyCastleProvider.PROVIDER_NAME).getCertificate(
+                certificateBuilder.build(signer));
     }
 
     /**
