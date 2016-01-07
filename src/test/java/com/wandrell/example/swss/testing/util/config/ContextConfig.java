@@ -81,6 +81,12 @@ public final class ContextConfig {
      */
     public static final String CLIENT_SIGNATURE_XWSS_TO_XWSS          = "classpath:context/client/xwss/test-client-signature-xwss-to-xwss.xml";
     /**
+     * Context with signature-based security for the client, with invalid
+     * authentication data and using XWSS for both the client and the web
+     * service.
+     */
+    public static final String CLIENT_SIGNATURE_XWSS_TO_XWSS_INVALID  = "classpath:context/client/xwss/test-client-signature-xwss-to-xwss-invalid.xml";
+    /**
      * Unsecure context for the client.
      */
     public static final String CLIENT_UNSECURE                        = "classpath:context/client/test-client-unsecure.xml";

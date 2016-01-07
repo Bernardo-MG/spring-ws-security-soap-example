@@ -45,8 +45,8 @@ import com.wandrell.example.swss.client.EntityClient;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEntityClientInvalid
-        extends AbstractTestNGSpringContextTests {
+public abstract class AbstractITEntityClientInvalid extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * Client being tested.
@@ -66,7 +66,7 @@ public abstract class AbstractITEntityClientInvalid
      * to be thrown.
      */
     @Test(expectedExceptions = SoapFaultClientException.class)
-    public final void testEndpoint_InvalidPassword_Exception() {
+    public final void testEndpoint_InvalidMessage_Exception() {
         client.getEntity(1);
     }
 

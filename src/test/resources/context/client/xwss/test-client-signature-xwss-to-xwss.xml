@@ -7,7 +7,7 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Test content for a client which makes use of the password
+        Test context for a client which makes use of the password
         protected WS.
     </description>
 

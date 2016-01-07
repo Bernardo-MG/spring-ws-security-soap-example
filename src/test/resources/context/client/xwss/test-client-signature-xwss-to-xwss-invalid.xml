@@ -7,14 +7,16 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Test context for a client which makes use of the password protected WS.
+        Test context for a client which makes use of the password
+        protected WS using invalid authentication data.
     </description>
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/client/xwss/client-password-xwss.properties, classpath:context/client/xwss/test-client-password-xwss-to-xwss.properties" />
+        location="classpath:context/keystore2.properties, classpath:context/client/xwss/client-signature-xwss.properties, classpath:context/client/xwss/test-client-signature-xwss-to-xwss-invalid.properties" />
 
     <!-- Imports base context -->
-    <import resource="classpath:context/client/xwss/client-password-xwss.xml" />
+    <import resource="classpath:context/keystore.xml" />
+    <import resource="classpath:context/client/xwss/client-signature-xwss.xml" />
 
 </beans>

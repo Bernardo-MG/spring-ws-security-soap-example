@@ -22,51 +22,28 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.security;
+package com.wandrell.example.swss.testing.integration.client.xwss;
 
-import java.io.FileOutputStream;
-import java.security.KeyStore;
-import java.security.Security;
+import org.springframework.test.context.ContextConfiguration;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import com.wandrell.example.swss.testing.util.config.ContextConfig;
 
 /**
- * Executable class for generating the key stores used on the tests.
- * <p>
- * This is to be used in case the key stores are to be rebuilt for some reason.
+ * Implementation of {@code AbstractITEntityClientInvalid} for a password
+ * protected web service using XWSS for both the client and the web service.
  *
  * @author Bernardo Martínez Garrido
  */
-public class KeystoreGenerator {
-
-    public static final void main(final String[] args) throws Exception {
-        final FileOutputStream fos;
-        final KeyStore ks;
-        final String keystorePath;
-        final String password;
-        final String alias;
-        final String issuer;
-
-        keystorePath = "src/main/resources/keystore.jks";
-        password = "123456";
-        alias = "alias";
-        issuer = "CN=www.wandrell.com, O=Wandrell, L=London, ST=England, C=UK";
-
-        Security.addProvider(new BouncyCastleProvider());
-
-        ks = KeystoreFactory.getKeystore(keystorePath, password, alias, issuer);
-
-        // Saves the keystore
-        fos = new FileOutputStream(keystorePath);
-        ks.store(fos, password.toCharArray());
-        fos.close();
-    }
+@ContextConfiguration(
+        locations = { ContextConfig.CLIENT_SIGNATURE_XWSS_TO_XWSS_INVALID })
+public final class ITEntityClientSignedXWSSToXWSSInvalid {
 
     /**
-     * Private constructor to avoid initialization.
+     * Default constructor.
      */
-    private KeystoreGenerator() {
+    public ITEntityClientSignedXWSSToXWSSInvalid() {
         super();
+        // TODO: Not working
     }
 
 }
