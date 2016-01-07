@@ -46,7 +46,7 @@
     <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
         <property name="keyStore" ref="keyStore" />
         <property name="trustStore" ref="trustStore" />
-        <property name="privateKeyPassword" value="${keystore.password.private}" />
+        <property name="privateKeyPassword" value="${keystore.password}" />
         <property name="defaultAlias" value="${keystore.alias}" />
     </bean>
 

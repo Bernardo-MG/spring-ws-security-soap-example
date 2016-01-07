@@ -12,7 +12,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/ws/ws.properties, classpath:context/ws/xwss/ws-signature-xwss.properties" />
+        location="classpath:context/keystore.properties, classpath:context/ws/ws.properties, classpath:context/ws/xwss/ws-signature-xwss.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/ws/xwss/ws-signature-xwss.xml" />

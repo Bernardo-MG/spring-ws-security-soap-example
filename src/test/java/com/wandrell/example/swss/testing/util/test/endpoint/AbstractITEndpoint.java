@@ -51,18 +51,19 @@ import org.testng.annotations.Test;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEndpoint
-        extends AbstractTestNGSpringContextTests {
+public abstract class AbstractITEndpoint extends
+        AbstractTestNGSpringContextTests {
 
-    /**
-     * Suffix used to acquire the WSDL from a URL.
-     */
-    private static final String WSDL_SUFFIX = ".wsdl";
     /**
      * URL to the web service being tested.
      */
     @Value("${ws.url}")
-    private String              wsURL;
+    private String wsURL;
+    /**
+     * URL to the WSDL of the web service being tested.
+     */
+    @Value("${ws.wsdl.url}")
+    private String wsdlURL;
 
     /**
      * Default constructor.
@@ -83,7 +84,7 @@ public abstract class AbstractITEndpoint
         final BufferedReader in; // Reader for the WSDL
         final String line;       // First line of the WSDL
 
-        url = new URL(wsURL + WSDL_SUFFIX);
+        url = new URL(wsdlURL);
         in = new BufferedReader(new InputStreamReader(url.openStream()));
         line = in.readLine();
 
