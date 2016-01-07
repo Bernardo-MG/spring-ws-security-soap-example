@@ -53,15 +53,21 @@ To run the demo just use the following Maven command:
 $ mvn clean package jetty:run-war
 ```
 
-### Memory problems with the Tomcat plugin
+### Timeout errors with the Jetty plugin
 
-If the Tomcat plugin crashes due to memory problems add the following params to the virtual machine:
+On some computers the Jetty plugin gives a timeout error, which says it was unable to load the annotations.
+
+This can be solved by adding the following parameter when running Maven:
 
 ```
--Xmx1024m -Xms1024m -XX:MaxPermSize=512m -XX:PermSize=256m
+-Dorg.eclipse.jetty.annotations.maxWait=120
 ```
 
-In Eclipse this can be done in the 'run configuration' window, JRE panel, adding it to the VM arguments box.
+With this the command to run the project would end being like:
+
+```
+$ mvn clean package jetty:run-war -Dorg.eclipse.jetty.annotations.maxWait=120
+```
 
 ## Collaborate
 
