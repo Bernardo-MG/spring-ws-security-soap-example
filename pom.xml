@@ -262,8 +262,6 @@
         <!-- Maven Site -->
         <site.skin.version>0.2.1</site.skin.version>
         <!-- Testing server -->
-        <server.test.host>localhost</server.test.host>
-        <server.test.port>8080</server.test.port>
         <server.test.path>/sws</server.test.path>
     </properties>
 
@@ -582,17 +580,13 @@
                     <webApp>
                         <contextPath>${server.test.path}</contextPath>
                     </webApp>
-                    <httpConnector>
-                        <host>${server.test.host}</host>
-                        <port>${server.test.port}</port>
-                    </httpConnector>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>start-jetty</id>
+                        <id>start-jetty-it</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>run-war</goal>
+                            <goal>start</goal>
                         </goals>
                         <configuration>
                             <scanIntervalSeconds>0</scanIntervalSeconds>
@@ -600,7 +594,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>stop-jetty</id>
+                        <id>stop-jetty-it</id>
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>stop</goal>
