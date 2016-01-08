@@ -7,20 +7,15 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Test content for a client which makes use of the password
-        protected WS.
+        Context for a client which makes use of the encrypted
+        WS through XWSS.
+
+        This requires a key store. For this it is recommended loading the key store
+        context file.
     </description>
 
     <!-- Imports base context -->
     <import resource="classpath:/context/client/client.xml" />
-    <import resource="classpath:/context/security-password-wss4j.xml" />
-
-    <!-- Security interceptor -->
-    <bean id="securityInterceptor" class="${interceptor.security.class}">
-        <property name="securementActions" value="${security.actions}" />
-        <property name="securementUsername" value="${security.credentials.user}" />
-        <property name="securementPassword" value="${security.credentials.password}" />
-        <property name="securementPasswordType" value="${security.credentials.password.type}" />
-    </bean>
+    <import resource="classpath:/context/security-encryption-xwss.xml" />
 
 </beans>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:sws="http://www.springframework.org/schema/web-services"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/web-services
+                        http://www.springframework.org/schema/web-services/web-services.xsd">
+
+    <description>
+        Context for XWSS encryption authentication.
+    </description>
+
+    <!-- Security interceptor -->
+    <bean id="securityInterceptor" class="${interceptor.security.class}">
+        <property name="policyConfiguration" value="${security.file.path}" />
+        <property name="callbackHandlers">
+            <list>
+                <ref bean="keystoreHandler" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- Key store callback handler -->
+    <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
+        <property name="keyStore" ref="keyStore" />
+        <property name="trustStore" ref="trustStore" />
+        <property name="symmetricStore" ref="symmetricStore" />
+        <property name="privateKeyPassword" value="${keystore.password}" />
+        <property name="symmetricKeyPassword" value="${symmetricstore.password}" />
+        <property name="defaultAlias" value="${symmetricstore.alias}" />
+    </bean>
+
+</beans>
