@@ -30,7 +30,7 @@ before_install:
   - ./.scripts/create-maven-settings.sh
 script:
   # Unit and integration tests are run
-  - mvn clean verify -Dorg.eclipse.jetty.annotations.maxWait=120
+  - mvn clean verify
 after_success:
   # Documentation deployment script
   - ./.scripts/deploy-site.sh

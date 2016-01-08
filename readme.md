@@ -53,22 +53,6 @@ To run the demo just use the following Maven command:
 $ mvn clean package jetty:run-war
 ```
 
-### Timeout errors with the Jetty plugin
-
-On some computers the Jetty plugin gives a timeout error, which says it was unable to load the annotations.
-
-This can be solved by adding the following parameter when running Maven:
-
-```
--Dorg.eclipse.jetty.annotations.maxWait=120
-```
-
-With this the command to run the project would end being like:
-
-```
-$ mvn clean package jetty:run-war -Dorg.eclipse.jetty.annotations.maxWait=120
-```
-
 ## Collaborate
 
 Any kind of help with the project will be well received, and there are two main ways to give such help:

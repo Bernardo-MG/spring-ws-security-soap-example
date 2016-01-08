@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+    <Call name="setAttribute">
+        <!-- To stop Jetty for scanning for annotations and slowing up the startup -->
+        <Arg>org.eclipse.jetty.server.webapp.WebInfIncludeJarPattern</Arg>
+        <Arg>^$</Arg>
+    </Call>
+</Configure>

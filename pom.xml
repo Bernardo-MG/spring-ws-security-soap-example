@@ -580,6 +580,7 @@
                     <webApp>
                         <contextPath>${server.test.path}</contextPath>
                     </webApp>
+                    <contextXml>${project.build.outputDirectory}/jetty/jetty.xml</contextXml>
                 </configuration>
                 <executions>
                     <execution>
