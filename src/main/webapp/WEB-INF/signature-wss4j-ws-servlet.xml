@@ -7,16 +7,14 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Global application context. This is shared by all the servlets.
+        Context for the signature protected servlet using WSS4J.
     </description>
 
     <!-- Properties -->
-    <context:property-placeholder location="classpath:context/persistence.properties, classpath:context/keystore.properties, classpath:context/keystore-wss4j.properties" />
+    <context:property-placeholder
+        location="classpath:context/keystore.properties, classpath:context/ws/ws.properties, classpath:context/ws/wss4j/ws-signature-wss4j.properties" />
 
     <!-- Imports -->
-    <import resource="classpath:context/persistence.xml" />
-    <import resource="classpath:context/service.xml" />
-    <import resource="classpath:context/keystore.xml" />
-    <import resource="classpath:context/keystore-wss4j.xml" />
+    <import resource="classpath:context/ws/wss4j/ws-signature-wss4j.xml" />
 
 </beans>

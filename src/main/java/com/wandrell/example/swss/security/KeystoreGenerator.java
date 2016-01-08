@@ -50,7 +50,7 @@ public class KeystoreGenerator {
         keystorePath = "src/main/resources/keystore/keystore.jks";
         password = "123456";
         alias = "swss-cert";
-        issuer = "CN=www.wandrell.com, O=Wandrell, L=London, ST=England, C=UK";
+        issuer = "CN=www.wandrell.com, O=Wandrell, OU=None, L=London, ST=England, C=UK";
 
         Security.addProvider(new BouncyCastleProvider());
 

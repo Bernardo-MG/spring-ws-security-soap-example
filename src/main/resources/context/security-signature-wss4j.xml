@@ -17,10 +17,10 @@
         <property name="securementActions" value="${security.actions}" />
         <property name="securementUsername" value="${keystore.alias}" />
         <property name="securementPassword" value="${keystore.password}" />
-        <property name="securementSignatureCrypto" ref="${security.signature.crypto}" />
+        <property name="securementSignatureCrypto" ref="keyStoreWSS4J" />
         <property name="validationActions" value="${security.actions}" />
-        <property name="validationSignatureCrypto" ref="${security.signature.crypto}" />
-        <property name="validationCallbackHandler" ref="keystoreCallbackHandler" />
+        <property name="validationSignatureCrypto" ref="keyStoreWSS4J" />
+        <property name="validationCallbackHandler" ref="keystoreHandler" />
     </bean>
 
     <!-- Key store callback handler -->
