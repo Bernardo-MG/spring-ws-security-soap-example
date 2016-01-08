@@ -25,41 +25,35 @@
 package com.wandrell.example.swss.testing.integration.endpoint.xwss;
 
 import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.KeyException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.Provider;
-import java.security.SecureRandom;
-import java.util.Collections;
+import java.security.PrivateKey;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.X509Certificate;
 
-import javax.xml.crypto.MarshalException;
-import javax.xml.crypto.dsig.Reference;
-import javax.xml.crypto.dsig.SignedInfo;
-import javax.xml.crypto.dsig.XMLSignature;
-import javax.xml.crypto.dsig.XMLSignatureException;
-import javax.xml.crypto.dsig.XMLSignatureFactory;
-import javax.xml.crypto.dsig.dom.DOMSignContext;
-import javax.xml.crypto.dsig.dom.DOMValidateContext;
-import javax.xml.crypto.dsig.keyinfo.KeyInfo;
-import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
-import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPHeader;
+import javax.xml.soap.SOAPHeaderElement;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.xml.security.exceptions.XMLSecurityException;
+import org.apache.xml.security.signature.XMLSignature;
+import org.apache.xml.security.transforms.Transforms;
+import org.apache.xml.security.utils.Constants;
+import org.apache.xml.security.utils.XMLUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,12 +62,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import com.sun.xml.ws.security.opt.crypto.dsig.CanonicalizationMethod;
-import com.sun.xml.ws.security.opt.crypto.dsig.DigestMethod;
-import com.sun.xml.ws.security.opt.crypto.dsig.SignatureMethod;
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
@@ -97,26 +88,10 @@ import com.wandrell.example.ws.generated.entity.Entity;
 public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
     /**
-     * Path to the file containing the invalid SOAP request.
-     */
-    @Value("${message.invalid.file.path}")
-    private String   pathInvalid;
-    /**
-     * Key store for signing messages.
-     */
-    @Autowired
-    @Qualifier("keyStore")
-    private KeyStore keystore;
-    /**
      * Alias for the certificate for signing messages.
      */
-    @Value("keystore.alias")
+    @Value("${keystore.alias}")
     private String   alias;
-    /**
-     * Password for the certificate for signing messages.
-     */
-    @Value("keystore.password")
-    private String   password;
     /**
      * Id of the returned entity.
      */
@@ -127,6 +102,22 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
      */
     @Value("${entity.name}")
     private String   entityName;
+    /**
+     * Key store for signing messages.
+     */
+    @Autowired
+    @Qualifier("keyStore")
+    private KeyStore keystore;
+    /**
+     * Password for the certificate for signing messages.
+     */
+    @Value("${keystore.password}")
+    private String   password;
+    /**
+     * Path to the file containing the invalid SOAP request.
+     */
+    @Value("${message.invalid.file.path}")
+    private String   pathInvalid;
 
     /**
      * Default constructor.
@@ -178,151 +169,105 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
         Assert.assertEquals(entity.getName(), entityName);
     }
 
-    private final SOAPMessage getSignedMessage() throws MarshalException,
-            XMLSignatureException, SOAPException, SAXException, IOException,
-            ParserConfigurationException, NoSuchAlgorithmException,
-            InvalidAlgorithmParameterException, InstantiationException,
-            IllegalAccessException, ClassNotFoundException, KeyException {
+    public Document toDocument(SOAPMessage soapMsg)
+            throws TransformerConfigurationException, TransformerException,
+            SOAPException, IOException {
+        Source src = soapMsg.getSOAPPart().getContent();
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer transformer = tf.newTransformer();
+        DOMResult result = new DOMResult();
+        transformer.transform(src, result);
+        return (Document) result.getNode();
+    }
+
+    public SOAPMessage toMessage(Document jdomDocument) throws IOException,
+            SOAPException {
+        SOAPMessage message = MessageFactory.newInstance().createMessage();
+        SOAPPart sp = message.getSOAPPart();
+        Element imported = (Element) sp.importNode(
+                jdomDocument.getFirstChild(), true);
+        SOAPBody sb = message.getSOAPBody();
+        sb.appendChild(imported);
+
+        return message;
+    }
+
+    private final SOAPMessage getSignedMessage()
+            throws UnrecoverableKeyException, KeyStoreException,
+            NoSuchAlgorithmException, SAXException, IOException,
+            ParserConfigurationException, XMLSecurityException, SOAPException,
+            TransformerConfigurationException, TransformerException {
+        String privateKeyAlias = alias;
+        String privateKeyPass = password;
+        String certificateAlias = alias;
+        Element element = null;
+        String BaseURI = ClassLoader.class.getResource(pathInvalid).toString();
         SOAPMessage soapMessage = SOAPParsingUtils
                 .parseMessageFromFile(pathInvalid);
         SOAPPart soapPart = soapMessage.getSOAPPart();
         SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
-
         SOAPHeader soapHeader = soapEnvelope.getHeader();
-        soapHeader
-                .addHeaderElement(soapEnvelope.createName("Signature",
-                        "SOAP-SEC",
-                        "http://schemas.xmlsoap.org/soap/security/2000-12"));
+        SOAPHeaderElement secElement;
+        Base64 base64 = new Base64();
+        String token;
+        Node binaryToken;
 
-        SOAPBody soapBody = soapEnvelope.getBody();
-        soapBody.addAttribute(soapEnvelope.createName("id", "SOAP-SEC",
-                "http://schemas.xmlsoap.org/soap/security/2000-12"), "Body");
+        secElement = soapHeader
+                .addHeaderElement(soapEnvelope
+                        .createName(
+                                "Security",
+                                "wsse",
+                                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
+        secElement
+                .addChildElement(soapEnvelope
+                        .createName(
+                                "BinarySecurityToken",
+                                "wsse",
+                                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
 
-        // Generate a DOM representation of the SOAP message
+        // get the private key used to sign, from the keystore
+        KeyStore ks = keystore;
+        PrivateKey privateKey = (PrivateKey) ks.getKey(privateKeyAlias,
+                privateKeyPass.toCharArray());
+        // create basic structure of signature
+        Document doc = toDocument(soapMessage);
 
-        System.out.println("Generating the DOM tree...");
-        // Get input source
-        Source source = soapPart.getContent();
-        org.w3c.dom.Node root = null;
+        org.apache.xml.security.Init.init();
+        XMLSignature sig = new XMLSignature(doc, BaseURI,
+                XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1);
 
-        if (source instanceof DOMSource) {
-            root = ((DOMSource) source).getNode();
+        // optional, but better
+        element = doc.getDocumentElement();
+        element.normalize();
+        element.getElementsByTagName("wsse:Security").item(0)
+                .appendChild(sig.getElement());
 
-        } else if (source instanceof SAXSource) {
-            InputSource inSource = ((SAXSource) source).getInputSource();
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
-            DocumentBuilder db = null;
-
-            synchronized (dbf) {
-                db = dbf.newDocumentBuilder();
-            }
-            Document doc = db.parse(inSource);
-            root = (org.w3c.dom.Node) doc.getDocumentElement();
-
-        } else {
-            System.err.println("error: cannot convert SOAP message ("
-                    + source.getClass().getName() + ") into a W3C DOM tree");
-            System.exit(-1);
+        {
+            Transforms transforms = new Transforms(doc);
+            transforms.addTransform(Transforms.TRANSFORM_C14N_OMIT_COMMENTS);
+            // Sign the content of SOAP Envelope
+            sig.addDocument("", transforms, Constants.ALGO_ID_DIGEST_SHA1);
         }
 
-        // Generate a DSA key pair
+        // Signing procedure
+        {
+            X509Certificate cert = (X509Certificate) ks
+                    .getCertificate(certificateAlias);
+            sig.addKeyInfo(cert);
+            sig.addKeyInfo(cert.getPublicKey());
+            sig.sign(privateKey);
 
-        System.out.println("Generating the DSA keypair...");
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("DSA");
-        kpg.initialize(1024, new SecureRandom("not so random".getBytes()));
-        KeyPair keypair = kpg.generateKeyPair();
+            token = base64.encodeToString(cert.getSignature());
 
-        // Assemble the signature parts
-
-        System.out.println("Preparing the signature...");
-        String providerName = System.getProperty("jsr105Provider",
-                "org.jcp.xml.dsig.internal.dom.XMLDSigRI");
-        XMLSignatureFactory sigFactory = XMLSignatureFactory.getInstance("DOM",
-                (Provider) Class.forName(providerName).newInstance());
-        Reference ref = sigFactory.newReference("#Body",
-                sigFactory.newDigestMethod(DigestMethod.SHA1, null));
-        SignedInfo signedInfo = sigFactory.newSignedInfo(sigFactory
-                .newCanonicalizationMethod(
-                        CanonicalizationMethod.INCLUSIVE_WITH_COMMENTS,
-                        (C14NMethodParameterSpec) null), sigFactory
-                .newSignatureMethod(SignatureMethod.DSA_SHA1, null),
-                Collections.singletonList(ref));
-        KeyInfoFactory kif = sigFactory.getKeyInfoFactory();
-        KeyValue kv = kif.newKeyValue(keypair.getPublic());
-        KeyInfo keyInfo = kif.newKeyInfo(Collections.singletonList(kv));
-
-        XMLSignature sig = sigFactory.newXMLSignature(signedInfo, keyInfo);
-
-        // Insert XML signature into DOM tree and sign
-
-        System.out.println("Signing the SOAP message...");
-        // Find where to insert signature
-        Element envelope = getFirstChildElement(root);
-        Element header = getFirstChildElement(envelope);
-        DOMSignContext sigContext = new DOMSignContext(keypair.getPrivate(),
-                header);
-        // Need to distinguish the Signature element in DSIG (from that in SOAP)
-        sigContext.putNamespacePrefix(XMLSignature.XMLNS, "ds");
-        // register Body ID attribute
-        sigContext.setIdAttributeNS(getNextSiblingElement(header),
-                "http://schemas.xmlsoap.org/soap/security/2000-12", "id");
-        sig.sign(sigContext);
-
-        // Validate the XML signature
-
-        // Locate the signature element
-        Element sigElement = getFirstChildElement(header);
-        // Validate the signature using the public key generated above
-        DOMValidateContext valContext = new DOMValidateContext(
-                keypair.getPublic(), sigElement);
-        // register Body ID attribute
-        valContext.setIdAttributeNS(getNextSiblingElement(header),
-                "http://schemas.xmlsoap.org/soap/security/2000-12", "id");
-        boolean isValid = sig.validate(valContext);
-        System.out.println("Validating the signature... "
-                + (isValid ? "valid" : "invalid"));
-
-        return soapMessage;
-    }
-
-    /**
-     * Returns the first child element of the specified node, or null if there
-     * is no such element.
-     *
-     * @param node
-     *            the node
-     * @return the first child element of the specified node, or null if there
-     *         is no such element
-     * @throws NullPointerException
-     *             if <code>node == null</code>
-     */
-    private static Element getFirstChildElement(org.w3c.dom.Node node) {
-        org.w3c.dom.Node child = node.getFirstChild();
-        while (child != null
-                && child.getNodeType() != org.w3c.dom.Node.ELEMENT_NODE) {
-            child = child.getNextSibling();
+            binaryToken = element.getElementsByTagName(
+                    "wsse:BinarySecurityToken").item(0);
+            binaryToken.setTextContent(token);
         }
-        return (Element) child;
+
+        // write signature to file
+        XMLUtils.outputDOMc14nWithComments(doc, System.out);
+
+        return toMessage(doc);
     }
 
-    /**
-     * Returns the next sibling element of the specified node, or null if there
-     * is no such element.
-     *
-     * @param node
-     *            the node
-     * @return the next sibling element of the specified node, or null if there
-     *         is no such element
-     * @throws NullPointerException
-     *             if <code>node == null</code>
-     */
-    public static Element getNextSiblingElement(org.w3c.dom.Node node) {
-        org.w3c.dom.Node sibling = node.getNextSibling();
-        while (sibling != null
-                && sibling.getNodeType() != org.w3c.dom.Node.ELEMENT_NODE) {
-            sibling = sibling.getNextSibling();
-        }
-        return (Element) sibling;
-    }
 }
