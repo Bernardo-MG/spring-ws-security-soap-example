@@ -9,7 +9,7 @@
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
     <description>
-        Common context for the WS. All the web services contexts import
+        Common context for the WS endpoints. All the web services contexts import
         this file.
     </description>
 

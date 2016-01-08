@@ -18,6 +18,7 @@
 
     <!-- Imports base context -->
     <import resource="classpath:/context/ws/ws.xml" />
+    <import resource="classpath:/context/security-signature-xwss.xml" />
 
     <!-- Registers interceptors -->
     <sws:interceptors>
@@ -25,51 +26,5 @@
         <ref bean="payloadValidatingInterceptor" />
         <ref bean="securityInterceptor" />
     </sws:interceptors>
-
-    <!-- Security interceptor -->
-    <bean id="securityInterceptor" class="${interceptor.security.class}">
-        <property name="policyConfiguration" value="${security.file.path}" />
-        <property name="callbackHandlers">
-            <list>
-                <ref bean="keystoreHandler" />
-                <ref bean="certificateHandler" />
-            </list>
-        </property>
-    </bean>
-
-    <!-- Certificate callback handler -->
-    <bean id="certificateHandler" class="${callbackHandler.validation.certificate.class}">
-        <property name="authenticationManager" ref="authenticationManager" />
-    </bean>
-
-    <!-- Key store callback handler -->
-    <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
-        <property name="keyStore" ref="keyStore" />
-        <property name="trustStore" ref="trustStore" />
-        <property name="privateKeyPassword" value="${keystore.password}" />
-        <property name="defaultAlias" value="${keystore.alias}" />
-    </bean>
-
-    <!-- Authentication Manager -->
-    <bean id="authenticationManager" class="${authentication.manager.class}">
-        <constructor-arg >
-            <list>
-                <ref bean="authenticationProvider" />
-            </list>
-        </constructor-arg>
-    </bean>
-
-    <!-- Authentication Provider -->
-    <bean id="authenticationProvider" class="${authentication.provider.class}">
-        <property name="x509AuthoritiesPopulator" ref="authPopulator" />
-    </bean>
-
-    <!-- X509 authorities populator -->
-    <bean id="authPopulator" class="${authentication.provider.populator.class}">
-        <property name="userDetailsService" ref="securityService" />
-    </bean>
-
-    <!-- Security service -->
-    <bean id="securityService" class="${service.security.class}" />
 
 </beans>

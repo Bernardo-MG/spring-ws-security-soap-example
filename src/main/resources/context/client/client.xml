@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <description>
+        Common context for the WS clients. All the web services clients contexts import
+        this file.
+    </description>
+
+    <!-- Client -->
+    <bean id="client" class="${client.class}">
+        <property name="defaultUri" value="${ws.url}" />
+        <property name="marshaller" ref="marshaller" />
+        <property name="unmarshaller" ref="marshaller" />
+        <property name="interceptors">
+            <list>
+                <ref bean="securityInterceptor" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- Marshaller -->
+    <bean id="marshaller" class="${marshaller.class}">
+        <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+    </bean>
+
+</beans>
