@@ -24,48 +24,16 @@
 
 package com.wandrell.example.swss.testing.integration.endpoint.xwss;
 
-import java.io.IOException;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.X509Certificate;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPEnvelope;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPHeader;
-import javax.xml.soap.SOAPHeaderElement;
 import javax.xml.soap.SOAPMessage;
-import javax.xml.soap.SOAPPart;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
 
-import org.apache.tools.ant.util.Base64Converter;
-import org.apache.xml.security.exceptions.XMLSecurityException;
-import org.apache.xml.security.signature.XMLSignature;
-import org.apache.xml.security.transforms.Transforms;
-import org.apache.xml.security.utils.Constants;
-import org.apache.xml.security.utils.XMLUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
@@ -119,7 +87,7 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${message.invalid.file.path}")
-    private String   pathInvalid;
+    private String   pathUnsigned;
 
     /**
      * Default constructor.
@@ -139,7 +107,7 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
 
         message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathInvalid));
+                .parseMessageFromFile(pathUnsigned));
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());
@@ -157,9 +125,10 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        // message = callWebService(getSignedMessage());
+        // message =
+        // callWebService(securityUtils.getSignedMessage(alias,password,alias,pathInvalid,keystore));
 
-        // TODO: Make this work
+        // TODO: Get this working
 
         // Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
         // .getFault());
@@ -168,138 +137,6 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
         // Assert.assertEquals((Integer) entity.getId(), entityId);
         // Assert.assertEquals(entity.getName(), entityName);
-    }
-
-    private final SOAPMessage getMessageToSign() throws SOAPException,
-            IOException {
-        final SOAPMessage soapMessage;
-        final SOAPPart soapPart;
-        final SOAPEnvelope soapEnvelope;
-        final SOAPHeader soapHeader;
-        final SOAPHeaderElement secElement;
-        final SOAPElement binaryTokenElement;
-
-        soapMessage = SOAPParsingUtils.parseMessageFromFile(pathInvalid);
-        soapPart = soapMessage.getSOAPPart();
-        soapEnvelope = soapPart.getEnvelope();
-        soapHeader = soapEnvelope.getHeader();
-
-        secElement = soapHeader
-                .addHeaderElement(soapEnvelope
-                        .createName(
-                                "Security",
-                                "wsse",
-                                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
-        binaryTokenElement = secElement
-                .addChildElement(soapEnvelope
-                        .createName(
-                                "BinarySecurityToken",
-                                "wsse",
-                                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
-        binaryTokenElement
-                .setAttribute(
-                        "EncodingType",
-                        "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary");
-        binaryTokenElement
-                .setAttribute(
-                        "ValueType",
-                        "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3");
-
-        return soapMessage;
-    }
-
-    private final XMLSignature getSignature(final Document doc,
-            final String BaseURI, final X509Certificate cert,
-            final PrivateKey privateKey) throws XMLSecurityException {
-        final XMLSignature sig;
-
-        sig = new XMLSignature(doc, BaseURI,
-                XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1);
-
-        Transforms transforms = new Transforms(doc);
-        transforms.addTransform(Transforms.TRANSFORM_C14N_OMIT_COMMENTS);
-        // Sign the content of SOAP Envelope
-        sig.addDocument("", transforms, Constants.ALGO_ID_DIGEST_SHA1);
-
-        sig.addKeyInfo(cert);
-        sig.addKeyInfo(cert.getPublicKey());
-        sig.sign(privateKey);
-
-        return sig;
-    }
-
-    private final SOAPMessage getSignedMessage()
-            throws UnrecoverableKeyException, KeyStoreException,
-            NoSuchAlgorithmException, SAXException, IOException,
-            ParserConfigurationException, XMLSecurityException, SOAPException,
-            TransformerConfigurationException, TransformerException,
-            CertificateEncodingException {
-        String privateKeyAlias = alias;
-        String privateKeyPass = password;
-        String certificateAlias = alias;
-        Element root = null;
-        String BaseURI = ClassLoader.class.getResource(pathInvalid).toString();
-        SOAPMessage soapMessage;
-        Base64Converter base64 = new Base64Converter();
-        String token;
-        Node binaryToken;
-        X509Certificate cert;
-        PrivateKey privateKey;
-        XMLSignature sig;
-
-        soapMessage = getMessageToSign();
-
-        // get the private key used to sign, from the keystore
-        privateKey = (PrivateKey) keystore.getKey(privateKeyAlias,
-                privateKeyPass.toCharArray());
-        cert = (X509Certificate) keystore.getCertificate(certificateAlias);
-
-        // create basic structure of signature
-        Document doc = toDocument(soapMessage);
-
-        org.apache.xml.security.Init.init();
-
-        sig = getSignature(doc, BaseURI, cert, privateKey);
-
-        // optional, but better
-        root = doc.getDocumentElement();
-        root.normalize();
-        root.getElementsByTagName("wsse:Security").item(0)
-                .appendChild(sig.getElement());
-
-        token = base64.encode(cert.getEncoded());
-
-        binaryToken = root.getElementsByTagName("wsse:BinarySecurityToken")
-                .item(0);
-        binaryToken.setTextContent(token);
-
-        // write signature to file
-        XMLUtils.outputDOMc14nWithComments(doc, System.out);
-
-        return toMessage(doc);
-    }
-
-    private final Document toDocument(SOAPMessage soapMsg)
-            throws TransformerConfigurationException, TransformerException,
-            SOAPException, IOException {
-        Source src = soapMsg.getSOAPPart().getContent();
-        TransformerFactory tf = TransformerFactory.newInstance();
-        Transformer transformer = tf.newTransformer();
-        DOMResult result = new DOMResult();
-        transformer.transform(src, result);
-        return (Document) result.getNode();
-    }
-
-    private final SOAPMessage toMessage(Document jdomDocument)
-            throws IOException, SOAPException {
-        SOAPMessage message = MessageFactory.newInstance().createMessage();
-        SOAPPart sp = message.getSOAPPart();
-        Element imported = (Element) sp.importNode(
-                jdomDocument.getFirstChild(), true);
-        SOAPBody sb = message.getSOAPBody();
-        sb.appendChild(imported);
-
-        return message;
     }
 
 }
