@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.client.xwss;
+package com.wandrell.example.swss.testing.integration.client.wss4j;
 
 import org.springframework.test.context.ContextConfiguration;
 
@@ -31,20 +31,20 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
 
 /**
  * Implementation of {@code AbstractITEntityClientInvalid} for a signature
- * protected web service using XWSS for the client and WSS4J for the web
+ * protected web service using WSS4J for the client and XWSS for the web
  * service.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ContextConfig.CLIENT_SIGNATURE_XWSS_TO_WSS4J_INVALID })
-public final class ITEntityClientSignedXWSSToWSS4JInvalid extends
+        locations = { ContextConfig.CLIENT_SIGNATURE_WSS4J_TO_WSS4J_INVALID })
+public final class ITEntityClientSignatureWSS4JToWSS4JInvalid extends
         AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.
      */
-    public ITEntityClientSignedXWSSToWSS4JInvalid() {
+    public ITEntityClientSignatureWSS4JToWSS4JInvalid() {
         super();
     }
 
