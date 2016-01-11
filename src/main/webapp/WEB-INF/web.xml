@@ -26,7 +26,13 @@
     <servlet>
         <servlet-name>signature-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
-        <load-on-startup>2</load-on-startup>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>encryption-xwss-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
@@ -38,7 +44,13 @@
     <servlet>
         <servlet-name>signature-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
-        <load-on-startup>2</load-on-startup>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>encryption-wss4j-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
@@ -57,6 +69,11 @@
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>encryption-xwss-ws</servlet-name>
+        <url-pattern>/encryption/xwss/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>password-wss4j-ws</servlet-name>
         <url-pattern>/password/wss4j/*</url-pattern>
     </servlet-mapping>
@@ -64,6 +81,11 @@
     <servlet-mapping>
         <servlet-name>signature-wss4j-ws</servlet-name>
         <url-pattern>/signature/wss4j/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>encryption-wss4j-ws</servlet-name>
+        <url-pattern>/encryption/wss4j/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

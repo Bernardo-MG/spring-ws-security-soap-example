@@ -122,6 +122,14 @@ public final class ContextConfig {
      */
     public static final String CLIENT_UNSECURE                         = "classpath:context/client/test-client-unsecure.xml";
     /**
+     * WS context with encryption-based security for the endpoint using WSS4J.
+     */
+    public static final String ENDPOINT_ENCRYPTION_WSS4J               = "classpath:context/endpoint/test-endpoint-encryption-wss4j.xml";
+    /**
+     * WS context with encryption-based security for the endpoint using XWSS.
+     */
+    public static final String ENDPOINT_ENCRYPTION_XWSS                = "classpath:context/endpoint/test-endpoint-encryption-xwss.xml";
+    /**
      * WS context with password-based security for the endpoint using WSS4J.
      */
     public static final String ENDPOINT_PASSWORD_WSS4J                 = "classpath:context/endpoint/test-endpoint-password-wss4j.xml";

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <description>
+        Context for the encryption protected servlet using WSS4J.
+    </description>
+
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/keystore.properties, classpath:context/ws/ws.properties, classpath:context/security-encryption-wss4j.properties, classpath:context/ws/wss4j/ws-encryption-wss4j.properties" />
+
+    <!-- Imports -->
+    <import resource="classpath:context/ws/wss4j/ws-encryption-wss4j.xml" />
+
+</beans>
