@@ -76,6 +76,12 @@ public final class ContextConfig {
      */
     public static final String CLIENT_PASSWORD_XWSS_TO_XWSS_INVALID   = "classpath:context/client/xwss/test-client-password-xwss-to-xwss-invalid.xml";
     /**
+     * Context with signature-based security for the client, with invalid
+     * authentication data and using XWSS for the client but WSS4J for the web
+     * service.
+     */
+    public static final String CLIENT_SIGNATURE_XWSS_TO_WSS4J_INVALID = "classpath:context/client/xwss/test-client-signature-xwss-to-wss4j-invalid.xml";
+    /**
      * Context with signature-based security for the client and using XWSS for
      * both the client and the web service.
      */
@@ -99,13 +105,13 @@ public final class ContextConfig {
      */
     public static final String ENDPOINT_PASSWORD_XWSS                 = "classpath:context/endpoint/test-endpoint-password-xwss.xml";
     /**
-     * WS context with signature-based security for the endpoint using XWSS.
-     */
-    public static final String ENDPOINT_SIGNATURE_XWSS                = "classpath:context/endpoint/test-endpoint-signature-xwss.xml";
-    /**
      * WS context with signature-based security for the endpoint using WSS4J.
      */
     public static final String ENDPOINT_SIGNATURE_WSS4J               = "classpath:context/endpoint/test-endpoint-signature-wss4j.xml";
+    /**
+     * WS context with signature-based security for the endpoint using XWSS.
+     */
+    public static final String ENDPOINT_SIGNATURE_XWSS                = "classpath:context/endpoint/test-endpoint-signature-xwss.xml";
     /**
      * Unsecure WS context for the endpoint.
      */

@@ -41,13 +41,17 @@ public class KeystoreGenerator {
 
     public static final void main(final String[] args) throws Exception {
         final FileOutputStream fos;
+        final FileOutputStream fos2;
         final KeyStore ks;
+        final KeyStore ks2;
         final String keystorePath;
+        final String keystorePath2;
         final String password;
         final String alias;
         final String issuer;
 
         keystorePath = "src/main/resources/keystore/keystore.jks";
+        keystorePath2 = "src/main/resources/keystore/keystore2.jks";
         password = "123456";
         alias = "swss-cert";
         issuer = "CN=www.wandrell.com, O=Wandrell, OU=None, L=London, ST=England, C=UK";
@@ -55,11 +59,19 @@ public class KeystoreGenerator {
         Security.addProvider(new BouncyCastleProvider());
 
         ks = KeystoreFactory.getKeystore(password, alias, issuer);
+        ks2 = KeystoreFactory.getKeystore(password, alias, issuer);
 
-        // Saves the keystore
+        // Saves the main keystore
         fos = new FileOutputStream(keystorePath);
-        ks.store(fos, password.toCharArray());
+        ks.store(new FileOutputStream(keystorePath), password.toCharArray());
         fos.close();
+
+        // Saves the second keystore
+        fos2 = new FileOutputStream(keystorePath2);
+        ks2.store(fos2, password.toCharArray());
+        fos2.close();
+
+        System.out.println("Created key stores.");
     }
 
     /**
