@@ -1,7 +1,7 @@
 <!DOCTYPE xml>
 <xwss:SecurityConfiguration xmlns:xwss="http://java.sun.com/xml/ns/xwss/config">
     <xwss:RequireEncryption>
-        <xwss:SymmetricKey keyAlias="swss-cert" />
+        <xwss:X509Token certificateAlias="swss-cert" />
         <xwss:Target type="qname">SOAP-BODY</xwss:Target>
     </xwss:RequireEncryption>
 </xwss:SecurityConfiguration>
