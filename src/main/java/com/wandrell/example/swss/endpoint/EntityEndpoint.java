@@ -29,6 +29,7 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+import org.springframework.ws.soap.server.endpoint.annotation.SoapAction;
 
 import com.wandrell.example.swss.config.EndpointConfig;
 import com.wandrell.example.swss.model.ExampleEntity;
@@ -77,9 +78,10 @@ public class EntityEndpoint {
      */
     @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST,
             namespace = EndpointConfig.ENTITY_NS)
+    @SoapAction(EndpointConfig.ENTITY_NS)
     @ResponsePayload
-    public final GetEntityResponse
-            getEntity(@RequestPayload final GetEntityRequest request) {
+    public final GetEntityResponse getEntity(
+            @RequestPayload final GetEntityRequest request) {
         final GetEntityResponse response; // SOAP response with the result
         final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return
