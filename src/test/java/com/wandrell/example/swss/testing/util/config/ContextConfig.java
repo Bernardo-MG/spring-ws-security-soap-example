@@ -103,6 +103,10 @@ public final class ContextConfig {
      */
     public static final String ENDPOINT_SIGNATURE_XWSS                = "classpath:context/endpoint/test-endpoint-signature-xwss.xml";
     /**
+     * WS context with signature-based security for the endpoint using WSS4J.
+     */
+    public static final String ENDPOINT_SIGNATURE_WSS4J               = "classpath:context/endpoint/test-endpoint-signature-wss4j.xml";
+    /**
      * Unsecure WS context for the endpoint.
      */
     public static final String ENDPOINT_UNSECURE                      = "classpath:context/endpoint/test-endpoint-unsecure.xml";
