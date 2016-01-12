@@ -15,12 +15,4 @@
     <import resource="classpath:/context/client/client.xml" />
     <import resource="classpath:/context/security-signature-wss4j.xml" />
 
-    <!-- Security interceptor -->
-    <bean id="securityInterceptor" class="${interceptor.security.class}">
-        <property name="securementActions" value="${security.actions}" />
-        <property name="securementUsername" value="${keystore.alias}" />
-        <property name="securementPassword" value="${keystore.password}" />
-        <property name="securementSignatureCrypto" ref="keyStoreWSS4J" />
-    </bean>
-
 </beans>

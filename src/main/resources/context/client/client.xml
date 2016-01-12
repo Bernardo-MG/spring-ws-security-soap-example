@@ -16,6 +16,7 @@
         <property name="defaultUri" value="${ws.url}" />
         <property name="marshaller" ref="marshaller" />
         <property name="unmarshaller" ref="marshaller" />
+        <property name="messageFactory" ref="soap11MessageFactory"/>
         <property name="interceptors">
             <list>
                 <ref bean="securityInterceptor" />
@@ -26,6 +27,13 @@
     <!-- Marshaller -->
     <bean id="marshaller" class="${marshaller.class}">
         <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+    </bean>
+
+    <bean id="soap11MessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="messageFactory">
+            <bean
+                class="com.sun.xml.messaging.saaj.soap.ver1_1.SOAPMessageFactory1_1Impl" />
+        </property>
     </bean>
 
 </beans>
