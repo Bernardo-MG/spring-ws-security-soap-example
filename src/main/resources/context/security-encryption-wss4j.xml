@@ -15,19 +15,18 @@
     <!-- Security interceptor -->
     <bean id="securityInterceptor" class="${interceptor.security.class}">
         <property name="securementActions" value="${security.actions}" />
-        <property name="securementUsername" value="${keystore.alias}" />
-        <property name="securementPassword" value="${keystore.password}" />
-        <property name="securementSignatureCrypto" ref="symmetricStoreWSS4J" />
-        <property name="securementEncryptionKeyIdentifier" value="${security.encryptionKeyIdentifier}" />
+        <property name="securementEncryptionUser" value="${symmetricstore.alias}" />
+        <property name="securementEncryptionCrypto" ref="symmetricStoreWSS4J" />
         <property name="validationActions" value="${security.actions}" />
-        <property name="validationSignatureCrypto" ref="symmetricStoreWSS4J" />
         <property name="validationCallbackHandler" ref="keystoreHandler" />
-        <property name="validateRequest" value="true" />
+        <property name="validationDecryptionCrypto" ref="symmetricStoreWSS4J" />
         <property name="secureResponse" value="false" />
+        <property name="validateResponse" value="false" />
     </bean>
 
     <!-- Key store callback handler -->
     <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
+        <property name="keyStore" ref="keyStore" />
         <property name="privateKeyPassword" value="${keystore.password}" />
     </bean>
 
