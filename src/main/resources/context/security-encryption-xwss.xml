@@ -27,7 +27,7 @@
         <property name="keyStore" ref="keyStore" />
         <property name="trustStore" ref="trustStore" />
         <property name="symmetricStore" ref="symmetricStore" />
-        <property name="privateKeyPassword" value="${keystore.password}" />
+        <property name="privateKeyPassword" value="${symmetricstore.password}" />
         <property name="symmetricKeyPassword" value="${symmetricstore.password}" />
         <property name="defaultAlias" value="${symmetricstore.alias}" />
     </bean>

@@ -29,6 +29,8 @@ import java.security.KeyStore;
 import java.security.Security;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Executable class for generating the key stores used on the tests.
@@ -39,39 +41,76 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
  */
 public class KeystoreGenerator {
 
+    /**
+     * The logger used for logging the key store creation.
+     */
+    private static final Logger LOGGER = LoggerFactory
+                                               .getLogger(KeystoreGenerator.class);
+
     public static final void main(final String[] args) throws Exception {
         final FileOutputStream fos;
-        final FileOutputStream fos2;
-        final KeyStore ks;
-        final KeyStore ks2;
-        final String keystorePath;
-        final String keystorePath2;
+        final FileOutputStream fosSecond;
+        final FileOutputStream fosSym;
+        final KeyStore jksMain;
+        final KeyStore jksSecond;
+        final KeyStore jceksSym;
+        final String jksMainPath;
+        final String jksSecondPath;
+        final String jceksSymPath;
         final String password;
         final String alias;
         final String issuer;
 
-        keystorePath = "src/main/resources/keystore/keystore.jks";
-        keystorePath2 = "src/main/resources/keystore/keystore2.jks";
+        jksMainPath = "src/main/resources/keystore/keystore.jks";
+        jksSecondPath = "src/main/resources/keystore/keystore2.jks";
+        jceksSymPath = "src/main/resources/keystore/symmetric.jceks";
+
         password = "123456";
         alias = "swss-cert";
         issuer = "CN=www.wandrell.com, O=Wandrell, OU=None, L=London, ST=England, C=UK";
 
         Security.addProvider(new BouncyCastleProvider());
 
-        ks = KeystoreFactory.getKeystore(password, alias, issuer);
-        ks2 = KeystoreFactory.getKeystore(password, alias, issuer);
+        // Main key store
+
+        LOGGER.trace("Creating main key store");
+
+        jksMain = KeystoreFactory.getJKSKeystore(password, alias, issuer);
 
         // Saves the main keystore
-        fos = new FileOutputStream(keystorePath);
-        ks.store(new FileOutputStream(keystorePath), password.toCharArray());
+        fos = new FileOutputStream(jksMainPath);
+        jksMain.store(new FileOutputStream(jksMainPath), password.toCharArray());
         fos.close();
 
-        // Saves the second keystore
-        fos2 = new FileOutputStream(keystorePath2);
-        ks2.store(fos2, password.toCharArray());
-        fos2.close();
+        LOGGER.trace("Created main key store");
 
-        System.out.println("Created key stores.");
+        // Second key store
+
+        LOGGER.trace("Creating second key store");
+
+        jksSecond = KeystoreFactory.getJKSKeystore(password, alias, issuer);
+
+        // Saves the second keystore
+        fosSecond = new FileOutputStream(jksSecondPath);
+        jksSecond.store(fosSecond, password.toCharArray());
+        fosSecond.close();
+
+        LOGGER.trace("Created second key store");
+
+        // Symmetric key store
+
+        LOGGER.trace("Creating symmetric key store");
+
+        jceksSym = KeystoreFactory.getJCEKSKeystore(password, alias, issuer);
+
+        // Saves the symmetric keystore
+        fosSym = new FileOutputStream(jceksSymPath);
+        jceksSym.store(fosSym, password.toCharArray());
+        fosSym.close();
+
+        LOGGER.trace("Created symmetric key store");
+
+        LOGGER.trace("Finished creating key stores");
     }
 
     /**
