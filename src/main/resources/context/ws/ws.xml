@@ -13,9 +13,6 @@
         this file.
     </description>
 
-    <!-- Scans for endpoints -->
-    <context:component-scan base-package="com.wandrell.example.swss.endpoint" />
-
     <!-- SOAP logger interceptor -->
     <bean id="soapEnvelopeLoggingInterceptor" class="${interceptor.soapLogger.class}" />
 

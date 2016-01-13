@@ -10,6 +10,9 @@
         Context for the unsecured servlet.
     </description>
 
+    <!-- Scans for endpoints -->
+    <context:component-scan base-package="com.wandrell.example.swss.endpoint" />
+
     <!-- Properties -->
     <context:property-placeholder
         location="classpath:context/ws/ws.properties, classpath:context/ws/ws-unsecure.properties" />

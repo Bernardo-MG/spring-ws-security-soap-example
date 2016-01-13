@@ -51,7 +51,6 @@ public class EntityEndpoint {
      * Name for the operation used to acquire an entity.
      */
     public static final String               GET_ENTITY_REQUEST = "getEntityRequest";
-
     /**
      * Service for the {@code ExampleEntity} instances handled by the web
      * service.
