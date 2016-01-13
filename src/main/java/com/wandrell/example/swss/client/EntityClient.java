@@ -28,7 +28,7 @@ import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
-import com.wandrell.example.swss.config.EndpointConfig;
+import com.wandrell.example.swss.endpoint.EntityEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
@@ -72,7 +72,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
 
         response = (GetEntityResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(request,
-                        new SoapActionCallback(EndpointConfig.ENTITY_NS));
+                        new SoapActionCallback(EntityEndpoint.ENTITY_NS));
 
         return response.getEntity();
     }

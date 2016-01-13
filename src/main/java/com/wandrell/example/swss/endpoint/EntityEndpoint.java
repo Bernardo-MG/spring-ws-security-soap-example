@@ -31,7 +31,6 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapAction;
 
-import com.wandrell.example.swss.config.EndpointConfig;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.service.data.ExampleEntityAccessService;
 import com.wandrell.example.ws.generated.entity.Entity;
@@ -43,6 +42,15 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  */
 @Endpoint
 public class EntityEndpoint {
+
+    /**
+     * Namespace for the example entities.
+     */
+    public static final String               ENTITY_NS          = "http://wandrell.com/example/ws/entity";
+    /**
+     * Name for the operation used to acquire an entity.
+     */
+    public static final String               GET_ENTITY_REQUEST = "getEntityRequest";
 
     /**
      * Service for the {@code ExampleEntity} instances handled by the web
@@ -76,9 +84,8 @@ public class EntityEndpoint {
      *            JAXB2 representation of a SOAP request for the entity
      * @return JAXB2 representation of a SOAP response with the entity
      */
-    @PayloadRoot(localPart = EndpointConfig.GET_ENTITY_REQUEST,
-            namespace = EndpointConfig.ENTITY_NS)
-    @SoapAction(EndpointConfig.ENTITY_NS)
+    @PayloadRoot(localPart = GET_ENTITY_REQUEST, namespace = ENTITY_NS)
+    @SoapAction(ENTITY_NS)
     @ResponsePayload
     public final GetEntityResponse getEntity(
             @RequestPayload final GetEntityRequest request) {

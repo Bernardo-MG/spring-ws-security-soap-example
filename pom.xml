@@ -91,26 +91,6 @@
                                 <lifecycleMappingMetadata>
                                     <pluginExecutions>
                                         <pluginExecution>
-                                            <!-- jacoco plugin configuration -->
-                                            <!-- Fixes the errors with Eclipse not
-                                                recognizing the plugin configuration -->
-                                            <pluginExecutionFilter>
-                                                <groupId>org.jacoco</groupId>
-                                                <artifactId>jacoco-maven-plugin</artifactId>
-                                                <versionRange>[0.5,)</versionRange>
-                                                <goals>
-                                                    <!-- The 'prepare-agent' goal
-                                                        is registered to m2e. -->
-                                                    <goal>prepare-agent</goal>
-                                                </goals>
-                                            </pluginExecutionFilter>
-                                            <action>
-                                                <!-- As m2e doesn't know what to
-                                                    do with jacoco, it is ignored to avoid error warnings. -->
-                                                <ignore />
-                                            </action>
-                                        </pluginExecution>
-                                        <pluginExecution>
                                             <!-- JAXB2 plugin configuration -->
                                             <pluginExecutionFilter>
                                                 <groupId>org.jvnet.jaxb2.maven2</groupId>
