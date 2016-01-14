@@ -27,6 +27,7 @@ package com.wandrell.example.swss.testing.integration.client.xwss;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
 /**
  * Implementation of {@code AbstractITEntityClientInvalid} for a password
@@ -37,14 +38,14 @@ import com.wandrell.example.swss.testing.util.config.ContextConfig;
  */
 @ContextConfiguration(
         locations = { ContextConfig.CLIENT_ENCRYPTION_XWSS_TO_XWSS_INVALID })
-public final class ITEntityClientEncryptionXWSSToXWSSInvalid {
+public final class ITEntityClientEncryptionXWSSToXWSSInvalid extends
+        AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.
      */
     public ITEntityClientEncryptionXWSSToXWSSInvalid() {
         super();
-        // TODO: Make this work
     }
 
 }

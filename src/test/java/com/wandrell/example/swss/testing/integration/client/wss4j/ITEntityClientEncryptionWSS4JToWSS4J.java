@@ -27,6 +27,7 @@ package com.wandrell.example.swss.testing.integration.client.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
 /**
  * Implementation of {@code AbstractITEntityClient} for a password protected web
@@ -36,14 +37,14 @@ import com.wandrell.example.swss.testing.util.config.ContextConfig;
  */
 @ContextConfiguration(
         locations = { ContextConfig.CLIENT_ENCRYPTION_WSS4J_TO_WSS4J })
-public final class ITEntityClientEncryptionWSS4JToWSS4J {
+public final class ITEntityClientEncryptionWSS4JToWSS4J extends
+        AbstractITEntityClient {
 
     /**
      * Default constructor.
      */
     public ITEntityClientEncryptionWSS4JToWSS4J() {
         super();
-        // TODO: Make this work
     }
 
 }

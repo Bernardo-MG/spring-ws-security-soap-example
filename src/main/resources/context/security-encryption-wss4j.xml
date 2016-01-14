@@ -16,10 +16,10 @@
     <bean id="securityInterceptor" class="${interceptor.security.class}">
         <property name="securementActions" value="${security.actions}" />
         <property name="securementEncryptionUser" value="${symmetricstore.alias}" />
-        <property name="securementEncryptionCrypto" ref="symmetricStoreWSS4J" />
+        <property name="securementEncryptionCrypto" ref="keyStoreWSS4J" />
         <property name="validationActions" value="${security.actions}" />
         <property name="validationCallbackHandler" ref="keystoreHandler" />
-        <property name="validationDecryptionCrypto" ref="symmetricStoreWSS4J" />
+        <property name="validationDecryptionCrypto" ref="keyStoreWSS4J" />
         <property name="secureResponse" value="false" />
         <property name="validateResponse" value="false" />
     </bean>

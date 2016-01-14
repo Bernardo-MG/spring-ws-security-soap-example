@@ -22,7 +22,7 @@
     <!-- Registers interceptors -->
     <sws:interceptors>
         <ref bean="soapEnvelopeLoggingInterceptor" />
-        <ref bean="payloadValidatingInterceptor" />
+        <!-- <ref bean="payloadValidatingInterceptor" /> -->
         <ref bean="securityInterceptor" />
     </sws:interceptors>
 

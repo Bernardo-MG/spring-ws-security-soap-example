@@ -2,6 +2,5 @@
 <xwss:SecurityConfiguration xmlns:xwss="http://java.sun.com/xml/ns/xwss/config">
     <xwss:RequireEncryption>
         <xwss:X509Token certificateAlias="swss-cert" />
-        <xwss:Target type="qname">SOAP-BODY</xwss:Target>
     </xwss:RequireEncryption>
 </xwss:SecurityConfiguration>

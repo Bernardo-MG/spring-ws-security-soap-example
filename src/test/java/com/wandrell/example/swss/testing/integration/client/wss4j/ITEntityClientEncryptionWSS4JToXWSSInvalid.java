@@ -27,6 +27,7 @@ package com.wandrell.example.swss.testing.integration.client.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
 /**
  * Implementation of {@code AbstractITEntityClientInvalid} for a signature
@@ -37,14 +38,14 @@ import com.wandrell.example.swss.testing.util.config.ContextConfig;
  */
 @ContextConfiguration(
         locations = { ContextConfig.CLIENT_ENCRYPTION_WSS4J_TO_XWSS_INVALID })
-public final class ITEntityClientEncryptionWSS4JToXWSSInvalid {
+public final class ITEntityClientEncryptionWSS4JToXWSSInvalid extends
+        AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.
      */
     public ITEntityClientEncryptionWSS4JToXWSSInvalid() {
         super();
-        // TODO: Make this work
     }
 
 }
