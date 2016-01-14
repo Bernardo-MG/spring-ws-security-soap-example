@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
     <Call name="setAttribute">
         <!-- To stop Jetty for scanning for annotations and slowing up the startup -->

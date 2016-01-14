@@ -29,14 +29,4 @@
         <sws:xsd location="${schema.path}" />
     </sws:dynamic-wsdl>
 
-    <!-- Marshaller adapter -->
-    <bean class="${marshaller.adapter.class}">
-        <constructor-arg ref="marshaller" />
-    </bean>
-
-    <!-- Marshaller -->
-    <bean id="marshaller" class="${marshaller.class}">
-        <property name="packagesToScan" value="${marshaller.packagesToScan}" />
-    </bean>
-
 </beans>
