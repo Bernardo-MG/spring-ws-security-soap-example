@@ -7,10 +7,7 @@ matrix:
   include:
     # Code artifacts deployed with JDK7
     - jdk: oraclejdk7
-      env: DEPLOY=true
-    # Documentation deployed with JDK8
-    - jdk: oraclejdk8
-      env: DEPLOY_DOCS=true
+      env: DEPLOY=true DEPLOY_DOCS=true
     
 before_install:
   # Sets the deployment flags
