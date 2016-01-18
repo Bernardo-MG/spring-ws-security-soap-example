@@ -18,7 +18,7 @@
     </servlet>
 
     <servlet>
-        <servlet-name>password-xwss-ws</servlet-name>
+        <servlet-name>password-digest-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -36,7 +36,7 @@
     </servlet>
 
     <servlet>
-        <servlet-name>password-wss4j-ws</servlet-name>
+        <servlet-name>password-digest-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -59,8 +59,8 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>password-xwss-ws</servlet-name>
-        <url-pattern>/password/xwss/*</url-pattern>
+        <servlet-name>password-digest-xwss-ws</servlet-name>
+        <url-pattern>/password/signed/xwss/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -74,8 +74,8 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>password-wss4j-ws</servlet-name>
-        <url-pattern>/password/wss4j/*</url-pattern>
+        <servlet-name>password-digest-wss4j-ws</servlet-name>
+        <url-pattern>/password/signed/wss4j/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

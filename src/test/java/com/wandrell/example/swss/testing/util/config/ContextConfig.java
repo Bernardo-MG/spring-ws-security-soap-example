@@ -57,13 +57,13 @@ public final class ContextConfig {
      * Context with password-based security for the client and using WSS4J for
      * both the client and the web service.
      */
-    public static final String CLIENT_PASSWORD_WSS4J_TO_WSS4J           = "classpath:context/client/wss4j/test-client-password-wss4j-to-wss4j.xml";
+    public static final String CLIENT_PASSWORD_WSS4J_TO_WSS4J           = "classpath:context/client/wss4j/test-client-password-digest-wss4j-to-wss4j.xml";
     /**
      * Context with password-based security for the client, with invalid
      * authentication data and using WSS4J for both the client and the web
      * service.
      */
-    public static final String CLIENT_PASSWORD_WSS4J_TO_WSS4J_INVALID   = "classpath:context/client/wss4j/test-client-password-wss4j-to-wss4j-invalid.xml";
+    public static final String CLIENT_PASSWORD_WSS4J_TO_WSS4J_INVALID   = "classpath:context/client/wss4j/test-client-password-digest-wss4j-to-wss4j-invalid.xml";
     /**
      * Context with password-based security for the client, with invalid
      * authentication data and using WSS4J for both the client and the web
@@ -74,35 +74,35 @@ public final class ContextConfig {
      * Context with password-based security for the client and using WSS4J for
      * the client but XWSS for the web service.
      */
-    public static final String CLIENT_PASSWORD_WSS4J_TO_XWSS            = "classpath:context/client/wss4j/test-client-password-wss4j-to-xwss.xml";
+    public static final String CLIENT_PASSWORD_WSS4J_TO_XWSS            = "classpath:context/client/wss4j/test-client-password-digest-wss4j-to-xwss.xml";
     /**
      * Context with password-based security for the client, with invalid
      * authentication data and using WSS4J for the client but XWSS for the web
      * service.
      */
-    public static final String CLIENT_PASSWORD_WSS4J_TO_XWSS_INVALID    = "classpath:context/client/wss4j/test-client-password-wss4j-to-xwss-invalid.xml";
+    public static final String CLIENT_PASSWORD_WSS4J_TO_XWSS_INVALID    = "classpath:context/client/wss4j/test-client-password-digest-wss4j-to-xwss-invalid.xml";
     /**
      * Context with password-based security for the client and using XWSS for
      * the client but WSS4J for the web service.
      */
-    public static final String CLIENT_PASSWORD_XWSS_TO_WSS4J            = "classpath:context/client/xwss/test-client-password-xwss-to-wss4j.xml";
+    public static final String CLIENT_PASSWORD_XWSS_TO_WSS4J            = "classpath:context/client/xwss/test-client-password-digest-xwss-to-wss4j.xml";
     /**
      * Context with password-based security for the client, with invalid
      * authentication data and using XWSS for the client but WSS4J for the web
      * service.
      */
-    public static final String CLIENT_PASSWORD_XWSS_TO_WSS4J_INVALID    = "classpath:context/client/xwss/test-client-password-xwss-to-wss4j-invalid.xml";
+    public static final String CLIENT_PASSWORD_XWSS_TO_WSS4J_INVALID    = "classpath:context/client/xwss/test-client-password-digest-xwss-to-wss4j-invalid.xml";
     /**
      * Context with password-based security for the client and using XWSS for
      * both the client and the web service.
      */
-    public static final String CLIENT_PASSWORD_XWSS_TO_XWSS             = "classpath:context/client/xwss/test-client-password-xwss-to-xwss.xml";
+    public static final String CLIENT_PASSWORD_XWSS_TO_XWSS             = "classpath:context/client/xwss/test-client-password-digest-xwss-to-xwss.xml";
     /**
      * Context with password-based security for the client, with invalid
      * authentication data and using XWSS for both the client and the web
      * service.
      */
-    public static final String CLIENT_PASSWORD_XWSS_TO_XWSS_INVALID     = "classpath:context/client/xwss/test-client-password-xwss-to-xwss-invalid.xml";
+    public static final String CLIENT_PASSWORD_XWSS_TO_XWSS_INVALID     = "classpath:context/client/xwss/test-client-password-digest-xwss-to-xwss-invalid.xml";
     /**
      * Context with signature-based security for the client and using WSS4J for
      * both the client and the web service.
@@ -175,11 +175,11 @@ public final class ContextConfig {
     /**
      * WS context with password-based security for the endpoint using WSS4J.
      */
-    public static final String ENDPOINT_PASSWORD_WSS4J                  = "classpath:context/endpoint/test-endpoint-password-wss4j.xml";
+    public static final String ENDPOINT_PASSWORD_WSS4J                  = "classpath:context/endpoint/test-endpoint-password-digest-wss4j.xml";
     /**
      * WS context with password-based security for the endpoint using XWSS.
      */
-    public static final String ENDPOINT_PASSWORD_XWSS                   = "classpath:context/endpoint/test-endpoint-password-xwss.xml";
+    public static final String ENDPOINT_PASSWORD_XWSS                   = "classpath:context/endpoint/test-endpoint-password-digest-xwss.xml";
     /**
      * WS context with signature-based security for the endpoint using WSS4J.
      */
