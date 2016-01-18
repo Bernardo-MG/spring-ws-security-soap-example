@@ -27,6 +27,7 @@ package com.wandrell.example.swss.testing.integration.client.xwss;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
 /**
  * Implementation of {@code AbstractITEntityClient} for a password protected web
@@ -36,14 +37,14 @@ import com.wandrell.example.swss.testing.util.config.ContextConfig;
  */
 @ContextConfiguration(
         locations = { ContextConfig.CLIENT_SIGNATURE_XWSS_TO_XWSS })
-public final class ITEntityClientSignatureXWSSToXWSS {
+public final class ITEntityClientSignatureXWSSToXWSS extends
+        AbstractITEntityClient {
 
     /**
      * Default constructor.
      */
     public ITEntityClientSignatureXWSSToXWSS() {
         super();
-        // TODO: Make this work
     }
 
 }

@@ -18,14 +18,9 @@
         <property name="callbackHandlers">
             <list>
                 <ref bean="keystoreHandler" />
-                <ref bean="certificateHandler" />
+                <!-- <ref bean="certificateHandler" /> -->
             </list>
         </property>
-    </bean>
-
-    <!-- Certificate callback handler -->
-    <bean id="certificateHandler" class="${callbackHandler.validation.certificate.class}">
-        <property name="authenticationManager" ref="authenticationManager" />
     </bean>
 
     <!-- Key store callback handler -->
@@ -34,6 +29,11 @@
         <property name="trustStore" ref="trustStore" />
         <property name="privateKeyPassword" value="${keystore.password}" />
         <property name="defaultAlias" value="${keystore.alias}" />
+    </bean>
+
+    <!-- Certificate callback handler -->
+    <bean id="certificateHandler" class="${callbackHandler.validation.certificate.class}">
+        <property name="authenticationManager" ref="authenticationManager" />
     </bean>
 
     <!-- Authentication Manager -->

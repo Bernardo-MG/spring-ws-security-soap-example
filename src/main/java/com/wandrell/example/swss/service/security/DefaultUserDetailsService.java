@@ -70,6 +70,13 @@ public final class DefaultUserDetailsService implements UserDetailsService {
 
             user = new User(username, "password", true, true, true, true,
                     authorities);
+        } else if (username.equalsIgnoreCase("swss-cert")) {
+            // User for keystore-based security
+            authorities = new LinkedList<>();
+            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+            user = new User(username, "123456", true, true, true, true,
+                    authorities);
         } else {
             throw new UsernameNotFoundException(String.format(
                     "Invalid username '%s'", username));
