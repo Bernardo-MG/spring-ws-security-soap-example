@@ -27,23 +27,23 @@ package com.wandrell.example.swss.testing.integration.client.xwss;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.wandrell.example.swss.testing.util.config.ContextConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
+import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
 /**
- * Implementation of {@code AbstractITEntityClientInvalid} for a password
- * protected web service using XWSS for both the client and the web service.
+ * Implementation of {@code AbstractITEntityClient} for a password protected web
+ * service using XWSS for both the client and the web service.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ContextConfig.CLIENT_PASSWORD_XWSS_TO_XWSS_INVALID })
-public final class ITEntityClientPasswordXWSSToXWSSInvalid
-        extends AbstractITEntityClientInvalid {
+        locations = { ContextConfig.CLIENT_PASSWORD_DIGEST_XWSS_TO_XWSS })
+public final class ITEntityClientPasswordDigestXWSSToXWSS
+        extends AbstractITEntityClient {
 
     /**
      * Default constructor.
      */
-    public ITEntityClientPasswordXWSSToXWSSInvalid() {
+    public ITEntityClientPasswordDigestXWSSToXWSS() {
         super();
     }
 
