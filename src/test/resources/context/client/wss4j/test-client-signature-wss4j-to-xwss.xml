@@ -13,7 +13,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore.properties, classpath:context/client/client.properties, classpath:context/security-signature-wss4j.properties, classpath:context/keystore-wss4j.properties, classpath:context/client/wss4j/client-signature-wss4j.properties, classpath:context/client/wss4j/test-client-signature-wss4j-to-xwss.properties" />
+        location="classpath:context/keystore.properties, classpath:context/client/client.properties, classpath:context/security/security-signature-wss4j.properties, classpath:context/keystore-wss4j.properties, classpath:context/client/wss4j/client-signature-wss4j.properties, classpath:context/client/wss4j/test-client-signature-wss4j-to-xwss.properties" />
 
     <!-- Imports base context -->
     <import resource="classpath:context/keystore-wss4j.xml" />

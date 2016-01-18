@@ -17,7 +17,7 @@
 
     <!-- Imports base context -->
     <import resource="classpath:/context/ws/ws.xml" />
-    <import resource="classpath:/context/security-signature-wss4j.xml" />
+    <import resource="classpath:/context/security/security-signature-wss4j.xml" />
 
     <!-- Registers interceptors -->
     <sws:interceptors>

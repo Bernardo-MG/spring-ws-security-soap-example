@@ -15,7 +15,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore.properties, classpath:context/ws/ws.properties, classpath:context/security-encryption-xwss.properties, classpath:context/ws/xwss/ws-encryption-xwss.properties" />
+        location="classpath:context/keystore.properties, classpath:context/ws/ws.properties, classpath:context/security/security-encryption-xwss.properties, classpath:context/ws/xwss/ws-encryption-xwss.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/ws/xwss/ws-encryption-xwss.xml" />
