@@ -474,6 +474,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <!-- Spring WS Test -->
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-test</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
+        <dependency>
             <!-- TestNG -->
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
