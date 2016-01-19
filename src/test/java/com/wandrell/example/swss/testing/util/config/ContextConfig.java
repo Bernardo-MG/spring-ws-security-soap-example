@@ -207,7 +207,7 @@ public final class ContextConfig {
     /**
      * Unsecure context for the client.
      */
-    public static final String CLIENT_UNSECURE                               = "classpath:context/client/client-unsecure.xml";
+    public static final String CLIENT_UNSECURE                               = "classpath:context/client/test-client-unsecure.xml";
     /**
      * WS context with encryption-based security for the endpoint using WSS4J.
      */
