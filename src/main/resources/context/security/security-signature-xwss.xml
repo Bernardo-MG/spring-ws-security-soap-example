@@ -9,7 +9,13 @@
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
     <description>
-        Context for XWSS signature authentication.
+        Context for XWSS signature-based authentication, making use of a key store to
+        sign a SOAP message.
+
+        This defines the security interceptor to be used on the WS and the client.
+
+        A key store is required for this to work, such as the ones provided by the key
+        stores context file.
     </description>
 
     <!-- Security interceptor -->
@@ -52,10 +58,10 @@
 
     <!-- X509 authorities populator -->
     <bean id="authPopulator" class="${authentication.provider.populator.class}">
-        <property name="userDetailsService" ref="securityService" />
+        <property name="userDetailsService" ref="userDetailsService" />
     </bean>
 
     <!-- Security service -->
-    <bean id="securityService" class="${service.security.class}" />
+    <bean id="userDetailsService" class="${service.userDetails.class}" />
 
 </beans>

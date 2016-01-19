@@ -7,11 +7,10 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for a client which makes use of the encrypted
-        WS through XWSS.
+        Context for the XWSS encrypted WS client.
 
-        This requires a key store. For this it is recommended loading the key store
-        context file.
+        A key store is required for this to work, such as the ones provided by the key
+        stores context file.
     </description>
 
     <!-- Imports base context -->

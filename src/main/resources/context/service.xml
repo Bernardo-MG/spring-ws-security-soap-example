@@ -7,8 +7,10 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Services context. Contains the common services shared by all
-        the web services.
+        Services context.
+
+        Contains all the services required by the web services and is meant to be shared
+        between them.
     </description>
 
     <!-- Scans for data access services -->

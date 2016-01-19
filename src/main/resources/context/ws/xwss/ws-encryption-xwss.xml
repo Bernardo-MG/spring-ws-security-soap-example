@@ -9,10 +9,10 @@
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
     <description>
-        Context for the encrypted WS.
+        Context for the XWSS encrypted WS.
 
-        This requires a key store. For this it is recommended loading the key store
-        context file.
+        A key store is required for this to work, such as the ones provided by the key
+        stores context file.
     </description>
 
     <!-- Imports base context -->

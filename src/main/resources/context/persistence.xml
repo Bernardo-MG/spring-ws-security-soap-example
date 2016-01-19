@@ -13,7 +13,10 @@
 
     <description>
         Persistence context. Contains all the classes which handle the
-        persistence and data access layers.
+        persistence and data access layers for the web services.
+
+        Contains all the classes which handle the persistence and data access
+        layers for the web services and is meant to be shared between them.
     </description>
 
     <!-- Scans for repositories -->

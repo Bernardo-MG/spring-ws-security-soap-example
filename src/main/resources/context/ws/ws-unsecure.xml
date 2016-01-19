@@ -9,8 +9,7 @@
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
     <description>
-        Context for the unsecured WS. This serves as a basis over which
-        the other web services are built.
+        Context for the unsecured WS. This is the most basic WS possible.
     </description>
 
     <!-- Imports base context -->

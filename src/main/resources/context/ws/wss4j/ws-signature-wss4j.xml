@@ -9,10 +9,10 @@
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
     <description>
-        Context for the signature protected WS.
+        Context for the WSS4J signature secured WS.
 
-        This requires a key store. For this it is recommended loading the key store
-        context file.
+        A normal key store and a WSS4J one are required for this to work, such as the
+        ones provided by the key stores context files.
     </description>
 
     <!-- Imports base context -->

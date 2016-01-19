@@ -9,11 +9,10 @@
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
     <description>
-        Context for the password protected WS. It makes use of a users
-        service to check the credentials.
+        Context for the XWSS signature secured WS.
 
-        This requires a key store. For this it is recommended loading the key store
-        context file.
+        A key store is required for this to work, such as the ones provided by the key
+        stores context file.
     </description>
 
     <!-- Imports base context -->
