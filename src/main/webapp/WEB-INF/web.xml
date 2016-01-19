@@ -77,7 +77,7 @@
 
     <servlet-mapping>
         <servlet-name>password-digest-xwss-ws</servlet-name>
-        <url-pattern>/password/signed/xwss/*</url-pattern>
+        <url-pattern>/password/digest/xwss/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -97,7 +97,7 @@
 
     <servlet-mapping>
         <servlet-name>password-digest-wss4j-ws</servlet-name>
-        <url-pattern>/password/signed/wss4j/*</url-pattern>
+        <url-pattern>/password/digest/wss4j/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
