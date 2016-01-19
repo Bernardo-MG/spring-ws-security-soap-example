@@ -48,6 +48,10 @@ public class EntityEndpoint {
      */
     public static final String               ENTITY_NS          = "http://wandrell.com/example/ws/entity";
     /**
+     * The action for acquiring the entities.
+     */
+    public static final String               GET_ENTITY_ACTION  = "http://wandrell.com/example/ws/entity/getEntity";
+    /**
      * Name for the operation used to acquire an entity.
      */
     public static final String               GET_ENTITY_REQUEST = "getEntityRequest";
@@ -84,7 +88,7 @@ public class EntityEndpoint {
      * @return JAXB2 representation of a SOAP response with the entity
      */
     @PayloadRoot(localPart = GET_ENTITY_REQUEST, namespace = ENTITY_NS)
-    @SoapAction(ENTITY_NS)
+    @SoapAction(GET_ENTITY_ACTION)
     @ResponsePayload
     public final GetEntityResponse getEntity(
             @RequestPayload final GetEntityRequest request) {

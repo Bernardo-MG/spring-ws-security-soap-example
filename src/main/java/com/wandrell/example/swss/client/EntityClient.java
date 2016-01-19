@@ -73,8 +73,10 @@ public final class EntityClient extends WebServiceGatewaySupport {
 
         try {
             response = (GetEntityResponse) getWebServiceTemplate()
-                    .marshalSendAndReceive(request,
-                            new SoapActionCallback(EntityEndpoint.ENTITY_NS));
+                    .marshalSendAndReceive(
+                            request,
+                            new SoapActionCallback(
+                                    EntityEndpoint.GET_ENTITY_ACTION));
         } catch (final WebServiceTransportException e) {
             response = new GetEntityResponse();
         }
