@@ -14,7 +14,7 @@
     </description>
 
     <!-- Imports base context -->
-    <import resource="classpath:/context/client/client.xml" />
-    <import resource="classpath:/context/security/security-signature-wss4j.xml" />
+    <import resource="classpath:context/client/client.xml" />
+    <import resource="classpath:context/security/security-signature-wss4j.xml" />
 
 </beans>

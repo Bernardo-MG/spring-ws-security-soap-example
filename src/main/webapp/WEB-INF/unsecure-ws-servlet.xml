@@ -18,6 +18,6 @@
         location="classpath:context/ws/ws.properties, classpath:context/ws/ws-unsecure.properties" />
 
     <!-- Imports -->
-    <import resource="classpath:/context/ws/ws-unsecure.xml" />
+    <import resource="classpath:context/ws/ws-unsecure.xml" />
 
 </beans>

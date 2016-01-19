@@ -16,8 +16,8 @@
     </description>
 
     <!-- Imports base context -->
-    <import resource="classpath:/context/ws/ws.xml" />
-    <import resource="classpath:/context/security/security-signature-xwss.xml" />
+    <import resource="classpath:context/ws/ws.xml" />
+    <import resource="classpath:context/security/security-signature-xwss.xml" />
 
     <!-- Registers interceptors -->
     <sws:interceptors>
