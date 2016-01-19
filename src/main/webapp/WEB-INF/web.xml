@@ -11,55 +11,70 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <context-param>
+        <!-- Relative WSDL URIs are transformed to absolute URIs -->
+        <param-name>transformWsdlLocations</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
     <servlet>
+        <display-name>Unsecure WS</display-name>
         <servlet-name>unsecure-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Plain password secured XWSS WS</display-name>
         <servlet-name>password-plain-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Digested password secured XWSS WS</display-name>
         <servlet-name>password-digest-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Signature secured XWSS WS</display-name>
         <servlet-name>signature-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Encrypted XWSS WS</display-name>
         <servlet-name>encryption-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Plain password secured WSS4J WS</display-name>
         <servlet-name>password-plain-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Digested password secured WSS4J WS</display-name>
         <servlet-name>password-digest-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Signature secured WSS4J WS</display-name>
         <servlet-name>signature-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet>
+        <display-name>Encrypted WSS4J WS</display-name>
         <servlet-name>encryption-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
