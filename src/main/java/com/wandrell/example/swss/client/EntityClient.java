@@ -59,12 +59,17 @@ public final class EntityClient extends WebServiceGatewaySupport {
 
     /**
      * Acquires an {@code Entity} from the web service by the id.
+     * <p>
+     * If the id is invalid then the resulting response will contain a null
+     * entity.
      *
+     * @param url
+     *            url to the web service
      * @param id
-     *            id of the {@code Entity}
+     *            id of the queried {@code Entity}
      * @return the {@code Entity} with the received id
      */
-    public final Entity getEntity(final Integer id) {
+    public final Entity getEntity(final String url, final Integer id) {
         final GetEntityRequest request;   // Request for acquiring the entity
         GetEntityResponse response;       // Response with the resulting entity
 
@@ -74,6 +79,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
         try {
             response = (GetEntityResponse) getWebServiceTemplate()
                     .marshalSendAndReceive(
+                            url,
                             request,
                             new SoapActionCallback(
                                     EntityEndpoint.GET_ENTITY_ACTION));

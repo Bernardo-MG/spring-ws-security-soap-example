@@ -25,6 +25,7 @@
 package com.wandrell.example.swss.testing.util.test.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.testng.annotations.Test;
@@ -53,6 +54,11 @@ public abstract class AbstractITEntityClientInvalid extends
      */
     @Autowired
     private EntityClient client;
+    /**
+     * URL for the WS.
+     */
+    @Value("${ws.url}")
+    private String       wsUrl;
 
     /**
      * Default constructor.
@@ -67,7 +73,7 @@ public abstract class AbstractITEntityClientInvalid extends
      */
     @Test(expectedExceptions = SoapFaultClientException.class)
     public final void testEndpoint_InvalidMessage_Exception() {
-        client.getEntity(1);
+        client.getEntity(wsUrl, 1);
     }
 
 }

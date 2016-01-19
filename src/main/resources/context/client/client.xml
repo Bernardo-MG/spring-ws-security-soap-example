@@ -16,7 +16,6 @@
 
     <!-- Client -->
     <bean id="client" class="${client.class}">
-        <property name="defaultUri" value="${ws.url}" />
         <property name="marshaller" ref="marshaller" />
         <property name="unmarshaller" ref="marshaller" />
         <property name="interceptors">

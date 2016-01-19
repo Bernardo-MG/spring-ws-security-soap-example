@@ -47,8 +47,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEntityClient
-        extends AbstractTestNGSpringContextTests {
+public abstract class AbstractITEntityClient extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * Client being tested.
@@ -65,6 +65,11 @@ public abstract class AbstractITEntityClient
      */
     @Value("${entity.name}")
     private String       entityName;
+    /**
+     * URL for the WS.
+     */
+    @Value("${ws.url}")
+    private String       wsUrl;
 
     /**
      * Default constructor.
@@ -80,7 +85,7 @@ public abstract class AbstractITEntityClient
     public final void testEndpoint_InvalidId_ReturnsNull() {
         final Entity entity; // Returned entity
 
-        entity = client.getEntity(-1);
+        entity = client.getEntity(wsUrl, -1);
 
         Assert.assertNull(entity);
     }
@@ -92,7 +97,7 @@ public abstract class AbstractITEntityClient
     public final void testEndpoint_ValidId_ReturnsValid() {
         final Entity entity; // Returned entity
 
-        entity = client.getEntity(1);
+        entity = client.getEntity(wsUrl, 1);
 
         Assert.assertEquals((Integer) entity.getId(), entityId);
         Assert.assertEquals(entity.getName(), entityName);
