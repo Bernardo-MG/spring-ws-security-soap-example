@@ -9,7 +9,8 @@
     <description>
         Base context for the WS clients.
 
-        This is to be extended for each client which should define the security
+        This is to be extended for each
+        client which should define the security
         interceptor to use.
     </description>
 
@@ -20,6 +21,7 @@
         <property name="unmarshaller" ref="marshaller" />
         <property name="interceptors">
             <list>
+                <ref bean="payloadValidatingInterceptor" />
                 <ref bean="securityInterceptor" />
             </list>
         </property>
@@ -28,6 +30,13 @@
     <!-- Marshaller -->
     <bean id="marshaller" class="${marshaller.class}">
         <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+    </bean>
+
+    <!-- Payload validator interceptor -->
+    <bean id="payloadValidatingInterceptor" class="${interceptor.payloadValidator.class}">
+        <property name="schema" value="${schema.path}" />
+        <property name="validateRequest" value="true" />
+        <property name="validateResponse" value="true" />
     </bean>
 
 </beans>
