@@ -48,13 +48,19 @@ public final class TestEntityEndpointUnsecure extends
     private ApplicationContext   applicationContext;
     private MockWebServiceClient mockClient;
 
+    /**
+     * Constructs a {@code TestEntityEndpointUnsecure}.
+     */
+    public TestEntityEndpointUnsecure() {
+        super();
+        // http://docs.spring.io/spring-ws/site/reference/html/security.html
+        // http://docs.spring.io/spring-ws/site/reference/html/client.html
+        // TODO: Get this to work
+    }
+
     @BeforeClass
     public void createClient() {
         mockClient = MockWebServiceClient.createClient(applicationContext);
-    }
-
-    public TestEntityEndpointUnsecure() {
-        super();
     }
 
     @Test
@@ -71,11 +77,6 @@ public final class TestEntityEndpointUnsecure extends
                         + "</ent:getEntityResponse>");
 
         request = withPayload(requestPayload);
-        System.out.println("*************");
-        System.out.println(requestPayload);
-        System.out.println(responsePayload);
-        System.out.println(mockClient.sendRequest(request));
-        System.out.println("*************");
         mockClient.sendRequest(request).andExpect(payload(responsePayload));
     }
 
