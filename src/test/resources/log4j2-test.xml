@@ -40,6 +40,10 @@
             <AppenderRef ref="console" />
         </logger>
 
+        <logger name="org.springframework.ws.test.server" level="trace" additivity="false">
+            <AppenderRef ref="console" />
+        </logger>
+
         <logger name="org.eclipse.jetty" level="trace" additivity="false">
             <AppenderRef ref="console" />
         </logger>

@@ -28,15 +28,13 @@ import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
 import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 
-import org.junit.BeforeClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
-import org.springframework.ws.test.server.RequestCreator;
-import org.springframework.xml.transform.StringSource;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(
@@ -45,39 +43,33 @@ public final class TestEntityEndpointUnsecure extends
         AbstractTestNGSpringContextTests {
 
     @Autowired
-    private ApplicationContext   applicationContext;
-    private MockWebServiceClient mockClient;
+    private ApplicationContext applicationContext;
 
     /**
      * Constructs a {@code TestEntityEndpointUnsecure}.
      */
     public TestEntityEndpointUnsecure() {
         super();
-        // http://docs.spring.io/spring-ws/site/reference/html/security.html
-        // http://docs.spring.io/spring-ws/site/reference/html/client.html
         // TODO: Get this to work
-    }
-
-    @BeforeClass
-    public void createClient() {
-        mockClient = MockWebServiceClient.createClient(applicationContext);
     }
 
     @Test
     public void testEndpoint() throws Exception {
-        final RequestCreator request;
+        final MockWebServiceClient mockClient; // Mocked client
+        final Source requestPayload;  // SOAP payload for the request
+        final Source responsePayload; // SOAP payload for the response
 
-        Source requestPayload = new StringSource(
-                "<ent:getEntityRequest xmlns:ent='http://wandrell.com/example/ws/entity'>"
-                        + "<ent:id>1</ent:id>" + "</ent:getEntityRequest>");
-        Source responsePayload = new StringSource(
-                "<ent:getEntityResponse xmlns:ent='http://wandrell.com/example/ws/entity'>"
-                        + "<ent:entity>" + "<ent:id>1</ent:id>"
-                        + "<ent:name>entity_1</ent:name>" + "</ent:entity>"
-                        + "</ent:getEntityResponse>");
+        mockClient = MockWebServiceClient.createClient(applicationContext);
 
-        request = withPayload(requestPayload);
-        mockClient.sendRequest(request).andExpect(payload(responsePayload));
+        requestPayload = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream("/soap/entity-request-not-secured.xml"));
+        responsePayload = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream("/soap/entity-response-not-secured.xml"));
+
+        mockClient.sendRequest(withPayload(requestPayload)).andExpect(
+                payload(responsePayload));
     }
 
 }
