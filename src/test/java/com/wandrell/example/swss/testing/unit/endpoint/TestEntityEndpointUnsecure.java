@@ -37,11 +37,24 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.testng.annotations.Test;
 
+/**
+ * Unit tests for the unsecured endpoint.
+ * <p>
+ * Checks the following cases:
+ * <ol>
+ * <li>The endpoint parses correctly formed SOAP messages.</li>
+ * </ol>
+ *
+ * @author Bernardo Martínez Garrido
+ */
 @ContextConfiguration(
         locations = { "classpath:context/ws/test-unsecure-ws.xml" })
 public final class TestEntityEndpointUnsecure extends
         AbstractTestNGSpringContextTests {
 
+    /**
+     * Application context to be used for creating the client mock.
+     */
     @Autowired
     private ApplicationContext applicationContext;
 
@@ -50,9 +63,11 @@ public final class TestEntityEndpointUnsecure extends
      */
     public TestEntityEndpointUnsecure() {
         super();
-        // TODO: Get this to work
     }
 
+    /**
+     * Tests that the endpoint parses correctly formed SOAP messages.
+     */
     @Test
     public void testEndpoint() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
