@@ -2,5 +2,8 @@
 <xwss:SecurityConfiguration xmlns:xwss="http://java.sun.com/xml/ns/xwss/config">
     <xwss:RequireEncryption>
         <xwss:X509Token certificateAlias="swss-cert" />
+        <xwss:KeyEncryptionMethod
+            algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" />
+        <xwss:DataEncryptionMethod algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc" />
     </xwss:RequireEncryption>
 </xwss:SecurityConfiguration>
