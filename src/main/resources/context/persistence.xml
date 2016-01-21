@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-    xmlns:context="http://www.springframework.org/schema/context" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/util
                         http://www.springframework.org/schema/util/spring-util.xsd
                         http://www.springframework.org/schema/jdbc
                         http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-                        http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context.xsd
                         http://www.springframework.org/schema/data/jpa
                         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
+    <description>
+        Persistence context. Contains all the classes which handle the
+        persistence and data access layers for the web services.
+
+        Contains all the classes which handle the persistence and data access
+        layers for the web services and is meant to be shared between them.
+    </description>
+
     <!-- Scans for repositories -->
-    <jpa:repositories base-package="com.wandrell.demo.ws.soap.spring.repository" />
+    <jpa:repositories base-package="com.wandrell.example.swss.repository" />
 
     <!-- ================================== JPA ================================== -->
 
@@ -45,6 +51,9 @@
         <entry key="hibernate.ejb.naming_strategy" value="${hibernate.namingStrategy}" />
         <entry key="hibernate.show_sql" value="${jpa.showSql}" />
         <entry key="hibernate.format_sql" value="${hibernate.format_sql}" />
+        <entry key="hibernate.cache.use_second_level_cache" value="${hibernate.cache.use_second_level_cache}" />
+        <entry key="hibernate.cache.use_query_cache" value="${hibernate.cache.use_query_cache}" />
+        <entry key="hibernate.cache.region.factory_class" value="${hibernate.cache.region.factory_class}" />
     </util:map>
 
     <!-- Transaction manager -->

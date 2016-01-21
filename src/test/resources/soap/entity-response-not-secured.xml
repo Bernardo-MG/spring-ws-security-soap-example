@@ -1,0 +1,6 @@
+<ent:getEntityResponse xmlns:ent='http://wandrell.com/example/ws/entity'>
+    <ent:entity>
+        <ent:id>1</ent:id>
+        <ent:name>entity_1</ent:name>
+    </ent:entity>
+</ent:getEntityResponse>

@@ -1,4 +1,4 @@
-# Spring SOAP-based WS Security Example
+# Spring Web Services WS-Security Example
 
 Small web service showing the use of Spring WS Security for a SOAP web service.
 
@@ -50,20 +50,8 @@ All other dependencies are handled through Maven, and noted in the included POM 
 To run the demo just use the following Maven command:
 
 ```
-$ mvn clean package tomcat7:run-war
+$ mvn clean package jetty:run-war
 ```
-
-Note that as the project requires files on the WEB-INF folder the simpler tomcat7:run command can not be used.
-
-### Memory problems with the Tomcat plugin
-
-If the Tomcat plugin crashes due to memory problems add the following params to the virtual machine:
-
-```
--Xmx1024m -Xms1024m -XX:MaxPermSize=512m -XX:PermSize=256m
-```
-
-In Eclipse this can be done in the 'run configuration' window, JRE panel, adding it to the VM arguments box.
 
 ## Collaborate
 
@@ -84,12 +72,10 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[bintray-repo]: https://bintray.com/bernardo-mg/maven/spring-soap-ws-security-demo/view
-[maven-repo]: http://mvnrepository.com/artifact/com.wandrell.demo/spring-soap-ws-security-demo
-[issues]: https://github.com/bernardo-mg/spring-soap-ws-security-demo/issues
-[javadoc-develop]: http://docs.wandrell.com/maven/spring-soap-ws-security-demo/apidocs
-[javadoc-release]: http://docs.wandrell.com/development/maven/spring-soap-ws-security-demo/apidocs
+[issues]: https://github.com/bernardo-mg/swss-soap-example/issues
+[javadoc-develop]: http://docs.wandrell.com/maven/swss-soap-example/apidocs
+[javadoc-release]: http://docs.wandrell.com/development/maven/swss-soap-example/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
-[scm]: https://github.com/bernardo-mg/spring-soap-ws-security-demo
-[site-develop]: http://docs.wandrell.com/development/maven/spring-soap-ws-security-demo
-[site-release]: http://docs.wandrell.com/maven/spring-soap-ws-security-demo
+[scm]: https://github.com/bernardo-mg/spring-ws-security-soap-example
+[site-develop]: http://docs.wandrell.com/development/maven/swss-soap-example
+[site-release]: http://docs.wandrell.com/maven/swss-soap-example

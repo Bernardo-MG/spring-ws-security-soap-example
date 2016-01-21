@@ -1,0 +1,4 @@
+<!DOCTYPE xml>
+<xwss:SecurityConfiguration xmlns:xwss="http://java.sun.com/xml/ns/xwss/config">
+    <xwss:RequireSignature requireTimestamp="false"/>
+</xwss:SecurityConfiguration>

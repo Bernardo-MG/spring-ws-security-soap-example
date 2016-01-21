@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:sws="http://www.springframework.org/schema/web-services"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/web-services
+                        http://www.springframework.org/schema/web-services/web-services.xsd">
+
+    <description>
+        Context for WSS4J signature-based authentication, making use of a key store to
+        sign a SOAP message.
+
+        This defines the security interceptor to be used on the WS and the client.
+
+        A normal key store and a WSS4J one are required for this to work, such as the
+        ones provided by the key stores context files.
+    </description>
+
+    <!-- Security interceptor -->
+    <bean id="securityInterceptor" class="${interceptor.security.class}">
+        <property name="securementActions" value="${security.actions}" />
+        <property name="securementUsername" value="${keystore.alias}" />
+        <property name="securementPassword" value="${keystore.password}" />
+        <property name="securementSignatureCrypto" ref="keyStoreWSS4J" />
+        <property name="validationActions" value="${security.actions}" />
+        <property name="validationSignatureCrypto" ref="keyStoreWSS4J" />
+        <property name="validationCallbackHandler" ref="keystoreHandler" />
+        <property name="secureResponse" value="false" />
+        <property name="validateResponse" value="false" />
+    </bean>
+
+    <!-- Key store callback handler -->
+    <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
+        <property name="privateKeyPassword" value="${keystore.password}" />
+    </bean>
+
+</beans>

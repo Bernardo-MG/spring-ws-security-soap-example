@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-                             http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    id="Spring-SOAP-WS-Sec" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+    id="Spring-SOAP-WS-Sec" version="3.1">
 
     <display-name>Spring SOAP-base WS Security example</display-name>
 
@@ -12,14 +11,156 @@
     </listener>
 
     <servlet>
+        <display-name>Unsecure WS</display-name>
         <servlet-name>unsecure-ws</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Plain password secured XWSS WS</display-name>
+        <servlet-name>password-plain-xwss-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Digested password secured XWSS WS</display-name>
+        <servlet-name>password-digest-xwss-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Signature secured XWSS WS</display-name>
+        <servlet-name>signature-xwss-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Encrypted XWSS WS</display-name>
+        <servlet-name>encryption-xwss-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Plain password secured WSS4J WS</display-name>
+        <servlet-name>password-plain-wss4j-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Digested password secured WSS4J WS</display-name>
+        <servlet-name>password-digest-wss4j-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Signature secured WSS4J WS</display-name>
+        <servlet-name>signature-wss4j-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <display-name>Encrypted WSS4J WS</display-name>
+        <servlet-name>encryption-wss4j-ws</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Relative WSDL URIs are transformed to absolute URIs -->
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>unsecure-ws</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/unsecure/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>password-plain-xwss-ws</servlet-name>
+        <url-pattern>/password/plain/xwss/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>password-digest-xwss-ws</servlet-name>
+        <url-pattern>/password/digest/xwss/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>signature-xwss-ws</servlet-name>
+        <url-pattern>/signature/xwss/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>encryption-xwss-ws</servlet-name>
+        <url-pattern>/encryption/xwss/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>password-plain-wss4j-ws</servlet-name>
+        <url-pattern>/password/plain/wss4j/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>password-digest-wss4j-ws</servlet-name>
+        <url-pattern>/password/digest/wss4j/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>signature-wss4j-ws</servlet-name>
+        <url-pattern>/signature/wss4j/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>encryption-wss4j-ws</servlet-name>
+        <url-pattern>/encryption/wss4j/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
