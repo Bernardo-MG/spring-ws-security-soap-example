@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.endpoint.wss4j;
+package com.wandrell.example.swss.testing.integration.endpoint.encryption.wss4j;
 
 import javax.xml.soap.SOAPMessage;
 
@@ -32,7 +32,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 
 /**
@@ -49,7 +49,8 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.ENDPOINT_ENCRYPTION_WSS4J })
+@ContextConfiguration(
+        locations = { EndpointContextConfig.ENDPOINT_ENCRYPTION_WSS4J })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**

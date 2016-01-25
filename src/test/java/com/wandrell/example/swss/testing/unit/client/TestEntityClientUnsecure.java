@@ -38,7 +38,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientContextConfig;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -51,7 +51,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.CLIENT_UNSECURE })
+@ContextConfiguration(locations = { ClientContextConfig.CLIENT_UNSECURE })
 public final class TestEntityClientUnsecure extends AbstractTestNGSpringContextTests {
 
     /**

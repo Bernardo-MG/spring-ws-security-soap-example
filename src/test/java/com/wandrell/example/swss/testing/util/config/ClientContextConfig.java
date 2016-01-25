@@ -29,7 +29,7 @@ package com.wandrell.example.swss.testing.util.config;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ContextConfig {
+public final class ClientContextConfig {
 
     /**
      * Context with signature-based security for the client and using WSS4J for
@@ -226,39 +226,11 @@ public final class ContextConfig {
      * Unsecure context for the client.
      */
     public static final String CLIENT_UNSECURE                                = "classpath:context/client/test-client-unsecure.xml";
-    /**
-     * WS context with encryption-based security for the endpoint using WSS4J.
-     */
-    public static final String ENDPOINT_ENCRYPTION_WSS4J                      = "classpath:context/endpoint/test-endpoint-encryption-wss4j.xml";
-    /**
-     * WS context with encryption-based security for the endpoint using XWSS.
-     */
-    public static final String ENDPOINT_ENCRYPTION_XWSS                       = "classpath:context/endpoint/test-endpoint-encryption-xwss.xml";
-    /**
-     * WS context with password-based security for the endpoint using WSS4J.
-     */
-    public static final String ENDPOINT_PASSWORD_WSS4J                        = "classpath:context/endpoint/test-endpoint-password-digest-wss4j.xml";
-    /**
-     * WS context with password-based security for the endpoint using XWSS.
-     */
-    public static final String ENDPOINT_PASSWORD_XWSS                         = "classpath:context/endpoint/test-endpoint-password-digest-xwss.xml";
-    /**
-     * WS context with signature-based security for the endpoint using WSS4J.
-     */
-    public static final String ENDPOINT_SIGNATURE_WSS4J                       = "classpath:context/endpoint/test-endpoint-signature-wss4j.xml";
-    /**
-     * WS context with signature-based security for the endpoint using XWSS.
-     */
-    public static final String ENDPOINT_SIGNATURE_XWSS                        = "classpath:context/endpoint/test-endpoint-signature-xwss.xml";
-    /**
-     * Unsecure WS context for the endpoint.
-     */
-    public static final String ENDPOINT_UNSECURE                              = "classpath:context/endpoint/test-endpoint-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ContextConfig() {
+    private ClientContextConfig() {
         super();
     }
 

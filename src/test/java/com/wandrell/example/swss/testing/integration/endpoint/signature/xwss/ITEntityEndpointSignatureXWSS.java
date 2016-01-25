@@ -22,21 +22,26 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.endpoint.xwss;
+package com.wandrell.example.swss.testing.integration.endpoint.signature.xwss;
+
+import java.security.KeyStore;
 
 import javax.xml.soap.SOAPMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
+import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Implementation of {@code AbstractITEndpoint} for an encryption protected
+ * Implementation of {@code AbstractITEndpoint} for a signature protected
  * endpoint using XWSS.
  * <p>
  * It adds the following cases:
@@ -49,19 +54,46 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.ENDPOINT_ENCRYPTION_XWSS })
-public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
+@ContextConfiguration(
+        locations = { EndpointContextConfig.ENDPOINT_SIGNATURE_XWSS })
+public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
+    /**
+     * Alias for the certificate for signing messages.
+     */
+    @Value("${keystore.alias}")
+    private String   alias;
+    /**
+     * Id of the returned entity.
+     */
+    @Value("${entity.id}")
+    private Integer  entityId;
+    /**
+     * Name of the returned entity.
+     */
+    @Value("${entity.name}")
+    private String   entityName;
+    /**
+     * Key store for signing messages.
+     */
+    @Autowired
+    @Qualifier("keyStore")
+    private KeyStore keystore;
+    /**
+     * Password for the certificate for signing messages.
+     */
+    @Value("${keystore.password}")
+    private String   password;
     /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${message.invalid.file.path}")
-    private String pathUnsigned;
+    private String   pathUnsigned;
 
     /**
      * Default constructor.
      */
-    public ITEntityEndpointEncryptionXWSS() {
+    public ITEntityEndpointSignatureXWSS() {
         super();
     }
 
@@ -80,6 +112,32 @@ public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
                 .getFault());
+    }
+
+    /**
+     * Tests that a message with a valid signature returns the expected value.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_ValidSignature_ReturnsEntity()
+            throws Exception {
+        final SOAPMessage message; // Response message
+        final Entity entity;       // Entity from the response
+
+        // message =
+        // callWebService(securityUtils.getSignedMessage(alias,password,alias,pathInvalid,keystore));
+
+        // TODO: Get this working
+
+        // Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
+        // .getFault());
+
+        // entity = SOAPParsingUtils.parseEntityFromMessage(message);
+
+        // Assert.assertEquals((Integer) entity.getId(), entityId);
+        // Assert.assertEquals(entity.getName(), entityName);
     }
 
 }

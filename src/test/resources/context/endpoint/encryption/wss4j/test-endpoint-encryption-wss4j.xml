@@ -7,11 +7,11 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Test content calling the encryption protected WS.
+        Test content calling the encryption protected WS using WSS4J.
     </description>
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/endpoint/test-endpoint-encryption-xwss.properties" />
+        location="classpath:context/endpoint/encryption/wss4j/test-endpoint-encryption-wss4j.properties" />
 
 </beans>

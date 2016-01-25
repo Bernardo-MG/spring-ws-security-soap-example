@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.endpoint.wss4j;
+package com.wandrell.example.swss.testing.integration.endpoint.password.digest.wss4j;
 
 import javax.xml.soap.SOAPMessage;
 
@@ -33,7 +33,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -53,8 +53,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.ENDPOINT_PASSWORD_WSS4J })
-public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
+@ContextConfiguration(
+        locations = { EndpointContextConfig.ENDPOINT_PASSWORD_WSS4J })
+public final class ITEntityEndpointPasswordDigestWSS4J extends AbstractITEndpoint {
 
     /**
      * Id of the returned entity.
@@ -90,7 +91,7 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
     /**
      * Default constructor.
      */
-    public ITEntityEndpointPasswordWSS4J() {
+    public ITEntityEndpointPasswordDigestWSS4J() {
         super();
     }
 
@@ -104,11 +105,11 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
     public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
+        message = callWebService(SOAPParsingUtils
+                .parseMessageFromFile(pathInvalid));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**
@@ -125,8 +126,8 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
         message = callWebService(SecurityUtils.getDigestedPasswordMessage(
                 pathValid, username, password + "abc123"));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**
@@ -142,8 +143,8 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
         message = callWebService(SecurityUtils.getDigestedPasswordMessage(
                 pathValid, username + "abc123", password));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**
@@ -158,11 +159,11 @@ public final class ITEntityEndpointPasswordWSS4J extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SecurityUtils
-                .getDigestedPasswordMessage(pathValid, username, password));
+        message = callWebService(SecurityUtils.getDigestedPasswordMessage(
+                pathValid, username, password));
 
-        Assert.assertNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
 
         entity = SOAPParsingUtils.parseEntityFromMessage(message);
 

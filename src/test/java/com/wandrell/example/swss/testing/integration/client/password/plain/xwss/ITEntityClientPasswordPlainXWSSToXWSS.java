@@ -26,7 +26,7 @@ package com.wandrell.example.swss.testing.integration.client.password.plain.xwss
 
 import org.springframework.test.context.ContextConfiguration;
 
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientContextConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
 /**
@@ -36,7 +36,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ContextConfig.CLIENT_PASSWORD_PLAIN_XWSS_TO_XWSS })
+        locations = { ClientContextConfig.CLIENT_PASSWORD_PLAIN_XWSS_TO_XWSS })
 public final class ITEntityClientPasswordPlainXWSSToXWSS extends
         AbstractITEntityClient {
 
