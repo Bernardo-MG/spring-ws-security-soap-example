@@ -110,8 +110,30 @@ public final class SecurityUtils {
         final InputStream streamMessage;
         final ByteArrayOutputStream out;
 
-        streamMessage = new ByteArrayInputStream(getMessageContent(path, user,
-                password).getBytes("UTF-8"));
+        streamMessage = new ByteArrayInputStream(
+                getDigestedPasswordMessageContent(path, user, password)
+                        .getBytes("UTF-8"));
+
+        factory = MessageFactory.newInstance();
+
+        message = factory.createMessage(new MimeHeaders(), streamMessage);
+
+        out = new ByteArrayOutputStream();
+        message.writeTo(out);
+
+        return message;
+    }
+
+    public static final SOAPMessage getPlainPasswordMessage(final String path,
+            final String user, final String password) throws Exception {
+        final MessageFactory factory;
+        final SOAPMessage message;
+        final InputStream streamMessage;
+        final ByteArrayOutputStream out;
+
+        streamMessage = new ByteArrayInputStream(
+                getPlainPasswordMessageContent(path, user, password).getBytes(
+                        "UTF-8"));
 
         factory = MessageFactory.newInstance();
 
@@ -240,8 +262,9 @@ public final class SecurityUtils {
      * @throws Exception
      *             if any error occurs during the message creation
      */
-    private static final String getMessageContent(final String path,
-            final String user, final String password) throws Exception {
+    private static final String getDigestedPasswordMessageContent(
+            final String path, final String user, final String password)
+            throws Exception {
         final String nonce;
         final String date;
         final String digest;
@@ -264,6 +287,28 @@ public final class SecurityUtils {
         data.put("nonce", nonce);
         data.put("date", date);
         data.put("digest", digest);
+
+        out = new ByteArrayOutputStream();
+        template.process(data, new OutputStreamWriter(out));
+
+        return new String(out.toByteArray());
+    }
+
+    private static final String getPlainPasswordMessageContent(
+            final String path, final String user, final String password)
+            throws Exception {
+        final Configuration cfg;
+        final Template template;
+        final Map<String, Object> data;
+        final ByteArrayOutputStream out;
+
+        cfg = new Configuration(Configuration.VERSION_2_3_0);
+        template = cfg.getTemplate(path);
+
+        data = new LinkedHashMap<String, Object>();
+
+        data.put("user", user);
+        data.put("password", password);
 
         out = new ByteArrayOutputStream();
         template.process(data, new OutputStreamWriter(out));

@@ -34,31 +34,39 @@ public final class EndpointContextConfig {
     /**
      * WS context with encryption-based security for the endpoint using WSS4J.
      */
-    public static final String ENDPOINT_ENCRYPTION_WSS4J = "classpath:context/endpoint/encryption/wss4j/test-endpoint-encryption-wss4j.xml";
+    public static final String ENDPOINT_ENCRYPTION_WSS4J      = "classpath:context/endpoint/encryption/wss4j/test-endpoint-encryption-wss4j.xml";
     /**
      * WS context with encryption-based security for the endpoint using XWSS.
      */
-    public static final String ENDPOINT_ENCRYPTION_XWSS  = "classpath:context/endpoint/encryption/xwss/test-endpoint-encryption-xwss.xml";
+    public static final String ENDPOINT_ENCRYPTION_XWSS       = "classpath:context/endpoint/encryption/xwss/test-endpoint-encryption-xwss.xml";
     /**
      * WS context with password-based security for the endpoint using WSS4J.
      */
-    public static final String ENDPOINT_PASSWORD_WSS4J   = "classpath:context/endpoint/password/digest/wss4j/test-endpoint-password-digest-wss4j.xml";
+    public static final String ENDPOINT_PASSWORD_DIGEST_WSS4J = "classpath:context/endpoint/password/digest/wss4j/test-endpoint-password-digest-wss4j.xml";
     /**
      * WS context with password-based security for the endpoint using XWSS.
      */
-    public static final String ENDPOINT_PASSWORD_XWSS    = "classpath:context/endpoint/password/digest/xwss/test-endpoint-password-digest-xwss.xml";
+    public static final String ENDPOINT_PASSWORD_DIGEST_XWSS  = "classpath:context/endpoint/password/digest/xwss/test-endpoint-password-digest-xwss.xml";
+    /**
+     * WS context with password-based security for the endpoint using WSS4J.
+     */
+    public static final String ENDPOINT_PASSWORD_PLAIN_WSS4J  = "classpath:context/endpoint/password/plain/wss4j/test-endpoint-password-plain-wss4j.xml";
+    /**
+     * WS context with password-based security for the endpoint using XWSS.
+     */
+    public static final String ENDPOINT_PASSWORD_PLAIN_XWSS   = "classpath:context/endpoint/password/plain/xwss/test-endpoint-password-plain-xwss.xml";
     /**
      * WS context with signature-based security for the endpoint using WSS4J.
      */
-    public static final String ENDPOINT_SIGNATURE_WSS4J  = "classpath:context/endpoint/signature/wss4j/test-endpoint-signature-wss4j.xml";
+    public static final String ENDPOINT_SIGNATURE_WSS4J       = "classpath:context/endpoint/signature/wss4j/test-endpoint-signature-wss4j.xml";
     /**
      * WS context with signature-based security for the endpoint using XWSS.
      */
-    public static final String ENDPOINT_SIGNATURE_XWSS   = "classpath:context/endpoint/signature/xwss/test-endpoint-signature-xwss.xml";
+    public static final String ENDPOINT_SIGNATURE_XWSS        = "classpath:context/endpoint/signature/xwss/test-endpoint-signature-xwss.xml";
     /**
      * Unsecure WS context for the endpoint.
      */
-    public static final String ENDPOINT_UNSECURE         = "classpath:context/endpoint/test-endpoint-unsecure.xml";
+    public static final String ENDPOINT_UNSECURE              = "classpath:context/endpoint/test-endpoint-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.

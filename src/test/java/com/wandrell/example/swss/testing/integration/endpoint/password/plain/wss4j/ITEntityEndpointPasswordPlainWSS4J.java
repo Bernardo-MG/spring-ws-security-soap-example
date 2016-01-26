@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.endpoint.password.digest.xwss;
+package com.wandrell.example.swss.testing.integration.endpoint.password.plain.wss4j;
 
 import javax.xml.soap.SOAPMessage;
 
@@ -39,7 +39,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for a password protected
- * endpoint using XWSS.
+ * endpoint using WSS4J.
  * <p>
  * It adds the following cases:
  * <ol>
@@ -54,8 +54,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENDPOINT_PASSWORD_DIGEST_XWSS })
-public final class ITEntityEndpointPasswordDigestXWSS extends AbstractITEndpoint {
+        locations = { EndpointContextConfig.ENDPOINT_PASSWORD_PLAIN_WSS4J })
+public final class ITEntityEndpointPasswordPlainWSS4J extends
+        AbstractITEndpoint {
 
     /**
      * Id of the returned entity.
@@ -91,7 +92,7 @@ public final class ITEntityEndpointPasswordDigestXWSS extends AbstractITEndpoint
     /**
      * Default constructor.
      */
-    public ITEntityEndpointPasswordDigestXWSS() {
+    public ITEntityEndpointPasswordPlainWSS4J() {
         super();
     }
 
@@ -123,7 +124,7 @@ public final class ITEntityEndpointPasswordDigestXWSS extends AbstractITEndpoint
             throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SecurityUtils.getDigestedPasswordMessage(
+        message = callWebService(SecurityUtils.getPlainPasswordMessage(
                 pathValid, username, password + "abc123"));
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
@@ -140,7 +141,7 @@ public final class ITEntityEndpointPasswordDigestXWSS extends AbstractITEndpoint
     public final void testEndpoint_InvalidUser_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SecurityUtils.getDigestedPasswordMessage(
+        message = callWebService(SecurityUtils.getPlainPasswordMessage(
                 pathValid, username + "abc123", password));
 
         Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
@@ -159,7 +160,7 @@ public final class ITEntityEndpointPasswordDigestXWSS extends AbstractITEndpoint
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SecurityUtils.getDigestedPasswordMessage(
+        message = callWebService(SecurityUtils.getPlainPasswordMessage(
                 pathValid, username, password));
 
         Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
