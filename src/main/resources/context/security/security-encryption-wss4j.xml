@@ -23,6 +23,7 @@
         <property name="securementActions" value="${security.actions}" />
         <property name="securementEncryptionUser" value="${symmetricstore.alias}" />
         <property name="securementEncryptionCrypto" ref="keyStoreWSS4J" />
+        <property name="securementEncryptionKeyIdentifier" value="${security.encryptionKeyIdentifier}" />
         <property name="validationActions" value="${security.actions}" />
         <property name="validationCallbackHandler" ref="keystoreHandler" />
         <property name="validationDecryptionCrypto" ref="keyStoreWSS4J" />
