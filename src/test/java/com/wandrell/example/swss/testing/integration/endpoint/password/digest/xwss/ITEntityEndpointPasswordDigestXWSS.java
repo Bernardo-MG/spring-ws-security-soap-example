@@ -33,7 +33,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -54,8 +54,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.PASSWORD_DIGEST_XWSS })
-public final class ITEntityEndpointPasswordDigestXWSS extends AbstractITEndpoint {
+        locations = { EndpointXWSSContextConfig.PASSWORD_DIGEST })
+public final class ITEntityEndpointPasswordDigestXWSS extends
+        AbstractITEndpoint {
 
     /**
      * Id of the returned entity.

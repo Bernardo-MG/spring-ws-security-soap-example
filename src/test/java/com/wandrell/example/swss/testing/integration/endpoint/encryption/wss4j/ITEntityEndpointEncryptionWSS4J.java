@@ -32,7 +32,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 
 /**
@@ -50,7 +50,7 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENCRYPTION_WSS4J })
+        locations = { EndpointWSS4JContextConfig.ENCRYPTION })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**

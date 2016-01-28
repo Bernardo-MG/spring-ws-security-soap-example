@@ -33,7 +33,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -54,7 +54,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.PASSWORD_PLAIN_WSS4J })
+        locations = { EndpointWSS4JContextConfig.PASSWORD_PLAIN })
 public final class ITEntityEndpointPasswordPlainWSS4J extends
         AbstractITEndpoint {
 

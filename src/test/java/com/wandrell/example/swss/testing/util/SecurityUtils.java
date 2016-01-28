@@ -124,19 +124,14 @@ public final class SecurityUtils {
         return message;
     }
 
-    public static final InputStream getPlainPasswordInputStream(
-            final String path, final String user, final String password)
-            throws Exception {
-        return new ByteArrayInputStream(getPlainPasswordMessageContent(path,
-                user, password).getBytes("UTF-8"));
-    }
-
     public static final SOAPMessage getPlainPasswordMessage(final String path,
             final String user, final String password) throws Exception {
         final MessageFactory factory;
         final InputStream streamMessage;
 
-        streamMessage = getPlainPasswordInputStream(path, user, password);
+        streamMessage = new ByteArrayInputStream(
+                getPlainPasswordMessageContent(path, user, password).getBytes(
+                        "UTF-8"));
 
         factory = MessageFactory.newInstance();
 

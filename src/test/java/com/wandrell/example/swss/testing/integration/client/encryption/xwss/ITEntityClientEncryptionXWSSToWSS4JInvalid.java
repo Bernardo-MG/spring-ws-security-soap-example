@@ -26,7 +26,7 @@ package com.wandrell.example.swss.testing.integration.client.encryption.xwss;
 
 import org.springframework.test.context.ContextConfiguration;
 
-import com.wandrell.example.swss.testing.util.config.ClientContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
 /**
@@ -37,7 +37,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ClientContextConfig.ENCRYPTION_XWSS_TO_WSS4J_INVALID })
+        locations = { ClientXWSSContextConfig.ENCRYPTION_TO_WSS4J_INVALID })
 public final class ITEntityClientEncryptionXWSSToWSS4JInvalid extends
         AbstractITEntityClientInvalid {
 
