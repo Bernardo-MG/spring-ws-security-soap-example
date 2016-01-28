@@ -24,9 +24,6 @@
 
 package com.wandrell.example.swss.testing.unit.endpoint;
 
-import static org.springframework.ws.test.server.RequestCreators.withPayload;
-import static org.springframework.ws.test.server.ResponseMatchers.payload;
-
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
@@ -36,6 +33,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
+import org.springframework.ws.test.server.RequestCreators;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
@@ -98,8 +96,8 @@ public final class TestEntityEndpointUnsecure extends
                 ClassLoader.class
                         .getResourceAsStream(requestPayloadInvalidPath));
 
-        mockClient.sendRequest(withPayload(requestPayload)).andExpect(
-                ResponseMatchers.clientOrSenderFault());
+        mockClient.sendRequest(RequestCreators.withPayload(requestPayload))
+                .andExpect(ResponseMatchers.clientOrSenderFault());
     }
 
     /**
@@ -118,8 +116,8 @@ public final class TestEntityEndpointUnsecure extends
         responsePayload = new StreamSource(
                 ClassLoader.class.getResourceAsStream(responsePayloadPath));
 
-        mockClient.sendRequest(withPayload(requestPayload)).andExpect(
-                payload(responsePayload));
+        mockClient.sendRequest(RequestCreators.withPayload(requestPayload))
+                .andExpect(ResponseMatchers.payload(responsePayload));
     }
 
 }

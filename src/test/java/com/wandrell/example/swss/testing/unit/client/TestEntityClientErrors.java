@@ -24,6 +24,8 @@
 
 package com.wandrell.example.swss.testing.unit.client;
 
+import java.util.Locale;
+
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
@@ -31,6 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreators;
@@ -46,16 +49,15 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>The client parses correctly formed SOAP messages.</li>
- * <li>The client can handle incorrectly formed SOAP messages.</li>
  * <li>The client can handle error messages.</li>
  * <li>The client throws SOAP exceptions for received faults.</li>
+ * <li>The client throws SOAP exceptions for version mismatch faults.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-public final class TestEntityClientUnsecure extends
+public final class TestEntityClientErrors extends
         AbstractTestNGSpringContextTests {
 
     /**
@@ -69,86 +71,91 @@ public final class TestEntityClientUnsecure extends
     @Value("${entity.id}")
     private Integer      entityId;
     /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String       entityName;
-    /**
      * Path to the file with the valid request payload.
      */
     @Value("${soap.request.payload.path}")
     private String       requestPayloadPath;
-    /**
-     * Path to the file with the invalid response payload.
-     */
-    @Value("${soap.response.payload.invalid.path}")
-    private String       responsePayloadInvalidPath;
-    /**
-     * Path to the file with the valid response payload.
-     */
-    @Value("${soap.response.payload.path}")
-    private String       responsePayloadPath;
 
     /**
      * Constructs a {@code TestEntityClient}.
      */
-    public TestEntityClientUnsecure() {
+    public TestEntityClientErrors() {
         super();
     }
 
     /**
-     * Tests that the client can handle incorrectly formed SOAP messages.
+     * Tests that the client can handle error messages.
      */
     @Test
-    public void testClient_Invalid() {
+    public void testClient_Error() {
         final MockWebServiceServer mockServer; // Mocked server
         final Source requestPayload;  // SOAP payload for the request
-        final Source responsePayload; // SOAP payload for the response
         final Entity result;          // Queried entity
 
         mockServer = MockWebServiceServer.createServer(client);
 
         requestPayload = new StreamSource(
                 ClassLoader.class.getResourceAsStream(requestPayloadPath));
-        responsePayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(responsePayloadInvalidPath));
 
         mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
-                ResponseCreators.withPayload(responsePayload));
+                ResponseCreators.withError("Error"));
 
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), 0);
+        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
         Assert.assertEquals(result.getName(), null);
 
         mockServer.verify();
     }
 
     /**
-     * Tests that the client parses correctly formed SOAP messages.
+     * Tests that the client throws SOAP exceptions for received faults.
      */
-    @Test
-    public void testClient_Valid() {
+    @Test(expectedExceptions = { SoapFaultClientException.class })
+    public void testClient_Fault() {
         final MockWebServiceServer mockServer; // Mocked server
         final Source requestPayload;  // SOAP payload for the request
-        final Source responsePayload; // SOAP payload for the response
         final Entity result;          // Queried entity
 
         mockServer = MockWebServiceServer.createServer(client);
 
         requestPayload = new StreamSource(
                 ClassLoader.class.getResourceAsStream(requestPayloadPath));
-        responsePayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(responsePayloadPath));
 
         mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
-                ResponseCreators.withPayload(responsePayload));
+                ResponseCreators.withServerOrReceiverFault("FAULT:Server",
+                        Locale.ENGLISH));
 
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals((Integer) result.getId(), entityId);
-        Assert.assertEquals(result.getName(), entityName);
+        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
+        Assert.assertEquals(result.getName(), null);
+
+        mockServer.verify();
+    }
+
+    /**
+     * Tests that the client throws SOAP exceptions for version mismatch faults.
+     */
+    @Test(expectedExceptions = { SoapFaultClientException.class })
+    public void testClient_VersionMismatch() {
+        final MockWebServiceServer mockServer; // Mocked server
+        final Source requestPayload;  // SOAP payload for the request
+        final Entity result;          // Queried entity
+
+        mockServer = MockWebServiceServer.createServer(client);
+
+        requestPayload = new StreamSource(
+                ClassLoader.class.getResourceAsStream(requestPayloadPath));
+
+        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
+                ResponseCreators.withVersionMismatchFault(
+                        "FAULT:Version mismatch", Locale.ENGLISH));
+
+        result = client.getEntity("http:somewhere.com", entityId);
+
+        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
+        Assert.assertEquals(result.getName(), null);
 
         mockServer.verify();
     }

@@ -24,7 +24,6 @@
 
 package com.wandrell.example.swss.testing.unit.client.password.plain.xwss;
 
-import static org.springframework.ws.test.client.RequestMatchers.payload;
 import static org.springframework.ws.test.client.ResponseCreators.withPayload;
 
 import javax.xml.transform.Source;
@@ -35,6 +34,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
+import org.springframework.ws.test.client.RequestMatchers;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -53,8 +53,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
+@ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
 public final class TestEntityClientPasswordPlainXWSS extends
         AbstractTestNGSpringContextTests {
 
@@ -114,7 +113,7 @@ public final class TestEntityClientPasswordPlainXWSS extends
                 ClassLoader.class
                         .getResourceAsStream(responsePayloadInvalidPath));
 
-        mockServer.expect(payload(requestPayload)).andRespond(
+        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
                 withPayload(responsePayload));
 
         result = client.getEntity("http:somewhere.com", entityId);
@@ -142,7 +141,7 @@ public final class TestEntityClientPasswordPlainXWSS extends
         responsePayload = new StreamSource(
                 ClassLoader.class.getResourceAsStream(responsePayloadPath));
 
-        mockServer.expect(payload(requestPayload)).andRespond(
+        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
                 withPayload(responsePayload));
 
         result = client.getEntity("http:somewhere.com", entityId);

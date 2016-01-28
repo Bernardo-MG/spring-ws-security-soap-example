@@ -72,6 +72,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
     public final Entity getEntity(final String url, final Integer id) {
         final GetEntityRequest request;   // Request for acquiring the entity
         GetEntityResponse response;       // Response with the resulting entity
+        Entity entity;                    // Entity for the failed requests
 
         request = new GetEntityRequest();
         request.setId(id);
@@ -85,6 +86,20 @@ public final class EntityClient extends WebServiceGatewaySupport {
                                     EntityEndpoint.GET_ENTITY_ACTION));
         } catch (final WebServiceTransportException e) {
             response = new GetEntityResponse();
+
+            entity = new Entity();
+            entity.setId(-1);
+
+            response.setEntity(entity);
+        }
+
+        if (response == null) {
+            response = new GetEntityResponse();
+
+            entity = new Entity();
+            entity.setId(-1);
+
+            response.setEntity(entity);
         }
 
         return response.getEntity();
