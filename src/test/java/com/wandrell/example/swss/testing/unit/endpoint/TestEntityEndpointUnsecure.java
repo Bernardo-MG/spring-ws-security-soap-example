@@ -31,11 +31,15 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
+import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
+
+import com.wandrell.example.swss.testing.util.config.WSContextConfig;
 
 /**
  * Unit tests for the unsecured endpoint.
@@ -43,12 +47,12 @@ import org.testng.annotations.Test;
  * Checks the following cases:
  * <ol>
  * <li>The endpoint parses correctly formed SOAP messages.</li>
+ * <li>The endpoint can handle incorrectly formed SOAP messages.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { "classpath:context/ws/test-unsecure-ws.xml" })
+@ContextConfiguration(locations = { WSContextConfig.UNSECURE })
 public final class TestEntityEndpointUnsecure extends
         AbstractTestNGSpringContextTests {
 
@@ -57,6 +61,21 @@ public final class TestEntityEndpointUnsecure extends
      */
     @Autowired
     private ApplicationContext applicationContext;
+    /**
+     * Path to the file with the ivalid request payload.
+     */
+    @Value("${soap.request.payload.invalid.path}")
+    private String             requestPayloadInvalidPath;
+    /**
+     * Path to the file with the valid request payload.
+     */
+    @Value("${soap.request.payload.path}")
+    private String             requestPayloadPath;
+    /**
+     * Path to the file with the valid response payload.
+     */
+    @Value("${soap.response.payload.path}")
+    private String             responsePayloadPath;
 
     /**
      * Constructs a {@code TestEntityEndpointUnsecure}.
@@ -66,10 +85,28 @@ public final class TestEntityEndpointUnsecure extends
     }
 
     /**
+     * Tests that the ehe endpoint can handle incorrectly formed SOAP messages.
+     */
+    @Test
+    public void testEndpoint_Invalid() throws Exception {
+        final MockWebServiceClient mockClient; // Mocked client
+        final Source requestPayload;  // SOAP payload for the request
+
+        mockClient = MockWebServiceClient.createClient(applicationContext);
+
+        requestPayload = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream(requestPayloadInvalidPath));
+
+        mockClient.sendRequest(withPayload(requestPayload)).andExpect(
+                ResponseMatchers.clientOrSenderFault());
+    }
+
+    /**
      * Tests that the endpoint parses correctly formed SOAP messages.
      */
     @Test
-    public void testEndpoint() throws Exception {
+    public void testEndpoint_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final Source requestPayload;  // SOAP payload for the request
         final Source responsePayload; // SOAP payload for the response
@@ -77,11 +114,9 @@ public final class TestEntityEndpointUnsecure extends
         mockClient = MockWebServiceClient.createClient(applicationContext);
 
         requestPayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream("/soap/entity-request-payload.xml"));
+                ClassLoader.class.getResourceAsStream(requestPayloadPath));
         responsePayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream("/soap/entity-response-payload.xml"));
+                ClassLoader.class.getResourceAsStream(responsePayloadPath));
 
         mockClient.sendRequest(withPayload(requestPayload)).andExpect(
                 payload(responsePayload));
