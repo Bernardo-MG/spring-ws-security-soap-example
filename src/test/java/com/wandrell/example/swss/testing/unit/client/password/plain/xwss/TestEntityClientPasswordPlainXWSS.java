@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.client;
+package com.wandrell.example.swss.testing.unit.client.password.plain.xwss;
 
 import static org.springframework.ws.test.client.RequestMatchers.payload;
 import static org.springframework.ws.test.client.ResponseCreators.withPayload;
@@ -53,8 +53,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientContextConfig.UNSECURE })
-public final class TestEntityClientUnsecure extends
+@ContextConfiguration(
+        locations = { ClientContextConfig.PASSWORD_PLAIN_XWSS_TO_XWSS })
+public final class TestEntityClientPasswordPlainXWSS extends
         AbstractTestNGSpringContextTests {
 
     /**
@@ -91,7 +92,7 @@ public final class TestEntityClientUnsecure extends
     /**
      * Constructs a {@code TestEntityClient}.
      */
-    public TestEntityClientUnsecure() {
+    public TestEntityClientPasswordPlainXWSS() {
         super();
     }
 

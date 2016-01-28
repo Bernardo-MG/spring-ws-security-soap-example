@@ -36,7 +36,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ClientContextConfig.CLIENT_ENCRYPTION_XWSS_TO_XWSS })
+        locations = { ClientContextConfig.ENCRYPTION_XWSS_TO_XWSS })
 public final class ITEntityClientEncryptionXWSSToXWSS extends
         AbstractITEntityClient {
 

@@ -78,10 +78,10 @@ public final class TestEntityEndpointUnsecure extends
 
         requestPayload = new StreamSource(
                 ClassLoader.class
-                        .getResourceAsStream("/soap/entity-request-not-secured.xml"));
+                        .getResourceAsStream("/soap/entity-request-payload.xml"));
         responsePayload = new StreamSource(
                 ClassLoader.class
-                        .getResourceAsStream("/soap/entity-response-not-secured.xml"));
+                        .getResourceAsStream("/soap/entity-response-payload.xml"));
 
         mockClient.sendRequest(withPayload(requestPayload)).andExpect(
                 payload(responsePayload));

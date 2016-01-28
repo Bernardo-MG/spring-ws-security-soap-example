@@ -50,7 +50,7 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENDPOINT_ENCRYPTION_WSS4J })
+        locations = { EndpointContextConfig.ENCRYPTION_WSS4J })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**

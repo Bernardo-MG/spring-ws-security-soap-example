@@ -50,7 +50,7 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENDPOINT_ENCRYPTION_XWSS })
+        locations = { EndpointContextConfig.ENCRYPTION_XWSS })
 public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
 
     /**

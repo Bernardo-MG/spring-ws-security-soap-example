@@ -53,7 +53,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { EndpointContextConfig.ENDPOINT_UNSECURE })
+@ContextConfiguration(locations = { EndpointContextConfig.UNSECURE })
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     /**

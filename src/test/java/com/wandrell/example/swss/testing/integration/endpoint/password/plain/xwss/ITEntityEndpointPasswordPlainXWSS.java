@@ -54,7 +54,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENDPOINT_PASSWORD_PLAIN_XWSS })
+        locations = { EndpointContextConfig.PASSWORD_PLAIN_XWSS })
 public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint {
 
     /**

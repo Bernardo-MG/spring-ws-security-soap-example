@@ -55,7 +55,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENDPOINT_SIGNATURE_XWSS })
+        locations = { EndpointContextConfig.SIGNATURE_XWSS })
 public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
     /**

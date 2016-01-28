@@ -36,7 +36,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ClientContextConfig.CLIENT_SIGNATURE_WSS4J_TO_WSS4J })
+        locations = { ClientContextConfig.SIGNATURE_WSS4J_TO_WSS4J })
 public final class ITEntityClientSignatureWSS4JToWSS4J extends
         AbstractITEntityClient {
 

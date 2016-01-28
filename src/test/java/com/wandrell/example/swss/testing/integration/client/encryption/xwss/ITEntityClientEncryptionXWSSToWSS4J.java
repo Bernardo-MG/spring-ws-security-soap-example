@@ -35,7 +35,7 @@ import com.wandrell.example.swss.testing.util.config.ClientContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ClientContextConfig.CLIENT_ENCRYPTION_XWSS_TO_WSS4J })
+        locations = { ClientContextConfig.ENCRYPTION_XWSS_TO_WSS4J })
 public final class ITEntityClientEncryptionXWSSToWSS4J {
 
     /**

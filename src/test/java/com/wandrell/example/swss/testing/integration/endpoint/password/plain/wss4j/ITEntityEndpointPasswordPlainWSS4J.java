@@ -54,7 +54,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENDPOINT_PASSWORD_PLAIN_WSS4J })
+        locations = { EndpointContextConfig.PASSWORD_PLAIN_WSS4J })
 public final class ITEntityEndpointPasswordPlainWSS4J extends
         AbstractITEndpoint {
 

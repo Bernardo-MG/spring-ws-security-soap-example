@@ -124,25 +124,23 @@ public final class SecurityUtils {
         return message;
     }
 
+    public static final InputStream getPlainPasswordInputStream(
+            final String path, final String user, final String password)
+            throws Exception {
+        return new ByteArrayInputStream(getPlainPasswordMessageContent(path,
+                user, password).getBytes("UTF-8"));
+    }
+
     public static final SOAPMessage getPlainPasswordMessage(final String path,
             final String user, final String password) throws Exception {
         final MessageFactory factory;
-        final SOAPMessage message;
         final InputStream streamMessage;
-        final ByteArrayOutputStream out;
 
-        streamMessage = new ByteArrayInputStream(
-                getPlainPasswordMessageContent(path, user, password).getBytes(
-                        "UTF-8"));
+        streamMessage = getPlainPasswordInputStream(path, user, password);
 
         factory = MessageFactory.newInstance();
 
-        message = factory.createMessage(new MimeHeaders(), streamMessage);
-
-        out = new ByteArrayOutputStream();
-        message.writeTo(out);
-
-        return message;
+        return factory.createMessage(new MimeHeaders(), streamMessage);
     }
 
     public static final SOAPMessage getSignedMessage(
@@ -294,28 +292,6 @@ public final class SecurityUtils {
         return new String(out.toByteArray());
     }
 
-    private static final String getPlainPasswordMessageContent(
-            final String path, final String user, final String password)
-            throws Exception {
-        final Configuration cfg;
-        final Template template;
-        final Map<String, Object> data;
-        final ByteArrayOutputStream out;
-
-        cfg = new Configuration(Configuration.VERSION_2_3_0);
-        template = cfg.getTemplate(path);
-
-        data = new LinkedHashMap<String, Object>();
-
-        data.put("user", user);
-        data.put("password", password);
-
-        out = new ByteArrayOutputStream();
-        template.process(data, new OutputStreamWriter(out));
-
-        return new String(out.toByteArray());
-    }
-
     private static final SOAPMessage getMessageToSign(final String pathBase)
             throws SOAPException, IOException {
         final SOAPMessage soapMessage;
@@ -371,6 +347,28 @@ public final class SecurityUtils {
         random.nextBytes(nonceBytes);
 
         return new String(Base64.encodeBase64(nonceBytes), "UTF-8");
+    }
+
+    private static final String getPlainPasswordMessageContent(
+            final String path, final String user, final String password)
+            throws Exception {
+        final Configuration cfg;
+        final Template template;
+        final Map<String, Object> data;
+        final ByteArrayOutputStream out;
+
+        cfg = new Configuration(Configuration.VERSION_2_3_0);
+        template = cfg.getTemplate(path);
+
+        data = new LinkedHashMap<String, Object>();
+
+        data.put("user", user);
+        data.put("password", password);
+
+        out = new ByteArrayOutputStream();
+        template.process(data, new OutputStreamWriter(out));
+
+        return new String(out.toByteArray());
     }
 
     private static final XMLSignature getSignature(final Document doc,

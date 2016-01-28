@@ -35,7 +35,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientContextConfig.CLIENT_UNSECURE })
+@ContextConfiguration(locations = { ClientContextConfig.UNSECURE })
 public final class ITEntityClientUnsecure extends AbstractITEntityClient {
 
     /**

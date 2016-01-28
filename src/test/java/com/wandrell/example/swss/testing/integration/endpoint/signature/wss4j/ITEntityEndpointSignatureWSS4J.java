@@ -55,7 +55,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { EndpointContextConfig.ENDPOINT_SIGNATURE_WSS4J })
+        locations = { EndpointContextConfig.SIGNATURE_WSS4J })
 public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
     /**

@@ -37,7 +37,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ClientContextConfig.CLIENT_ENCRYPTION_XWSS_TO_WSS4J_INVALID })
+        locations = { ClientContextConfig.ENCRYPTION_XWSS_TO_WSS4J_INVALID })
 public final class ITEntityClientEncryptionXWSSToWSS4JInvalid extends
         AbstractITEntityClientInvalid {
 
