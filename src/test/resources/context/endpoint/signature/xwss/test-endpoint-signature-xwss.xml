@@ -12,9 +12,9 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore.properties, classpath:context/endpoint/signature/xwss/test-endpoint-signature-xwss.properties" />
+        location="classpath:context/keystore/keystore.properties, classpath:context/endpoint/signature/xwss/test-endpoint-signature-xwss.properties" />
 
     <!-- Imports base context -->
-    <import resource="classpath:context/keystore.xml" />
+    <import resource="classpath:context/keystore/keystore.xml" />
 
 </beans>

@@ -15,7 +15,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore.properties, classpath:context/ws/ws.properties, classpath:context/security/signature/wss4j/security-signature-wss4j.properties, classpath:context/ws/signature/wss4j/ws-signature-wss4j.properties" />
+        location="classpath:context/keystore/keystore.properties, classpath:context/ws/ws.properties, classpath:context/security/signature/wss4j/security-signature-wss4j.properties, classpath:context/ws/signature/wss4j/ws-signature-wss4j.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/ws/signature/wss4j/ws-signature-wss4j.xml" />

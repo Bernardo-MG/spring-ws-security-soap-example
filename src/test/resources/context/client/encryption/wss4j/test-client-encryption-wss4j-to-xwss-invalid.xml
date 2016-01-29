@@ -13,11 +13,11 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore2.properties, classpath:context/client/client.properties, classpath:context/security/encryption/wss4j/security-encryption-wss4j.properties, classpath:context/keystore-wss4j.properties, classpath:context/client/encryption/wss4j/client-encryption-wss4j.properties, classpath:context/client/encryption/wss4j/test-client-encryption-wss4j-to-xwss-invalid.properties" />
+        location="classpath:context/keystore/keystore2.properties, classpath:context/client/client.properties, classpath:context/security/encryption/wss4j/security-encryption-wss4j.properties, classpath:context/keystore/keystore-wss4j.properties, classpath:context/client/encryption/wss4j/client-encryption-wss4j.properties, classpath:context/client/encryption/wss4j/test-client-encryption-wss4j-to-xwss-invalid.properties" />
 
     <!-- Imports base context -->
-    <import resource="classpath:context/keystore.xml" />
-    <import resource="classpath:context/keystore-wss4j.xml" />
+    <import resource="classpath:context/keystore/keystore.xml" />
+    <import resource="classpath:context/keystore/keystore-wss4j.xml" />
     <import resource="classpath:context/client/encryption/wss4j/client-encryption-wss4j.xml" />
 
 </beans>
