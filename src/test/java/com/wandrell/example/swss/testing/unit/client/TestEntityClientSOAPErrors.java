@@ -89,7 +89,7 @@ public final class TestEntityClientSOAPErrors extends
      * @throws IOException
      */
     @Test(expectedExceptions = WebServiceTransportException.class)
-    public void testClient_Error() throws IOException {
+    public final void testClient_Error() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final Entity result;          // Queried entity
 
@@ -114,7 +114,7 @@ public final class TestEntityClientSOAPErrors extends
      * @throws IOException
      */
     @Test(expectedExceptions = { SoapFaultClientException.class })
-    public void testClient_Fault() throws IOException {
+    public final void testClient_Fault() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final Entity result;          // Queried entity
 
@@ -140,7 +140,7 @@ public final class TestEntityClientSOAPErrors extends
      * @throws IOException
      */
     @Test(expectedExceptions = { SoapFaultClientException.class })
-    public void testClient_VersionMismatch() throws IOException {
+    public final void testClient_VersionMismatch() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final Entity result;          // Queried entity
 

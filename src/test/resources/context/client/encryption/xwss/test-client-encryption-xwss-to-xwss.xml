@@ -13,10 +13,10 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore.properties, classpath:context/client/client.properties, classpath:context/security/security-encryption-xwss.properties, classpath:context/client/xwss/client-encryption-xwss.properties, classpath:context/client/encryption/xwss/test-client-encryption-xwss-to-xwss.properties" />
+        location="classpath:context/keystore.properties, classpath:context/client/client.properties, classpath:context/security/encryption/xwss/security-encryption-xwss.properties, classpath:context/client/encryption/xwss/client-encryption-xwss.properties, classpath:context/client/encryption/xwss/test-client-encryption-xwss-to-xwss.properties" />
 
     <!-- Imports base context -->
     <import resource="classpath:context/keystore.xml" />
-    <import resource="classpath:context/client/xwss/client-encryption-xwss.xml" />
+    <import resource="classpath:context/client/encryption/xwss/client-encryption-xwss.xml" />
 
 </beans>

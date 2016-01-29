@@ -61,7 +61,7 @@ public final class TestEntityEndpointUnsecure extends
     @Autowired
     private ApplicationContext applicationContext;
     /**
-     * Path to the file with the ivalid request payload.
+     * Path to the file with the invalid request payload.
      */
     @Value("${soap.request.payload.invalid.path}")
     private String             requestPayloadInvalidPath;
@@ -84,10 +84,10 @@ public final class TestEntityEndpointUnsecure extends
     }
 
     /**
-     * Tests that the ehe endpoint can handle incorrectly formed SOAP messages.
+     * Tests that the endpoint can handle incorrectly formed SOAP messages.
      */
     @Test
-    public void testEndpoint_Invalid() throws Exception {
+    public final void testEndpoint_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final Source requestPayload;  // SOAP payload for the request
 
@@ -105,7 +105,7 @@ public final class TestEntityEndpointUnsecure extends
      * Tests that the endpoint parses correctly formed SOAP messages.
      */
     @Test
-    public void testEndpoint_Valid() throws Exception {
+    public final void testEndpoint_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final Source requestPayload;  // SOAP payload for the request
 

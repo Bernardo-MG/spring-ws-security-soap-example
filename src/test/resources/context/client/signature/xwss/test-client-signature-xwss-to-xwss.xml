@@ -13,10 +13,10 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore.properties, classpath:context/client/client.properties, classpath:context/security/security-signature-xwss.properties, classpath:context/client/xwss/client-signature-xwss.properties, classpath:context/client/signature/xwss/test-client-signature-xwss-to-xwss.properties" />
+        location="classpath:context/keystore.properties, classpath:context/client/client.properties, classpath:context/security/signature/xwss/security-signature-xwss.properties, classpath:context/client/signature/xwss/client-signature-xwss.properties, classpath:context/client/signature/xwss/test-client-signature-xwss-to-xwss.properties" />
 
     <!-- Imports base context -->
     <import resource="classpath:context/keystore.xml" />
-    <import resource="classpath:context/client/xwss/client-signature-xwss.xml" />
+    <import resource="classpath:context/client/signature/xwss/client-signature-xwss.xml" />
 
 </beans>

@@ -75,7 +75,7 @@ public final class TestEntityClientErrors extends
      * Tests that the client can handle connections to invalid URLs.
      */
     @Test(expectedExceptions = WebServiceTransportException.class)
-    public void testClient_InvalidURL() {
+    public final void testClient_InvalidURL() {
         client.getEntity("http://www.somewhere.com", entityId);
     }
 

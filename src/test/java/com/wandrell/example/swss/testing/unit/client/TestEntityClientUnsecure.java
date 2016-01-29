@@ -105,7 +105,7 @@ public final class TestEntityClientUnsecure extends
      * @throws IOException
      */
     @Test
-    public void testClient_Invalid() throws IOException {
+    public final void testClient_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final Source responsePayload; // SOAP payload for the response
         final Entity result;          // Queried entity
@@ -135,7 +135,7 @@ public final class TestEntityClientUnsecure extends
      * @throws IOException
      */
     @Test
-    public void testClient_Valid() throws IOException {
+    public final void testClient_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final Source responsePayload; // SOAP payload for the response
         final Entity result;          // Queried entity

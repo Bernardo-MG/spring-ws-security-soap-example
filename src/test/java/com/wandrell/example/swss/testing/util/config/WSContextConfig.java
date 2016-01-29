@@ -34,7 +34,11 @@ public final class WSContextConfig {
     /**
      * Unsecure WS context for the endpoint.
      */
-    public static final String UNSECURE = "classpath:context/ws/test-unsecure-ws.xml";
+    public static final String UNSECURE            = "classpath:context/ws/test-unsecure-ws.xml";
+    /**
+     * Unsecure WS context for the endpoint.
+     */
+    public static final String PASSWORD_PLAIN_XWSS = "classpath:context/ws/password/plain/xwss/test-password-plain-xwss-ws.xml";
 
     /**
      * Private constructor to avoid initialization.
