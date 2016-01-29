@@ -24,33 +24,22 @@
 
 package com.wandrell.example.swss.testing.unit.client;
 
-import java.io.IOException;
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.ws.soap.client.SoapFaultClientException;
-import org.springframework.ws.test.client.MockWebServiceServer;
-import org.springframework.ws.test.client.RequestMatchers;
-import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.Assert;
+import org.springframework.ws.client.WebServiceTransportException;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Unit tests for {@link EntityClient}.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>The client can handle error messages.</li>
- * <li>The client throws SOAP exceptions for received faults.</li>
- * <li>The client throws SOAP exceptions for version mismatch faults.</li>
+ * <li>The client can handle connections to invalid URLs.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
@@ -83,80 +72,11 @@ public final class TestEntityClientErrors extends
     }
 
     /**
-     * Tests that the client can handle error messages.
-     *
-     * @throws IOException
+     * Tests that the client can handle connections to invalid URLs.
      */
-    @Test
-    public void testClient_Error() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final Entity result;          // Queried entity
-
-        mockServer = MockWebServiceServer.createServer(client);
-
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withError("Error"));
-
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
-        Assert.assertEquals(result.getName(), null);
-
-        mockServer.verify();
-    }
-
-    /**
-     * Tests that the client throws SOAP exceptions for received faults.
-     *
-     * @throws IOException
-     */
-    @Test(expectedExceptions = { SoapFaultClientException.class })
-    public void testClient_Fault() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final Entity result;          // Queried entity
-
-        mockServer = MockWebServiceServer.createServer(client);
-
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withServerOrReceiverFault("FAULT:Server",
-                        Locale.ENGLISH));
-
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
-        Assert.assertEquals(result.getName(), null);
-
-        mockServer.verify();
-    }
-
-    /**
-     * Tests that the client throws SOAP exceptions for version mismatch faults.
-     *
-     * @throws IOException
-     */
-    @Test(expectedExceptions = { SoapFaultClientException.class })
-    public void testClient_VersionMismatch() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final Entity result;          // Queried entity
-
-        mockServer = MockWebServiceServer.createServer(client);
-
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withVersionMismatchFault(
-                        "FAULT:Version mismatch", Locale.ENGLISH));
-
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
-        Assert.assertEquals(result.getName(), null);
-
-        mockServer.verify();
+    @Test(expectedExceptions = WebServiceTransportException.class)
+    public void testClient_InvalidURL() {
+        client.getEntity("http://www.somewhere.com", entityId);
     }
 
 }

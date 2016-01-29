@@ -25,7 +25,6 @@
 package com.wandrell.example.swss.client;
 
 import org.springframework.ws.WebServiceMessageFactory;
-import org.springframework.ws.client.WebServiceTransportException;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -77,21 +76,11 @@ public final class EntityClient extends WebServiceGatewaySupport {
         request = new GetEntityRequest();
         request.setId(id);
 
-        try {
-            response = (GetEntityResponse) getWebServiceTemplate()
-                    .marshalSendAndReceive(
-                            url,
-                            request,
-                            new SoapActionCallback(
-                                    EntityEndpoint.GET_ENTITY_ACTION));
-        } catch (final WebServiceTransportException e) {
-            response = new GetEntityResponse();
-
-            entity = new Entity();
-            entity.setId(-1);
-
-            response.setEntity(entity);
-        }
+        response = (GetEntityResponse) getWebServiceTemplate()
+                .marshalSendAndReceive(
+                        url,
+                        request,
+                        new SoapActionCallback(EntityEndpoint.GET_ENTITY_ACTION));
 
         if (response == null) {
             response = new GetEntityResponse();
