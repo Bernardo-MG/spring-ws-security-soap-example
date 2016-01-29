@@ -24,13 +24,12 @@
 
 package com.wandrell.example.swss.testing.unit.client;
 
+import java.io.IOException;
 import java.util.Locale;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.soap.client.SoapFaultClientException;
@@ -71,10 +70,10 @@ public final class TestEntityClientErrors extends
     @Value("${entity.id}")
     private Integer      entityId;
     /**
-     * Path to the file with the valid request payload.
+     * Path to XSD file which validates the SOAP messages.
      */
-    @Value("${soap.request.payload.path}")
-    private String       requestPayloadPath;
+    @Value("${xsd.entity.path}")
+    private String       entityXsdPath;
 
     /**
      * Constructs a {@code TestEntityClient}.
@@ -85,19 +84,19 @@ public final class TestEntityClientErrors extends
 
     /**
      * Tests that the client can handle error messages.
+     *
+     * @throws IOException
      */
     @Test
-    public void testClient_Error() {
+    public void testClient_Error() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Source requestPayload;  // SOAP payload for the request
         final Entity result;          // Queried entity
 
         mockServer = MockWebServiceServer.createServer(client);
 
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
-
-        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
+        mockServer.expect(
+                RequestMatchers.validPayload(new ClassPathResource(
+                        entityXsdPath))).andRespond(
                 ResponseCreators.withError("Error"));
 
         result = client.getEntity("http:somewhere.com", entityId);
@@ -110,19 +109,19 @@ public final class TestEntityClientErrors extends
 
     /**
      * Tests that the client throws SOAP exceptions for received faults.
+     *
+     * @throws IOException
      */
     @Test(expectedExceptions = { SoapFaultClientException.class })
-    public void testClient_Fault() {
+    public void testClient_Fault() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Source requestPayload;  // SOAP payload for the request
         final Entity result;          // Queried entity
 
         mockServer = MockWebServiceServer.createServer(client);
 
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
-
-        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
+        mockServer.expect(
+                RequestMatchers.validPayload(new ClassPathResource(
+                        entityXsdPath))).andRespond(
                 ResponseCreators.withServerOrReceiverFault("FAULT:Server",
                         Locale.ENGLISH));
 
@@ -136,19 +135,19 @@ public final class TestEntityClientErrors extends
 
     /**
      * Tests that the client throws SOAP exceptions for version mismatch faults.
+     *
+     * @throws IOException
      */
     @Test(expectedExceptions = { SoapFaultClientException.class })
-    public void testClient_VersionMismatch() {
+    public void testClient_VersionMismatch() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Source requestPayload;  // SOAP payload for the request
         final Entity result;          // Queried entity
 
         mockServer = MockWebServiceServer.createServer(client);
 
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
-
-        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
+        mockServer.expect(
+                RequestMatchers.validPayload(new ClassPathResource(
+                        entityXsdPath))).andRespond(
                 ResponseCreators.withVersionMismatchFault(
                         "FAULT:Version mismatch", Locale.ENGLISH));
 

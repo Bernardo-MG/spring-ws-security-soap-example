@@ -24,17 +24,19 @@
 
 package com.wandrell.example.swss.testing.unit.client.password.plain.xwss;
 
-import static org.springframework.ws.test.client.ResponseCreators.withPayload;
+import java.io.IOException;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatchers;
+import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -73,10 +75,10 @@ public final class TestEntityClientPasswordPlainXWSS extends
     @Value("${entity.name}")
     private String       entityName;
     /**
-     * Path to the file with the valid request payload.
+     * Path to XSD file which validates the SOAP messages.
      */
-    @Value("${soap.request.payload.path}")
-    private String       requestPayloadPath;
+    @Value("${xsd.entity.path}")
+    private String       entityXsdPath;
     /**
      * Path to the file with the invalid response payload.
      */
@@ -97,24 +99,24 @@ public final class TestEntityClientPasswordPlainXWSS extends
 
     /**
      * Tests that the client can handle incorrectly formed SOAP messages.
+     * 
+     * @throws IOException
      */
     @Test
-    public void testClient_Invalid() {
+    public void testClient_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Source requestPayload;  // SOAP payload for the request
         final Source responsePayload; // SOAP payload for the response
         final Entity result;          // Queried entity
 
         mockServer = MockWebServiceServer.createServer(client);
 
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
         responsePayload = new StreamSource(
                 ClassLoader.class
                         .getResourceAsStream(responsePayloadInvalidPath));
-
-        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
-                withPayload(responsePayload));
+        mockServer.expect(
+                RequestMatchers.validPayload(new ClassPathResource(
+                        entityXsdPath))).andRespond(
+                ResponseCreators.withPayload(responsePayload));
 
         result = client.getEntity("http:somewhere.com", entityId);
 
@@ -126,23 +128,24 @@ public final class TestEntityClientPasswordPlainXWSS extends
 
     /**
      * Tests that the client parses correctly formed SOAP messages.
+     * 
+     * @throws IOException
      */
     @Test
-    public void testClient_Valid() {
+    public void testClient_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Source requestPayload;  // SOAP payload for the request
         final Source responsePayload; // SOAP payload for the response
         final Entity result;          // Queried entity
 
         mockServer = MockWebServiceServer.createServer(client);
 
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
         responsePayload = new StreamSource(
                 ClassLoader.class.getResourceAsStream(responsePayloadPath));
 
-        mockServer.expect(RequestMatchers.payload(requestPayload)).andRespond(
-                withPayload(responsePayload));
+        mockServer.expect(
+                RequestMatchers.validPayload(new ClassPathResource(
+                        entityXsdPath))).andRespond(
+                ResponseCreators.withPayload(responsePayload));
 
         result = client.getEntity("http:somewhere.com", entityId);
 

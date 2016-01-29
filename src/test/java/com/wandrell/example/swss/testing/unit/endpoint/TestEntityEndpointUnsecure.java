@@ -30,6 +30,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
@@ -70,10 +71,10 @@ public final class TestEntityEndpointUnsecure extends
     @Value("${soap.request.payload.path}")
     private String             requestPayloadPath;
     /**
-     * Path to the file with the valid response payload.
+     * Path to XSD file which validates the SOAP messages.
      */
-    @Value("${soap.response.payload.path}")
-    private String             responsePayloadPath;
+    @Value("${xsd.entity.path}")
+    private String             entityXsdPath;
 
     /**
      * Constructs a {@code TestEntityEndpointUnsecure}.
@@ -107,17 +108,16 @@ public final class TestEntityEndpointUnsecure extends
     public void testEndpoint_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final Source requestPayload;  // SOAP payload for the request
-        final Source responsePayload; // SOAP payload for the response
 
         mockClient = MockWebServiceClient.createClient(applicationContext);
 
         requestPayload = new StreamSource(
                 ClassLoader.class.getResourceAsStream(requestPayloadPath));
-        responsePayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(responsePayloadPath));
 
         mockClient.sendRequest(RequestCreators.withPayload(requestPayload))
-                .andExpect(ResponseMatchers.payload(responsePayload));
+                .andExpect(
+                        ResponseMatchers.validPayload(new ClassPathResource(
+                                entityXsdPath)));
     }
 
 }
