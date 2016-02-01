@@ -30,6 +30,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
@@ -51,7 +52,7 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { WSContextConfig.PASSWORD_PLAIN_XWSS })
-public final class TestEntityEndpointUnsecure extends
+public final class TestEntityEndpointPasswordPlainXWSS extends
         AbstractTestNGSpringContextTests {
 
     /**
@@ -65,10 +66,10 @@ public final class TestEntityEndpointUnsecure extends
     @Value("${soap.request.payload.invalid.path}")
     private String             requestPayloadInvalidPath;
     /**
-     * Path to the file with the valid request payload.
+     * Path to the file with the valid request envelope.
      */
-    @Value("${soap.request.payload.path}")
-    private String             requestPayloadPath;
+    @Value("${soap.request.envelope.path}")
+    private String             requestEnvelopePath;
     /**
      * Path to XSD file which validates the SOAP messages.
      */
@@ -78,7 +79,7 @@ public final class TestEntityEndpointUnsecure extends
     /**
      * Constructs a {@code TestEntityEndpointUnsecure}.
      */
-    public TestEntityEndpointUnsecure() {
+    public TestEntityEndpointPasswordPlainXWSS() {
         super();
     }
 
@@ -106,18 +107,17 @@ public final class TestEntityEndpointUnsecure extends
     @Test
     public final void testEndpoint_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
-        final Source requestPayload;  // SOAP payload for the request
+        final Source requestEnvelope;  // SOAP envelope for the request
 
         mockClient = MockWebServiceClient.createClient(applicationContext);
 
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
+        requestEnvelope = new StreamSource(
+                ClassLoader.class.getResourceAsStream(requestEnvelopePath));
 
-        // TODO: Fix this
-        // mockClient.sendRequest(RequestCreators.withPayload(requestPayload))
-        // .andExpect(
-        // ResponseMatchers.validPayload(new ClassPathResource(
-        // entityXsdPath)));
+        mockClient.sendRequest(
+                RequestCreators.withSoapEnvelope(requestEnvelope)).andExpect(
+                ResponseMatchers.validPayload(new ClassPathResource(
+                        entityXsdPath)));
     }
 
 }
