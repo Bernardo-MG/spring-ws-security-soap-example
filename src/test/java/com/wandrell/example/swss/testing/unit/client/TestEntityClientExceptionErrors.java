@@ -39,13 +39,13 @@ import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>The client can handle connections to invalid URLs.</li>
+ * <li>The client throws an exception with connections to invalid URLs.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-public final class TestEntityClientErrors extends
+public final class TestEntityClientExceptionErrors extends
         AbstractTestNGSpringContextTests {
 
     /**
@@ -67,12 +67,13 @@ public final class TestEntityClientErrors extends
     /**
      * Constructs a {@code TestEntityClient}.
      */
-    public TestEntityClientErrors() {
+    public TestEntityClientExceptionErrors() {
         super();
     }
 
     /**
-     * Tests that the client can handle connections to invalid URLs.
+     * Tests that the client throws an exception with connections to invalid
+     * URLs.
      */
     @Test(expectedExceptions = WebServiceTransportException.class)
     public final void testClient_InvalidURL() {

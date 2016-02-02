@@ -34,7 +34,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
+import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
+import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
@@ -89,16 +91,24 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
     @Test
     public final void testEndpoint_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
-        final Source requestPayload;  // SOAP payload for the request
+        final RequestCreator requestCreator;   // Creator for the request
+        final ResponseMatcher responseMatcher; // Matcher for the response
+        final Source requestPayload;           // SOAP payload for the request
 
-        mockClient = MockWebServiceClient.createClient(applicationContext);
-
+        // Creates the request
         requestPayload = new StreamSource(
                 ClassLoader.class
                         .getResourceAsStream(requestPayloadInvalidPath));
+        requestCreator = RequestCreators.withPayload(requestPayload);
 
-        mockClient.sendRequest(RequestCreators.withPayload(requestPayload))
-                .andExpect(ResponseMatchers.clientOrSenderFault());
+        // Creates the response matcher
+        responseMatcher = ResponseMatchers.clientOrSenderFault();
+
+        // Creates the client mock
+        mockClient = MockWebServiceClient.createClient(applicationContext);
+
+        // Calls the endpoint
+        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
     }
 
     /**
@@ -107,17 +117,24 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
     @Test
     public final void testEndpoint_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
-        final Source requestEnvelope;  // SOAP envelope for the request
+        final RequestCreator requestCreator;   // Creator for the request
+        final ResponseMatcher responseMatcher; // Matcher for the response
+        final Source requestEnvelope;          // SOAP envelope for the request
 
+        // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);
 
+        // Creates the request
         requestEnvelope = new StreamSource(
                 ClassLoader.class.getResourceAsStream(requestEnvelopePath));
+        requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
-        mockClient.sendRequest(
-                RequestCreators.withSoapEnvelope(requestEnvelope)).andExpect(
-                ResponseMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath)));
+        // Creates the response matcher
+        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
+
+        // Calls the endpoint
+        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
     }
 
 }

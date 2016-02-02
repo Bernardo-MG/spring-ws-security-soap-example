@@ -35,7 +35,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
+import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
+import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -101,26 +103,32 @@ public final class TestEntityClientUnsecure extends
 
     /**
      * Tests that the client can handle incorrectly formed SOAP messages.
-     * 
+     *
      * @throws IOException
      */
     @Test
     public final void testClient_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Source responsePayload; // SOAP payload for the response
-        final Entity result;          // Queried entity
+        final RequestMatcher requestMatcher;   // Matcher for the request
+        final ResponseCreator responseCreator; // Creator for the response
+        final Source responsePayload;          // SOAP payload for the response
+        final Entity result;                   // Queried entity
 
-        mockServer = MockWebServiceServer.createServer(client);
+        // Creates the request matcher
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
+        // Creates the response
         responsePayload = new StreamSource(
                 ClassLoader.class
                         .getResourceAsStream(responsePayloadInvalidPath));
+        responseCreator = ResponseCreators.withPayload(responsePayload);
 
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withPayload(responsePayload));
+        // Creates the server mock
+        mockServer = MockWebServiceServer.createServer(client);
+        mockServer.expect(requestMatcher).andRespond(responseCreator);
 
+        // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
         Assert.assertEquals(result.getId(), 0);
@@ -137,19 +145,25 @@ public final class TestEntityClientUnsecure extends
     @Test
     public final void testClient_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Source responsePayload; // SOAP payload for the response
-        final Entity result;          // Queried entity
+        final RequestMatcher requestMatcher;   // Matcher for the request
+        final ResponseCreator responseCreator; // Creator for the response
+        final Source responsePayload;          // SOAP payload for the response
+        final Entity result;                   // Queried entity
 
-        mockServer = MockWebServiceServer.createServer(client);
+        // Creates the request matcher
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
+        // Creates the response
         responsePayload = new StreamSource(
                 ClassLoader.class.getResourceAsStream(responsePayloadPath));
+        responseCreator = ResponseCreators.withPayload(responsePayload);
 
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withPayload(responsePayload));
+        // Creates the server mock
+        mockServer = MockWebServiceServer.createServer(client);
+        mockServer.expect(requestMatcher).andRespond(responseCreator);
 
+        // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
         Assert.assertEquals((Integer) result.getId(), entityId);

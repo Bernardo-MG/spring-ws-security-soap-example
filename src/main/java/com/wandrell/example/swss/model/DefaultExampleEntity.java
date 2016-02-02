@@ -62,7 +62,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
      * tests.
      */
     @Column(name = "name", nullable = false)
-    private String            entityName       = "";
+    private String            entityName;
 
     /**
      * Constructs a {@code JPAExampleEntity}.

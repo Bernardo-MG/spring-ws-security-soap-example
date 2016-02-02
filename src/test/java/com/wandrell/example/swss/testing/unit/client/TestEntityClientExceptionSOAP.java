@@ -35,14 +35,14 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.client.WebServiceTransportException;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.test.client.MockWebServiceServer;
+import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
+import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Unit tests for {@link EntityClient}.
@@ -57,7 +57,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-public final class TestEntityClientSOAPErrors extends
+public final class TestEntityClientExceptionSOAP extends
         AbstractTestNGSpringContextTests {
 
     /**
@@ -79,7 +79,7 @@ public final class TestEntityClientSOAPErrors extends
     /**
      * Constructs a {@code TestEntityClient}.
      */
-    public TestEntityClientSOAPErrors() {
+    public TestEntityClientExceptionSOAP() {
         super();
     }
 
@@ -91,21 +91,22 @@ public final class TestEntityClientSOAPErrors extends
     @Test(expectedExceptions = WebServiceTransportException.class)
     public final void testClient_Error() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Entity result;          // Queried entity
+        final RequestMatcher requestMatcher;   // Matcher for the request
+        final ResponseCreator responseCreator; // Creator for the response
 
+        // Creates the request matcher
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
+
+        // Creates the response
+        responseCreator = ResponseCreators.withError("Error");
+
+        // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
+        mockServer.expect(requestMatcher).andRespond(responseCreator);
 
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withError("Error"));
-
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
-        Assert.assertEquals(result.getName(), null);
-
-        mockServer.verify();
+        // Calls the server mock
+        client.getEntity("http:somewhere.com", entityId);
     }
 
     /**
@@ -116,22 +117,23 @@ public final class TestEntityClientSOAPErrors extends
     @Test(expectedExceptions = { SoapFaultClientException.class })
     public final void testClient_Fault() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Entity result;          // Queried entity
+        final RequestMatcher requestMatcher;   // Matcher for the request
+        final ResponseCreator responseCreator; // Creator for the response
 
+        // Creates the request matcher
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
+
+        // Creates the response
+        responseCreator = ResponseCreators.withServerOrReceiverFault(
+                "FAULT:Server", Locale.ENGLISH);
+
+        // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
+        mockServer.expect(requestMatcher).andRespond(responseCreator);
 
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withServerOrReceiverFault("FAULT:Server",
-                        Locale.ENGLISH));
-
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
-        Assert.assertEquals(result.getName(), null);
-
-        mockServer.verify();
+        // Calls the server mock
+        client.getEntity("http:somewhere.com", entityId);
     }
 
     /**
@@ -142,22 +144,23 @@ public final class TestEntityClientSOAPErrors extends
     @Test(expectedExceptions = { SoapFaultClientException.class })
     public final void testClient_VersionMismatch() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final Entity result;          // Queried entity
+        final RequestMatcher requestMatcher;   // Matcher for the request
+        final ResponseCreator responseCreator; // Creator for the response
 
+        // Creates the request matcher
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
+
+        // Creates the response
+        responseCreator = ResponseCreators.withVersionMismatchFault(
+                "FAULT:Version mismatch", Locale.ENGLISH);
+
+        // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
+        mockServer.expect(requestMatcher).andRespond(responseCreator);
 
-        mockServer.expect(
-                RequestMatchers.validPayload(new ClassPathResource(
-                        entityXsdPath))).andRespond(
-                ResponseCreators.withVersionMismatchFault(
-                        "FAULT:Version mismatch", Locale.ENGLISH));
-
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals((Integer) result.getId(), (Integer) (-1));
-        Assert.assertEquals(result.getName(), null);
-
-        mockServer.verify();
+        // Calls the server mock
+        client.getEntity("http:somewhere.com", entityId);
     }
 
 }
