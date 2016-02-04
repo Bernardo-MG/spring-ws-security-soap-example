@@ -23,5 +23,10 @@
  */
 /**
  * Provides the repositories used to access the web services data.
+ * <p>
+ * The {@link com.wandrell.example.swss.repository.ExampleEntityRepository} is a
+ * simple Spring-JPA repository, meant to allow querying the entities returned
+ * by the endpoint.
  */
 package com.wandrell.example.swss.repository;
+

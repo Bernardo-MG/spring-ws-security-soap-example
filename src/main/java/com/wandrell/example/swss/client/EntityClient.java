@@ -35,6 +35,16 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
  * Client for acquiring {@link Entity} entities from the web service.
+ * <p>
+ * It is a simple client, which only takes a URL and the numeric identifier for
+ * an entity, and then queries the web service for it, returning the result.
+ * <p>
+ * Internally a {@link SoapActionCallback} will be used when calling the web
+ * service to avoid unreachable endpoint errors when using some authentication
+ * methods, which otherwise would make it impossible to reach the endpoint.
+ * <p>
+ * If no result is received then the {@code null} value will be returned. And if
+ * any exception occurs then it will be thrown as usual.
  */
 public final class EntityClient extends WebServiceGatewaySupport {
 
@@ -61,6 +71,9 @@ public final class EntityClient extends WebServiceGatewaySupport {
      * <p>
      * If the id is invalid then the resulting response will contain a null
      * entity.
+     * <p>
+     * The method makes sure the expected SOAP action is used, to avoid
+     * unreachable endpoint errors when using some authentication methods.
      *
      * @param url
      *            url to the web service
@@ -73,16 +86,17 @@ public final class EntityClient extends WebServiceGatewaySupport {
         final GetEntityResponse response; // Response with the resulting entity
         final Entity entity;              // Entity for the failed requests
 
+        // Generates request
         request = new GetEntityRequest();
         request.setId(entityId);
 
+        // Sends request and receives response
         response = (GetEntityResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(
-                        url,
-                        request,
+                .marshalSendAndReceive(url, request,
                         new SoapActionCallback(EntityEndpoint.ACTION));
 
         if (response == null) {
+            // No response was received
             entity = null;
         } else {
             entity = response.getEntity();
