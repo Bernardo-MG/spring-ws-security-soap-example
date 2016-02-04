@@ -10,7 +10,7 @@ Small web service showing the use of Spring WS Security for a SOAP web service.
 
 ## Features
 
-The project contains several example showing how to use the WSS4J and XSSJ authentication implementations.
+The project offers various examples showing how to set up the [WSS4J][wss4j] and [XWSS][xwss] [WS-Security][ws-security] implementations for the [Spring-WS][spring-ws] framework.
 
 The following authentication methods, along a web service without any kind of authentication, are used:
 
@@ -123,3 +123,9 @@ The project has been released under the [MIT License][license].
 [scm]: https://github.com/bernardo-mg/spring-ws-security-soap-example
 [site-develop]: http://docs.wandrell.com/development/maven/swss-soap-example
 [site-release]: http://docs.wandrell.com/maven/swss-soap-example
+
+[ws-security]: https://www.oasis-open.org/committees/wss/
+[xwss]: https://docs.oracle.com/cd/E17802_01/webservices/webservices/docs/1.6/tutorial/doc/XWS-SecurityIntro4.html
+[wss4j]: https://ws.apache.org/wss4j/
+
+[spring-ws]: http://projects.spring.io/spring-ws/
