@@ -51,7 +51,6 @@ The application is coded in Java, using Maven to manage the project.
 
 The project has been tested on the following Java versions:
 * JDK 7
-* JDK 8
 * OpenJDK 7
 
 All other dependencies are handled through Maven, and noted in the included POM file. This includes the plugins used for running the demo in an embedded web server.

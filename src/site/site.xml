@@ -11,12 +11,11 @@
 
 	<custom>
 		<skinConfig>
-			<keywords>Maven, Java, library</keywords>
+			<keywords>Spring, web service, ws, security, wss, XWSS, WSS4J, example</keywords>
 			<descriptionUrl>Check the documentation for Spring WS Security Example</descriptionUrl>
 			<twitterSite>@Wandrell_BMG</twitterSite>
 			<interpreters>
 				<interpreter>JDK 7</interpreter>
-				<interpreter>JDK 8</interpreter>
 				<interpreter>OpenJDK 7</interpreter>
 			</interpreters>
 			<topNav>
