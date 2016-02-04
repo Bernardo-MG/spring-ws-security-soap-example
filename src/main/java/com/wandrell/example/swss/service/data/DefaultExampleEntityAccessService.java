@@ -65,8 +65,8 @@ public class DefaultExampleEntityAccessService
     }
 
     @Override
-    public final ExampleEntity findById(final Integer id) {
-        return getExampleEntityRepository().findOne(id);
+    public final ExampleEntity findById(final Integer identifier) {
+        return getExampleEntityRepository().findOne(identifier);
     }
 
     /**

@@ -109,8 +109,9 @@ public final class DefaultExampleEntity implements ExampleEntity {
     }
 
     @Override
-    public final void setId(final Integer id) {
-        entityId = checkNotNull(id, "Received a null pointer as id");
+    public final void setId(final Integer identifier) {
+        entityId = checkNotNull(identifier,
+                "Received a null pointer as identifier");
     }
 
     @Override

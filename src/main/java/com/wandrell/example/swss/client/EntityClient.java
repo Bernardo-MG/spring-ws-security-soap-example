@@ -64,23 +64,23 @@ public final class EntityClient extends WebServiceGatewaySupport {
      *
      * @param url
      *            url to the web service
-     * @param id
+     * @param entityId
      *            id of the queried {@code Entity}
      * @return the {@code Entity} with the received id
      */
-    public final Entity getEntity(final String url, final Integer id) {
+    public final Entity getEntity(final String url, final Integer entityId) {
         final GetEntityRequest request;   // Request for acquiring the entity
         final GetEntityResponse response; // Response with the resulting entity
         final Entity entity;              // Entity for the failed requests
 
         request = new GetEntityRequest();
-        request.setId(id);
+        request.setId(entityId);
 
         response = (GetEntityResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(
                         url,
                         request,
-                        new SoapActionCallback(EntityEndpoint.GET_ENTITY_ACTION));
+                        new SoapActionCallback(EntityEndpoint.ACTION));
 
         if (response == null) {
             entity = null;
