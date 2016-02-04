@@ -21,10 +21,12 @@ The various web services included in the project each offer a different security
 - Signed data.
 - Encrypted data.
 
-For each of them both the XWSS and WSS4J implementations have been used.
+For each of them both the XWSS and WSS4J implementations have been used, each having [their own URL][endpoint-url].
 
 [spring-ws]: http://projects.spring.io/spring-ws/
 
 [ws-security]: https://www.oasis-open.org/committees/wss/
 [xwss]: https://docs.oracle.com/cd/E17802_01/webservices/webservices/docs/1.6/tutorial/doc/XWS-SecurityIntro4.html
 [wss4j]: https://ws.apache.org/wss4j/
+
+[endpoint-url]: ./urls.html
