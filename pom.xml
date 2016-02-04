@@ -245,7 +245,7 @@
         <!-- Maven Site -->
         <site.skin.version>0.2.1</site.skin.version>
         <!-- Testing server -->
-        <server.test.path>/sws</server.test.path>
+        <server.test.path>/swss</server.test.path>
     </properties>
 
     <!-- ********************************************** -->
