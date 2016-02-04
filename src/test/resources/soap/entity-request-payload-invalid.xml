@@ -1,0 +1,3 @@
+<ent:getEntityRequest xmlns:ent='http://wandrell.com/example/ws/entity'>
+    <ent:abcd />
+</ent:getEntityRequest>

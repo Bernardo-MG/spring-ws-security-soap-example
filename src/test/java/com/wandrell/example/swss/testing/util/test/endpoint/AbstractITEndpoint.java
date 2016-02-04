@@ -55,15 +55,15 @@ public abstract class AbstractITEndpoint extends
         AbstractTestNGSpringContextTests {
 
     /**
-     * URL to the web service being tested.
-     */
-    @Value("${ws.url}")
-    private String wsURL;
-    /**
      * URL to the WSDL of the web service being tested.
      */
     @Value("${ws.wsdl.url}")
     private String wsdlURL;
+    /**
+     * URL to the web service being tested.
+     */
+    @Value("${ws.url}")
+    private String wsURL;
 
     /**
      * Default constructor.

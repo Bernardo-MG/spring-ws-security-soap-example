@@ -15,7 +15,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/persistence.properties, classpath:context/ws/ws.properties, classpath:context/ws/ws-unsecure.properties" />
+        location="classpath:context/persistence.properties, classpath:context/ws/ws.properties, classpath:context/ws/ws-unsecure.properties, classpath:context/ws/test-unsecure-ws.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/persistence.xml" />

@@ -26,7 +26,7 @@ package com.wandrell.example.swss.testing.integration.client;
 
 import org.springframework.test.context.ContextConfiguration;
 
-import com.wandrell.example.swss.testing.util.config.ContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
 /**
@@ -35,7 +35,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ContextConfig.CLIENT_UNSECURE })
+@ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
 public final class ITEntityClientUnsecure extends AbstractITEntityClient {
 
     /**

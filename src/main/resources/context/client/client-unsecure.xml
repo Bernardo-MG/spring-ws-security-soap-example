@@ -7,14 +7,15 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for the unsecured WS client. This is the most basic WS client possible.
+        Context for the unsecured WS client. This is the most basic WS
+        client possible.
     </description>
 
     <!-- Imports base context -->
     <import resource="classpath:context/client/client.xml" />
 
     <!-- Client -->
-    <bean id="client" class="${client.class}">
+    <bean id="client" class="${client.class}" scope="prototype">
         <property name="marshaller" ref="marshaller" />
         <property name="unmarshaller" ref="marshaller" />
         <property name="interceptors">

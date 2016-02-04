@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <description>
+        Test content for a client which makes use of the password
+        protected WS.
+    </description>
+
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/keystore/keystore2.properties, classpath:context/client/client.properties, classpath:context/security/signature/wss4j/security-signature-wss4j.properties, classpath:context/keystore/keystore-wss4j.properties, classpath:context/client/signature/wss4j/client-signature-wss4j.properties, classpath:context/client/signature/wss4j/test-client-signature-wss4j-to-wss4j-invalid.properties" />
+
+    <!-- Imports base context -->
+    <import resource="classpath:context/keystore/keystore-wss4j.xml" />
+    <import resource="classpath:context/client/signature/wss4j/client-signature-wss4j.xml" />
+
+</beans>
