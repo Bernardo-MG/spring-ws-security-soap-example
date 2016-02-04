@@ -10,7 +10,18 @@ Small web service showing the use of Spring WS Security for a SOAP web service.
 
 ## Features
 
-- Spring WS Security
+The project contains several example showing how to use the WSS4J and XSSJ authentication implementations.
+
+The following authentication methods, along a web service without any kind of authentication, are used:
+
+- Plain password.
+- Digested password.
+- Signature.
+- Encryption.
+
+Each of them is applied to a different WS.
+
+Additionally, several tests making sure that the web services work as intended.
 
 ## Documentation
 
@@ -51,6 +62,40 @@ To run the demo just use the following Maven command:
 
 ```
 $ mvn clean package jetty:run-war
+```
+
+### URLs for the web services
+
+By default the web services will be deployed to the following URL:
+
+```
+http://localhost:8080/swss
+```
+
+But this can be changed in the POM, by editing the Jetty plugin's configuration.
+
+With this, by running the project the following endpoints are mapped each to their own URL:
+
+|Authentication method|WSS Implementation|URL|
+|:-:|:-:|:-:|
+|None|None|http://localhost:8080/swss/unsecure/entities|
+|Plain Password|XWSS|http://localhost:8080/swss/password/plain/xwss/entities|
+|Plain Password|WSS4J|http://localhost:8080/swss/password/plain/wss4j/entities|
+|Digested Password|XWSS|http://localhost:8080/swss/password/digest/xwss/entities|
+|Digested Password|WSS4J|http://localhost:8080/swss/password/digest/wss4j/entities|
+|Signature|XWSS|http://localhost:8080/swss/signature/xwss/entities|
+|Signature|WSS4J|http://localhost:8080/wss4j/signature/xwss/entities|
+|Encryption|XWSS|http://localhost:8080/swss/encryption/xwss/entities|
+|Encryption|WSS4J|http://localhost:8080/wss4j/encryption/xwss/entities|
+
+#### WSDL
+
+Each endpoint has their own WSDL file, which can be accessed by just adding the ".wsdl" suffix to the URL.
+
+For example, for the unsecured web service the WSDL URL is as follows:
+
+```
+http://localhost:8080/swss/unsecure/entities.wsdl
 ```
 
 ## Collaborate
