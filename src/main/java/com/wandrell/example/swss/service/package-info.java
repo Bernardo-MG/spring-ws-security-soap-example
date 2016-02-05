@@ -23,5 +23,10 @@
  */
 /**
  * Provides the services handling business logic.
+ * <p>
+ * It is divided into a {@link com.wandrell.example.swss.service.data data
+ * package} and a {@link com.wandrell.example.swss.service.security security
+ * package}, both with their respective services.
  */
 package com.wandrell.example.swss.service;
+

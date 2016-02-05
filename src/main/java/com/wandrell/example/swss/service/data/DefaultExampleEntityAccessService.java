@@ -39,8 +39,8 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
  * @author Bernardo Martínez Garrido
  */
 @Service
-public class DefaultExampleEntityAccessService
-        implements ExampleEntityAccessService {
+public class DefaultExampleEntityAccessService implements
+        ExampleEntityAccessService {
 
     /**
      * Repository for the {@code ExampleEntity} instances handled by the
@@ -52,6 +52,8 @@ public class DefaultExampleEntityAccessService
 
     /**
      * Constructs a {@code DefaultExampleEntityService}.
+     * <p>
+     * The constructor is meant to make use of Spring's IOC system.
      *
      * @param repository
      *            the repository for the {@code ExampleEntity} instances

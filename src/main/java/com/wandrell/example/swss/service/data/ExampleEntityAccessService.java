@@ -27,7 +27,10 @@ package com.wandrell.example.swss.service.data;
 import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
- * Service for handling {@link ExampleEntity} instances.
+ * Service for accessing {@link ExampleEntity} instances.
+ * <p>
+ * It just allows finding an entity by the id, which is required for the
+ * endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -38,7 +41,7 @@ public interface ExampleEntityAccessService {
      * <p>
      * If no instance exists with that id then the value {@code null} is
      * returned.
-     * 
+     *
      * @param identifier
      *            identifier of the {@code ExampleEntity} to find
      * @return the {@code ExampleEntity} with the given id or {@code null}
