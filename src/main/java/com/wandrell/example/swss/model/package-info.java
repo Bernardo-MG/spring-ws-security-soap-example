@@ -23,5 +23,14 @@
  */
 /**
  * Provides the model used by the web services.
+ * <p>
+ * This consists just on the
+ * {@link com.wandrell.example.swss.model.ExampleEntity} interface and a
+ * annotated implementation of it, the
+ * {@link com.wandrell.example.swss.model.DefaultExampleEntity}.
+ * <p>
+ * Remember that there is also a JAXB annotated model, uses for the SOAP
+ * messages, in the generated classes package.
  */
 package com.wandrell.example.swss.model;
+

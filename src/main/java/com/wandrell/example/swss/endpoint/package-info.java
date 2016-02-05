@@ -23,5 +23,13 @@
  */
 /**
  * Provides the endpoints for the web services.
+ * <p>
+ * A single and simple endpoint,
+ * {@link com.wandrell.example.swss.endpoint.EntityEndpoint}, is offered. This
+ * just receives a request for an entity and returns it.
+ * <p>
+ * The various endpoints will extend this one by adding the required
+ * authentication methods through the help of Spring.
  */
 package com.wandrell.example.swss.endpoint;
+

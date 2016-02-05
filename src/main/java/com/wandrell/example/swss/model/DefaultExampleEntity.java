@@ -26,6 +26,8 @@ package com.wandrell.example.swss.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,8 +36,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.common.base.MoreObjects;
+
 /**
- * Implementation of {@link ExampleEntity} for JPA and XML marshalling.
+ * JPA annotated implementation of {@link ExampleEntity}.
+ * <p>
+ * For the JAXB annotated model check the generated classes folder.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -86,15 +92,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
         }
 
         final DefaultExampleEntity other = (DefaultExampleEntity) obj;
-        if (entityId == null) {
-            if (other.entityId != null) {
-                return false;
-            }
-        } else if (!entityId.equals(other.entityId)) {
-            return false;
-        }
-
-        return true;
+        return Objects.equals(entityId, other.entityId);
     }
 
     @Override
@@ -109,23 +107,24 @@ public final class DefaultExampleEntity implements ExampleEntity {
 
     @Override
     public final int hashCode() {
-        final int prime = 31;
-        int result = 1;
-
-        result = prime * result
-                + ((entityId == null) ? 0 : entityId.hashCode());
-
-        return result;
+        return Objects.hash(entityId);
     }
 
     @Override
-    public final void setId(final Integer id) {
-        entityId = checkNotNull(id, "Received a null pointer as id");
+    public final void setId(final Integer identifier) {
+        entityId = checkNotNull(identifier,
+                "Received a null pointer as identifier");
     }
 
     @Override
     public final void setName(final String name) {
         entityName = checkNotNull(name, "Received a null pointer as name");
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this).add("entityId", entityId)
+                .toString();
     }
 
 }

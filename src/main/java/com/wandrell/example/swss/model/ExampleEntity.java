@@ -27,7 +27,10 @@ package com.wandrell.example.swss.model;
 import java.io.Serializable;
 
 /**
- * Interface representing an entity to be used on the example.
+ * Interface representing an entity to be used by the example.
+ * <p>
+ * This is meant to be the internal model used by the web services. The one for
+ * the SOAP messages is in the generated classes package.
  *
  * @author Bernardo Martínez Garrido
  */

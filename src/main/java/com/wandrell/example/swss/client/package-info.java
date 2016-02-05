@@ -23,5 +23,12 @@
  */
 /**
  * Provides clients to access the web services.
+ * <p>
+ * The only client included, the
+ * {@link com.wandrell.example.swss.client.EntityClient}, is prepared for
+ * working with the the
+ * {@link com.wandrell.example.swss.endpoint.EntityEndpoint}, no matter the
+ * authentication method used.
  */
 package com.wandrell.example.swss.client;
+

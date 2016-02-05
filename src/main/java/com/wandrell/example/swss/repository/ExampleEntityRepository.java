@@ -29,9 +29,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.wandrell.example.swss.model.DefaultExampleEntity;
 
 /**
- * Spring repository for {@link DefaultExampleEntity}.
+ * Spring-JPA repository for {@link DefaultExampleEntity}.
+ * <p>
+ * This is a simple repository meant just to allow acquiring the entities
+ * returned by the endpoint.
  */
-public interface ExampleEntityRepository
-        extends JpaRepository<DefaultExampleEntity, Integer> {
+public interface ExampleEntityRepository extends
+        JpaRepository<DefaultExampleEntity, Integer> {
 
 }

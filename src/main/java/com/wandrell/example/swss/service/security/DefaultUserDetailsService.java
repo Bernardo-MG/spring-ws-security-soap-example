@@ -57,20 +57,20 @@ public final class DefaultUserDetailsService implements UserDetailsService {
 
         checkNotNull(username, "Received a null pointer as username");
 
-        if (username.equalsIgnoreCase("myUser")) {
+        if ("myUser".equalsIgnoreCase(username)) {
             // User for password-based security
             authorities = new LinkedList<SimpleGrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
             user = new User(username, "myPassword", authorities);
-        } else if (username.equalsIgnoreCase("www.wandrell.com")) {
+        } else if ("www.wandrell.com".equalsIgnoreCase(username)) {
             // User for keystore-based security
             authorities = new LinkedList<>();
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
             user = new User(username, "password", true, true, true, true,
                     authorities);
-        } else if (username.equalsIgnoreCase("swss-cert")) {
+        } else if ("swss-cert".equalsIgnoreCase(username)) {
             // User for keystore-based security
             authorities = new LinkedList<>();
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));

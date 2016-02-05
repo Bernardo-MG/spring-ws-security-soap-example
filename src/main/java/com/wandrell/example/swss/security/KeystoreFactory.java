@@ -80,7 +80,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Bernardo Martínez Garrido
  */
-public class KeystoreFactory {
+public final class KeystoreFactory {
 
     /**
      * The logger used for logging the key store creation.

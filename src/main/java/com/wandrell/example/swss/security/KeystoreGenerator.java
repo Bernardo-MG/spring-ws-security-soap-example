@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Bernardo Martínez Garrido
  */
-public class KeystoreGenerator {
+public final class KeystoreGenerator {
 
     /**
      * The logger used for logging the key store creation.
