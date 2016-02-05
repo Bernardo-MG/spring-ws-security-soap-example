@@ -36,7 +36,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
- * Service for handling users access.
+ * Service for handling users authentication data.
+ * <p>
+ * This is used by the the user-based authentication systems.
  *
  * @author Bernardo Martínez Garrido
  */
