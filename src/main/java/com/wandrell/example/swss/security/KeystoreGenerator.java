@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Executable class for generating the key stores used on the tests.
  * <p>
- * This is to be used in case the key stores are to be rebuilt for some reason.
+ * This is to be used in case the key stores are to be rebuilt for any reason.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -47,6 +47,14 @@ public final class KeystoreGenerator {
     private static final Logger LOGGER = LoggerFactory
             .getLogger(KeystoreGenerator.class);
 
+    /**
+     * Runs the generator and creates a new set of key stores.
+     * 
+     * @param args
+     *            the arguments
+     * @throws Exception
+     *             if any problem occurs while generating the key stores
+     */
     public static final void main(final String[] args) throws Exception {
         final FileOutputStream fos;
         final FileOutputStream fosSecond;
@@ -102,7 +110,7 @@ public final class KeystoreGenerator {
 
         LOGGER.trace("Creating symmetric key store");
 
-        jceksSym = KeystoreFactory.getJCEKSKeystore(password, alias, issuer);
+        jceksSym = KeystoreFactory.getJCEKSKeystore(password, alias);
 
         // Saves the symmetric keystore
         fosSym = new FileOutputStream(jceksSymPath);
