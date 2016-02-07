@@ -44,6 +44,7 @@ import java.security.SignatureException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -145,12 +146,15 @@ public final class KeystoreFactory {
      *             if a required provider is missing
      * @throws OperatorCreationException
      *             if there was a problem creation a bouncy castle operator
+     * @throws SignatureException
+     *             if any problem occurs while signing the certificate
      */
     public static final KeyStore getJKSKeystore(final String password,
             final String alias, final String issuer)
                     throws NoSuchAlgorithmException, CertificateException,
                     KeyStoreException, IOException, InvalidKeyException,
-                    NoSuchProviderException, OperatorCreationException {
+                    NoSuchProviderException, OperatorCreationException,
+                    SignatureException {
         final KeyStore ks;      // Generated key store
 
         ks = getKeystore(password);
@@ -186,12 +190,15 @@ public final class KeystoreFactory {
      *             if there is an I/O or format problem with the key store data
      * @throws KeyStoreException
      *             if a key store related error ocurred
+     * @throws SignatureException
+     *             if any problem occurs while signing the certificate
      */
     private static void addCertificate(final KeyStore ks, final String password,
             final String alias, final String issuer)
                     throws NoSuchAlgorithmException, NoSuchProviderException,
                     InvalidKeyException, OperatorCreationException,
-                    CertificateException, IOException, KeyStoreException {
+                    CertificateException, IOException, KeyStoreException,
+                    SignatureException {
         final KeyPair keypair;          // Key pair for the certificate
         final Certificate certificate;  // Generated certificate
         final Certificate[] chain;      // Certificate chain
@@ -221,7 +228,7 @@ public final class KeystoreFactory {
      * @throws KeyStoreException
      *             if a key store related error occurred
      */
-    private final static void addSecretKey(final KeyStore ks,
+    private static final void addSecretKey(final KeyStore ks,
             final String alias, final String password)
                     throws KeyStoreException {
         final SecretKeyEntry secretKeyEntry;  // Secret key entry
@@ -233,7 +240,7 @@ public final class KeystoreFactory {
         secretKey = new SecretKeySpec(key, "DES");
 
         LOGGER.debug(String.format("Created secret key %s with format %s",
-                secretKey.getEncoded(), secretKey.getFormat()));
+                Arrays.asList(secretKey.getEncoded()), secretKey.getFormat()));
 
         secretKeyEntry = new SecretKeyEntry(secretKey);
         keyPassword = new PasswordProtection(password.toCharArray());
@@ -293,11 +300,14 @@ public final class KeystoreFactory {
      *             found
      * @throws NoSuchProviderException
      *             if a required provider is missing
+     * @throws SignatureException
+     *             if any problem occurs while signing the certificate
      */
-    private final static Certificate getCertificate(final KeyPair keypair,
+    private static final Certificate getCertificate(final KeyPair keypair,
             final String issuer) throws IOException, OperatorCreationException,
                     CertificateException, InvalidKeyException,
-                    NoSuchAlgorithmException, NoSuchProviderException {
+                    NoSuchAlgorithmException, NoSuchProviderException,
+                    SignatureException {
         final X509v3CertificateBuilder builder; // Certificate builder
         final X509Certificate certificate;      // Certificate
 
@@ -306,17 +316,13 @@ public final class KeystoreFactory {
         certificate = getSignedCertificate(builder, keypair.getPrivate());
 
         certificate.checkValidity(new Date());
-        try {
-            certificate.verify(keypair.getPublic());
-        } catch (SignatureException e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
+        certificate.verify(keypair.getPublic());
 
         LOGGER.debug(String.format(
                 "Created certificate of type %s with encoded value %s",
-                certificate.getType(), certificate.getEncoded()));
-        LOGGER.debug(String.format("Created certificate with public key:\n%s",
+                certificate.getType(),
+                Arrays.asList(certificate.getEncoded())));
+        LOGGER.debug(String.format("Created certificate with public key:%n%s",
                 certificate.getPublicKey()));
 
         return certificate;
@@ -393,8 +399,8 @@ public final class KeystoreFactory {
 
         LOGGER.debug(String.format(
                 "Created key pair with private key %3$s %1$s and public key %4$s %2$s",
-                keypair.getPrivate().getEncoded(),
-                keypair.getPublic().getEncoded(),
+                Arrays.asList(keypair.getPrivate().getEncoded()),
+                Arrays.asList(keypair.getPublic().getEncoded()),
                 keypair.getPrivate().getAlgorithm(),
                 keypair.getPublic().getAlgorithm()));
 
@@ -490,7 +496,8 @@ public final class KeystoreFactory {
 
         LOGGER.debug(String.format(
                 "Signed certificate with %1$s private key %3$s, using algorithm %2$s",
-                key.getAlgorithm(), key.getFormat(), key.getEncoded()));
+                key.getAlgorithm(), key.getFormat(),
+                Arrays.asList(key.getEncoded())));
 
         return signed;
     }

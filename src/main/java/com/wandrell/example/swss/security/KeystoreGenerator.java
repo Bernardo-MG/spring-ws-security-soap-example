@@ -57,6 +57,7 @@ public final class KeystoreGenerator {
      */
     public static final void main(final String[] args) throws Exception {
         final FileOutputStream fos;
+        final FileOutputStream fosjks;
         final FileOutputStream fosSecond;
         final FileOutputStream fosSym;
         final KeyStore jksMain;
@@ -87,8 +88,9 @@ public final class KeystoreGenerator {
 
         // Saves the main keystore
         fos = new FileOutputStream(jksMainPath);
-        jksMain.store(new FileOutputStream(jksMainPath),
-                password.toCharArray());
+        fosjks = new FileOutputStream(jksMainPath);
+        jksMain.store(fosjks, password.toCharArray());
+        fosjks.close();
         fos.close();
 
         LOGGER.trace("Created main key store");
