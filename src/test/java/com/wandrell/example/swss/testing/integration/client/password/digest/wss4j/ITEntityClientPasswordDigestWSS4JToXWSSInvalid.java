@@ -36,8 +36,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientWSS4JContextConfig.PASSWORD_DIGEST_TO_XWSS_INVALID })
+@ContextConfiguration(locations = {
+        ClientWSS4JContextConfig.PASSWORD_DIGEST_TO_XWSS_INVALID })
 public final class ITEntityClientPasswordDigestWSS4JToXWSSInvalid
         extends AbstractITEntityClientInvalid {
 

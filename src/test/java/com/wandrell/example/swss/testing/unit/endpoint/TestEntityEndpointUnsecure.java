@@ -54,14 +54,19 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { WSContextConfig.UNSECURE })
-public final class TestEntityEndpointUnsecure extends
-        AbstractTestNGSpringContextTests {
+public final class TestEntityEndpointUnsecure
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
      */
     @Autowired
     private ApplicationContext applicationContext;
+    /**
+     * Path to XSD file which validates the SOAP messages.
+     */
+    @Value("${xsd.entity.path}")
+    private String             entityXsdPath;
     /**
      * Path to the file with the invalid request payload.
      */
@@ -72,11 +77,6 @@ public final class TestEntityEndpointUnsecure extends
      */
     @Value("${soap.request.payload.path}")
     private String             requestPayloadPath;
-    /**
-     * Path to XSD file which validates the SOAP messages.
-     */
-    @Value("${xsd.entity.path}")
-    private String             entityXsdPath;
 
     /**
      * Constructs a {@code TestEntityEndpointUnsecure}.
@@ -96,9 +96,8 @@ public final class TestEntityEndpointUnsecure extends
         final Source requestPayload;           // SOAP payload for the request
 
         // Creates the request
-        requestPayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(requestPayloadInvalidPath));
+        requestPayload = new StreamSource(ClassLoader.class
+                .getResourceAsStream(requestPayloadInvalidPath));
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
@@ -127,8 +126,8 @@ public final class TestEntityEndpointUnsecure extends
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        responseMatcher = ResponseMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);

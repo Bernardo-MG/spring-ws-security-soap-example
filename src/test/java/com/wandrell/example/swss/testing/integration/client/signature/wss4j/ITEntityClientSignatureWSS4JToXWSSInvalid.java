@@ -38,8 +38,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(
         locations = { ClientWSS4JContextConfig.SIGNATURE_TO_XWSS_INVALID })
-public final class ITEntityClientSignatureWSS4JToXWSSInvalid extends
-        AbstractITEntityClientInvalid {
+public final class ITEntityClientSignatureWSS4JToXWSSInvalid
+        extends AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.

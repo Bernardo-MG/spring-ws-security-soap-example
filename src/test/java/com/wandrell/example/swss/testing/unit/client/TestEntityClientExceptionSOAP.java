@@ -57,8 +57,8 @@ import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-public final class TestEntityClientExceptionSOAP extends
-        AbstractTestNGSpringContextTests {
+public final class TestEntityClientExceptionSOAP
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
@@ -95,8 +95,8 @@ public final class TestEntityClientExceptionSOAP extends
         final ResponseCreator responseCreator; // Creator for the response
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responseCreator = ResponseCreators.withError("Error");
@@ -121,12 +121,12 @@ public final class TestEntityClientExceptionSOAP extends
         final ResponseCreator responseCreator; // Creator for the response
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
-        responseCreator = ResponseCreators.withServerOrReceiverFault(
-                "FAULT:Server", Locale.ENGLISH);
+        responseCreator = ResponseCreators
+                .withServerOrReceiverFault("FAULT:Server", Locale.ENGLISH);
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
@@ -148,8 +148,8 @@ public final class TestEntityClientExceptionSOAP extends
         final ResponseCreator responseCreator; // Creator for the response
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responseCreator = ResponseCreators.withVersionMismatchFault(

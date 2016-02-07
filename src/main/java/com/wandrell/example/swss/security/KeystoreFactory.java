@@ -86,13 +86,13 @@ public final class KeystoreFactory {
      * The logger used for logging the key store creation.
      */
     private static final Logger LOGGER = LoggerFactory
-                                               .getLogger(KeystoreFactory.class);
+            .getLogger(KeystoreFactory.class);
 
     public static final KeyStore getJCEKSKeystore(final String password,
             final String alias, final String issuer)
-            throws NoSuchAlgorithmException, CertificateException,
-            KeyStoreException, IOException, InvalidKeyException,
-            NoSuchProviderException, OperatorCreationException {
+                    throws NoSuchAlgorithmException, CertificateException,
+                    KeyStoreException, IOException, InvalidKeyException,
+                    NoSuchProviderException, OperatorCreationException {
         final KeyStore ks;
 
         ks = getKeystore(password, "JCEKS");
@@ -104,10 +104,10 @@ public final class KeystoreFactory {
 
     public static final KeyStore getJKSKeystore(final String password,
             final String alias, final String issuer)
-            throws NoSuchAlgorithmException, CertificateException,
-            KeyStoreException, IOException, InvalidKeyException,
-            NoSuchProviderException, SecurityException, SignatureException,
-            OperatorCreationException {
+                    throws NoSuchAlgorithmException, CertificateException,
+                    KeyStoreException, IOException, InvalidKeyException,
+                    NoSuchProviderException, SecurityException,
+                    SignatureException, OperatorCreationException {
         final KeyStore ks;
 
         ks = getKeystore(password);
@@ -116,11 +116,12 @@ public final class KeystoreFactory {
         return ks;
     }
 
-    private static void addCertificate(final KeyStore ks,
-            final String password, final String alias, final String issuer)
-            throws NoSuchAlgorithmException, NoSuchProviderException,
-            InvalidKeyException, CertIOException, OperatorCreationException,
-            CertificateException, IOException, KeyStoreException {
+    private static void addCertificate(final KeyStore ks, final String password,
+            final String alias, final String issuer)
+                    throws NoSuchAlgorithmException, NoSuchProviderException,
+                    InvalidKeyException, CertIOException,
+                    OperatorCreationException, CertificateException,
+                    IOException, KeyStoreException {
         final KeyPair keypair;
         final Certificate certificate;
         final Certificate[] chain;
@@ -134,13 +135,14 @@ public final class KeystoreFactory {
                 chain);
         // ks.setCertificateEntry(alias, certificate);
 
-        LOGGER.debug(String
-                .format("Added certificate with alias %s and password %s for issuer %s",
-                        alias, password, issuer));
+        LOGGER.debug(String.format(
+                "Added certificate with alias %s and password %s for issuer %s",
+                alias, password, issuer));
     }
 
     private final static void addSecretKey(final KeyStore ks,
-            final String alias, final String password) throws KeyStoreException {
+            final String alias, final String password)
+                    throws KeyStoreException {
         final KeyStore.SecretKeyEntry keyStoreEntry;
         final PasswordProtection keyPassword;
         final SecretKey secretKey;
@@ -156,9 +158,9 @@ public final class KeystoreFactory {
         keyPassword = new PasswordProtection(password.toCharArray());
         ks.setEntry(alias, keyStoreEntry, keyPassword);
 
-        LOGGER.debug(String.format(
-                "Added secret key with alias %s and password %s", alias,
-                password));
+        LOGGER.debug(
+                String.format("Added secret key with alias %s and password %s",
+                        alias, password));
     }
 
     private static SubjectKeyIdentifier
@@ -167,7 +169,8 @@ public final class KeystoreFactory {
         ASN1InputStream is = null;
 
         try {
-            is = new ASN1InputStream(new ByteArrayInputStream(key.getEncoded()));
+            is = new ASN1InputStream(
+                    new ByteArrayInputStream(key.getEncoded()));
             seq = (ASN1Sequence) is.readObject();
         } finally {
             IOUtils.closeQuietly(is);
@@ -179,9 +182,9 @@ public final class KeystoreFactory {
 
     private final static Certificate getCertificate(final KeyPair keypair,
             final String issuer) throws CertIOException, IOException,
-            OperatorCreationException, CertificateException,
-            InvalidKeyException, NoSuchAlgorithmException,
-            NoSuchProviderException {
+                    OperatorCreationException, CertificateException,
+                    InvalidKeyException, NoSuchAlgorithmException,
+                    NoSuchProviderException {
         final X509v3CertificateBuilder builder;
         final X509Certificate certificate;
 
@@ -248,8 +251,8 @@ public final class KeystoreFactory {
 
     }
 
-    private static final KeyPair getKeyPair() throws NoSuchAlgorithmException,
-            NoSuchProviderException {
+    private static final KeyPair getKeyPair()
+            throws NoSuchAlgorithmException, NoSuchProviderException {
         final KeyPairGenerator keyPairGenerator;
         final KeyPair keypair;
 
@@ -258,12 +261,12 @@ public final class KeystoreFactory {
 
         keypair = keyPairGenerator.generateKeyPair();
 
-        LOGGER.debug(String
-                .format("Created key pair with private key %3$s %1$s and public key %4$s %2$s",
-                        keypair.getPrivate().getEncoded(), keypair.getPublic()
-                                .getEncoded(), keypair.getPrivate()
-                                .getAlgorithm(), keypair.getPublic()
-                                .getAlgorithm()));
+        LOGGER.debug(String.format(
+                "Created key pair with private key %3$s %1$s and public key %4$s %2$s",
+                keypair.getPrivate().getEncoded(),
+                keypair.getPublic().getEncoded(),
+                keypair.getPrivate().getAlgorithm(),
+                keypair.getPublic().getAlgorithm()));
 
         return keypair;
     }
@@ -276,7 +279,7 @@ public final class KeystoreFactory {
 
     private static final KeyStore getKeystore(final String password,
             final String type) throws NoSuchAlgorithmException,
-            CertificateException, IOException, KeyStoreException {
+                    CertificateException, IOException, KeyStoreException {
         final KeyStore ks;
         final char[] pass;
 
@@ -293,7 +296,7 @@ public final class KeystoreFactory {
 
     private static X509Certificate signCertificate(
             final X509v3CertificateBuilder builder, final PrivateKey key)
-            throws OperatorCreationException, CertificateException {
+                    throws OperatorCreationException, CertificateException {
         final ContentSigner signer;
         final String provider;
         final X509Certificate signed;
@@ -305,9 +308,9 @@ public final class KeystoreFactory {
         signed = new JcaX509CertificateConverter().setProvider(provider)
                 .getCertificate(builder.build(signer));
 
-        LOGGER.debug(String
-                .format("Signed certificate with %1$s private key %3$s, using algorithm %2$s",
-                        key.getAlgorithm(), key.getFormat(), key.getEncoded()));
+        LOGGER.debug(String.format(
+                "Signed certificate with %1$s private key %3$s, using algorithm %2$s",
+                key.getAlgorithm(), key.getFormat(), key.getEncoded()));
 
         return signed;
     }

@@ -33,4 +33,3 @@
  * messages, in the generated classes package.
  */
 package com.wandrell.example.swss.model;
-

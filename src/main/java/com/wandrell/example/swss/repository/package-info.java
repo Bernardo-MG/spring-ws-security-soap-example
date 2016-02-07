@@ -29,4 +29,3 @@
  * by the endpoint.
  */
 package com.wandrell.example.swss.repository;
-

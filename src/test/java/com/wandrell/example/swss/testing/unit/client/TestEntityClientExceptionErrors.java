@@ -45,8 +45,8 @@ import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-public final class TestEntityClientExceptionErrors extends
-        AbstractTestNGSpringContextTests {
+public final class TestEntityClientExceptionErrors
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.

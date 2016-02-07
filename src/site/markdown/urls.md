@@ -1,12 +1,6 @@
 # Endpoint URLs
 
-Each of the different endpoints is mapped to their own URL, based on the base default URL, which is as follows:
-
-```
-http://localhost:8080/swss
-```
-
-The following endpoints are mapped each to their own URL:
+Each combination of authentication methods and WSS implementations is mapped to their own URL:
 
 |Authentication method|WSS Implementation|URL|
 |:-:|:-:|:-:|
@@ -22,11 +16,11 @@ The following endpoints are mapped each to their own URL:
 
 ## WSDL
 
-Each endpoint has their own WSDL file, which can be accessed by just adding the ".wsdl" suffix to the URL.
+Additionally there is a WSDL file for each of these endpoints, which is created by just adding the ".wsdl" suffix to the URL.
 
 |Authentication method|WSS Implementation|URL|
 |:-:|:-:|:-:|
-|None|None|[http://localhost:8080/swss/unsecure/entities.wsdl(http://localhost:8080/swss/unsecure/entities.wsdl)|
+|None|None|[http://localhost:8080/swss/unsecure/entities.wsdl](http://localhost:8080/swss/unsecure/entities.wsdl)|
 |Plain Password|XWSS|[http://localhost:8080/swss/password/plain/xwss/entities.wsdl](http://localhost:8080/swss/password/plain/xwss/entities.wsdl)|
 |Plain Password|WSS4J|[http://localhost:8080/swss/password/plain/wss4j/entities.wsdl](http://localhost:8080/swss/password/plain/wss4j/entities.wsdl)|
 |Digested Password|XWSS|[http://localhost:8080/swss/password/digest/xwss/entities.wsdl](http://localhost:8080/swss/password/digest/xwss/entities.wsdl)|

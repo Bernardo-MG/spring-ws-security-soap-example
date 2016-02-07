@@ -57,16 +57,16 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 public class EntityEndpoint {
 
     /**
-     * Namespace for the example entities.
-     */
-    public static final String               ENTITY_NS = "http://wandrell.com/example/ws/entity";
-    /**
      * The action for acquiring the entities.
      * <p>
      * When sending requests to the web service this action should be used if
      * the authentication systems modifies the message.
      */
     public static final String               ACTION    = "http://wandrell.com/example/ws/entity/getEntity";
+    /**
+     * Namespace for the example entities.
+     */
+    public static final String               ENTITY_NS = "http://wandrell.com/example/ws/entity";
     /**
      * Name for the operation used to acquire an entity.
      */
@@ -110,8 +110,8 @@ public class EntityEndpoint {
     @PayloadRoot(localPart = REQUEST, namespace = ENTITY_NS)
     @SoapAction(ACTION)
     @ResponsePayload
-    public final GetEntityResponse getEntity(
-            @RequestPayload final GetEntityRequest request) {
+    public final GetEntityResponse
+            getEntity(@RequestPayload final GetEntityRequest request) {
         final GetEntityResponse response; // SOAP response with the result
         final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return

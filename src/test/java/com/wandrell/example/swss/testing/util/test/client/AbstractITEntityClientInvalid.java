@@ -46,8 +46,8 @@ import com.wandrell.example.swss.client.EntityClient;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEntityClientInvalid extends
-        AbstractTestNGSpringContextTests {
+public abstract class AbstractITEntityClientInvalid
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Client being tested.

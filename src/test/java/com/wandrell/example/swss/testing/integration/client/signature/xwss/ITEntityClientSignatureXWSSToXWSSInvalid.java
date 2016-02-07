@@ -35,10 +35,9 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientXWSSContextConfig.SIGNATURE_INVALID })
-public final class ITEntityClientSignatureXWSSToXWSSInvalid extends
-        AbstractITEntityClientInvalid {
+@ContextConfiguration(locations = { ClientXWSSContextConfig.SIGNATURE_INVALID })
+public final class ITEntityClientSignatureXWSSToXWSSInvalid
+        extends AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.

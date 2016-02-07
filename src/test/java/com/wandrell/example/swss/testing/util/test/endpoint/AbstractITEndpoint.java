@@ -29,14 +29,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.SOAPConnectionFactory;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 /**
  * Abstract integration tests for an endpoint testing that it handles messages
@@ -45,14 +53,15 @@ import org.testng.annotations.Test;
  * Checks the following cases:
  * <ol>
  * <li>The WSDL is being generated.</li>
+ * <li>The WSDL contains the correct SOAP address.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEndpoint extends
-        AbstractTestNGSpringContextTests {
+public abstract class AbstractITEndpoint
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * URL to the WSDL of the web service being tested.
@@ -79,7 +88,7 @@ public abstract class AbstractITEndpoint extends
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_WSDL() throws IOException {
+    public final void testEndpoint_WSDL_Exists() throws IOException {
         final URL url;           // URL for the WSDL
         final BufferedReader in; // Reader for the WSDL
         final String line;       // First line of the WSDL
@@ -89,6 +98,62 @@ public abstract class AbstractITEndpoint extends
         line = in.readLine();
 
         Assert.assertTrue(line.contains("wsdl:definitions"));
+    }
+
+    /**
+     * Tests that the WSDL contains the correct SOAP address.
+     * 
+     * @throws ParserConfigurationException
+     *             never, this is a required declaration
+     * @throws SAXException
+     *             never, this is a required declaration
+     * @throws IOException
+     *             never, this is a required declaration
+     * @throws XPathExpressionException
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_WSDL_ValidSOAPAddress()
+            throws ParserConfigurationException, SAXException, IOException,
+            XPathExpressionException {
+        final URL url;           // URL for the WSDL
+
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        url = new URL(wsdlURL);
+        Document doc = builder.parse(url.openStream());
+
+        Node serviceNode = getChild((Element) doc.getFirstChild(),
+                "wsdl:service");
+        Node portNode = getChild((Element) serviceNode, "wsdl:port");
+        Node addressNode = getChild((Element) portNode, "soap:address");
+
+        Assert.assertEquals(wsdlURL,
+                ((Element) addressNode).getAttribute("location"));
+    }
+
+    /**
+     * Acquires a child element based on the name.
+     * 
+     * @param parent
+     *            the element where the search will be made
+     * @param name
+     *            the name of the child to return
+     * @return the child with the specified name
+     */
+    private final Element getChild(final Element parent, final String name) {
+        Element result = null;      // The wanted child
+
+        for (Node child = parent.getFirstChild(); child != null; child = child
+                .getNextSibling()) {
+            if ((child instanceof Element)
+                    && (name.equals(child.getNodeName()))) {
+                result = (Element) child;
+            }
+        }
+
+        return result;
     }
 
     /**

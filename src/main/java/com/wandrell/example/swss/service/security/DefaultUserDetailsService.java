@@ -80,8 +80,8 @@ public final class DefaultUserDetailsService implements UserDetailsService {
             user = new User(username, "123456", true, true, true, true,
                     authorities);
         } else {
-            throw new UsernameNotFoundException(String.format(
-                    "Invalid username '%s'", username));
+            throw new UsernameNotFoundException(
+                    String.format("Invalid username '%s'", username));
         }
 
         return user;

@@ -31,4 +31,3 @@
  * authentication method used.
  */
 package com.wandrell.example.swss.client;
-

@@ -47,8 +47,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractITEntityClient extends
-        AbstractTestNGSpringContextTests {
+public abstract class AbstractITEntityClient
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Client being tested.

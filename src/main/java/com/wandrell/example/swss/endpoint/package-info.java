@@ -32,4 +32,3 @@
  * authentication methods through the help of Spring.
  */
 package com.wandrell.example.swss.endpoint;
-

@@ -29,4 +29,3 @@
  * package}, both with their respective services.
  */
 package com.wandrell.example.swss.service;
-

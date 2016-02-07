@@ -45,7 +45,7 @@ public final class KeystoreGenerator {
      * The logger used for logging the key store creation.
      */
     private static final Logger LOGGER = LoggerFactory
-                                               .getLogger(KeystoreGenerator.class);
+            .getLogger(KeystoreGenerator.class);
 
     public static final void main(final String[] args) throws Exception {
         final FileOutputStream fos;
@@ -79,7 +79,8 @@ public final class KeystoreGenerator {
 
         // Saves the main keystore
         fos = new FileOutputStream(jksMainPath);
-        jksMain.store(new FileOutputStream(jksMainPath), password.toCharArray());
+        jksMain.store(new FileOutputStream(jksMainPath),
+                password.toCharArray());
         fos.close();
 
         LOGGER.trace("Created main key store");
