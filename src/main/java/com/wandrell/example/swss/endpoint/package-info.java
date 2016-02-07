@@ -31,4 +31,5 @@
  * The various endpoints will extend this one by adding the required
  * authentication methods through the help of Spring.
  */
+
 package com.wandrell.example.swss.endpoint;

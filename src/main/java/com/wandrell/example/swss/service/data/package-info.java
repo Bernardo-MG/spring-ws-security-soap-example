@@ -24,4 +24,5 @@
 /**
  * Provides the services handling data access.
  */
+
 package com.wandrell.example.swss.service.data;

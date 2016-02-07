@@ -32,4 +32,5 @@
  * Remember that there is also a JAXB annotated model, uses for the SOAP
  * messages, in the generated classes package.
  */
+
 package com.wandrell.example.swss.model;

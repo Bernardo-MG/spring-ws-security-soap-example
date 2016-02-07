@@ -62,7 +62,6 @@ import org.bouncycastle.asn1.x509.KeyPurposeId;
 import org.bouncycastle.asn1.x509.KeyUsage;
 import org.bouncycastle.asn1.x509.SubjectKeyIdentifier;
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
-import org.bouncycastle.cert.CertIOException;
 import org.bouncycastle.cert.X509v3CertificateBuilder;
 import org.bouncycastle.cert.bc.BcX509ExtensionUtils;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
@@ -404,7 +403,9 @@ public final class KeystoreFactory {
 
     /**
      * Generates a default JKS key store.
-     * @param password the password for the key store
+     * 
+     * @param password
+     *            the password for the key store
      * @return the JKS key store
      * @throws NoSuchAlgorithmException
      *             if an algorithm required to create the key store could not be
@@ -425,8 +426,11 @@ public final class KeystoreFactory {
 
     /**
      * Generates a key store of the specified type.
-     * @param password the password for the key store
-     * @param type the type of the key store
+     * 
+     * @param password
+     *            the password for the key store
+     * @param type
+     *            the type of the key store
      * @return a key store of the specified type
      * @throws NoSuchAlgorithmException
      *             if an algorithm required to create the key store could not be
@@ -458,8 +462,11 @@ public final class KeystoreFactory {
 
     /**
      * Returns a signed certificate.
-     * @param builder builder to create the certificate
-     * @param key private key for the certificate
+     * 
+     * @param builder
+     *            builder to create the certificate
+     * @param key
+     *            private key for the certificate
      * @return a signed certificate
      * @throws OperatorCreationException
      *             if there was a problem creation a bouncy castle operator

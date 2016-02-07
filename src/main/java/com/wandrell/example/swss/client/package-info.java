@@ -30,4 +30,5 @@
  * {@link com.wandrell.example.swss.endpoint.EntityEndpoint}, no matter the
  * authentication method used.
  */
+
 package com.wandrell.example.swss.client;

@@ -30,6 +30,7 @@ package com.wandrell.example.swss.testing.util.config;
  * @author Bernardo Martínez Garrido
  */
 public final class ClientXWSSContextConfig {
+
     /**
      * Context with encryption-based security for the client and using XWSS for
      * both the client and the web service.
