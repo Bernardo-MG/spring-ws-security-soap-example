@@ -116,21 +116,26 @@ public abstract class AbstractITEndpoint
     public final void testEndpoint_WSDL_ValidSOAPAddress()
             throws ParserConfigurationException, SAXException, IOException,
             XPathExpressionException {
-        final URL url;           // URL for the WSDL
+        final DocumentBuilderFactory factory;   // Factory for the
+                                                // DocumentBuilder
+        final DocumentBuilder builder;          // Document builder
+        final Document doc;                     // Document for the WSDL
+        final Node serviceNode;                 // WSDL service node
+        final Node portNode;                    // WSDL port node
+        final Node addressNode;                 // WSDL address node
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        // Creates the document
+        factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        url = new URL(wsdlURL);
-        Document doc = builder.parse(url.openStream());
+        builder = factory.newDocumentBuilder();
+        doc = builder.parse(new URL(wsdlURL).openStream());
 
-        Node serviceNode = getChild((Element) doc.getFirstChild(),
-                "wsdl:service");
-        Node portNode = getChild((Element) serviceNode, "wsdl:port");
-        Node addressNode = getChild((Element) portNode, "soap:address");
+        serviceNode = getChild((Element) doc.getFirstChild(), "wsdl:service");
+        portNode = getChild((Element) serviceNode, "wsdl:port");
+        addressNode = getChild((Element) portNode, "soap:address");
 
-        Assert.assertEquals(wsdlURL,
-                ((Element) addressNode).getAttribute("location"));
+        Assert.assertEquals(((Element) addressNode).getAttribute("location"),
+                wsdlURL);
     }
 
     /**
