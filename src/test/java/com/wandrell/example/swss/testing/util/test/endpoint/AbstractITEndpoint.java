@@ -135,7 +135,7 @@ public abstract class AbstractITEndpoint
         addressNode = getChild((Element) portNode, "soap:address");
 
         Assert.assertEquals(((Element) addressNode).getAttribute("location"),
-                wsdlURL);
+                wsURL);
     }
 
     /**
