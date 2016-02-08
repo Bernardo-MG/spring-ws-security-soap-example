@@ -6,8 +6,48 @@
 
     <jxb:bindings schemaLocation="file:../xsd/entity.xsd">
         <jxb:schemaBindings>
-            <jxb:package name="com.wandrell.example.ws.generated.entity" />
+            <jxb:package name="com.wandrell.example.ws.generated.entity">
+                <jxb:javadoc><![CDATA[Provides classes generated from the test entities schema.]]></jxb:javadoc>
+            </jxb:package>
         </jxb:schemaBindings>
+
+        <jxb:bindings node="//xs:element[@name='getEntityRequest']">
+            <jxb:class>
+                <jxb:javadoc><![CDATA[Request for acquiring an entity.]]></jxb:javadoc>
+            </jxb:class>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:element[@name='getEntityRequest']//xs:element[@name='id']">
+            <jxb:property>
+                <jxb:javadoc><![CDATA[Id of the queried entity.]]></jxb:javadoc>
+            </jxb:property>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:element[@name='getEntityResponse']//xs:element[@name='entity']">
+            <jxb:property>
+                <jxb:javadoc><![CDATA[The entity queried by the request.]]></jxb:javadoc>
+            </jxb:property>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:element[@name='getEntityResponse']">
+            <jxb:class>
+                <jxb:javadoc><![CDATA[Response with an entity.]]></jxb:javadoc>
+            </jxb:class>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='entity']">
+            <jxb:class>
+                <jxb:javadoc><![CDATA[Entity to be used by the example endpoints.
+</p>
+This will be part of the requests and responses sent between the client and the web service.]]]></jxb:javadoc>
+            </jxb:class>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='entity']//xs:element[@name='id']">
+            <jxb:property>
+                <jxb:javadoc><![CDATA[Entity's id.]]></jxb:javadoc>
+            </jxb:property>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='entity']//xs:element[@name='name']">
+            <jxb:property>
+                <jxb:javadoc><![CDATA[Entity's name.]]></jxb:javadoc>
+            </jxb:property>
+        </jxb:bindings>
     </jxb:bindings>
 
 </jxb:bindings>
