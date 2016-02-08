@@ -34,7 +34,7 @@ import com.wandrell.example.swss.model.DefaultExampleEntity;
  * This is a simple repository meant just to allow acquiring the entities
  * returned by the endpoint.
  */
-public interface ExampleEntityRepository extends
-        JpaRepository<DefaultExampleEntity, Integer> {
+public interface ExampleEntityRepository
+        extends JpaRepository<DefaultExampleEntity, Integer> {
 
 }

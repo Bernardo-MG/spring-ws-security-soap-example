@@ -1,11 +1,27 @@
 # Usage
 
-The project is meant to be an example, used to find out how to set up a Spring-based web service, so its main usage is being examined and used as a base for other projects.
+The project is just an example showing how to set up a Spring-based web service, for this reason it is meant to be easily run and tested.
 
-Still, it can be packaged and run in a server, both to show that it actually works and to allow any additional test which may be required.
+## Tests
 
-As this is a Maven project which comes with the Jetty plugin, running the project means just using the following command:
+If needed the can be manually packaged and run in a server as any other web project.
+
+But to check it quickly the included Jetty plugin for Maven can be used with the following command:
 
 ```
-$ mvn clean package jetty:run-war
+$ mvn jetty:run-war
 ```
+
+After this the various [endpoint URLs][urls] will be accessible.
+
+## Tests
+
+Several unit and integration tests are included. These verify that the endpoints and security systems work as expected.
+
+To run them use the following Maven command:
+
+```
+$ mvn verify
+```
+
+[urls]: ./urls.html

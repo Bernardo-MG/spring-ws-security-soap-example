@@ -54,8 +54,8 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { WSContextConfig.PASSWORD_PLAIN_XWSS })
-public final class TestEntityEndpointPasswordPlainXWSS extends
-        AbstractTestNGSpringContextTests {
+public final class TestEntityEndpointPasswordPlainXWSS
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
@@ -63,20 +63,20 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
     @Autowired
     private ApplicationContext applicationContext;
     /**
-     * Path to the file with the invalid request payload.
+     * Path to XSD file which validates the SOAP messages.
      */
-    @Value("${soap.request.payload.invalid.path}")
-    private String             requestPayloadInvalidPath;
+    @Value("${xsd.entity.path}")
+    private String             entityXsdPath;
     /**
      * Path to the file with the valid request envelope.
      */
     @Value("${soap.request.envelope.path}")
     private String             requestEnvelopePath;
     /**
-     * Path to XSD file which validates the SOAP messages.
+     * Path to the file with the invalid request payload.
      */
-    @Value("${xsd.entity.path}")
-    private String             entityXsdPath;
+    @Value("${soap.request.payload.invalid.path}")
+    private String             requestPayloadInvalidPath;
 
     /**
      * Constructs a {@code TestEntityEndpointUnsecure}.
@@ -96,9 +96,8 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
         final Source requestPayload;           // SOAP payload for the request
 
         // Creates the request
-        requestPayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(requestPayloadInvalidPath));
+        requestPayload = new StreamSource(ClassLoader.class
+                .getResourceAsStream(requestPayloadInvalidPath));
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
@@ -130,8 +129,8 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
         requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        responseMatcher = ResponseMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Calls the endpoint
         mockClient.sendRequest(requestCreator).andExpect(responseMatcher);

@@ -50,7 +50,7 @@ public final class EndpointXWSSContextConfig {
     /**
      * Unsecure WS context for the endpoint.
      */
-    public static final String UNSECURE             = "classpath:context/endpoint/test-endpoint-unsecure.xml";
+    public static final String UNSECURE        = "classpath:context/endpoint/test-endpoint-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.

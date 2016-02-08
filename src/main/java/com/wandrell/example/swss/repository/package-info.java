@@ -28,5 +28,5 @@
  * simple Spring-JPA repository, meant to allow querying the entities returned
  * by the endpoint.
  */
-package com.wandrell.example.swss.repository;
 
+package com.wandrell.example.swss.repository;

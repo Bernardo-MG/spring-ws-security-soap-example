@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Executable class for generating the key stores used on the tests.
  * <p>
- * This is to be used in case the key stores are to be rebuilt for some reason.
+ * This is to be used in case the key stores are to be rebuilt for any reason.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -45,10 +45,19 @@ public final class KeystoreGenerator {
      * The logger used for logging the key store creation.
      */
     private static final Logger LOGGER = LoggerFactory
-                                               .getLogger(KeystoreGenerator.class);
+            .getLogger(KeystoreGenerator.class);
 
+    /**
+     * Runs the generator and creates a new set of key stores.
+     * 
+     * @param args
+     *            the arguments
+     * @throws Exception
+     *             if any problem occurs while generating the key stores
+     */
     public static final void main(final String[] args) throws Exception {
         final FileOutputStream fos;
+        final FileOutputStream fosjks;
         final FileOutputStream fosSecond;
         final FileOutputStream fosSym;
         final KeyStore jksMain;
@@ -79,7 +88,9 @@ public final class KeystoreGenerator {
 
         // Saves the main keystore
         fos = new FileOutputStream(jksMainPath);
-        jksMain.store(new FileOutputStream(jksMainPath), password.toCharArray());
+        fosjks = new FileOutputStream(jksMainPath);
+        jksMain.store(fosjks, password.toCharArray());
+        fosjks.close();
         fos.close();
 
         LOGGER.trace("Created main key store");
@@ -101,7 +112,7 @@ public final class KeystoreGenerator {
 
         LOGGER.trace("Creating symmetric key store");
 
-        jceksSym = KeystoreFactory.getJCEKSKeystore(password, alias, issuer);
+        jceksSym = KeystoreFactory.getJCEKSKeystore(password, alias);
 
         // Saves the symmetric keystore
         fosSym = new FileOutputStream(jceksSymPath);

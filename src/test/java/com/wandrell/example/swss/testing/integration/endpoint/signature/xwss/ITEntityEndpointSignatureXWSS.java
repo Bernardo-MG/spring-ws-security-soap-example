@@ -106,11 +106,11 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
     public final void testEndpoint_Unsigned_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathUnsigned));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathUnsigned));
 
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
     /**

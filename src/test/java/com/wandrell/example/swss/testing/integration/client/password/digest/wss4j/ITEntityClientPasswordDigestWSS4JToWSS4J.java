@@ -35,8 +35,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientWSS4JContextConfig.PASSWORD_DIGEST })
+@ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_DIGEST })
 public final class ITEntityClientPasswordDigestWSS4JToWSS4J
         extends AbstractITEntityClient {
 

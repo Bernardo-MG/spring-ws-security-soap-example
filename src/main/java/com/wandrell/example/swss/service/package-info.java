@@ -28,5 +28,5 @@
  * package} and a {@link com.wandrell.example.swss.service.security security
  * package}, both with their respective services.
  */
-package com.wandrell.example.swss.service;
 
+package com.wandrell.example.swss.service;

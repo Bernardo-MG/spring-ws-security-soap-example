@@ -35,10 +35,9 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientWSS4JContextConfig.ENCRYPTION })
-public final class ITEntityClientEncryptionWSS4JToWSS4J extends
-        AbstractITEntityClient {
+@ContextConfiguration(locations = { ClientWSS4JContextConfig.ENCRYPTION })
+public final class ITEntityClientEncryptionWSS4JToWSS4J
+        extends AbstractITEntityClient {
 
     /**
      * Default constructor.

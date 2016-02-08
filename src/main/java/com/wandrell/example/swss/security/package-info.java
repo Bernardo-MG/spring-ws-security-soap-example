@@ -23,5 +23,16 @@
  */
 /**
  * Provides factories for generating key stores.
+ * <p>
+ * These classes are to be used only when fresh key stores are required for the
+ * project.
+ * <p>
+ * This can be done by using the
+ * {@link com.wandrell.example.swss.security.KeystoreGenerator
+ * KeystoreGenerator} runnable class, which will overwrite the existing key
+ * stores, making use of the
+ * {@link com.wandrell.example.swss.security.KeystoreFactory KeystoreFactory}
+ * for generating said keys.
  */
+
 package com.wandrell.example.swss.security;

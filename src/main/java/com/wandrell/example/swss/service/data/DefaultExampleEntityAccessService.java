@@ -39,8 +39,8 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
  * @author Bernardo Martínez Garrido
  */
 @Service
-public class DefaultExampleEntityAccessService implements
-        ExampleEntityAccessService {
+public class DefaultExampleEntityAccessService
+        implements ExampleEntityAccessService {
 
     /**
      * Repository for the {@code ExampleEntity} instances handled by the

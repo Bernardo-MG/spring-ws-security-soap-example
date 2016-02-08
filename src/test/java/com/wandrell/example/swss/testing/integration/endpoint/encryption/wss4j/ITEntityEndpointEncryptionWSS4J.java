@@ -49,8 +49,7 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { EndpointWSS4JContextConfig.ENCRYPTION })
+@ContextConfiguration(locations = { EndpointWSS4JContextConfig.ENCRYPTION })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**
@@ -76,11 +75,11 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
     public final void testEndpoint_Unsigned_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathUnsigned));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathUnsigned));
 
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
 }
