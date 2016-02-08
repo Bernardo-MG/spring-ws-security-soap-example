@@ -15,6 +15,10 @@
         <param-value>classpath:/context/applicationContext.xml</param-value>
     </context-param>
 
+    <!-- ********************************************** -->
+    <!-- ****************** SERVLETS ****************** -->
+    <!-- ********************************************** -->
+
     <servlet>
         <display-name>Unsecure WS</display-name>
         <servlet-name>unsecure-ws</servlet-name>
@@ -22,7 +26,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-unsecure.xml</param-value>
+            <param-value>classpath:/context/servlet/endpoint-unsecure.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -32,7 +36,9 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <!-- XWSS endpoints -->
+    <!-- ********************************************** -->
+    <!-- *************** XWSS ENDPOINTS *************** -->
+    <!-- ********************************************** -->
 
     <servlet>
         <display-name>Plain password secured XWSS WS</display-name>
@@ -41,7 +47,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-password-plain-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/password/plain/xwss/endpoint-password-plain-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -58,7 +64,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-password-digest-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/password/digest/xwss/endpoint-password-digest-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -75,7 +81,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-signature-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/signature/xwss/endpoint-signature-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -92,7 +98,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-encryption-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/encryption/xwss/endpoint-encryption-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -102,7 +108,9 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <!-- WSS4J endpoints -->
+    <!-- ********************************************** -->
+    <!-- *************** WSS4J ENDPOINTS ************** -->
+    <!-- ********************************************** -->
 
     <servlet>
         <display-name>Plain password secured WSS4J WS</display-name>
@@ -111,7 +119,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-password-plain-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/password/plain/wss4j/endpoint-password-plain-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -128,7 +136,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-password-digest-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/password/digest/wss4j/endpoint-password-digest-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -145,7 +153,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-signature-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/signature/wss4j/endpoint-signature-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -162,7 +170,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/endpoint/endpoint-encryption-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/encryption/wss4j/endpoint-encryption-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -172,10 +180,19 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+
+    <!-- ********************************************** -->
+    <!-- ************** SERVLET MAPPINGS ************** -->
+    <!-- ********************************************** -->
+
     <servlet-mapping>
         <servlet-name>unsecure-ws</servlet-name>
         <url-pattern>/unsecure/*</url-pattern>
     </servlet-mapping>
+
+    <!-- ********************************************** -->
+    <!-- *************** XWSS ENDPOINTS *************** -->
+    <!-- ********************************************** -->
 
     <servlet-mapping>
         <servlet-name>password-plain-xwss-ws</servlet-name>
@@ -196,6 +213,10 @@
         <servlet-name>encryption-xwss-ws</servlet-name>
         <url-pattern>/encryption/xwss/*</url-pattern>
     </servlet-mapping>
+
+    <!-- ********************************************** -->
+    <!-- *************** WSS4J ENDPOINTS ************** -->
+    <!-- ********************************************** -->
 
     <servlet-mapping>
         <servlet-name>password-plain-wss4j-ws</servlet-name>
