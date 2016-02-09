@@ -10,10 +10,24 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/context/applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- ********************************************** -->
+    <!-- ****************** SERVLETS ****************** -->
+    <!-- ********************************************** -->
+
     <servlet>
         <display-name>Unsecure WS</display-name>
         <servlet-name>unsecure-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/endpoint-unsecure.xml</param-value>
+        </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
@@ -22,10 +36,19 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <!-- ********************************************** -->
+    <!-- *************** XWSS ENDPOINTS *************** -->
+    <!-- ********************************************** -->
+
     <servlet>
         <display-name>Plain password secured XWSS WS</display-name>
         <servlet-name>password-plain-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/password/plain/xwss/endpoint-password-plain-xwss.xml</param-value>
+        </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
@@ -39,6 +62,11 @@
         <servlet-name>password-digest-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/password/digest/xwss/endpoint-password-digest-xwss.xml</param-value>
+        </init-param>
+        <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
             <param-value>true</param-value>
@@ -50,6 +78,11 @@
         <display-name>Signature secured XWSS WS</display-name>
         <servlet-name>signature-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/signature/xwss/endpoint-signature-xwss.xml</param-value>
+        </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
@@ -63,6 +96,11 @@
         <servlet-name>encryption-xwss-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/encryption/xwss/endpoint-encryption-xwss.xml</param-value>
+        </init-param>
+        <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
             <param-value>true</param-value>
@@ -70,10 +108,19 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <!-- ********************************************** -->
+    <!-- *************** WSS4J ENDPOINTS ************** -->
+    <!-- ********************************************** -->
+
     <servlet>
         <display-name>Plain password secured WSS4J WS</display-name>
         <servlet-name>password-plain-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/password/plain/wss4j/endpoint-password-plain-wss4j.xml</param-value>
+        </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
@@ -87,6 +134,11 @@
         <servlet-name>password-digest-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/password/digest/wss4j/endpoint-password-digest-wss4j.xml</param-value>
+        </init-param>
+        <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
             <param-value>true</param-value>
@@ -98,6 +150,11 @@
         <display-name>Signature secured WSS4J WS</display-name>
         <servlet-name>signature-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/signature/wss4j/endpoint-signature-wss4j.xml</param-value>
+        </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
@@ -111,6 +168,11 @@
         <servlet-name>encryption-wss4j-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
         <init-param>
+            <!-- Loads the endpoint context -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/context/servlet/encryption/wss4j/endpoint-encryption-wss4j.xml</param-value>
+        </init-param>
+        <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
             <param-name>transformWsdlLocations</param-name>
             <param-value>true</param-value>
@@ -118,10 +180,19 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+
+    <!-- ********************************************** -->
+    <!-- ************** SERVLET MAPPINGS ************** -->
+    <!-- ********************************************** -->
+
     <servlet-mapping>
         <servlet-name>unsecure-ws</servlet-name>
         <url-pattern>/unsecure/*</url-pattern>
     </servlet-mapping>
+
+    <!-- ********************************************** -->
+    <!-- *************** XWSS ENDPOINTS *************** -->
+    <!-- ********************************************** -->
 
     <servlet-mapping>
         <servlet-name>password-plain-xwss-ws</servlet-name>
@@ -142,6 +213,10 @@
         <servlet-name>encryption-xwss-ws</servlet-name>
         <url-pattern>/encryption/xwss/*</url-pattern>
     </servlet-mapping>
+
+    <!-- ********************************************** -->
+    <!-- *************** WSS4J ENDPOINTS ************** -->
+    <!-- ********************************************** -->
 
     <servlet-mapping>
         <servlet-name>password-plain-wss4j-ws</servlet-name>
