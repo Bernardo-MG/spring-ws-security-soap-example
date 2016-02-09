@@ -15,7 +15,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore/keystore.properties, classpath:context/ws/ws.properties, classpath:context/security/encryption/wss4j/security-encryption-wss4j.properties, classpath:context/ws/encryption/wss4j/ws-encryption-wss4j.properties" />
+        location="classpath:context/keystore/keystore.properties, classpath:context/ws/ws.properties, classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties, classpath:context/ws/encryption/wss4j/ws-encryption-wss4j.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/ws/encryption/wss4j/ws-encryption-wss4j.xml" />

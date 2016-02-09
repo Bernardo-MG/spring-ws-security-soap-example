@@ -15,7 +15,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/keystore/keystore.properties, classpath:context/ws/ws.properties, classpath:context/security/signature/xwss/security-signature-xwss.properties, classpath:context/ws/signature/xwss/ws-signature-xwss.properties" />
+        location="classpath:context/keystore/keystore.properties, classpath:context/ws/ws.properties, classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.properties, classpath:context/ws/signature/xwss/ws-signature-xwss.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/ws/signature/xwss/ws-signature-xwss.xml" />

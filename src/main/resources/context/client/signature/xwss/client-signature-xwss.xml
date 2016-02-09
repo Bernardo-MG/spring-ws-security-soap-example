@@ -15,6 +15,6 @@
 
     <!-- Imports base context -->
     <import resource="classpath:context/client/client.xml" />
-    <import resource="classpath:context/security/signature/xwss/security-signature-xwss.xml" />
+    <import resource="classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.xml" />
 
 </beans>

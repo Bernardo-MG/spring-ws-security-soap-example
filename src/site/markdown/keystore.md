@@ -14,4 +14,4 @@ There are three key stores used by the project:
 |keystore2.jks|Java Key Store|Used to collide with the main key store for invalid authentication tests|
 |symmetric.jceks|Java Cryptographic Extension Key Store|Private-key-based security|
 
-[keystore-generator]: ./apidocs/com/wandrell/example/swss/security/KeystoreGenerator.html
+[keystore-generator]: ./apidocs/com/wandrell/example/swss/interceptor/KeystoreGenerator.html

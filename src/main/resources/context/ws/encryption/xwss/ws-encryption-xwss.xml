@@ -17,7 +17,7 @@
 
     <!-- Imports base context -->
     <import resource="classpath:context/ws/ws.xml" />
-    <import resource="classpath:context/security/encryption/xwss/security-encryption-xwss.xml" />
+    <import resource="classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.xml" />
 
     <!-- Registers interceptors -->
     <sws:interceptors>

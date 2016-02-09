@@ -15,6 +15,6 @@
 
     <!-- Imports base context -->
     <import resource="classpath:context/client/client.xml" />
-    <import resource="classpath:context/security/encryption/xwss/security-encryption-xwss.xml" />
+    <import resource="classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.xml" />
 
 </beans>
