@@ -9,10 +9,8 @@
                         http://www.springframework.org/schema/web-services/web-services.xsd">
 
     <description>
-        Context for WSS4J signature-based authentication, making use of a key store to
-        sign a SOAP message.
-
-        This defines the security interceptor to be used on the WS and the client.
+        Context for WSS4J signature-based interceptor to be used on both the WS and the
+        client.
 
         A normal key store and a WSS4J one are required for this to work, such as the
         ones provided by the key stores context files.
