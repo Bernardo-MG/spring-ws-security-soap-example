@@ -25,8 +25,9 @@
 package com.wandrell.example.swss.testing.integration.client.signature.xwss;
 
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientXWSSIntegrationContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
 /**
@@ -36,10 +37,13 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientXWSSIntegrationContextConfig.SIGNATURE_TO_WSS4J_INVALID })
-public final class ITEntityClientSignatureXWSSToWSS4JInvalid
-        extends AbstractITEntityClientInvalid {
+@ContextConfiguration(locations = { ClientXWSSContextConfig.SIGNATURE })
+@TestPropertySource({
+        "classpath:context/test-entity.properties",
+        "classpath:context/keystore/keystore2.properties",
+        "classpath:context/client/signature/xwss/test-client-signature-xwss-to-wss4j-invalid.properties" })
+public final class ITEntityClientSignatureXWSSToWSS4JInvalid extends
+        AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.

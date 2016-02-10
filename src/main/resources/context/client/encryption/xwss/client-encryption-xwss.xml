@@ -13,7 +13,12 @@
         stores context file.
     </description>
 
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/client/client.properties, classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.properties, classpath:context/client/encryption/xwss/client-encryption-xwss.properties" />
+
     <!-- Imports base context -->
+    <import resource="classpath:context/keystore/keystore.xml" />
     <import resource="classpath:context/client/client.xml" />
     <import resource="classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.xml" />
 

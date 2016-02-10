@@ -29,18 +29,37 @@ package com.wandrell.example.swss.testing.util.config;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ClientXWSSUnitContextConfig {
+public final class ClientWSS4JContextConfig {
 
     /**
-     * Context with password-based security for the client and using XWSS for
+     * Context with signature-based security for the client and using WSS4J for
      * both the client and the web service.
      */
-    public static final String PASSWORD_PLAIN = "classpath:context/unit/client/password/plain/xwss/test-client-password-plain-xwss-to-xwss.xml";
+    public static final String SIGNATURE       = "classpath:context/client/signature/wss4j/client-signature-wss4j.xml";
+    /**
+     * Context with ture-based security for the client and using WSS4J for both
+     * the client and the web service.
+     */
+    public static final String ENCRYPTION      = "classpath:context/client/encryption/wss4j/client-encryption-wss4j.xml";
+    /**
+     * Context with password-based security for the client and using WSS4J for
+     * both the client and the web service.
+     */
+    public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/wss4j/client-password-digest-wss4j.xml";
+    /**
+     * Context with password-based security for the client and using WSS4J for
+     * both the client and the web service.
+     */
+    public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/wss4j/client-password-plain-wss4j.xml";
+    /**
+     * Unsecure context for the client.
+     */
+    public static final String UNSECURE        = "classpath:context/client/client-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ClientXWSSUnitContextConfig() {
+    private ClientWSS4JContextConfig() {
         super();
     }
 

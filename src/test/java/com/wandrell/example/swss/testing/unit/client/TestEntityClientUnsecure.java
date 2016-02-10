@@ -44,7 +44,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.ClientWSS4JUnitContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -60,7 +60,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JUnitContextConfig.UNSECURE })
+@ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
 @TestPropertySource({ "classpath:context/test-entity.properties",
         "classpath:context/test-wsdl.properties",
         "classpath:context/test-client-unsecure-soap.properties" })

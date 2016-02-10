@@ -33,7 +33,7 @@ import org.springframework.ws.client.WebServiceTransportException;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.ClientWSS4JUnitContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
 
 /**
  * Unit tests for {@link EntityClient}.
@@ -45,7 +45,7 @@ import com.wandrell.example.swss.testing.util.config.ClientWSS4JUnitContextConfi
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JUnitContextConfig.UNSECURE })
+@ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
 @TestPropertySource({ "classpath:context/test-entity.properties",
         "classpath:context/test-wsdl.properties" })
 public final class TestEntityClientExceptionErrors extends

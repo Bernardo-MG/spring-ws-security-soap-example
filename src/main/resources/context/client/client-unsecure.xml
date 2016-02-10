@@ -11,6 +11,10 @@
         client possible.
     </description>
 
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/client/client.properties" />
+
     <!-- Imports base context -->
     <import resource="classpath:context/client/client.xml" />
 

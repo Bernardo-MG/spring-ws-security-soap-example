@@ -13,7 +13,13 @@
         ones provided by the key stores context files.
     </description>
 
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/client/client.properties, classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties, classpath:context/keystore/keystore-wss4j.properties, classpath:context/client/encryption/wss4j/client-encryption-wss4j.properties" />
+
     <!-- Imports base context -->
+    <import resource="classpath:context/keystore/keystore.xml" />
+    <import resource="classpath:context/keystore/keystore-wss4j.xml" />
     <import resource="classpath:context/client/client.xml" />
     <import resource="classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.xml" />
 
