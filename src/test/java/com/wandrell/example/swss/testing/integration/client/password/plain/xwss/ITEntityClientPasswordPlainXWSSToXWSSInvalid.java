@@ -38,7 +38,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({
-        "classpath:context/test-entity.properties",
+        "classpath:context/test-security-password-plain-invalid.properties",
         "classpath:context/client/password/plain/xwss/test-client-password-plain-xwss-to-xwss-invalid.properties" })
 public final class ITEntityClientPasswordPlainXWSSToXWSSInvalid extends
         AbstractITEntityClientInvalid {

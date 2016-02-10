@@ -39,7 +39,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_DIGEST })
 @TestPropertySource({
-        "classpath:context/test-entity.properties",
+        "classpath:context/test-user-invalid.properties",
         "classpath:context/client/password/digest/wss4j/test-client-password-digest-wss4j-to-xwss-invalid.properties" })
 public final class ITEntityClientPasswordDigestWSS4JToXWSSInvalid extends
         AbstractITEntityClientInvalid {

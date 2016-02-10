@@ -39,6 +39,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({
         "classpath:context/test-entity.properties",
+        "classpath:context/test-user.properties",
         "classpath:context/client/password/plain/wss4j/test-client-password-plain-wss4j-to-xwss.properties" })
 public final class ITEntityClientPasswordPlainWSS4JToXWSS extends
         AbstractITEntityClient {

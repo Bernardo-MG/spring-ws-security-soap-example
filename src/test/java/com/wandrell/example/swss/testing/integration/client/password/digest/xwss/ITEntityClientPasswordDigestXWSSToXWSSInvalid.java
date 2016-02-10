@@ -38,7 +38,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_DIGEST })
 @TestPropertySource({
-        "classpath:context/test-entity.properties",
+        "classpath:context/test-security-password-digest-invalid.properties",
         "classpath:context/client/password/digest/xwss/test-client-password-digest-xwss-to-xwss-invalid.properties" })
 public final class ITEntityClientPasswordDigestXWSSToXWSSInvalid extends
         AbstractITEntityClientInvalid {
