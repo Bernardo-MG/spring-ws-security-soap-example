@@ -33,6 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatcher;
@@ -60,6 +61,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JUnitContextConfig.UNSECURE })
+@TestPropertySource({ "classpath:context/test-entity.properties",
+        "classpath:context/test-wsdl.properties",
+        "classpath:context/test-client-unsecure-soap.properties" })
 public final class TestEntityClientUnsecure extends
         AbstractTestNGSpringContextTests {
 
