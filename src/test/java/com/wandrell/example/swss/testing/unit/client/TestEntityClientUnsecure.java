@@ -43,7 +43,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientWSS4JUnitContextConfig;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -59,9 +59,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-public final class TestEntityClientUnsecure
-        extends AbstractTestNGSpringContextTests {
+@ContextConfiguration(locations = { ClientWSS4JUnitContextConfig.UNSECURE })
+public final class TestEntityClientUnsecure extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
@@ -115,12 +115,13 @@ public final class TestEntityClientUnsecure
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
+        responsePayload = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream(responsePayloadInvalidPath));
         responseCreator = ResponseCreators.withPayload(responsePayload);
 
         // Creates the server mock
@@ -150,8 +151,8 @@ public final class TestEntityClientUnsecure
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
         // Creates the response
         responsePayload = new StreamSource(

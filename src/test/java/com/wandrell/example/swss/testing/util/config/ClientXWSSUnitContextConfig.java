@@ -22,28 +22,25 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.client.password.plain.wss4j;
-
-import org.springframework.test.context.ContextConfiguration;
-
-import com.wandrell.example.swss.testing.util.config.ClientWSS4JIntegrationContextConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
+package com.wandrell.example.swss.testing.util.config;
 
 /**
- * Implementation of {@code AbstractITEntityClientInvalid} for a password
- * protected web service using WSS4J for both the client and the web service.
+ * Configuration class for the test context files.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientWSS4JIntegrationContextConfig.PASSWORD_PLAIN_UNSECURED })
-public final class ITEntityClientPasswordPlainWSS4JToWSS4JUnsecured
-        extends AbstractITEntityClientInvalid {
+public final class ClientXWSSUnitContextConfig {
 
     /**
-     * Default constructor.
+     * Context with password-based security for the client and using XWSS for
+     * both the client and the web service.
      */
-    public ITEntityClientPasswordPlainWSS4JToWSS4JUnsecured() {
+    public static final String PASSWORD_PLAIN = "classpath:context/unit/client/password/plain/xwss/test-client-password-plain-xwss-to-xwss.xml";
+
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private ClientXWSSUnitContextConfig() {
         super();
     }
 

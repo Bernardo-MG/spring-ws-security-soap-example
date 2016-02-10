@@ -26,7 +26,7 @@ package com.wandrell.example.swss.testing.integration.client.password.digest.xws
 
 import org.springframework.test.context.ContextConfiguration;
 
-import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientXWSSIntegrationContextConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
 /**
@@ -36,7 +36,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { ClientXWSSContextConfig.PASSWORD_DIGEST_INVALID })
+        locations = { ClientXWSSIntegrationContextConfig.PASSWORD_DIGEST_INVALID })
 public final class ITEntityClientPasswordDigestXWSSToXWSSInvalid
         extends AbstractITEntityClientInvalid {
 

@@ -29,7 +29,7 @@ package com.wandrell.example.swss.testing.util.config;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ClientXWSSContextConfig {
+public final class ClientXWSSIntegrationContextConfig {
 
     /**
      * Context with encryption-based security for the client and using XWSS for
@@ -139,7 +139,7 @@ public final class ClientXWSSContextConfig {
     /**
      * Private constructor to avoid initialization.
      */
-    private ClientXWSSContextConfig() {
+    private ClientXWSSIntegrationContextConfig() {
         super();
     }
 

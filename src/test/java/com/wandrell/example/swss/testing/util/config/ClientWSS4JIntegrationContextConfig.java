@@ -29,7 +29,7 @@ package com.wandrell.example.swss.testing.util.config;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ClientWSS4JContextConfig {
+public final class ClientWSS4JIntegrationContextConfig {
 
     /**
      * Context with signature-based security for the client and using WSS4J for
@@ -130,7 +130,7 @@ public final class ClientWSS4JContextConfig {
     /**
      * Private constructor to avoid initialization.
      */
-    private ClientWSS4JContextConfig() {
+    private ClientWSS4JIntegrationContextConfig() {
         super();
     }
 

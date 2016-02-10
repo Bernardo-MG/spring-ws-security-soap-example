@@ -43,7 +43,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.ClientXWSSUnitContextConfig;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -57,9 +57,10 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
-public final class TestEntityClientPasswordPlainXWSS
-        extends AbstractTestNGSpringContextTests {
+@ContextConfiguration(
+        locations = { ClientXWSSUnitContextConfig.PASSWORD_PLAIN })
+public final class TestEntityClientPasswordPlainXWSS extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
@@ -113,12 +114,13 @@ public final class TestEntityClientPasswordPlainXWSS
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
+        responsePayload = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream(responsePayloadInvalidPath));
         responseCreator = ResponseCreators.withPayload(responsePayload);
 
         // Creates the server mock
@@ -148,8 +150,8 @@ public final class TestEntityClientPasswordPlainXWSS
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
         // Creates the response
         responsePayload = new StreamSource(
