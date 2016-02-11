@@ -21,14 +21,14 @@
         <property name="policyConfiguration" value="${security.file.path}" />
         <property name="callbackHandlers">
             <list>
-                <ref bean="keystoreHandler" />
+                <ref bean="keystoreCallbackHandler" />
                 <!-- <ref bean="certificateHandler" /> -->
             </list>
         </property>
     </bean>
 
     <!-- Key store callback handler -->
-    <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
+    <bean id="keystoreCallbackHandler" class="${callbackHandler.validation.keystore.class}">
         <property name="keyStore" ref="keyStore" />
         <property name="trustStore" ref="trustStore" />
         <property name="privateKeyPassword" value="${keystore.password}" />

@@ -24,13 +24,13 @@
         <property name="securementSignatureCrypto" ref="keyStoreWSS4J" />
         <property name="validationActions" value="${security.actions}" />
         <property name="validationSignatureCrypto" ref="keyStoreWSS4J" />
-        <property name="validationCallbackHandler" ref="keystoreHandler" />
+        <property name="validationCallbackHandler" ref="keystoreCallbackHandler" />
         <property name="secureResponse" value="false" />
         <property name="validateResponse" value="false" />
     </bean>
 
     <!-- Key store callback handler -->
-    <bean id="keystoreHandler" class="${callbackHandler.validation.keystore.class}">
+    <bean id="keystoreCallbackHandler" class="${callbackHandler.validation.keystore.class}">
         <property name="privateKeyPassword" value="${keystore.password}" />
     </bean>
 
