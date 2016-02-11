@@ -27,6 +27,7 @@ package com.wandrell.example.swss.testing.integration.client.signature.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
@@ -38,7 +39,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.SIGNATURE })
 @TestPropertySource({
-        "classpath:context/test-entity.properties",
+        ClientPropertiesConfig.ENTITY,
         "classpath:context/keystore/keystore.properties",
         "classpath:context/client/signature/xwss/test-client-signature-xwss-to-wss4j.properties" })
 public final class ITEntityClientSignatureXWSSToWSS4J extends

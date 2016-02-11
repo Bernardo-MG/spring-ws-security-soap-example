@@ -27,6 +27,7 @@ package com.wandrell.example.swss.testing.integration.client.password.plain.wss4
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
@@ -38,7 +39,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({
-        "classpath:context/test-user-invalid.properties",
+        ClientPropertiesConfig.USER_INVALID,
         "classpath:context/client/password/plain/wss4j/test-client-password-plain-wss4j-to-wss4j-unsecure.properties" })
 public final class ITEntityClientPasswordPlainWSS4JToWSS4JUnsecured extends
         AbstractITEntityClientInvalid {

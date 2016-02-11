@@ -43,6 +43,7 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
 
 /**
@@ -58,8 +59,8 @@ import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ "classpath:context/test-entity.properties",
-        "classpath:context/test-wsdl.properties" })
+@TestPropertySource({ ClientPropertiesConfig.ENTITY,
+        ClientPropertiesConfig.WSDL })
 public final class TestEntityClientExceptionSOAP extends
         AbstractTestNGSpringContextTests {
 
