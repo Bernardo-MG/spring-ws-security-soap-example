@@ -32,10 +32,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
+import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
@@ -55,6 +57,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { EndpointWSS4JContextConfig.SIGNATURE })
+@TestPropertySource({ ClientPropertiesConfig.ENTITY })
 public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
     /**
@@ -106,11 +109,11 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
     public final void testEndpoint_Unsigned_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathUnsigned));
+        message = callWebService(SOAPParsingUtils
+                .parseMessageFromFile(pathUnsigned));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**

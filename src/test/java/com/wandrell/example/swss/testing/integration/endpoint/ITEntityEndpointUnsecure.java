@@ -32,10 +32,12 @@ import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
+import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
@@ -54,6 +56,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { EndpointWSS4JContextConfig.UNSECURE })
+@TestPropertySource({ ClientPropertiesConfig.ENTITY })
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     /**
@@ -102,11 +105,11 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
             JAXBException {
         final SOAPMessage message; // Response message
 
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
+        message = callWebService(SOAPParsingUtils
+                .parseMessageFromFile(pathInvalid));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**
@@ -128,11 +131,11 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathValid));
+        message = callWebService(SOAPParsingUtils
+                .parseMessageFromFile(pathValid));
 
-        Assert.assertNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
 
         entity = SOAPParsingUtils.parseEntityFromMessage(message);
 

@@ -28,11 +28,13 @@ import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
+import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.EndpointXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
@@ -54,8 +56,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { EndpointXWSSContextConfig.PASSWORD_PLAIN })
-public final class ITEntityEndpointPasswordPlainXWSS
-        extends AbstractITEndpoint {
+@TestPropertySource({ ClientPropertiesConfig.ENTITY })
+public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint {
 
     /**
      * Id of the returned entity.
@@ -105,11 +107,11 @@ public final class ITEntityEndpointPasswordPlainXWSS
     public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
+        message = callWebService(SOAPParsingUtils
+                .parseMessageFromFile(pathInvalid));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**
@@ -126,8 +128,8 @@ public final class ITEntityEndpointPasswordPlainXWSS
         message = callWebService(SecurityUtils.getPlainPasswordMessage(
                 pathValid, username, password + "abc123"));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**
@@ -143,8 +145,8 @@ public final class ITEntityEndpointPasswordPlainXWSS
         message = callWebService(SecurityUtils.getPlainPasswordMessage(
                 pathValid, username + "abc123", password));
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
     }
 
     /**
@@ -159,11 +161,11 @@ public final class ITEntityEndpointPasswordPlainXWSS
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SecurityUtils
-                .getPlainPasswordMessage(pathValid, username, password));
+        message = callWebService(SecurityUtils.getPlainPasswordMessage(
+                pathValid, username, password));
 
-        Assert.assertNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+        Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
+                .getFault());
 
         entity = SOAPParsingUtils.parseEntityFromMessage(message);
 
