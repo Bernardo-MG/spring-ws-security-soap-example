@@ -44,6 +44,7 @@
 		</menu>
 		<menu name="Documentation" inherit="bottom">
 			<item name="Usage" href="./usage.html" />
+            <item name="Configuration info" href="./usage.html" />
             <item name="Endpoint URLs" href="./urls.html" />
             <item name="Key stores" href="./keystore.html" />
             <item name="Logging" href="./log.html" />
