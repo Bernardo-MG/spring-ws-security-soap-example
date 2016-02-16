@@ -27,7 +27,7 @@ package com.wandrell.example.swss.testing.integration.client.encryption.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
 
 /**
@@ -38,7 +38,7 @@ import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.ENCRYPTION })
 @TestPropertySource({
-        ClientPropertiesConfig.ENTITY,
+        TestPropertiesConfig.ENTITY,
         "classpath:context/keystore/keystore.properties",
         "classpath:context/client/encryption/xwss/test-client-encryption-xwss-to-wss4j.properties" })
 public final class ITEntityClientEncryptionXWSSToWSS4J {

@@ -37,7 +37,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.ClientPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.EndpointXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
@@ -57,7 +57,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { EndpointXWSSContextConfig.SIGNATURE })
-@TestPropertySource({ ClientPropertiesConfig.ENTITY })
+@TestPropertySource({ TestPropertiesConfig.ENTITY })
 public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
     /**

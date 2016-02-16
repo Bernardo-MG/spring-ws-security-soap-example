@@ -29,7 +29,7 @@ package com.wandrell.example.swss.testing.util.config;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ClientPropertiesConfig {
+public final class TestPropertiesConfig {
 
     /**
      * Properties file with the test entity configuration.
@@ -61,7 +61,7 @@ public final class ClientPropertiesConfig {
     /**
      * Private constructor to avoid initialization.
      */
-    private ClientPropertiesConfig() {
+    private TestPropertiesConfig() {
         super();
     }
 

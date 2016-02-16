@@ -32,6 +32,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
@@ -40,6 +41,7 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.WSContextConfig;
 
 /**
@@ -54,8 +56,11 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { WSContextConfig.PASSWORD_PLAIN_XWSS })
-public final class TestEntityEndpointPasswordPlainXWSS
-        extends AbstractTestNGSpringContextTests {
+@TestPropertySource({
+        TestPropertiesConfig.WSDL,
+        "classpath:context/ws/password/plain/xwss/test-password-plain-xwss-ws.properties" })
+public final class TestEntityEndpointPasswordPlainXWSS extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
@@ -96,8 +101,9 @@ public final class TestEntityEndpointPasswordPlainXWSS
         final Source requestPayload;           // SOAP payload for the request
 
         // Creates the request
-        requestPayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(requestPayloadInvalidPath));
+        requestPayload = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream(requestPayloadInvalidPath));
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
@@ -129,8 +135,8 @@ public final class TestEntityEndpointPasswordPlainXWSS
         requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
         // Calls the endpoint
         mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
