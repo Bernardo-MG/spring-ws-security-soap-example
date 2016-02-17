@@ -7,7 +7,7 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Test context for the unsecured WS.
+        Test context for the test web services.
     </description>
 
     <!-- Scans for endpoints -->

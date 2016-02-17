@@ -80,7 +80,7 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
     /**
      * Path to the file with the valid request envelope.
      */
-    @Value("${soap.request.envelope.path}")
+    @Value("${soap.request.path}")
     private String             requestEnvelopePath;
     /**
      * Path to the file with the invalid request payload.

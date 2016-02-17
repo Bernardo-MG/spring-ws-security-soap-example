@@ -37,8 +37,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -56,7 +57,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { EndpointWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY })
+@TestPropertySource({ TestPropertiesConfig.ENTITY,
+        SOAPPropertiesConfig.UNSECURE })
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     /**
@@ -72,12 +74,12 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
     /**
      * Path to the file containing the invalid SOAP request.
      */
-    @Value("${message.invalid.file.path}")
+    @Value("${soap.request.invalid.path}")
     private String  pathInvalid;
     /**
      * Path to the file containing the valid SOAP request.
      */
-    @Value("${message.valid.file.path}")
+    @Value("${soap.request.path}")
     private String  pathValid;
 
     /**
