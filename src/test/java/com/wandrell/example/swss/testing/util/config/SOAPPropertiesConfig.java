@@ -29,39 +29,21 @@ package com.wandrell.example.swss.testing.util.config;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class TestPropertiesConfig {
+public final class SOAPPropertiesConfig {
 
     /**
-     * Properties file with the test entity configuration.
+     * Properties file with the unsecure SOAP test data.
      */
-    public static final String ENTITY                           = "classpath:context/test/test-entity.properties";
+    public static final String UNSECURE       = "classpath:context/test/soap/test-soap-unsecure.properties";
     /**
-     * Properties file with the test invalid digested user and password
-     * configuration.
+     * Properties file with the plain password SOAP test data.
      */
-    public static final String SECURITY_PASSWORD_DIGEST_INVALID = "classpath:context/test/security/test-security-password-digest-invalid.properties";
-    /**
-     * Properties file with the test invalid plain user and password
-     * configuration.
-     */
-    public static final String SECURITY_PASSWORD_PLAIN_INVALID  = "classpath:context/test/security/test-security-password-plain-invalid.properties";
-    /**
-     * Properties file with the test user configuration.
-     */
-    public static final String USER                             = "classpath:context/test/user/test-user.properties";
-    /**
-     * Properties file with the invalid test user configuration.
-     */
-    public static final String USER_INVALID                     = "classpath:context/test/user/test-user-invalid.properties";
-    /**
-     * Properties file with the invalid test WSDL configuration.
-     */
-    public static final String WSDL                             = "classpath:context/test/test-wsdl.properties";
+    public static final String PASSWORD_PLAIN = "classpath:context/test/soap/test-soap-password-plain.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private TestPropertiesConfig() {
+    private SOAPPropertiesConfig() {
         super();
     }
 

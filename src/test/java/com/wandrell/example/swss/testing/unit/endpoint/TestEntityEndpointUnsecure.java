@@ -41,6 +41,7 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
+import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.WSContextConfig;
 
@@ -56,8 +57,7 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { WSContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.WSDL,
-        "classpath:context/ws/test-unsecure-ws.properties" })
+@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE })
 public final class TestEntityEndpointUnsecure extends
         AbstractTestNGSpringContextTests {
 

@@ -41,6 +41,7 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
+import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.WSContextConfig;
 
@@ -56,9 +57,8 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { WSContextConfig.PASSWORD_PLAIN_XWSS })
-@TestPropertySource({
-        TestPropertiesConfig.WSDL,
-        "classpath:context/ws/password/plain/xwss/test-password-plain-xwss-ws.properties" })
+@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
+        SOAPPropertiesConfig.PASSWORD_PLAIN })
 public final class TestEntityEndpointPasswordPlainXWSS extends
         AbstractTestNGSpringContextTests {
 

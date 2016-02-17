@@ -44,8 +44,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -60,9 +61,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesConfig.ENTITY,
-        TestPropertiesConfig.WSDL,
-        "classpath:context/test-client-password-plain-soap.properties" })
+@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
+        SOAPPropertiesConfig.UNSECURE })
 public final class TestEntityClientPasswordPlainXWSS extends
         AbstractTestNGSpringContextTests {
 
