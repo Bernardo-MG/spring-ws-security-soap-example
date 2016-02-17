@@ -56,9 +56,14 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { WSContextConfig.PASSWORD_PLAIN_XWSS })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        SOAPPropertiesConfig.PASSWORD_PLAIN })
+@ContextConfiguration(locations = { WSContextConfig.BASE,
+        WSContextConfig.PASSWORD_PLAIN_XWSS })
+@TestPropertySource({
+        TestPropertiesConfig.WSDL,
+        SOAPPropertiesConfig.UNSECURE,
+        SOAPPropertiesConfig.PASSWORD_PLAIN,
+        "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties",
+        "classpath:context/ws/password/plain/xwss/ws-password-plain-xwss.properties" })
 public final class TestEntityEndpointPasswordPlainXWSS extends
         AbstractTestNGSpringContextTests {
 

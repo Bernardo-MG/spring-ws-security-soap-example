@@ -32,11 +32,6 @@ package com.wandrell.example.swss.testing.util.config;
 public final class ClientWSS4JContextConfig {
 
     /**
-     * Context with signature-based security for the client and using WSS4J for
-     * both the client and the web service.
-     */
-    public static final String SIGNATURE       = "classpath:context/client/signature/wss4j/client-signature-wss4j.xml";
-    /**
      * Context with ture-based security for the client and using WSS4J for both
      * the client and the web service.
      */
@@ -51,6 +46,11 @@ public final class ClientWSS4JContextConfig {
      * both the client and the web service.
      */
     public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/wss4j/client-password-plain-wss4j.xml";
+    /**
+     * Context with signature-based security for the client and using WSS4J for
+     * both the client and the web service.
+     */
+    public static final String SIGNATURE       = "classpath:context/client/signature/wss4j/client-signature-wss4j.xml";
     /**
      * Unsecure context for the client.
      */

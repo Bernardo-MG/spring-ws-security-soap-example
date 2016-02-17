@@ -32,13 +32,13 @@ package com.wandrell.example.swss.testing.util.config;
 public final class SOAPPropertiesConfig {
 
     /**
-     * Properties file with the unsecure SOAP test data.
-     */
-    public static final String UNSECURE       = "classpath:context/test/soap/test-soap-unsecure.properties";
-    /**
      * Properties file with the plain password SOAP test data.
      */
     public static final String PASSWORD_PLAIN = "classpath:context/test/soap/test-soap-password-plain.properties";
+    /**
+     * Properties file with the unsecure SOAP test data.
+     */
+    public static final String UNSECURE       = "classpath:context/test/soap/test-soap-unsecure.properties";
 
     /**
      * Private constructor to avoid initialization.

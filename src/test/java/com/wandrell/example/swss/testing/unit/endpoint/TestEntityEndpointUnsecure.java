@@ -56,8 +56,10 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { WSContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE })
+@ContextConfiguration(locations = { WSContextConfig.BASE,
+        WSContextConfig.UNSECURE })
+@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
+        "classpath:context/ws/ws-unsecure.properties" })
 public final class TestEntityEndpointUnsecure extends
         AbstractTestNGSpringContextTests {
 

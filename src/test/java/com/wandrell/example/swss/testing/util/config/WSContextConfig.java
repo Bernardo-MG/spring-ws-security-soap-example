@@ -32,13 +32,17 @@ package com.wandrell.example.swss.testing.util.config;
 public final class WSContextConfig {
 
     /**
-     * Unsecure WS context for the endpoint.
+     * Base WS context for the endpoint.
      */
-    public static final String PASSWORD_PLAIN_XWSS = "classpath:context/ws/password/plain/xwss/test-password-plain-xwss-ws.xml";
+    public static final String BASE                = "classpath:context/ws/test-ws.xml";
     /**
      * Unsecure WS context for the endpoint.
      */
-    public static final String UNSECURE            = "classpath:context/ws/test-unsecure-ws.xml";
+    public static final String PASSWORD_PLAIN_XWSS = "classpath:context/ws/password/plain/xwss/ws-password-plain-xwss.xml";
+    /**
+     * Unsecure WS context for the endpoint.
+     */
+    public static final String UNSECURE            = "classpath:context/ws/ws-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
