@@ -40,6 +40,7 @@ import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -59,7 +60,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 @ContextConfiguration(locations = { EndpointWSS4JContextConfig.SIGNATURE })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
-        SOAPPropertiesConfig.SIGNATURE })
+        SOAPPropertiesConfig.SIGNATURE, WSPropertiesConfig.SIGNATURE_WSS4J })
 public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
     /**

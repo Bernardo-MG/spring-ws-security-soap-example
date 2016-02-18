@@ -37,6 +37,7 @@ import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.EndpointXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -58,7 +59,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 @ContextConfiguration(locations = { EndpointXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.USER,
-        SOAPPropertiesConfig.PASSWORD_PLAIN })
+        SOAPPropertiesConfig.PASSWORD_PLAIN,
+        WSPropertiesConfig.PASSWORD_PLAIN_XWSS })
 public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint {
 
     /**
