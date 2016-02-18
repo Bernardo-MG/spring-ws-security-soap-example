@@ -54,9 +54,17 @@ public final class TestPropertiesConfig {
      */
     public static final String USER_INVALID                     = "classpath:context/test/user/test-user-invalid.properties";
     /**
-     * Properties file with the invalid test WSDL configuration.
+     * Properties file with the test WSDL configuration.
      */
     public static final String WSDL                             = "classpath:context/test/ws/test-wsdl.properties";
+    /**
+     * Properties file with the keystore configuration.
+     */
+    public static final String KEYSTORE                         = "classpath:context/keystore/keystore.properties";
+    /**
+     * Properties file with the invalid keystore configuration.
+     */
+    public static final String KEYSTORE_INVALID                 = "classpath:context/keystore/keystore2.properties";
 
     /**
      * Private constructor to avoid initialization.
