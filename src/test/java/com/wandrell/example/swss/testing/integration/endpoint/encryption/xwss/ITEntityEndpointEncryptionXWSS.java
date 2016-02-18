@@ -33,8 +33,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestContextConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
@@ -53,7 +53,7 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { EndpointXWSSContextConfig.ENCRYPTION })
+@ContextConfiguration(locations = { TestContextConfig.DEFAULT })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
         SOAPPropertiesConfig.ENCRYPTION, WSPropertiesConfig.ENCRYPTION_XWSS })
 public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {

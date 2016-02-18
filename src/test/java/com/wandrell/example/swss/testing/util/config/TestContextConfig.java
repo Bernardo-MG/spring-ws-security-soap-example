@@ -29,33 +29,25 @@ package com.wandrell.example.swss.testing.util.config;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointXWSSContextConfig {
+public final class TestContextConfig {
 
     /**
-     * WS context with encryption-based security for the endpoint using XWSS.
+     * Default context file.
+     * <p>
+     * For those test which don't need any context configuration.
      */
-    public static final String ENCRYPTION      = "classpath:context/endpoint/encryption/xwss/test-endpoint-encryption-xwss.xml";
+    public static final String DEFAULT  = "classpath:context/test-default.xml";
     /**
-     * WS context with password-based security for the endpoint using XWSS.
+     * Key stores context file.
+     * <p>
+     * Contains the configuration for the key stores.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/endpoint/password/digest/xwss/test-endpoint-password-digest-xwss.xml";
-    /**
-     * WS context with password-based security for the endpoint using XWSS.
-     */
-    public static final String PASSWORD_PLAIN  = "classpath:context/endpoint/password/plain/xwss/test-endpoint-password-plain-xwss.xml";
-    /**
-     * WS context with signature-based security for the endpoint using XWSS.
-     */
-    public static final String SIGNATURE       = "classpath:context/endpoint/signature/xwss/test-endpoint-signature-xwss.xml";
-    /**
-     * Unsecure WS context for the endpoint.
-     */
-    public static final String UNSECURE        = "classpath:context/endpoint/test-endpoint-unsecure.xml";
+    public static final String KEYSTORE = "classpath:context/keystore/keystore.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointXWSSContextConfig() {
+    private TestContextConfig() {
         super();
     }
 

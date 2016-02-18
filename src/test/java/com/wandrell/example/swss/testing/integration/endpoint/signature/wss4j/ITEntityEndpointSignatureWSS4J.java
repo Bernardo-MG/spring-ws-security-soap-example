@@ -37,8 +37,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestContextConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
@@ -58,9 +58,11 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { EndpointWSS4JContextConfig.SIGNATURE })
+@ContextConfiguration(locations = { TestContextConfig.DEFAULT,
+        TestContextConfig.KEYSTORE })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
-        SOAPPropertiesConfig.SIGNATURE, WSPropertiesConfig.SIGNATURE_WSS4J })
+        TestPropertiesConfig.KEYSTORE, SOAPPropertiesConfig.SIGNATURE,
+        WSPropertiesConfig.SIGNATURE_WSS4J })
 public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
     /**

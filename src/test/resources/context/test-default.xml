@@ -7,11 +7,10 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Test content calling the password protected WS using WSS4J.
+        Default context for tests.
     </description>
 
     <!-- Properties -->
-    <context:property-placeholder
-        location="classpath:context/endpoint/password/plain/wss4j/test-endpoint-password-plain-wss4j.properties" />
+    <context:property-placeholder />
 
 </beans>
