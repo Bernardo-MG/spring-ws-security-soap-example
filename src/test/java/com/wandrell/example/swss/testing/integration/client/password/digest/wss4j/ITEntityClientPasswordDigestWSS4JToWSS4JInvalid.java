@@ -27,8 +27,9 @@ package com.wandrell.example.swss.testing.integration.client.password.digest.wss
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
 
 /**
@@ -38,9 +39,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_DIGEST })
-@TestPropertySource({
-        TestPropertiesConfig.USER_INVALID,
-        "classpath:context/client/password/digest/wss4j/test-client-password-digest-wss4j-to-wss4j-invalid.properties" })
+@TestPropertySource({ TestPropertiesConfig.USER_INVALID,
+        WSPropertiesConfig.PASSWORD_DIGEST_WSS4J })
 public final class ITEntityClientPasswordDigestWSS4JToWSS4JInvalid extends
         AbstractITEntityClientInvalid {
 

@@ -56,7 +56,7 @@ public final class TestPropertiesConfig {
     /**
      * Properties file with the invalid test WSDL configuration.
      */
-    public static final String WSDL                             = "classpath:context/test/test-wsdl.properties";
+    public static final String WSDL                             = "classpath:context/test/ws/test-wsdl.properties";
 
     /**
      * Private constructor to avoid initialization.

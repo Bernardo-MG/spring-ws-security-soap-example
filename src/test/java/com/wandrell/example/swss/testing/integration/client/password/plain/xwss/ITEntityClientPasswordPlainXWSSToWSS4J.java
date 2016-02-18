@@ -27,8 +27,9 @@ package com.wandrell.example.swss.testing.integration.client.password.plain.xwss
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
 
 /**
@@ -38,9 +39,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
-@TestPropertySource({
-        TestPropertiesConfig.ENTITY,
-        "classpath:context/client/password/plain/xwss/test-client-password-plain-xwss-to-wss4j.properties" })
+@TestPropertySource({ TestPropertiesConfig.ENTITY,
+        WSPropertiesConfig.PASSWORD_PLAIN_WSS4J })
 public final class ITEntityClientPasswordPlainXWSSToWSS4J extends
         AbstractITEntityClient {
 
