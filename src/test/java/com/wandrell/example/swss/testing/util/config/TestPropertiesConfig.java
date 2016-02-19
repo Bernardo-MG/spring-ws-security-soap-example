@@ -34,29 +34,7 @@ public final class TestPropertiesConfig {
     /**
      * Properties file with the test entity configuration.
      */
-    public static final String ENTITY                           = "classpath:context/test/test-entity.properties";
-    /**
-     * Properties file with the test invalid digested user and password
-     * configuration.
-     */
-    public static final String SECURITY_PASSWORD_DIGEST_INVALID = "classpath:context/test/security/test-security-password-digest-invalid.properties";
-    /**
-     * Properties file with the test invalid plain user and password
-     * configuration.
-     */
-    public static final String SECURITY_PASSWORD_PLAIN_INVALID  = "classpath:context/test/security/test-security-password-plain-invalid.properties";
-    /**
-     * Properties file with the test user configuration.
-     */
-    public static final String USER                             = "classpath:context/test/user/test-user.properties";
-    /**
-     * Properties file with the invalid test user configuration.
-     */
-    public static final String USER_INVALID                     = "classpath:context/test/user/test-user-invalid.properties";
-    /**
-     * Properties file with the test WSDL configuration.
-     */
-    public static final String WSDL                             = "classpath:context/test/ws/test-wsdl.properties";
+    public static final String ENTITY                           = "classpath:config/test-entity.properties";
     /**
      * Properties file with the keystore configuration.
      */
@@ -65,6 +43,28 @@ public final class TestPropertiesConfig {
      * Properties file with the invalid keystore configuration.
      */
     public static final String KEYSTORE_INVALID                 = "classpath:context/keystore/keystore2.properties";
+    /**
+     * Properties file with the test invalid digested user and password
+     * configuration.
+     */
+    public static final String SECURITY_PASSWORD_DIGEST_INVALID = "classpath:config/security/test-security-password-digest-invalid.properties";
+    /**
+     * Properties file with the test invalid plain user and password
+     * configuration.
+     */
+    public static final String SECURITY_PASSWORD_PLAIN_INVALID  = "classpath:config/security/test-security-password-plain-invalid.properties";
+    /**
+     * Properties file with the test user configuration.
+     */
+    public static final String USER                             = "classpath:config/user/test-user.properties";
+    /**
+     * Properties file with the invalid test user configuration.
+     */
+    public static final String USER_INVALID                     = "classpath:config/user/test-user-invalid.properties";
+    /**
+     * Properties file with the test WSDL configuration.
+     */
+    public static final String WSDL                             = "classpath:config/ws/test-wsdl.properties";
 
     /**
      * Private constructor to avoid initialization.

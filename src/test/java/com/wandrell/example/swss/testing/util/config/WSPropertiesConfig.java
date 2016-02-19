@@ -34,39 +34,39 @@ public final class WSPropertiesConfig {
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String ENCRYPTION_WSS4J      = "classpath:context/test/ws/test-ws-encryption-wss4j.properties";
+    public static final String ENCRYPTION_WSS4J      = "classpath:config/ws/test-ws-encryption-wss4j.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String ENCRYPTION_XWSS       = "classpath:context/test/ws/test-ws-encryption-xwss.properties";
+    public static final String ENCRYPTION_XWSS       = "classpath:config/ws/test-ws-encryption-xwss.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String PASSWORD_DIGEST_WSS4J = "classpath:context/test/ws/test-ws-password-digest-wss4j.properties";
+    public static final String PASSWORD_DIGEST_WSS4J = "classpath:config/ws/test-ws-password-digest-wss4j.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String PASSWORD_DIGEST_XWSS  = "classpath:context/test/ws/test-ws-password-digest-xwss.properties";
+    public static final String PASSWORD_DIGEST_XWSS  = "classpath:config/ws/test-ws-password-digest-xwss.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String PASSWORD_PLAIN_WSS4J  = "classpath:context/test/ws/test-ws-password-plain-wss4j.properties";
+    public static final String PASSWORD_PLAIN_WSS4J  = "classpath:config/ws/test-ws-password-plain-wss4j.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String PASSWORD_PLAIN_XWSS   = "classpath:context/test/ws/test-ws-password-plain-xwss.properties";
+    public static final String PASSWORD_PLAIN_XWSS   = "classpath:config/ws/test-ws-password-plain-xwss.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String SIGNATURE_WSS4J       = "classpath:context/test/ws/test-ws-signature-wss4j.properties";
+    public static final String SIGNATURE_WSS4J       = "classpath:config/ws/test-ws-signature-wss4j.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String SIGNATURE_XWSS        = "classpath:context/test/ws/test-ws-signature-xwss.properties";
+    public static final String SIGNATURE_XWSS        = "classpath:config/ws/test-ws-signature-xwss.properties";
     /**
      * Properties file with the unsecure WS.
      */
-    public static final String UNSECURE              = "classpath:context/test/ws/test-ws-unsecure.properties";
+    public static final String UNSECURE              = "classpath:config/ws/test-ws-unsecure.properties";
 
     /**
      * Private constructor to avoid initialization.
