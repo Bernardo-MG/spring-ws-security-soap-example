@@ -33,16 +33,18 @@ public final class WSContextConfig {
 
     /**
      * Base WS context for the endpoint.
+     * <p>
+     * This is the application context used for the real web services.
      */
-    public static final String BASE                = "classpath:context/ws/test-ws.xml";
+    public static final String BASE                = "classpath:context/applicationContext.xml";
     /**
      * Unsecure WS context for the endpoint.
      */
-    public static final String PASSWORD_PLAIN_XWSS = "classpath:context/ws/password/plain/xwss/ws-password-plain-xwss.xml";
+    public static final String PASSWORD_PLAIN_XWSS = "classpath:context/servlet/password/plain/xwss/endpoint-password-plain-xwss.xml";
     /**
      * Unsecure WS context for the endpoint.
      */
-    public static final String UNSECURE            = "classpath:context/ws/ws-unsecure.xml";
+    public static final String UNSECURE            = "classpath:context/servlet/endpoint-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.

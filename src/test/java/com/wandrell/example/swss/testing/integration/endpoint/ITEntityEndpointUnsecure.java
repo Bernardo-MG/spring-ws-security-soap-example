@@ -108,11 +108,11 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
             JAXBException {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathInvalid));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
 
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
     /**
@@ -134,11 +134,11 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathValid));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathValid));
 
-        Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
 
         entity = SOAPParsingUtils.parseEntityFromMessage(message);
 

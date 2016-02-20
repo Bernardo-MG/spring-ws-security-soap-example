@@ -50,7 +50,7 @@ public final class DefaultUserDetailsService implements UserDetailsService {
      * The logger used for logging the user details service usage.
      */
     private static final Logger LOGGER = LoggerFactory
-                                               .getLogger(DefaultUserDetailsService.class);
+            .getLogger(DefaultUserDetailsService.class);
 
     /**
      * Constructs a {@code DefaultUserDetailsService}.
@@ -88,11 +88,11 @@ public final class DefaultUserDetailsService implements UserDetailsService {
             user = new User(username, "123456", true, true, true, true,
                     authorities);
         } else {
-            LOGGER.debug(String.format("User for username %s not found",
-                    username));
+            LOGGER.debug(
+                    String.format("User for username %s not found", username));
 
-            throw new UsernameNotFoundException(String.format(
-                    "Invalid username '%s'", username));
+            throw new UsernameNotFoundException(
+                    String.format("Invalid username '%s'", username));
         }
 
         LOGGER.debug(String.format("Found user for username %s", username));

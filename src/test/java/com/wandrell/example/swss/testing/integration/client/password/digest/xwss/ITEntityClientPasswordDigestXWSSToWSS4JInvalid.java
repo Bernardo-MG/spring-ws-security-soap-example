@@ -42,8 +42,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_DIGEST })
 @TestPropertySource({ TestPropertiesConfig.SECURITY_PASSWORD_DIGEST_INVALID,
         WSPropertiesConfig.PASSWORD_DIGEST_WSS4J })
-public final class ITEntityClientPasswordDigestXWSSToWSS4JInvalid extends
-        AbstractITEntityClientInvalid {
+public final class ITEntityClientPasswordDigestXWSSToWSS4JInvalid
+        extends AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.

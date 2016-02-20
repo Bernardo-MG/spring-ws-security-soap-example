@@ -41,8 +41,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
         WSPropertiesConfig.PASSWORD_PLAIN_XWSS })
-public final class ITEntityClientPasswordPlainXWSSToXWSS extends
-        AbstractITEntityClient {
+public final class ITEntityClientPasswordPlainXWSSToXWSS
+        extends AbstractITEntityClient {
 
     /**
      * Default constructor.

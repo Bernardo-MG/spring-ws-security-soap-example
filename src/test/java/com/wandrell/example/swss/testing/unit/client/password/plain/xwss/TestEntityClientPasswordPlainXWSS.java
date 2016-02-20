@@ -63,8 +63,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
         SOAPPropertiesConfig.UNSECURE })
-public final class TestEntityClientPasswordPlainXWSS extends
-        AbstractTestNGSpringContextTests {
+public final class TestEntityClientPasswordPlainXWSS
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
@@ -118,13 +118,12 @@ public final class TestEntityClientPasswordPlainXWSS extends
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(responsePayloadInvalidPath));
+        responsePayload = new StreamSource(ClassLoader.class
+                .getResourceAsStream(responsePayloadInvalidPath));
         responseCreator = ResponseCreators.withPayload(responsePayload);
 
         // Creates the server mock
@@ -154,8 +153,8 @@ public final class TestEntityClientPasswordPlainXWSS extends
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responsePayload = new StreamSource(

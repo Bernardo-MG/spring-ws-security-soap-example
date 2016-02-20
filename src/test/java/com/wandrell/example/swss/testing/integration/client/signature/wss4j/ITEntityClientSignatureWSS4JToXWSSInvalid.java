@@ -42,8 +42,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.SIGNATURE })
 @TestPropertySource({ TestPropertiesConfig.KEYSTORE_INVALID,
         WSPropertiesConfig.SIGNATURE_XWSS })
-public final class ITEntityClientSignatureWSS4JToXWSSInvalid extends
-        AbstractITEntityClientInvalid {
+public final class ITEntityClientSignatureWSS4JToXWSSInvalid
+        extends AbstractITEntityClientInvalid {
 
     /**
      * Default constructor.

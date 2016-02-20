@@ -43,8 +43,8 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 
 /**
  * Unit tests for {@link EntityClient}.
@@ -59,10 +59,9 @@ import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY,
-        TestPropertiesConfig.WSDL })
-public final class TestEntityClientExceptionSOAP extends
-        AbstractTestNGSpringContextTests {
+@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL })
+public final class TestEntityClientExceptionSOAP
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
@@ -99,8 +98,8 @@ public final class TestEntityClientExceptionSOAP extends
         final ResponseCreator responseCreator; // Creator for the response
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responseCreator = ResponseCreators.withError("Error");
@@ -125,12 +124,12 @@ public final class TestEntityClientExceptionSOAP extends
         final ResponseCreator responseCreator; // Creator for the response
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
-        responseCreator = ResponseCreators.withServerOrReceiverFault(
-                "FAULT:Server", Locale.ENGLISH);
+        responseCreator = ResponseCreators
+                .withServerOrReceiverFault("FAULT:Server", Locale.ENGLISH);
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
@@ -152,8 +151,8 @@ public final class TestEntityClientExceptionSOAP extends
         final ResponseCreator responseCreator; // Creator for the response
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responseCreator = ResponseCreators.withVersionMismatchFault(

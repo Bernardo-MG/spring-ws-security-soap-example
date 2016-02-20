@@ -61,7 +61,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.USER,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
         WSPropertiesConfig.PASSWORD_PLAIN_XWSS })
-public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint {
+public final class ITEntityEndpointPasswordPlainXWSS
+        extends AbstractITEndpoint {
 
     /**
      * Id of the returned entity.
@@ -111,11 +112,11 @@ public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint 
     public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SOAPParsingUtils
-                .parseMessageFromFile(pathInvalid));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
 
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
     /**
@@ -132,8 +133,8 @@ public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint 
         message = callWebService(SecurityUtils.getPlainPasswordMessage(
                 pathValid, username, password + "abc123"));
 
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
     /**
@@ -149,8 +150,8 @@ public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint 
         message = callWebService(SecurityUtils.getPlainPasswordMessage(
                 pathValid, username + "abc123", password));
 
-        Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
     /**
@@ -165,11 +166,11 @@ public final class ITEntityEndpointPasswordPlainXWSS extends AbstractITEndpoint 
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        message = callWebService(SecurityUtils.getPlainPasswordMessage(
-                pathValid, username, password));
+        message = callWebService(SecurityUtils
+                .getPlainPasswordMessage(pathValid, username, password));
 
-        Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
-                .getFault());
+        Assert.assertNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
 
         entity = SOAPParsingUtils.parseEntityFromMessage(message);
 

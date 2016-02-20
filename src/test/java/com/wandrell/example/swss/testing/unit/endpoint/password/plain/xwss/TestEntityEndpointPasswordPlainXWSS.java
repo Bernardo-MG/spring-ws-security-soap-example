@@ -58,14 +58,13 @@ import com.wandrell.example.swss.testing.util.config.WSContextConfig;
  */
 @ContextConfiguration(locations = { WSContextConfig.BASE,
         WSContextConfig.PASSWORD_PLAIN_XWSS })
-@TestPropertySource({
-        TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.UNSECURE,
+@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
         "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties",
-        "classpath:context/ws/password/plain/xwss/ws-password-plain-xwss.properties" })
-public final class TestEntityEndpointPasswordPlainXWSS extends
-        AbstractTestNGSpringContextTests {
+        "classpath:context/ws/password/plain/xwss/ws-password-plain-xwss.properties",
+        "classpath:context/ws/ws.properties" })
+public final class TestEntityEndpointPasswordPlainXWSS
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
@@ -106,9 +105,8 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
         final Source requestPayload;           // SOAP payload for the request
 
         // Creates the request
-        requestPayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(requestPayloadInvalidPath));
+        requestPayload = new StreamSource(ClassLoader.class
+                .getResourceAsStream(requestPayloadInvalidPath));
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
@@ -140,8 +138,8 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
         requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        responseMatcher = ResponseMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Calls the endpoint
         mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
