@@ -27,8 +27,8 @@ package com.wandrell.example.swss.testing.util.config.context;
 /**
  * Configuration class for the XWSS-based test client context files.
  * <p>
- * Each of these files serves to create a Spring context for a single client which uses the
- * XWSS implementation of the WSS standard.
+ * Each of these files serves to create a Spring context for a single client
+ * which uses the XWSS implementation of the WSS standard.
  *
  * @author Bernardo Martínez Garrido
  */

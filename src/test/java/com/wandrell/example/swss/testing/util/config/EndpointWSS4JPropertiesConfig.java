@@ -27,8 +27,8 @@ package com.wandrell.example.swss.testing.util.config;
 /**
  * Configuration class for the WSS4J-based test web service properties files.
  * <p>
- * These files contain the URL for an endpoint and its WSDL. These endpoints use the
- * WSS4J implementation of the WSS standard.
+ * These files contain the URL for an endpoint and its WSDL. These endpoints use
+ * the WSS4J implementation of the WSS standard.
  *
  * @author Bernardo Martínez Garrido
  */

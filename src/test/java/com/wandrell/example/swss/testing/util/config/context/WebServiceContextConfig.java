@@ -36,7 +36,8 @@ public final class WebServiceContextConfig {
     /**
      * Base web service context used on all the endpoints.
      * <p>
-     * This is the application context used for the real web services, and shared by all the servlets.
+     * This is the application context used for the real web services, and
+     * shared by all the servlets.
      */
     public static final String BASE                = "classpath:context/applicationContext.xml";
     /**
@@ -46,7 +47,7 @@ public final class WebServiceContextConfig {
     /**
      * Unsecure web service context.
      */
-    public static final String UNSECURE            = "classpath:context/servlet/endpoint-unsecure.xml";
+    public static final String UNSECURE            = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.

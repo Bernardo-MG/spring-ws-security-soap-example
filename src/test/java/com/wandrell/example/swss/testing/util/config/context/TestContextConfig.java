@@ -36,8 +36,8 @@ public final class TestContextConfig {
     /**
      * Default context file.
      * <p>
-     * For those test which don't need any context configuration but require loading
-     * Spring properties.
+     * For those test which don't need any context configuration but require
+     * loading Spring properties.
      */
     public static final String DEFAULT  = "classpath:context/test-default.xml";
     /**

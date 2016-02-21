@@ -27,7 +27,8 @@ package com.wandrell.example.swss.testing.util.config;
 /**
  * Configuration class for the test SOAP messages properties files.
  * <p>
- * Each file contains the information for finding or generating test SOAP messages.
+ * Each file contains the information for finding or generating test SOAP
+ * messages.
  *
  * @author Bernardo Martínez Garrido
  */
