@@ -27,10 +27,10 @@ package com.wandrell.example.swss.testing.integration.client.encryption.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointXWSSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
  * Implementation of {@code AbstractITEntityClientInvalid} for a signature
@@ -41,7 +41,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.ENCRYPTION })
 @TestPropertySource({ TestPropertiesConfig.KEYSTORE_INVALID,
-        WSPropertiesConfig.ENCRYPTION_XWSS })
+        EndpointXWSSPropertiesConfig.ENCRYPTION })
 public final class ITEntityClientEncryptionWSS4JToXWSSInvalid
         extends AbstractITEntityClientInvalid {
 

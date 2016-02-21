@@ -26,6 +26,8 @@ package com.wandrell.example.swss.testing.util.config;
 
 /**
  * Configuration class for the test properties files.
+ * <p>
+ * These contain generic data required in several tests.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -64,7 +66,7 @@ public final class TestPropertiesConfig {
     /**
      * Properties file with the test WSDL configuration.
      */
-    public static final String WSDL                             = "classpath:config/ws/test-wsdl.properties";
+    public static final String WSDL                             = "classpath:config/endpoint/test-wsdl.properties";
 
     /**
      * Private constructor to avoid initialization.

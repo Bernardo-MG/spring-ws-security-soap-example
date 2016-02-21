@@ -27,10 +27,10 @@ package com.wandrell.example.swss.testing.integration.client.password.digest.xws
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
+import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
  * Implementation of {@code AbstractITEntityClientInvalid} for a password
@@ -41,7 +41,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_DIGEST })
 @TestPropertySource({ TestPropertiesConfig.SECURITY_PASSWORD_DIGEST_INVALID,
-        WSPropertiesConfig.PASSWORD_DIGEST_WSS4J })
+        EndpointWSS4JPropertiesConfig.PASSWORD_DIGEST })
 public final class ITEntityClientPasswordDigestXWSSToWSS4JInvalid
         extends AbstractITEntityClientInvalid {
 

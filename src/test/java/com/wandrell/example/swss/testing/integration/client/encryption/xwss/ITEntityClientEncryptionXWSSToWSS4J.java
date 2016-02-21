@@ -27,9 +27,9 @@ package com.wandrell.example.swss.testing.integration.client.encryption.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
 
 /**
  * Implementation of {@code AbstractITEntityClient} for a password protected web
@@ -39,7 +39,8 @@ import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.ENCRYPTION })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
-        TestPropertiesConfig.KEYSTORE, WSPropertiesConfig.ENCRYPTION_WSS4J })
+        TestPropertiesConfig.KEYSTORE,
+        EndpointWSS4JPropertiesConfig.ENCRYPTION })
 public final class ITEntityClientEncryptionXWSSToWSS4J {
 
     /**

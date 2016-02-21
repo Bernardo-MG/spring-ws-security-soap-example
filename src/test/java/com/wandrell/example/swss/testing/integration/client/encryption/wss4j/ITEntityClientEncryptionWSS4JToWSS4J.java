@@ -27,10 +27,10 @@ package com.wandrell.example.swss.testing.integration.client.encryption.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
 
 /**
  * Implementation of {@code AbstractITEntityClient} for a password protected web
@@ -40,7 +40,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.ENCRYPTION })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
-        TestPropertiesConfig.KEYSTORE, WSPropertiesConfig.ENCRYPTION_WSS4J })
+        TestPropertiesConfig.KEYSTORE,
+        EndpointWSS4JPropertiesConfig.ENCRYPTION })
 public final class ITEntityClientEncryptionWSS4JToWSS4J
         extends AbstractITEntityClient {
 

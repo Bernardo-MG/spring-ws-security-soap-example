@@ -25,14 +25,16 @@
 package com.wandrell.example.swss.testing.util.config;
 
 /**
- * Configuration class for the test properties files.
+ * Configuration class for the test SOAP messages properties files.
+ * <p>
+ * Each file contains the information for finding or generating test SOAP messages.
  *
  * @author Bernardo Martínez Garrido
  */
 public final class SOAPPropertiesConfig {
 
     /**
-     * Properties file with the encryption SOAP test data.
+     * Properties file with the encrypted SOAP test data.
      */
     public static final String ENCRYPTION      = "classpath:config/soap/test-soap-encryption.properties";
     /**

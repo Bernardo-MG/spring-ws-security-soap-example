@@ -26,7 +26,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/endpoint-unsecure.xml</param-value>
+            <param-value>classpath:/context/servlet/servlet-unsecure.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -47,7 +47,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/password/plain/xwss/endpoint-password-plain-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -64,7 +64,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/password/digest/xwss/endpoint-password-digest-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -81,7 +81,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/signature/xwss/endpoint-signature-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/signature/xwss/servlet-signature-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -98,7 +98,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/encryption/xwss/endpoint-encryption-xwss.xml</param-value>
+            <param-value>classpath:/context/servlet/encryption/xwss/servlet-encryption-xwss.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -119,7 +119,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/password/plain/wss4j/endpoint-password-plain-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -136,7 +136,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/password/digest/wss4j/endpoint-password-digest-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -153,7 +153,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/signature/wss4j/endpoint-signature-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/signature/wss4j/servlet-signature-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->
@@ -170,7 +170,7 @@
         <init-param>
             <!-- Loads the endpoint context -->
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/context/servlet/encryption/wss4j/endpoint-encryption-wss4j.xml</param-value>
+            <param-value>classpath:/context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml</param-value>
         </init-param>
         <init-param>
             <!-- Relative WSDL URIs are transformed to absolute URIs -->

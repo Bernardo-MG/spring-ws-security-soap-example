@@ -27,10 +27,10 @@ package com.wandrell.example.swss.testing.integration.client;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.EndpointXWSSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.WSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
 
 /**
  * Implementation of {@code AbstractITEntityClient} for an unsecured web
@@ -40,7 +40,7 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
-        WSPropertiesConfig.UNSECURE })
+        EndpointXWSSPropertiesConfig.UNSECURE })
 public final class ITEntityClientUnsecure extends AbstractITEntityClient {
 
     /**
