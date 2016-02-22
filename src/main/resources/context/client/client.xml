@@ -7,10 +7,9 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Base context for the WS clients.
+        Base context for the web service clients.
 
-        This is to be extended for each
-        client which should define the security
+        This is to be extended for each client, which should define the security
         interceptor to use.
     </description>
 

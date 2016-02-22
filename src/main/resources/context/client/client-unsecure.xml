@@ -7,7 +7,7 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for the unsecured WS client. This is the most basic WS
+        Context for the unsecured client. This is the most basic
         client possible.
     </description>
 
