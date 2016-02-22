@@ -22,38 +22,29 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the XWSS-based test web service properties files.
+ * Configuration class for the XWSS-based test endpoints properties files.
  * <p>
- * These files contain the URL for an endpoint and its WSDL. These endpoints use
- * the XWSS implementation of the WSS standard.
+ * These files contain the data required for setting up an endpoint context.
  *
  * @author Bernardo Martínez Garrido
  */
 public final class EndpointXWSSPropertiesConfig {
 
     /**
-     * Properties file with the encrypted endpoint URLs.
+     * Properties file with the base endpoint configuration.
      */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
+    public static final String BASE           = "classpath:context/endpoint/endpoint.properties";
     /**
-     * Properties file with the digested password endpoint URLs.
+     * Properties file with the plain password endpoint configuration.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
+    public static final String PASSWORD_PLAIN = "classpath:context/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties";
     /**
-     * Properties file with the plain password endpoint URLs.
+     * Properties file with the unsecure endpoint configuration.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
-    /**
-     * Properties file with the signed endpoint URLs.
-     */
-    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
-    /**
-     * Properties file with the unsecure endpoint URLs.
-     */
-    public static final String UNSECURE        = "classpath:config/endpoint/test-endpoint-unsecure.properties";
+    public static final String UNSECURE       = "classpath:context/endpoint/endpoint-unsecure.properties";
 
     /**
      * Private constructor to avoid initialization.

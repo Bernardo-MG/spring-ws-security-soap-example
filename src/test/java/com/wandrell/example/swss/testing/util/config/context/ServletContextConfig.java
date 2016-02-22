@@ -22,43 +22,37 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config;
+package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the test SOAP messages properties files.
+ * Configuration class for the test context files.
  * <p>
- * Each file contains the information for finding or generating test SOAP
- * messages.
+ * These are the same context configurations as the ones used for the servlets.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class SOAPPropertiesConfig {
+public final class ServletContextConfig {
 
     /**
-     * Properties file with the encrypted SOAP test data.
+     * Base web service context used on all the endpoints.
+     * <p>
+     * This is the application context used for the real web services, and
+     * shared by all the servlets.
      */
-    public static final String ENCRYPTION      = "classpath:config/soap/test-soap-encryption.properties";
+    public static final String BASE                = "classpath:context/applicationContext.xml";
     /**
-     * Properties file with the digested password SOAP test data.
+     * Plain password web service contextt.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/soap/test-soap-password-digest.properties";
+    public static final String PASSWORD_PLAIN_XWSS = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
     /**
-     * Properties file with the plain password SOAP test data.
+     * Unsecure web service context.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/soap/test-soap-password-plain.properties";
-    /**
-     * Properties file with the signature SOAP test data.
-     */
-    public static final String SIGNATURE       = "classpath:config/soap/test-soap-signature.properties";
-    /**
-     * Properties file with the unsecure SOAP test data.
-     */
-    public static final String UNSECURE        = "classpath:config/soap/test-soap-unsecure.properties";
+    public static final String UNSECURE            = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private SOAPPropertiesConfig() {
+    private ServletContextConfig() {
         super();
     }
 

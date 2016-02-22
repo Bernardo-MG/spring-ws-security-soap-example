@@ -22,34 +22,34 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the WSS4J-based test web service properties files.
+ * Configuration class for the XWSS-based test endpoints URLs properties files.
  * <p>
  * These files contain the URL for an endpoint and its WSDL. These endpoints use
- * the WSS4J implementation of the WSS standard.
+ * the XWSS implementation of the WSS standard.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointWSS4JPropertiesConfig {
+public final class EndpointURLXWSSPropertiesConfig {
 
     /**
      * Properties file with the encrypted endpoint URLs.
      */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-wss4j.properties";
+    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
     /**
      * Properties file with the digested password endpoint URLs.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-wss4j.properties";
+    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
     /**
      * Properties file with the plain password endpoint URLs.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-wss4j.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
     /**
      * Properties file with the signed endpoint URLs.
      */
-    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-wss4j.properties";
+    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
     /**
      * Properties file with the unsecure endpoint URLs.
      */
@@ -58,7 +58,7 @@ public final class EndpointWSS4JPropertiesConfig {
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointWSS4JPropertiesConfig() {
+    private EndpointURLXWSSPropertiesConfig() {
         super();
     }
 

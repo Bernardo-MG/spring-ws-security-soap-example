@@ -22,33 +22,26 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.client.encryption.xwss;
-
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Implementation of {@code AbstractITEntityClientInvalid} for a password
- * protected web service using XWSS for the client and WSS4J for the web
- * service.
+ * Configuration class for the XWSS-based test interceptor properties files.
+ * <p>
+ * These files contain the data required for setting up an interceptor context.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextConfig.ENCRYPTION })
-@TestPropertySource({ TestPropertiesConfig.KEYSTORE_INVALID,
-        EndpointURLWSS4JPropertiesConfig.ENCRYPTION })
-public final class ITEntityClientEncryptionXWSSToWSS4JInvalid
-        extends AbstractITEntityClientInvalid {
+public final class InterceptorXWSSPropertiesConfig {
 
     /**
-     * Default constructor.
+     * Properties file with the plain password endpoint configuration.
      */
-    public ITEntityClientEncryptionXWSSToWSS4JInvalid() {
+    public static final String PASSWORD_PLAIN = "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
+
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private InterceptorXWSSPropertiesConfig() {
         super();
     }
 

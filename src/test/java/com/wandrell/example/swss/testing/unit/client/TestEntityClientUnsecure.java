@@ -44,9 +44,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**

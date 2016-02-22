@@ -43,8 +43,8 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
 /**
  * Unit tests for {@link EntityClient}.

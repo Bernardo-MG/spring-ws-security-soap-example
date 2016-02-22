@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
  * Configuration class for the test properties files.

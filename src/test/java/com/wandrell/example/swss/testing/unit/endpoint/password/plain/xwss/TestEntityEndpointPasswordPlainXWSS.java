@@ -41,9 +41,11 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.context.WebServiceContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
 /**
  * Unit tests for the unsecured endpoint.
@@ -56,13 +58,13 @@ import com.wandrell.example.swss.testing.util.config.context.WebServiceContextCo
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { WebServiceContextConfig.BASE,
-        WebServiceContextConfig.PASSWORD_PLAIN_XWSS })
+@ContextConfiguration(locations = { ServletContextConfig.BASE,
+        ServletContextConfig.PASSWORD_PLAIN_XWSS })
 @TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
-        "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties",
-        "classpath:context/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties",
-        "classpath:context/endpoint/endpoint.properties" })
+        InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
+        EndpointXWSSPropertiesConfig.PASSWORD_PLAIN,
+        EndpointXWSSPropertiesConfig.BASE })
 public final class TestEntityEndpointPasswordPlainXWSS
         extends AbstractTestNGSpringContextTests {
 
