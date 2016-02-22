@@ -25,9 +25,12 @@
 package com.wandrell.example.swss.testing.integration.client.password.digest.xwss;
 
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient;
+import com.wandrell.example.swss.testing.util.config.EndpointXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
 
 /**
  * Implementation of {@code AbstractITEntityClient} for a password protected web
@@ -36,6 +39,8 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_DIGEST })
+@TestPropertySource({ TestPropertiesConfig.ENTITY,
+        EndpointXWSSPropertiesConfig.PASSWORD_DIGEST })
 public final class ITEntityClientPasswordDigestXWSSToXWSS
         extends AbstractITEntityClient {
 

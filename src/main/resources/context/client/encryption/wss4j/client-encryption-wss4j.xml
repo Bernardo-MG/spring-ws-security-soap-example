@@ -7,14 +7,20 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for the WSS4J encrypted WS client.
+        Context for the WSS4J encrypted client.
 
         A normal key store and a WSS4J one are required for this to work, such as the
         ones provided by the key stores context files.
     </description>
 
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/client/client.properties, classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties, classpath:context/keystore/keystore-wss4j.properties" />
+
     <!-- Imports base context -->
+    <import resource="classpath:context/keystore/keystore.xml" />
+    <import resource="classpath:context/keystore/keystore-wss4j.xml" />
     <import resource="classpath:context/client/client.xml" />
-    <import resource="classpath:context/security/encryption/wss4j/security-encryption-wss4j.xml" />
+    <import resource="classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.xml" />
 
 </beans>

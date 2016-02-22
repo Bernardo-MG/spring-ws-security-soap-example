@@ -28,13 +28,17 @@ import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -53,8 +57,10 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { EndpointWSS4JContextConfig.PASSWORD_DIGEST })
+@ContextConfiguration(locations = { TestContextConfig.DEFAULT })
+@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.USER,
+        SOAPPropertiesConfig.PASSWORD_DIGEST,
+        EndpointWSS4JPropertiesConfig.PASSWORD_DIGEST })
 public final class ITEntityEndpointPasswordDigestWSS4J
         extends AbstractITEndpoint {
 
@@ -76,12 +82,12 @@ public final class ITEntityEndpointPasswordDigestWSS4J
     /**
      * Path to the file containing the invalid SOAP request.
      */
-    @Value("${message.invalid.file.path}")
+    @Value("${soap.request.invalid.path}")
     private String  pathInvalid;
     /**
      * Path to the file containing the valid SOAP request.
      */
-    @Value("${message.valid.file.path}")
+    @Value("${soap.request.template.path}")
     private String  pathValid;
     /**
      * Username for the passworded message.

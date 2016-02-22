@@ -32,12 +32,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -54,7 +58,11 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { EndpointWSS4JContextConfig.SIGNATURE })
+@ContextConfiguration(
+        locations = { TestContextConfig.DEFAULT, TestContextConfig.KEYSTORE })
+@TestPropertySource({ TestPropertiesConfig.ENTITY,
+        TestPropertiesConfig.KEYSTORE, SOAPPropertiesConfig.SIGNATURE,
+        EndpointWSS4JPropertiesConfig.SIGNATURE })
 public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
     /**
@@ -86,7 +94,7 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
     /**
      * Path to the file containing the invalid SOAP request.
      */
-    @Value("${message.invalid.file.path}")
+    @Value("${soap.request.invalid.path}")
     private String   pathUnsigned;
 
     /**

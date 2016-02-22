@@ -25,9 +25,12 @@
 package com.wandrell.example.swss.testing.integration.client.encryption.xwss;
 
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.ClientXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClientInvalid;
+import com.wandrell.example.swss.testing.util.config.EndpointXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
  * Implementation of {@code AbstractITEntityClientInvalid} for a password
@@ -36,8 +39,9 @@ import com.wandrell.example.swss.testing.util.test.client.AbstractITEntityClient
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { ClientXWSSContextConfig.ENCRYPTION_TO_XWSS_INVALID })
+@ContextConfiguration(locations = { ClientXWSSContextConfig.ENCRYPTION })
+@TestPropertySource({ TestPropertiesConfig.KEYSTORE_INVALID,
+        EndpointXWSSPropertiesConfig.ENCRYPTION })
 public final class ITEntityClientEncryptionXWSSToXWSSInvalid
         extends AbstractITEntityClientInvalid {
 

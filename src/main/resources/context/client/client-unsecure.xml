@@ -7,9 +7,13 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for the unsecured WS client. This is the most basic WS
+        Context for the unsecured client. This is the most basic
         client possible.
     </description>
+
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/client/client.properties" />
 
     <!-- Imports base context -->
     <import resource="classpath:context/client/client.xml" />

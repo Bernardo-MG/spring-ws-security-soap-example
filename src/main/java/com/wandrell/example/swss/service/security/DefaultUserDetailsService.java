@@ -29,6 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +45,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * @author Bernardo Martínez Garrido
  */
 public final class DefaultUserDetailsService implements UserDetailsService {
+
+    /**
+     * The logger used for logging the user details service usage.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(DefaultUserDetailsService.class);
 
     /**
      * Constructs a {@code DefaultUserDetailsService}.
@@ -80,9 +88,14 @@ public final class DefaultUserDetailsService implements UserDetailsService {
             user = new User(username, "123456", true, true, true, true,
                     authorities);
         } else {
+            LOGGER.debug(
+                    String.format("User for username %s not found", username));
+
             throw new UsernameNotFoundException(
                     String.format("Invalid username '%s'", username));
         }
+
+        LOGGER.debug(String.format("Found user for username %s", username));
 
         return user;
     }

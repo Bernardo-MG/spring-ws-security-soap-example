@@ -28,12 +28,16 @@ import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
+import com.wandrell.example.swss.testing.util.config.EndpointWSS4JPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
+import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for an encryption protected
@@ -49,13 +53,16 @@ import com.wandrell.example.swss.testing.util.test.endpoint.AbstractITEndpoint;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { EndpointWSS4JContextConfig.ENCRYPTION })
+@ContextConfiguration(locations = { TestContextConfig.DEFAULT })
+@TestPropertySource({ TestPropertiesConfig.ENTITY,
+        SOAPPropertiesConfig.ENCRYPTION,
+        EndpointWSS4JPropertiesConfig.ENCRYPTION })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**
      * Path to the file containing the invalid SOAP request.
      */
-    @Value("${message.invalid.file.path}")
+    @Value("${soap.request.invalid.path}")
     private String pathUnsigned;
 
     /**

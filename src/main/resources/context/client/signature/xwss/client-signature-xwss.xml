@@ -7,14 +7,19 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for the XWSS signature secured WS client.
+        Context for the XWSS signature secured client.
 
         A key store is required for this to work, such as the ones provided by the key
         stores context file.
     </description>
 
+    <!-- Properties -->
+    <context:property-placeholder
+        location="classpath:context/client/client.properties, classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.properties, classpath:context/client/signature/xwss/client-signature-xwss.properties" />
+
     <!-- Imports base context -->
+    <import resource="classpath:context/keystore/keystore.xml" />
     <import resource="classpath:context/client/client.xml" />
-    <import resource="classpath:context/security/signature/xwss/security-signature-xwss.xml" />
+    <import resource="classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.xml" />
 
 </beans>
