@@ -12,7 +12,7 @@
                         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <description>
-        Persistence context. Contains all the classes which handle the
+        Persistence layer context. Contains all the classes which handle the
         persistence and data access layers for the web services.
 
         Contains all the classes which handle the persistence and data access

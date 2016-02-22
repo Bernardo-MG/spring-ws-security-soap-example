@@ -7,7 +7,7 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Services context.
+        Service layer context.
 
         Contains all the services required by the web services and is meant to be shared
         between them.

@@ -7,7 +7,7 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Context for the unsecured servlet.
+        Context for the unsecure servlet.
     </description>
 
     <!-- Scans for endpoints -->
