@@ -22,14 +22,14 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint.password.plain.xwss;
+package com.wandrell.example.swss.testing.unit.endpoint.password.plain.wss4j;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
@@ -41,19 +41,19 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletContextConfig.BASE,
-        ServletContextConfig.PASSWORD_PLAIN_XWSS })
+        ServletContextConfig.PASSWORD_PLAIN_WSS4J })
 @TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
-        InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
-        EndpointXWSSPropertiesConfig.PASSWORD_PLAIN,
-        EndpointXWSSPropertiesConfig.BASE })
-public final class TestEntityEndpointPasswordPlainXWSS extends
+        InterceptorWSS4JPropertiesConfig.PASSWORD_PLAIN,
+        EndpointWSS4JPropertiesConfig.PASSWORD_PLAIN,
+        EndpointWSS4JPropertiesConfig.BASE })
+public final class TestEntityEndpointPasswordPlainWSS4J extends
         AbstractTestEntityEndpointRequest {
 
     /**
-     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
+     * Constructs a {@code TestEntityEndpointPasswordPlainWSS4J}.
      */
-    public TestEntityEndpointPasswordPlainXWSS() {
+    public TestEntityEndpointPasswordPlainWSS4J() {
         super();
     }
 

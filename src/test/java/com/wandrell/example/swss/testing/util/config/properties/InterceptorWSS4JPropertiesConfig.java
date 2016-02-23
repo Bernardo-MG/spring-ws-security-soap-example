@@ -22,41 +22,26 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.context;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test context files.
+ * Configuration class for the WSS4J-based test interceptor properties files.
  * <p>
- * These are the same context configurations as the ones used for the servlets.
+ * These files contain the data required for setting up an interceptor context.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ServletContextConfig {
+public final class InterceptorWSS4JPropertiesConfig {
 
     /**
-     * Base web service context used on all the endpoints.
-     * <p>
-     * This is the application context used for the real web services, and
-     * shared by all the servlets.
+     * Properties file with the plain password endpoint configuration.
      */
-    public static final String BASE                 = "classpath:context/applicationContext.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String PASSWORD_PLAIN_XWSS  = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String PASSWORD_PLAIN_WSS4J = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
-    /**
-     * Unsecure web service context.
-     */
-    public static final String UNSECURE             = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String PASSWORD_PLAIN = "classpath:context/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ServletContextConfig() {
+    private InterceptorWSS4JPropertiesConfig() {
         super();
     }
 

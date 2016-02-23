@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint;
+package com.wandrell.example.swss.testing.util.test.unit.endpoint;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -30,9 +30,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
@@ -40,30 +38,19 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpoint;
-
 /**
- * Implementation of {@code AbstractTestEntityEndpoint} for an unsecured
- * endpoint.
+ * Abstract unit tests for an endpoint testing that it handles messages
+ * correctly.
  * <p>
- * It adds the following cases:
+ * Checks the following cases:
  * <ol>
- * <li>The endpoint parses valid SOAP messages.</li>
+ * <li>The endpoint can handle invalid SOAP messages.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextConfig.BASE,
-        ServletContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        EndpointXWSSPropertiesConfig.UNSECURE,
-        EndpointXWSSPropertiesConfig.BASE })
-public final class TestEntityEndpointUnsecure extends
-        AbstractTestEntityEndpoint {
+public abstract class AbstractTestEntityEndpoint extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
@@ -71,28 +58,23 @@ public final class TestEntityEndpointUnsecure extends
     @Autowired
     private ApplicationContext applicationContext;
     /**
-     * Path to XSD file which validates the SOAP messages.
+     * Path to the file with the invalid request payload.
      */
-    @Value("${xsd.entity.path}")
-    private String             entityXsdPath;
-    /**
-     * Path to the file with the valid request payload.
-     */
-    @Value("${soap.request.payload.path}")
-    private String             requestPayloadPath;
+    @Value("${soap.request.payload.invalid.path}")
+    private String             requestPayloadInvalidPath;
 
     /**
-     * Constructs a {@code TestEntityEndpointUnsecure}.
+     * Constructs an {@code AbstractTestEntityEndpoint}.
      */
-    public TestEntityEndpointUnsecure() {
+    public AbstractTestEntityEndpoint() {
         super();
     }
 
     /**
-     * Tests that the endpoint parses valid SOAP messages.
+     * Tests that the endpoint can handle invalid SOAP messages.
      */
     @Test
-    public final void testEndpoint_Valid() throws Exception {
+    public final void testEndpoint_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
@@ -100,12 +82,12 @@ public final class TestEntityEndpointUnsecure extends
 
         // Creates the request
         requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
+                ClassLoader.class
+                        .getResourceAsStream(requestPayloadInvalidPath));
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        responseMatcher = ResponseMatchers.clientOrSenderFault();
 
         // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);

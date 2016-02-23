@@ -63,8 +63,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
         SOAPPropertiesConfig.UNSECURE })
-public final class TestEntityClientPasswordPlainXWSS
-        extends AbstractTestNGSpringContextTests {
+public final class TestEntityClientPasswordPlainXWSS extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
@@ -72,12 +72,12 @@ public final class TestEntityClientPasswordPlainXWSS
     @Autowired
     private EntityClient client;
     /**
-     * Id of the returned entity.
+     * Expected id for the returned entity.
      */
     @Value("${entity.id}")
     private Integer      entityId;
     /**
-     * Name of the returned entity.
+     * Expected name for the returned entity.
      */
     @Value("${entity.name}")
     private String       entityName;
@@ -108,6 +108,7 @@ public final class TestEntityClientPasswordPlainXWSS
      * Tests that the client can handle incorrectly formed SOAP messages.
      *
      * @throws IOException
+     *             if there is any problem loading the entity schema file
      */
     @Test
     public final void testClient_Invalid() throws IOException {
@@ -118,12 +119,13 @@ public final class TestEntityClientPasswordPlainXWSS
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
+        responsePayload = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream(responsePayloadInvalidPath));
         responseCreator = ResponseCreators.withPayload(responsePayload);
 
         // Creates the server mock
@@ -143,6 +145,7 @@ public final class TestEntityClientPasswordPlainXWSS
      * Tests that the client parses correctly formed SOAP messages.
      *
      * @throws IOException
+     *             if there is any problem loading the entity schema file
      */
     @Test
     public final void testClient_Valid() throws IOException {
@@ -153,8 +156,8 @@ public final class TestEntityClientPasswordPlainXWSS
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
+                entityXsdPath));
 
         // Creates the response
         responsePayload = new StreamSource(

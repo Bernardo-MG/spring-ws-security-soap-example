@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint;
+package com.wandrell.example.swss.testing.util.test.unit.endpoint;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -31,8 +31,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
@@ -40,29 +38,18 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpoint;
-
 /**
- * Implementation of {@code AbstractTestEntityEndpoint} for an unsecured
- * endpoint.
+ * Abstract implementation of {@code AbstractTestEntityEndpoint} which validates
+ * SOAP requests.
  * <p>
  * It adds the following cases:
  * <ol>
- * <li>The endpoint parses valid SOAP messages.</li>
+ * <li>The endpoint parses valid SOAP requests.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextConfig.BASE,
-        ServletContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        EndpointXWSSPropertiesConfig.UNSECURE,
-        EndpointXWSSPropertiesConfig.BASE })
-public final class TestEntityEndpointUnsecure extends
+public abstract class AbstractTestEntityEndpointRequest extends
         AbstractTestEntityEndpoint {
 
     /**
@@ -76,32 +63,32 @@ public final class TestEntityEndpointUnsecure extends
     @Value("${xsd.entity.path}")
     private String             entityXsdPath;
     /**
-     * Path to the file with the valid request payload.
+     * Path to the file with the valid request envelope.
      */
-    @Value("${soap.request.payload.path}")
-    private String             requestPayloadPath;
+    @Value("${soap.request.path}")
+    private String             requestEnvelopePath;
 
     /**
-     * Constructs a {@code TestEntityEndpointUnsecure}.
+     * Constructs an {@code AbstractTestEntityEndpointRequest}.
      */
-    public TestEntityEndpointUnsecure() {
+    public AbstractTestEntityEndpointRequest() {
         super();
     }
 
     /**
-     * Tests that the endpoint parses valid SOAP messages.
+     * Tests that the endpoint parses valid SOAP requests.
      */
     @Test
     public final void testEndpoint_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestPayload;           // SOAP payload for the request
+        final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
-        requestCreator = RequestCreators.withPayload(requestPayload);
+        requestEnvelope = new StreamSource(
+                ClassLoader.class.getResourceAsStream(requestEnvelopePath));
+        requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(

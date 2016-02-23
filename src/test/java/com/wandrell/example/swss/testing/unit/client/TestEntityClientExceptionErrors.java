@@ -25,47 +25,34 @@
 package com.wandrell.example.swss.testing.unit.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.client.WebServiceTransportException;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
 /**
- * Unit tests for {@link EntityClient}.
+ * Unit tests for {@link EntityClient} checking that the client throws
+ * exceptions for common non SOAP errors.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>The client throws an exception with connections to invalid URLs.</li>
+ * <li>The client throws an exception when connecting to an invalid URL.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL })
-public final class TestEntityClientExceptionErrors
-        extends AbstractTestNGSpringContextTests {
+public final class TestEntityClientExceptionErrors extends
+        AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
      */
     @Autowired
     private EntityClient client;
-    /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer      entityId;
-    /**
-     * Path to XSD file which validates the SOAP messages.
-     */
-    @Value("${xsd.entity.path}")
-    private String       entityXsdPath;
 
     /**
      * Constructs a {@code TestEntityClient}.
@@ -75,12 +62,11 @@ public final class TestEntityClientExceptionErrors
     }
 
     /**
-     * Tests that the client throws an exception with connections to invalid
-     * URLs.
+     * The client throws an exception when connecting to an invalid URL.
      */
     @Test(expectedExceptions = WebServiceTransportException.class)
     public final void testClient_InvalidURL() {
-        client.getEntity("http://www.somewhere.com", entityId);
+        client.getEntity("http://www.somewhere.com", 0);
     }
 
 }
