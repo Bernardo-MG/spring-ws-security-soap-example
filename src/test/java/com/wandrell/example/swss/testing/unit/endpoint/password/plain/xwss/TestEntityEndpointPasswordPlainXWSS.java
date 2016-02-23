@@ -42,7 +42,7 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  */
 @ContextConfiguration(locations = { ServletContextConfig.BASE,
         ServletContextConfig.PASSWORD_PLAIN_XWSS })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
+@TestPropertySource({ TestPropertiesConfig.WSDL,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
         InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
         EndpointXWSSPropertiesConfig.PASSWORD_PLAIN,

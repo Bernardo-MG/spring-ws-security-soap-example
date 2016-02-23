@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
@@ -39,18 +40,22 @@ import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
 /**
- * Abstract implementation of {@code AbstractTestEntityEndpoint} which validates
- * SOAP requests.
+ * Abstract unit tests for an endpoint testing that it handles envelope-based
+ * SOAP messages correctly.
  * <p>
- * It adds the following cases:
+ * Checks the following cases:
  * <ol>
- * <li>The endpoint parses valid SOAP requests.</li>
+ * <li>The endpoint parses SOAP requests with a valid envelope.</li>
+ * <li>The endpoint can handle SOAP requests with an invalid envelope.</li>
  * </ol>
+ * <p>
+ * This base test is meant for those endpoints where the full envelope is more
+ * important than the payload, which is the case of the secured endpoints.
  *
  * @author Bernardo Martínez Garrido
  */
 public abstract class AbstractTestEntityEndpointRequest extends
-        AbstractTestEntityEndpoint {
+        AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
@@ -62,6 +67,11 @@ public abstract class AbstractTestEntityEndpointRequest extends
      */
     @Value("${xsd.entity.path}")
     private String             entityXsdPath;
+    /**
+     * Path to the file with the invalid request payload.
+     */
+    @Value("${soap.request.invalid.path}")
+    private String             requestEnvelopeInvalidPath;
     /**
      * Path to the file with the valid request envelope.
      */
@@ -76,10 +86,10 @@ public abstract class AbstractTestEntityEndpointRequest extends
     }
 
     /**
-     * Tests that the endpoint parses valid SOAP requests.
+     * Tests that the endpoint parses SOAP requests with a valid envelope.
      */
     @Test
-    public final void testEndpoint_Valid() throws Exception {
+    public final void testEndpoint_Envelope_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
@@ -93,6 +103,32 @@ public abstract class AbstractTestEntityEndpointRequest extends
         // Creates the response matcher
         responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
                 entityXsdPath));
+
+        // Creates the client mock
+        mockClient = MockWebServiceClient.createClient(applicationContext);
+
+        // Calls the endpoint
+        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
+    }
+
+    /**
+     * Tests that the endpoint can handle invalid SOAP messages.
+     */
+    @Test
+    public final void testEndpoint_Invalid() throws Exception {
+        final MockWebServiceClient mockClient; // Mocked client
+        final RequestCreator requestCreator;   // Creator for the request
+        final ResponseMatcher responseMatcher; // Matcher for the response
+        final Source requestEnvelope;          // SOAP envelope for the request
+
+        // Creates the request
+        requestEnvelope = new StreamSource(
+                ClassLoader.class
+                        .getResourceAsStream(requestEnvelopeInvalidPath));
+        requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
+
+        // Creates the response matcher
+        responseMatcher = ResponseMatchers.clientOrSenderFault();
 
         // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);
