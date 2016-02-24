@@ -35,7 +35,7 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a plain
+ * Implementation of {@code AbstractTestEntityEndpointRequest} for a WSS4J plain
  * password protected endpoint.
  *
  * @author Bernardo Martínez Garrido

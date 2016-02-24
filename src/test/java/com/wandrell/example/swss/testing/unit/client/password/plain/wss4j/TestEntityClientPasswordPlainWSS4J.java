@@ -22,38 +22,32 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint.password.plain.xwss;
+package com.wandrell.example.swss.testing.unit.client.password.plain.wss4j;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
+import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS plain
- * password protected endpoint.
+ * Implementation of {@code AbstractTestEntityClientHeader} for a WSS4J plain
+ * password protected client.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextConfig.BASE,
-        ServletContextConfig.PASSWORD_PLAIN_XWSS })
-@TestPropertySource({ TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.PASSWORD_PLAIN,
-        InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
-        EndpointXWSSPropertiesConfig.PASSWORD_PLAIN,
-        EndpointXWSSPropertiesConfig.BASE })
-public final class TestEntityEndpointPasswordPlainXWSS extends
-        AbstractTestEntityEndpointRequest {
+@ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
+        SOAPPropertiesConfig.UNSECURE, SOAPPropertiesConfig.PASSWORD_PLAIN })
+public final class TestEntityClientPasswordPlainWSS4J extends
+        AbstractTestEntityClientHeader {
 
     /**
-     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
+     * Constructs a {@code TestEntityClientPasswordPlainWSS4J}.
      */
-    public TestEntityEndpointPasswordPlainXWSS() {
+    public TestEntityClientPasswordPlainWSS4J() {
         super();
     }
 
