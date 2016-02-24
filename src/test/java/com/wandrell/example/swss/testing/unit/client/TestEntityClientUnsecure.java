@@ -112,7 +112,7 @@ public final class TestEntityClientUnsecure extends
      *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Invalid() throws IOException {
+    public final void testClient_Payload_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -149,7 +149,7 @@ public final class TestEntityClientUnsecure extends
      *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Valid() throws IOException {
+    public final void testClient_Payload_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response

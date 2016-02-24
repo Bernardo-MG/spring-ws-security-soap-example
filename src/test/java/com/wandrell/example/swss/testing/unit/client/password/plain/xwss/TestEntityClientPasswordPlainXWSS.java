@@ -26,12 +26,12 @@ package com.wandrell.example.swss.testing.unit.client.password.plain.xwss;
 
 import java.io.IOException;
 
+import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -62,7 +62,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.UNSECURE })
+        SOAPPropertiesConfig.UNSECURE, SOAPPropertiesConfig.PASSWORD_PLAIN })
 public final class TestEntityClientPasswordPlainXWSS extends
         AbstractTestNGSpringContextTests {
 
@@ -96,6 +96,16 @@ public final class TestEntityClientPasswordPlainXWSS extends
      */
     @Value("${soap.response.payload.path}")
     private String       responsePayloadPath;
+    /**
+     * Security header token name.
+     */
+    @Value("${soap.header.security.name}")
+    private String       secHeaderLocalPart;
+    /**
+     * Security header token URI.
+     */
+    @Value("${soap.header.security.uri}")
+    private String       secHeaderUri;
 
     /**
      * Constructs a {@code TestEntityClient}.
@@ -111,7 +121,7 @@ public final class TestEntityClientPasswordPlainXWSS extends
      *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Invalid() throws IOException {
+    public final void testClient_Envelope_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -119,8 +129,8 @@ public final class TestEntityClientPasswordPlainXWSS extends
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers.soapHeader(new QName(secHeaderUri,
+                secHeaderLocalPart));
 
         // Creates the response
         responsePayload = new StreamSource(
@@ -148,7 +158,7 @@ public final class TestEntityClientPasswordPlainXWSS extends
      *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Valid() throws IOException {
+    public final void testClient_Envelope_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -156,8 +166,8 @@ public final class TestEntityClientPasswordPlainXWSS extends
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        requestMatcher = RequestMatchers.soapHeader(new QName(secHeaderUri,
+                secHeaderLocalPart));
 
         // Creates the response
         responsePayload = new StreamSource(

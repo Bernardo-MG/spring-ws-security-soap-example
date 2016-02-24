@@ -98,7 +98,7 @@ public final class TestEntityEndpointUnsecure extends
      * Tests that the endpoint can handle SOAP requests with a valid payload.
      */
     @Test
-    public final void testEndpoint_Invalid() throws Exception {
+    public final void testEndpoint_Payload_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
@@ -124,7 +124,7 @@ public final class TestEntityEndpointUnsecure extends
      * Tests that the endpoint parses SOAP requests with a valid payload.
      */
     @Test
-    public final void testEndpoint_Valid() throws Exception {
+    public final void testEndpoint_Payload_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
