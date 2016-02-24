@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint.password.plain.xwss;
+package com.wandrell.example.swss.testing.unit.endpoint.password.digest.xwss;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -40,19 +40,19 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS plain
- * password protected endpoint.
+ * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS
+ * digested password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletContextConfig.BASE,
-        ServletContextConfig.PASSWORD_PLAIN_XWSS })
+        ServletContextConfig.PASSWORD_DIGEST_XWSS })
 @TestPropertySource({ TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.PASSWORD_PLAIN,
-        InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
-        EndpointXWSSPropertiesConfig.PASSWORD_PLAIN,
+        SOAPPropertiesConfig.PASSWORD_DIGEST,
+        InterceptorXWSSPropertiesConfig.PASSWORD_DIGEST,
+        EndpointXWSSPropertiesConfig.PASSWORD_DIGEST,
         EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER })
-public final class TestEntityEndpointPasswordPlainXWSS extends
+public final class TestEntityEndpointPasswordDigestXWSS extends
         AbstractTestEntityEndpointRequest {
 
     /**
@@ -74,14 +74,14 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
     /**
      * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
      */
-    public TestEntityEndpointPasswordPlainXWSS() {
+    public TestEntityEndpointPasswordDigestXWSS() {
         super();
     }
 
     @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils.getPlainPasswordStream(
+            return new StreamSource(SecurityUtils.getDigestedPasswordStream(
                     pathValid, username, password));
         } catch (final Exception e) {
             throw new RuntimeException(e);

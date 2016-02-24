@@ -107,21 +107,25 @@ public final class SecurityUtils {
             throws Exception {
         final MessageFactory factory;
         final SOAPMessage message;
-        final InputStream streamMessage;
         final ByteArrayOutputStream out;
-
-        streamMessage = new ByteArrayInputStream(
-                getDigestedPasswordMessageContent(path, user, password)
-                        .getBytes("UTF-8"));
 
         factory = MessageFactory.newInstance();
 
-        message = factory.createMessage(new MimeHeaders(), streamMessage);
+        message = factory.createMessage(new MimeHeaders(),
+                getDigestedPasswordStream(path, user, password));
 
         out = new ByteArrayOutputStream();
         message.writeTo(out);
 
         return message;
+    }
+
+    public static final InputStream getDigestedPasswordStream(
+            final String path, final String user, final String password)
+            throws Exception {
+
+        return new ByteArrayInputStream(getDigestedPasswordMessageContent(path,
+                user, password).getBytes("UTF-8"));
     }
 
     public static final SOAPMessage getPlainPasswordMessage(final String path,

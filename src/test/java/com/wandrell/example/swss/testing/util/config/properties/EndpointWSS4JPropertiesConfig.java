@@ -36,15 +36,19 @@ public final class EndpointWSS4JPropertiesConfig {
     /**
      * Properties file with the base endpoint configuration.
      */
-    public static final String BASE           = "classpath:context/endpoint/endpoint.properties";
+    public static final String BASE            = "classpath:context/endpoint/endpoint.properties";
     /**
      * Properties file with the plain password endpoint configuration.
      */
-    public static final String PASSWORD_PLAIN = "classpath:context/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:context/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties";
+    /**
+     * Properties file with the digested password endpoint configuration.
+     */
+    public static final String PASSWORD_DIGEST = "classpath:context/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties";
     /**
      * Properties file with the unsecure endpoint configuration.
      */
-    public static final String UNSECURE       = "classpath:context/endpoint/endpoint-unsecure.properties";
+    public static final String UNSECURE        = "classpath:context/endpoint/endpoint-unsecure.properties";
 
     /**
      * Private constructor to avoid initialization.

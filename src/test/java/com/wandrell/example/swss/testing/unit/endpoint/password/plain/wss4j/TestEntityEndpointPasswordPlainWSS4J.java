@@ -51,7 +51,7 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
         SOAPPropertiesConfig.PASSWORD_PLAIN,
         InterceptorWSS4JPropertiesConfig.PASSWORD_PLAIN,
         EndpointWSS4JPropertiesConfig.PASSWORD_PLAIN,
-        EndpointWSS4JPropertiesConfig.BASE })
+        EndpointWSS4JPropertiesConfig.BASE, TestPropertiesConfig.USER })
 public final class TestEntityEndpointPasswordPlainWSS4J extends
         AbstractTestEntityEndpointRequest {
 
@@ -84,8 +84,7 @@ public final class TestEntityEndpointPasswordPlainWSS4J extends
             return new StreamSource(SecurityUtils.getPlainPasswordStream(
                     pathValid, username, password));
         } catch (final Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
