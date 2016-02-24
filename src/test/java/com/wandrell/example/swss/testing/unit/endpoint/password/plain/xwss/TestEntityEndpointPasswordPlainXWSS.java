@@ -24,6 +24,10 @@
 
 package com.wandrell.example.swss.testing.unit.endpoint.password.plain.xwss;
 
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
@@ -51,10 +55,22 @@ public final class TestEntityEndpointPasswordPlainXWSS extends
         AbstractTestEntityEndpointRequest {
 
     /**
+     * Path to the file with the valid request envelope.
+     */
+    @Value("${soap.request.path}")
+    private String requestEnvelopePath;
+
+    /**
      * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
      */
     public TestEntityEndpointPasswordPlainXWSS() {
         super();
+    }
+
+    @Override
+    protected final Source getRequestEnvelope() {
+        return new StreamSource(
+                ClassLoader.class.getResourceAsStream(requestEnvelopePath));
     }
 
 }

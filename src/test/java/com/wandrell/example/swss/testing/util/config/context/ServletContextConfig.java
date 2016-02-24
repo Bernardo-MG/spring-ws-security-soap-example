@@ -43,6 +43,10 @@ public final class ServletContextConfig {
     /**
      * Plain password web service contextt.
      */
+    public static final String PASSWORD_DIGEST_XWSS = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
+    /**
+     * Plain password web service contextt.
+     */
     public static final String PASSWORD_PLAIN_WSS4J = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
     /**
      * Plain password web service contextt.

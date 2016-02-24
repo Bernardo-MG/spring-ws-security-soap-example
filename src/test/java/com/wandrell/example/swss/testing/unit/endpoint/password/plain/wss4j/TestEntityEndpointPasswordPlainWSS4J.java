@@ -24,9 +24,14 @@
 
 package com.wandrell.example.swss.testing.unit.endpoint.password.plain.wss4j;
 
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesConfig;
@@ -51,10 +56,37 @@ public final class TestEntityEndpointPasswordPlainWSS4J extends
         AbstractTestEntityEndpointRequest {
 
     /**
+     * Password for the passworded message.
+     */
+    @Value("${security.credentials.password}")
+    private String password;
+    /**
+     * Path to the file containing the valid SOAP request.
+     */
+    @Value("${soap.request.template.path}")
+    private String pathValid;
+    /**
+     * Username for the passworded message.
+     */
+    @Value("${security.credentials.user}")
+    private String username;
+
+    /**
      * Constructs a {@code TestEntityEndpointPasswordPlainWSS4J}.
      */
     public TestEntityEndpointPasswordPlainWSS4J() {
         super();
+    }
+
+    @Override
+    protected final Source getRequestEnvelope() {
+        try {
+            return new StreamSource(SecurityUtils.getPlainPasswordStream(
+                    pathValid, username, password));
+        } catch (final Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

@@ -34,9 +34,13 @@ package com.wandrell.example.swss.testing.util.config.properties;
 public final class InterceptorXWSSPropertiesConfig {
 
     /**
+     * Properties file with the digested password endpoint configuration.
+     */
+    public static final String PASSWORD_DIGEST = "classpath:context/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
+    /**
      * Properties file with the plain password endpoint configuration.
      */
-    public static final String PASSWORD_PLAIN = "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
 
     /**
      * Private constructor to avoid initialization.

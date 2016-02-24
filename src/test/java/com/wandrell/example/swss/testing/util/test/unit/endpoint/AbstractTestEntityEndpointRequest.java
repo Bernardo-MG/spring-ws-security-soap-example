@@ -72,11 +72,6 @@ public abstract class AbstractTestEntityEndpointRequest extends
      */
     @Value("${soap.request.invalid.path}")
     private String             requestEnvelopeInvalidPath;
-    /**
-     * Path to the file with the valid request envelope.
-     */
-    @Value("${soap.request.path}")
-    private String             requestEnvelopePath;
 
     /**
      * Constructs an {@code AbstractTestEntityEndpointRequest}.
@@ -96,8 +91,7 @@ public abstract class AbstractTestEntityEndpointRequest extends
         final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request
-        requestEnvelope = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestEnvelopePath));
+        requestEnvelope = getRequestEnvelope();
         requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
         // Creates the response matcher
@@ -136,5 +130,12 @@ public abstract class AbstractTestEntityEndpointRequest extends
         // Calls the endpoint
         mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
     }
+
+    /**
+     * Returns a valid SOAP request envelope in a {@code Source} class.
+     *
+     * @return a valid SOAP request envelope
+     */
+    protected abstract Source getRequestEnvelope();
 
 }
