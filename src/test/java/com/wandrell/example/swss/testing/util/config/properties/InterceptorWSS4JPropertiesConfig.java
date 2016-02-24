@@ -34,13 +34,21 @@ package com.wandrell.example.swss.testing.util.config.properties;
 public final class InterceptorWSS4JPropertiesConfig {
 
     /**
-     * Properties file with the plain password endpoint configuration.
+     * Properties file with the encrypted endpoint configuration.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
+    public static final String ENCRYPTION      = "classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties";
     /**
      * Properties file with the digested password endpoint configuration.
      */
     public static final String PASSWORD_DIGEST = "classpath:context/interceptor/password/digest/wss4j/interceptor-password-digest-wss4j.properties";
+    /**
+     * Properties file with the plain password endpoint configuration.
+     */
+    public static final String PASSWORD_PLAIN  = "classpath:context/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
+    /**
+     * Properties file with the signed endpoint configuration.
+     */
+    public static final String SIGNATURE       = "classpath:context/interceptor/signature/wss4j/interceptor-signature-wss4j.properties";
 
     /**
      * Private constructor to avoid initialization.

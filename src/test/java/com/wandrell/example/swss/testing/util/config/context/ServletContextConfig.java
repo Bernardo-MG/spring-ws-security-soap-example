@@ -43,11 +43,19 @@ public final class ServletContextConfig {
     /**
      * Plain password web service contextt.
      */
-    public static final String PASSWORD_DIGEST_XWSS  = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
+    public static final String ENCRYPTION_WSS4J      = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
+    /**
+     * Plain password web service contextt.
+     */
+    public static final String ENCRYPTION_XWSS       = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
     /**
      * Plain password web service contextt.
      */
     public static final String PASSWORD_DIGEST_WSS4J = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
+    /**
+     * Plain password web service contextt.
+     */
+    public static final String PASSWORD_DIGEST_XWSS  = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
     /**
      * Plain password web service contextt.
      */
@@ -56,6 +64,14 @@ public final class ServletContextConfig {
      * Plain password web service contextt.
      */
     public static final String PASSWORD_PLAIN_XWSS   = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
+    /**
+     * Plain password web service contextt.
+     */
+    public static final String SIGNATURE_WSS4J       = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
+    /**
+     * Plain password web service contextt.
+     */
+    public static final String SIGNATURE_XWSS        = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
     /**
      * Unsecure web service context.
      */

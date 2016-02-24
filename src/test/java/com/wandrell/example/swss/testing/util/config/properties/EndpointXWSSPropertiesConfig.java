@@ -38,6 +38,10 @@ public final class EndpointXWSSPropertiesConfig {
      */
     public static final String BASE            = "classpath:context/endpoint/endpoint.properties";
     /**
+     * Properties file with the encrypted endpoint configuration.
+     */
+    public static final String ENCRYPTION      = "classpath:context/endpoint/encryption/xwss/endpoint-encryption-xwss.properties";
+    /**
      * Properties file with the digested password endpoint configuration.
      */
     public static final String PASSWORD_DIGEST = "classpath:context/endpoint/password/digest/xwss/endpoint-password-digest-xwss.properties";
@@ -45,6 +49,10 @@ public final class EndpointXWSSPropertiesConfig {
      * Properties file with the plain password endpoint configuration.
      */
     public static final String PASSWORD_PLAIN  = "classpath:context/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties";
+    /**
+     * Properties file with the signed endpoint configuration.
+     */
+    public static final String SIGNATURE       = "classpath:context/endpoint/signature/xwss/endpoint-signature-xwss.properties";
     /**
      * Properties file with the unsecure endpoint configuration.
      */

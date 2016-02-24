@@ -38,13 +38,21 @@ public final class EndpointWSS4JPropertiesConfig {
      */
     public static final String BASE            = "classpath:context/endpoint/endpoint.properties";
     /**
-     * Properties file with the plain password endpoint configuration.
+     * Properties file with the encrypted endpoint configuration.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties";
+    public static final String ENCRYPTION      = "classpath:context/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties";
     /**
      * Properties file with the digested password endpoint configuration.
      */
     public static final String PASSWORD_DIGEST = "classpath:context/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties";
+    /**
+     * Properties file with the plain password endpoint configuration.
+     */
+    public static final String PASSWORD_PLAIN  = "classpath:context/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties";
+    /**
+     * Properties file with the signed endpoint configuration.
+     */
+    public static final String SIGNATURE       = "classpath:context/endpoint/signature/wss4j/endpoint-signature-wss4j.properties";
     /**
      * Properties file with the unsecure endpoint configuration.
      */
