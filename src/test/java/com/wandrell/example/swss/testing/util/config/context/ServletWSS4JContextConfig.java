@@ -31,7 +31,7 @@ package com.wandrell.example.swss.testing.util.config.context;
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ServletContextConfig {
+public final class ServletWSS4JContextConfig {
 
     /**
      * Base web service context used on all the endpoints.
@@ -43,35 +43,19 @@ public final class ServletContextConfig {
     /**
      * Plain password web service contextt.
      */
-    public static final String ENCRYPTION_WSS4J      = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
+    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
     /**
      * Plain password web service contextt.
      */
-    public static final String ENCRYPTION_XWSS       = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
+    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
     /**
      * Plain password web service contextt.
      */
-    public static final String PASSWORD_DIGEST_WSS4J = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
+    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
     /**
      * Plain password web service contextt.
      */
-    public static final String PASSWORD_DIGEST_XWSS  = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String PASSWORD_PLAIN_WSS4J  = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String PASSWORD_PLAIN_XWSS   = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String SIGNATURE_WSS4J       = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String SIGNATURE_XWSS        = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
+    public static final String SIGNATURE       = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
     /**
      * Unsecure web service context.
      */
@@ -80,7 +64,7 @@ public final class ServletContextConfig {
     /**
      * Private constructor to avoid initialization.
      */
-    private ServletContextConfig() {
+    private ServletWSS4JContextConfig() {
         super();
     }
 

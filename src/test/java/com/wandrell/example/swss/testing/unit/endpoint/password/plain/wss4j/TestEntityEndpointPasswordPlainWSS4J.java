@@ -32,7 +32,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
@@ -45,8 +45,8 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextConfig.BASE,
-        ServletContextConfig.PASSWORD_PLAIN_WSS4J })
+@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
+        ServletWSS4JContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.WSDL,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
         InterceptorWSS4JPropertiesConfig.PASSWORD_PLAIN,

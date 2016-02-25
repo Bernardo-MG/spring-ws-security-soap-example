@@ -32,7 +32,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
@@ -45,8 +46,8 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextConfig.BASE,
-        ServletContextConfig.PASSWORD_PLAIN_XWSS })
+@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
+        ServletXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.WSDL,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
         InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
