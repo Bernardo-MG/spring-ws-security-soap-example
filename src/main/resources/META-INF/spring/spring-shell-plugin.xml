@@ -11,7 +11,7 @@
     </description>
 
     <!-- Scans for shell components -->
-    <context:component-scan base-package="com.wandrell.example.swss.client.app" />
+    <context:component-scan base-package="com.wandrell.example.swss.client.shell" />
 
     <!-- Properties -->
     <context:property-placeholder
