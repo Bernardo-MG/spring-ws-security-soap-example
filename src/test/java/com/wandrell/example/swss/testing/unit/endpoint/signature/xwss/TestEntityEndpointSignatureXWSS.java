@@ -43,7 +43,6 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSProp
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
  * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS plain
@@ -58,8 +57,7 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
         InterceptorXWSSPropertiesConfig.SIGNATURE,
         EndpointXWSSPropertiesConfig.SIGNATURE,
         EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER, })
-public final class TestEntityEndpointSignatureXWSS extends
-        AbstractTestEntityEndpointRequest {
+public final class TestEntityEndpointSignatureXWSS {
 
     /**
      * Alias for the certificate for signing messages.
@@ -103,9 +101,9 @@ public final class TestEntityEndpointSignatureXWSS extends
      */
     public TestEntityEndpointSignatureXWSS() {
         super();
+        // TODO: Make this work
     }
 
-    @Override
     protected final Source getRequestEnvelope() {
         try {
             return new StreamSource(SecurityUtils.getSignedMessageStream(
