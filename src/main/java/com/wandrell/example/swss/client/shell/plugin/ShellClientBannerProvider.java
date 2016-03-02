@@ -46,7 +46,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public final class SWSSClientBannerProvider implements BannerProvider {
+public final class ShellClientBannerProvider implements BannerProvider {
 
     /**
      * Shell client version.
@@ -54,13 +54,13 @@ public final class SWSSClientBannerProvider implements BannerProvider {
     private final String clientVersion;
 
     /**
-     * Constructs a {@code SWSSClientBannerProvider}.
+     * Constructs a {@code ShellClientBannerProvider}.
      *
      * @param version
      *            client version
      */
     @Autowired
-    public SWSSClientBannerProvider(
+    public ShellClientBannerProvider(
             @Value("${shell.version}") final String version) {
         super();
 

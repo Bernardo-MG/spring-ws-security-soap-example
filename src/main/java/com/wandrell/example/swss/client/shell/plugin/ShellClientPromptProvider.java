@@ -36,12 +36,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public final class SWSSClientPromptProvider implements PromptProvider {
+public final class ShellClientPromptProvider implements PromptProvider {
 
     /**
-     * Constructs a {@code SWSSClientPromptProvider}.
+     * Constructs a {@code ShellClientPromptProvider}.
      */
-    public SWSSClientPromptProvider() {
+    public ShellClientPromptProvider() {
         super();
     }
 

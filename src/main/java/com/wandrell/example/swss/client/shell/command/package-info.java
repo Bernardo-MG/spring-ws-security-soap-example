@@ -21,39 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.wandrell.example.swss.client.shell.plugin;
-
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.shell.plugin.HistoryFileNameProvider;
-import org.springframework.stereotype.Component;
-
 /**
- * History filename provider for the shell client.
- *
- * @author Bernardo Martínez Garrido
+ * Provides command classes for the shell client.
  */
-@Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
-public final class SWSSClientHistoryFileNameProvider implements
-        HistoryFileNameProvider {
 
-    /**
-     * Constructs a {@code SWSSClientHistoryFileNameProvider}.
-     */
-    public SWSSClientHistoryFileNameProvider() {
-        super();
-    }
+package com.wandrell.example.swss.client.shell.command;
 
-    @Override
-    public final String getHistoryFileName() {
-        return "spring-wss-shell.log";
-    }
-
-    @Override
-    public final String getProviderName() {
-        return "SWSS shell client";
-    }
-
-}
