@@ -63,11 +63,6 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 public class EntityEndpoint {
 
     /**
-     * The logger used for logging the entity endpoint.
-     */
-    private static final Logger              LOGGER    = LoggerFactory
-                                                               .getLogger(EntityEndpoint.class);
-    /**
      * The action for acquiring the entities.
      * <p>
      * When sending requests to the web service this action should be used if
@@ -82,6 +77,11 @@ public class EntityEndpoint {
      * Name for the operation used to acquire an entity.
      */
     public static final String               REQUEST   = "getEntityRequest";
+    /**
+     * The logger used for logging the entity endpoint.
+     */
+    private static final Logger              LOGGER    = LoggerFactory
+            .getLogger(EntityEndpoint.class);
     /**
      * Service for accessing the {@code ExampleEntity} instances handled by the
      * web service.
@@ -121,16 +121,16 @@ public class EntityEndpoint {
     @PayloadRoot(localPart = REQUEST, namespace = ENTITY_NS)
     @SoapAction(ACTION)
     @ResponsePayload
-    public final GetEntityResponse getEntity(
-            @RequestPayload final GetEntityRequest request) {
+    public final GetEntityResponse
+            getEntity(@RequestPayload final GetEntityRequest request) {
         final GetEntityResponse response; // SOAP response with the result
         final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return
 
         checkNotNull(request, "Received a null pointer as request");
 
-        LOGGER.debug(String.format("Received request for id %d",
-                request.getId()));
+        LOGGER.debug(
+                String.format("Received request for id %d", request.getId()));
 
         // Acquires the entity
         entity = getExampleEntityService().findById(request.getId());
@@ -143,9 +143,9 @@ public class EntityEndpoint {
             entityResponse.setName(entity.getName());
             response.setEntity(entityResponse);
 
-            LOGGER.debug(String.format(
-                    "Found entity with id %1$d and name %2$s",
-                    entityResponse.getId(), entityResponse.getName()));
+            LOGGER.debug(
+                    String.format("Found entity with id %1$d and name %2$s",
+                            entityResponse.getId(), entityResponse.getName()));
         } else {
             LOGGER.debug("Entity not found");
         }

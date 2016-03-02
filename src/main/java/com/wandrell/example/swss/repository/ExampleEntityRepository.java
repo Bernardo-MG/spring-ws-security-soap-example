@@ -36,7 +36,7 @@ import com.wandrell.example.swss.model.DefaultExampleEntity;
  *
  * @author Bernardo Martínez Garrido
  */
-public interface ExampleEntityRepository extends
-        JpaRepository<DefaultExampleEntity, Integer> {
+public interface ExampleEntityRepository
+        extends JpaRepository<DefaultExampleEntity, Integer> {
 
 }

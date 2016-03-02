@@ -53,7 +53,8 @@ public final class EntityClientCommandMarker implements CommandMarker {
     /**
      * Constructs a {@code EntityClientCommandMarker}.
      */
-    public EntityClientCommandMarker(final EntityClient client, final String uri) {
+    public EntityClientCommandMarker(final EntityClient client,
+            final String uri) {
         super();
 
         entClient = checkNotNull(client, "Received a null pointer as client");

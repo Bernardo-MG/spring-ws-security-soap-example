@@ -76,8 +76,8 @@ public final class ShellClientBannerProvider implements BannerProvider {
         bannerResource = new ClassPathResource("shell/banner.txt");
 
         try {
-            sb.append(FileUtils.readBanner(new InputStreamReader(bannerResource
-                    .getInputStream())));
+            sb.append(FileUtils.readBanner(
+                    new InputStreamReader(bannerResource.getInputStream())));
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }

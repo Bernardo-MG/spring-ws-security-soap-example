@@ -54,8 +54,8 @@ import org.testng.annotations.Test;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractTestEntityEndpointRequest extends
-        AbstractTestNGSpringContextTests {
+public abstract class AbstractTestEntityEndpointRequest
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
@@ -95,8 +95,8 @@ public abstract class AbstractTestEntityEndpointRequest extends
         requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        responseMatcher = ResponseMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);
@@ -116,9 +116,8 @@ public abstract class AbstractTestEntityEndpointRequest extends
         final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request
-        requestEnvelope = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(requestEnvelopeInvalidPath));
+        requestEnvelope = new StreamSource(ClassLoader.class
+                .getResourceAsStream(requestEnvelopeInvalidPath));
         requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
 
         // Creates the response matcher

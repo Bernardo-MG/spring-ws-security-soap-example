@@ -36,8 +36,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public final class ShellClientHistoryFileNameProvider implements
-        HistoryFileNameProvider {
+public final class ShellClientHistoryFileNameProvider
+        implements HistoryFileNameProvider {
 
     /**
      * Constructs a {@code ShellClientHistoryFileNameProvider}.

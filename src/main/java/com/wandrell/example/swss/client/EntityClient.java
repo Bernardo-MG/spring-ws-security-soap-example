@@ -56,7 +56,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
      * The logger used for logging the entity client.
      */
     private static final Logger LOGGER = LoggerFactory
-                                               .getLogger(EntityClient.class);
+            .getLogger(EntityClient.class);
 
     /**
      * Constructs an {@code EntityClient}.
@@ -96,8 +96,8 @@ public final class EntityClient extends WebServiceGatewaySupport {
         final GetEntityResponse response; // Response with the resulting entity
         final Entity entity;              // Entity for the failed requests
 
-        LOGGER.debug(String.format("Querying URL %1$s for id %2$d", url,
-                entityId));
+        LOGGER.debug(
+                String.format("Querying URL %1$s for id %2$d", url, entityId));
 
         // Generates request
         request = new GetEntityRequest();
@@ -108,7 +108,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive(url, request,
                         new SoapActionCallback(EntityEndpoint.ACTION));
 
-        if (response == null) {
+        if ((response == null) || (response.getEntity() == null)) {
             // No response was received
             entity = null;
             LOGGER.debug("No response received");

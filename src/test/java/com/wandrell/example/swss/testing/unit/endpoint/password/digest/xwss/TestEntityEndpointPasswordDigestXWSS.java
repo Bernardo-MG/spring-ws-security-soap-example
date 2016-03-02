@@ -53,8 +53,8 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
         InterceptorXWSSPropertiesConfig.PASSWORD_DIGEST,
         EndpointXWSSPropertiesConfig.PASSWORD_DIGEST,
         EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER })
-public final class TestEntityEndpointPasswordDigestXWSS extends
-        AbstractTestEntityEndpointRequest {
+public final class TestEntityEndpointPasswordDigestXWSS
+        extends AbstractTestEntityEndpointRequest {
 
     /**
      * Password for the passworded message.
@@ -82,8 +82,8 @@ public final class TestEntityEndpointPasswordDigestXWSS extends
     @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils.getDigestedPasswordStream(
-                    pathValid, username, password));
+            return new StreamSource(SecurityUtils
+                    .getDigestedPasswordStream(pathValid, username, password));
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }

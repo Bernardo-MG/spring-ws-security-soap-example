@@ -35,4 +35,3 @@
  */
 
 package com.wandrell.example.swss.client;
-

@@ -39,7 +39,7 @@ public final class ServletWSS4JContextConfig {
      * This is the application context used for the real web services, and
      * shared by all the servlets.
      */
-    public static final String BASE                  = "classpath:context/applicationContext.xml";
+    public static final String BASE            = "classpath:context/applicationContext.xml";
     /**
      * Plain password web service contextt.
      */
@@ -59,7 +59,7 @@ public final class ServletWSS4JContextConfig {
     /**
      * Unsecure web service context.
      */
-    public static final String UNSECURE              = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.

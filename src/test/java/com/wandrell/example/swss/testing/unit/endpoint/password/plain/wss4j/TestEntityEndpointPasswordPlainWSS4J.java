@@ -52,8 +52,8 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
         InterceptorWSS4JPropertiesConfig.PASSWORD_PLAIN,
         EndpointWSS4JPropertiesConfig.PASSWORD_PLAIN,
         EndpointWSS4JPropertiesConfig.BASE, TestPropertiesConfig.USER })
-public final class TestEntityEndpointPasswordPlainWSS4J extends
-        AbstractTestEntityEndpointRequest {
+public final class TestEntityEndpointPasswordPlainWSS4J
+        extends AbstractTestEntityEndpointRequest {
 
     /**
      * Password for the passworded message.
@@ -81,8 +81,8 @@ public final class TestEntityEndpointPasswordPlainWSS4J extends
     @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils.getPlainPasswordStream(
-                    pathValid, username, password));
+            return new StreamSource(SecurityUtils
+                    .getPlainPasswordStream(pathValid, username, password));
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
