@@ -22,9 +22,11 @@
  * SOFTWARE.
  */
 /**
- * Provides plugin classes for the shell client.
+ * Provides runnable clients to access the web services.
  * <p>
- * These are meant to be used through a Spring context to set up the client.
+ * The only client included, the
+ * {@link com.wandrell.example.swss.client.console.ConsoleClient ConsoleClient},
+ * is a simple console-based client.
  */
 
-package com.wandrell.example.swss.client.shell.plugin;
+package com.wandrell.example.swss.client.console;

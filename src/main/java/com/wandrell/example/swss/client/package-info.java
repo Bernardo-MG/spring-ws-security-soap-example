@@ -31,7 +31,7 @@
  * matter the authentication method used.
  * <p>
  * These are basic clients, meant to be used by other applications, such as the
- * clients included in {@link com.wandrell.example.swss.client.shell}.
+ * clients included in {@link com.wandrell.example.swss.client.console}.
  */
 
 package com.wandrell.example.swss.client;
