@@ -24,6 +24,10 @@
 
 package com.wandrell.example.swss.endpoint;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -58,6 +62,11 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 @Endpoint
 public class EntityEndpoint {
 
+    /**
+     * The logger used for logging the entity endpoint.
+     */
+    private static final Logger              LOGGER    = LoggerFactory
+                                                               .getLogger(EntityEndpoint.class);
     /**
      * The action for acquiring the entities.
      * <p>
@@ -118,6 +127,11 @@ public class EntityEndpoint {
         final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return
 
+        checkNotNull(request, "Received a null pointer as request");
+
+        LOGGER.debug(String.format("Received request for id %d",
+                request.getId()));
+
         // Acquires the entity
         entity = getExampleEntityService().findById(request.getId());
 
@@ -128,6 +142,12 @@ public class EntityEndpoint {
             entityResponse.setId(entity.getId());
             entityResponse.setName(entity.getName());
             response.setEntity(entityResponse);
+
+            LOGGER.debug(String.format(
+                    "Found entity with id %1$d and name %2$s",
+                    entityResponse.getId(), entityResponse.getName()));
+        } else {
+            LOGGER.debug("Entity not found");
         }
 
         return response;

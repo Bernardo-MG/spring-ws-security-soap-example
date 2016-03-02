@@ -36,13 +36,6 @@ import org.springframework.shell.Bootstrap;
 public class ShellClient {
 
     /**
-     * Constructs a {@code SWSSShellClient}.
-     */
-    public ShellClient() {
-        super();
-    }
-
-    /**
      * Main class that delegates to Spring Shell's Bootstrap class in order to
      * simplify debugging inside an IDE
      *
@@ -53,6 +46,13 @@ public class ShellClient {
      */
     public static void main(final String[] args) throws IOException {
         Bootstrap.main(args);
+    }
+
+    /**
+     * Constructs a {@code SWSSShellClient}.
+     */
+    public ShellClient() {
+        super();
     }
 
 }

@@ -15,6 +15,15 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:META-INF/spring/spring-shell.properties" />
+        location="classpath:META-INF/spring/spring-shell.properties, classpath:context/client/client.properties" />
+
+    <!-- Imports clients context -->
+    <import resource="classpath:context/client/client-unsecure.xml" />
+
+    <!-- Unsecure client commands -->
+    <bean id="unsecureClientCommands" class="${command.client.class}" >
+        <constructor-arg ref="unsecureClient"/>
+        <constructor-arg value="http://localhost:8080/swss/unsecure/entities"/>
+    </bean>
 
 </beans>

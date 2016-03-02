@@ -38,6 +38,20 @@ import org.springframework.stereotype.Component;
 @Component
 public final class ShellClientCommandMarker implements CommandMarker {
 
+    enum MessageType {
+        Type1("type1"), Type2("type2"), Type3("type3");
+
+        private String type;
+
+        private MessageType(String type) {
+            this.type = type;
+        }
+
+        public String getType() {
+            return type;
+        }
+    }
+
     private boolean simpleCommandExecuted = false;
 
     /**
@@ -47,30 +61,14 @@ public final class ShellClientCommandMarker implements CommandMarker {
         super();
     }
 
-    @CliAvailabilityIndicator({ "hw simple" })
-    public boolean isSimpleAvailable() {
-        // always available
-        return true;
-    }
-
-    @CliAvailabilityIndicator({ "hw complex", "hw enum" })
-    public boolean isComplexAvailable() {
-        if (simpleCommandExecuted) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @CliCommand(value = "hw simple",
-            help = "Print a simple hello world message")
-    public String simple(@CliOption(key = { "message" }, mandatory = true,
-            help = "The hello world message") final String message, @CliOption(
-            key = { "location" }, mandatory = false,
-            help = "Where you are saying hello",
-            specifiedDefaultValue = "At work") final String location) {
-        simpleCommandExecuted = true;
-        return "Message = [" + message + "] Location = [" + location + "]";
+    @CliCommand(
+            value = "hw enum",
+            help = "Print a simple hello world message from an enumerated value (run 'hw simple' once first)")
+    public
+            String
+            eenum(@CliOption(key = { "message" }, mandatory = true,
+                    help = "The hello world message") final MessageType message) {
+        return "Hello.  Your special enumerated message is " + message;
     }
 
     @CliCommand(
@@ -94,28 +92,30 @@ public final class ShellClientCommandMarker implements CommandMarker {
                 + "] location=[" + location + "]";
     }
 
-    @CliCommand(
-            value = "hw enum",
-            help = "Print a simple hello world message from an enumerated value (run 'hw simple' once first)")
-    public
-            String
-            eenum(@CliOption(key = { "message" }, mandatory = true,
-                    help = "The hello world message") final MessageType message) {
-        return "Hello.  Your special enumerated message is " + message;
+    @CliAvailabilityIndicator({ "hw complex", "hw enum" })
+    public boolean isComplexAvailable() {
+        if (simpleCommandExecuted) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    enum MessageType {
-        Type1("type1"), Type2("type2"), Type3("type3");
+    @CliAvailabilityIndicator({ "hw simple" })
+    public boolean isSimpleAvailable() {
+        // always available
+        return true;
+    }
 
-        private String type;
-
-        private MessageType(String type) {
-            this.type = type;
-        }
-
-        public String getType() {
-            return type;
-        }
+    @CliCommand(value = "hw simple",
+            help = "Print a simple hello world message")
+    public String simple(@CliOption(key = { "message" }, mandatory = true,
+            help = "The hello world message") final String message, @CliOption(
+            key = { "location" }, mandatory = false,
+            help = "Where you are saying hello",
+            specifiedDefaultValue = "At work") final String location) {
+        simpleCommandExecuted = true;
+        return "Message = [" + message + "] Location = [" + location + "]";
     }
 
 }

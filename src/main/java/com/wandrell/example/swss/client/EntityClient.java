@@ -24,6 +24,8 @@
 
 package com.wandrell.example.swss.client;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
@@ -49,6 +51,12 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * @author Bernardo Martínez Garrido
  */
 public final class EntityClient extends WebServiceGatewaySupport {
+
+    /**
+     * The logger used for logging the entity client.
+     */
+    private static final Logger LOGGER = LoggerFactory
+                                               .getLogger(EntityClient.class);
 
     /**
      * Constructs an {@code EntityClient}.
@@ -88,6 +96,9 @@ public final class EntityClient extends WebServiceGatewaySupport {
         final GetEntityResponse response; // Response with the resulting entity
         final Entity entity;              // Entity for the failed requests
 
+        LOGGER.debug(String.format("Querying URL %1$s for id %2$d", url,
+                entityId));
+
         // Generates request
         request = new GetEntityRequest();
         request.setId(entityId);
@@ -100,8 +111,12 @@ public final class EntityClient extends WebServiceGatewaySupport {
         if (response == null) {
             // No response was received
             entity = null;
+            LOGGER.debug("No response received");
         } else {
             entity = response.getEntity();
+            LOGGER.debug(String.format(
+                    "Received response with id %1$d and name %2$s",
+                    entity.getId(), entity.getName()));
         }
 
         return entity;

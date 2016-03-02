@@ -64,7 +64,8 @@ public final class ShellClientBannerProvider implements BannerProvider {
             @Value("${shell.version}") final String version) {
         super();
 
-        clientVersion = checkNotNull(version);
+        clientVersion = checkNotNull(version,
+                "Received a null pointer as version");
     }
 
     @Override
@@ -88,18 +89,19 @@ public final class ShellClientBannerProvider implements BannerProvider {
     }
 
     @Override
+    public final String getProviderName() {
+        return "SWSS shell client";
+    }
+
+    @Override
     public final String getVersion() {
         return clientVersion;
     }
 
     @Override
     public final String getWelcomeMessage() {
-        return "Welcome to " + getProviderName() + ".";
-    }
-
-    @Override
-    public final String getProviderName() {
-        return "SWSS shell client";
+        return "Welcome to " + getProviderName()
+                + ". Use the 'help' command for a list of available options.";
     }
 
 }
