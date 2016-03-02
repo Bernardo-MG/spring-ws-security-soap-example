@@ -65,9 +65,9 @@
     <profiles>
         <profile>
             <!-- Profile for the Eclipse Maven plugin -->
-            <!-- Sets the POM so this plugin does not give the usual unregistered 
+            <!-- Sets the POM so this plugin does not give the usual unregistered
                 goals errors -->
-            <!-- It will be activated automatically on Eclipse if this has the m2e 
+            <!-- It will be activated automatically on Eclipse if this has the m2e
                 plugin, by detecting the version property -->
             <id>eclipse-maven</id>
             <activation>
@@ -81,7 +81,7 @@
                         <plugin>
                             <!-- m2e lifecycle mapping -->
                             <!-- This is used to configure the Maven plugin for Eclipse. -->
-                            <!-- Among other things, it allows registering goals, 
+                            <!-- Among other things, it allows registering goals,
                                 which Eclipse would otherwise reject. -->
                             <!-- It has no real effect on Maven. -->
                             <groupId>org.eclipse.m2e</groupId>
@@ -228,6 +228,7 @@
         <spring.data.version>1.9.2.RELEASE</spring.data.version>
         <spring.version>4.2.4.RELEASE</spring.version>
         <spring.security.version>4.0.3.RELEASE</spring.security.version>
+        <spring.shell.version>1.1.0.RELEASE</spring.shell.version>
         <spring.ws.version>2.2.4.RELEASE</spring.ws.version>
         <stax.version>1.2.0</stax.version>
         <stax.api.version>1.0-2</stax.api.version>
@@ -279,6 +280,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring Shell -->
+            <groupId>org.springframework.shell</groupId>
+            <artifactId>spring-shell</artifactId>
+            <version>${spring.shell.version}</version>
         </dependency>
         <dependency>
             <!-- Spring WS -->
@@ -701,7 +708,7 @@
             </plugin>
             <plugin>
                 <!-- PMD -->
-                <!-- Checks that the code complies with a series of code quality 
+                <!-- Checks that the code complies with a series of code quality
                     rules -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>

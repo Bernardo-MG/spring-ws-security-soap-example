@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2016 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,12 @@
  * SOFTWARE.
  */
 /**
- * Provides clients to access the web services.
+ * Provides runnable clients to access the web services.
  * <p>
  * The only client included, the
- * {@link com.wandrell.example.swss.client.EntityClient EntityClient}, is
- * prepared for working with the the
- * {@link com.wandrell.example.swss.endpoint.EntityEndpoint EntityEndpoint}, no
- * matter the authentication method used.
- * <p>
- * These are basic clients, meant to be used by other applications, such as the
- * clients included in {@link com.wandrell.example.swss.client.shell}.
+ * {@link com.wandrell.example.swss.client.shell.ShellClient ShellClient}, is a
+ * shell-based client making use of Spring Shell.
  */
 
-package com.wandrell.example.swss.client;
+package com.wandrell.example.swss.client.shell;
 

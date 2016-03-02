@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2016 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+package com.wandrell.example.swss.client.shell;
+
+import java.io.IOException;
+
+import org.springframework.shell.Bootstrap;
+
 /**
- * Provides clients to access the web services.
- * <p>
- * The only client included, the
- * {@link com.wandrell.example.swss.client.EntityClient EntityClient}, is
- * prepared for working with the the
- * {@link com.wandrell.example.swss.endpoint.EntityEndpoint EntityEndpoint}, no
- * matter the authentication method used.
- * <p>
- * These are basic clients, meant to be used by other applications, such as the
- * clients included in {@link com.wandrell.example.swss.client.shell}.
+ * Runnable shell-based client.
+ *
+ * @author Bernardo Martínez Garrido
  */
+public class ShellClient {
 
-package com.wandrell.example.swss.client;
+    /**
+     * Constructs a {@code SWSSShellClient}.
+     */
+    public ShellClient() {
+        super();
+    }
 
+    /**
+     * Main class that delegates to Spring Shell's Bootstrap class in order to
+     * simplify debugging inside an IDE
+     *
+     * @param args
+     *            command line arguments
+     * @throws IOException
+     *             if any IO error occurrs while running the client
+     */
+    public static void main(final String[] args) throws IOException {
+        Bootstrap.main(args);
+    }
+
+}

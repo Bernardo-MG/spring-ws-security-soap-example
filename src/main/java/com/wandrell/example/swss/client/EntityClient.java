@@ -45,6 +45,8 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * <p>
  * If no result is received then the {@code null} value will be returned. And if
  * any exception occurs then it will be thrown as usual.
+ *
+ * @author Bernardo Martínez Garrido
  */
 public final class EntityClient extends WebServiceGatewaySupport {
 

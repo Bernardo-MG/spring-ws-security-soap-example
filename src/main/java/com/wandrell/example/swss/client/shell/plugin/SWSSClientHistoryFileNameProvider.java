@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2016 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+package com.wandrell.example.swss.client.shell.plugin;
+
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.shell.plugin.HistoryFileNameProvider;
+import org.springframework.stereotype.Component;
+
 /**
- * Provides clients to access the web services.
- * <p>
- * The only client included, the
- * {@link com.wandrell.example.swss.client.EntityClient EntityClient}, is
- * prepared for working with the the
- * {@link com.wandrell.example.swss.endpoint.EntityEndpoint EntityEndpoint}, no
- * matter the authentication method used.
- * <p>
- * These are basic clients, meant to be used by other applications, such as the
- * clients included in {@link com.wandrell.example.swss.client.shell}.
+ * History filename provider for the shell client.
+ *
+ * @author Bernardo Martínez Garrido
  */
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
+public final class SWSSClientHistoryFileNameProvider implements
+        HistoryFileNameProvider {
 
-package com.wandrell.example.swss.client;
+    /**
+     * Constructs a {@code SWSSClientHistoryFileNameProvider}.
+     */
+    public SWSSClientHistoryFileNameProvider() {
+        super();
+    }
 
+    @Override
+    public final String getHistoryFileName() {
+        return "spring-wss-shell.log";
+    }
+
+    @Override
+    public final String getProviderName() {
+        return "SWSS shell client";
+    }
+
+}

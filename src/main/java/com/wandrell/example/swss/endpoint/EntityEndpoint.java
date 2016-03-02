@@ -52,6 +52,8 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * <p>
  * Note that the endpoint offers no security at all, as this concern is to be
  * handled by Spring.
+ *
+ * @author Bernardo Martínez Garrido
  */
 @Endpoint
 public class EntityEndpoint {
@@ -110,8 +112,8 @@ public class EntityEndpoint {
     @PayloadRoot(localPart = REQUEST, namespace = ENTITY_NS)
     @SoapAction(ACTION)
     @ResponsePayload
-    public final GetEntityResponse
-            getEntity(@RequestPayload final GetEntityRequest request) {
+    public final GetEntityResponse getEntity(
+            @RequestPayload final GetEntityRequest request) {
         final GetEntityResponse response; // SOAP response with the result
         final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return
