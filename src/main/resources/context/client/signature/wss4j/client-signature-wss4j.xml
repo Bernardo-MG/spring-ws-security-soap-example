@@ -22,4 +22,7 @@
     <import resource="classpath:context/client/client.xml" />
     <import resource="classpath:context/interceptor/signature/wss4j/interceptor-signature-wss4j.xml" />
 
+    <!-- Extends client -->
+    <bean id="signatureWss4jClient" parent="baseClient" />
+
 </beans>

@@ -22,4 +22,7 @@
     <import resource="classpath:context/client/client.xml" />
     <import resource="classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.xml" />
 
+    <!-- Extends client -->
+    <bean id="encryptionXwssClient" parent="baseClient" />
+
 </beans>

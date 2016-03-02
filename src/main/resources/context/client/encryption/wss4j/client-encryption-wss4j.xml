@@ -23,4 +23,7 @@
     <import resource="classpath:context/client/client.xml" />
     <import resource="classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.xml" />
 
+    <!-- Extends client -->
+    <bean id="encryptionWss4jClient" parent="baseClient" />
+
 </beans>

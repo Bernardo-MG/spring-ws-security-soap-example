@@ -19,7 +19,7 @@
     <import resource="classpath:context/client/client.xml" />
 
     <!-- Client -->
-    <bean id="client" class="${client.class}" scope="prototype">
+    <bean id="unsecureClient" class="${client.class}" scope="prototype">
         <property name="marshaller" ref="marshaller" />
         <property name="unmarshaller" ref="marshaller" />
         <property name="interceptors">
