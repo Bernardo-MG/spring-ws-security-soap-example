@@ -26,6 +26,7 @@ package com.wandrell.example.swss.client.console;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -77,19 +78,31 @@ public class ConsoleClient {
     private static final void callEndpoint(final EntityClient client,
             final String uri, final PrintStream output, final Scanner scanner) {
         final Entity entity;
+        final Integer id;
 
+        output.print("Give the id of the entity to query:");
+        id = getInteger(scanner);
+
+        output.println();
+        output.println("*****************************************************");
         output.println(String.format("Querying %s", uri));
 
         try {
-            entity = client.getEntity(uri, 1);
+            entity = client.getEntity(uri, id);
 
-            output.println(String.format(
-                    "Received entity with id %1$d and name %2$s",
-                    entity.getId(), entity.getName()));
+            if (entity == null) {
+                output.println(String.format("No entity with id %d exists", id));
+            } else {
+                output.println(String.format(
+                        "Received entity with id %1$d and name %2$s",
+                        entity.getId(), entity.getName()));
+            }
         } catch (final WebServiceIOException e) {
             output.println(String.format("Error: %s", e.getMostSpecificCause()
                     .getMessage()));
         }
+
+        output.println("*****************************************************");
 
         waitForKeyPress(output, scanner);
     }
@@ -115,6 +128,23 @@ public class ConsoleClient {
         context.close();
 
         return client;
+    }
+
+    private static final Integer getInteger(final Scanner scanner) {
+        Integer value = null;
+        Boolean valid;
+
+        valid = false;
+        while (!valid) {
+            try {
+                value = scanner.nextInt();
+                valid = true;
+            } catch (final InputMismatchException e) {
+                valid = false;
+            }
+        }
+
+        return value;
     }
 
     private static final void printClientOptions(final PrintStream output) {
