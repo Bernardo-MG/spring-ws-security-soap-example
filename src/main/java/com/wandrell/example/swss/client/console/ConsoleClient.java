@@ -26,11 +26,15 @@ package com.wandrell.example.swss.client.console;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
+
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.ws.client.WebServiceIOException;
 
 import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.ws.generated.entity.Entity;
@@ -42,6 +46,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 public class ConsoleClient {
 
+    private static final String UNSECURE = "unsecure";
+
     /**
      * Main runnable method.
      *
@@ -50,48 +56,65 @@ public class ConsoleClient {
      * @throws IOException
      */
     public static void main(final String[] args) throws IOException {
-        final Scanner scanner = new Scanner(System.in);
         final PrintStream output;
-        String command;
-        ClassPathXmlApplicationContext context;
-        Entity entity;
+        final Map<String, EntityClient> clients = new LinkedHashMap<String, EntityClient>();
+        final Map<String, String> uris = new LinkedHashMap<String, String>();
 
-        PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
-        Properties properties = new Properties();
-        properties.load(new ClassPathResource(
-                "context/client/client.properties").getInputStream());
-        configurer.setProperties(properties);
-
-        context = new ClassPathXmlApplicationContext(
-                "context/client/client-unsecure.xml");
-        context.addBeanFactoryPostProcessor(configurer);
-
-        String wsUri = "http://localhost:8080/swss/unsecure/entities";
-        EntityClient clientUnsecure = context.getBean(EntityClient.class);
+        clients.put(
+                UNSECURE,
+                getEntityClient("context/client/client-unsecure.xml",
+                        "context/client/client.properties"));
+        uris.put(UNSECURE, "http://localhost:8080/swss/unsecure/entities");
 
         output = System.out;
 
         printTitle(output);
         printHelp(output);
 
-        do {
-            output.println();
-            printClientOptions(output);
-            output.println();
-            output.print("Pick an option: ");
-            command = scanner.next();
-            switch (command) {
-                case "1":
-                    entity = clientUnsecure.getEntity(wsUri, 1);
-                    output.println(String.format(
-                            "Received entity with id %1$d and name %2$s",
-                            entity.getId(), entity.getName()));
-                    break;
-            }
-        } while (!command.equalsIgnoreCase("exit"));
+        runMainLoop(output, clients, uris);
+    }
 
-        scanner.close();
+    private static final void callEndpoint(final EntityClient client,
+            final String uri, final PrintStream output, final Scanner scanner) {
+        final Entity entity;
+
+        output.println(String.format("Querying %s", uri));
+
+        try {
+            entity = client.getEntity(uri, 1);
+
+            output.println(String.format(
+                    "Received entity with id %1$d and name %2$s",
+                    entity.getId(), entity.getName()));
+        } catch (final WebServiceIOException e) {
+            output.println(String.format("Error: %s", e.getMostSpecificCause()
+                    .getMessage()));
+        }
+
+        waitForKeyPress(output, scanner);
+    }
+
+    private static final EntityClient getEntityClient(final String contextPath,
+            final String propertiesPath) throws IOException {
+        final ClassPathXmlApplicationContext context;
+        final PropertyPlaceholderConfigurer configurer;
+        final Properties properties;
+        final EntityClient client;
+
+        properties = new Properties();
+        properties.load(new ClassPathResource(propertiesPath).getInputStream());
+
+        configurer = new PropertyPlaceholderConfigurer();
+        configurer.setProperties(properties);
+
+        context = new ClassPathXmlApplicationContext(contextPath);
+        context.addBeanFactoryPostProcessor(configurer);
+
+        client = context.getBean(EntityClient.class);
+
         context.close();
+
+        return client;
     }
 
     private static final void printClientOptions(final PrintStream output) {
@@ -108,6 +131,50 @@ public class ConsoleClient {
         output.println();
         output.println("Spring WSS example console client.");
         output.println();
+    }
+
+    private static final void runMainLoop(final PrintStream output,
+            final Map<String, EntityClient> clients,
+            final Map<String, String> uris) {
+        final Scanner scanner = new Scanner(System.in);
+        EntityClient client = null;
+        String uri;
+        String command;
+
+        do {
+            output.println();
+            printClientOptions(output);
+            output.println();
+            output.print("Pick an option: ");
+            command = scanner.next();
+            output.println();
+            switch (command) {
+                case "1":
+                    client = clients.get(UNSECURE);
+                    uri = uris.get(UNSECURE);
+                    break;
+                default:
+                    client = null;
+                    uri = null;
+            }
+
+            if (client != null) {
+                callEndpoint(client, uri, output, scanner);
+            }
+        } while (!command.equalsIgnoreCase("exit"));
+
+        scanner.close();
+    }
+
+    private static final void waitForKeyPress(final PrintStream output,
+            final Scanner scanner) {
+
+        output.println();
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+        output.println("Press Enter to continue.");
+        scanner.nextLine();
     }
 
     /**
