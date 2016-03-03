@@ -24,6 +24,8 @@
 
 package com.wandrell.example.swss.client;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.WebServiceMessageFactory;
@@ -95,6 +97,9 @@ public final class EntityClient extends WebServiceGatewaySupport {
         final GetEntityRequest request;   // Request for acquiring the entity
         final GetEntityResponse response; // Response with the resulting entity
         final Entity entity;              // Entity for the failed requests
+
+        checkNotNull(url, "Received a null pointer as url");
+        checkNotNull(entityId, "Received a null pointer as entity id");
 
         LOGGER.debug(
                 String.format("Querying URL %1$s for id %2$d", url, entityId));

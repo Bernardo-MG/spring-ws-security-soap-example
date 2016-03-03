@@ -26,7 +26,6 @@ package com.wandrell.example.swss.client.console;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -47,7 +46,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 public class ConsoleClient {
 
-    private static final String UNSECURE = "unsecure";
+    private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
+    private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
+    private static final String UNSECURE              = "unsecure";
 
     /**
      * Main runnable method.
@@ -58,21 +59,13 @@ public class ConsoleClient {
      */
     public static void main(final String[] args) throws IOException {
         final PrintStream output;
-        final Map<String, EntityClient> clients = new LinkedHashMap<String, EntityClient>();
-        final Map<String, String> uris = new LinkedHashMap<String, String>();
-
-        clients.put(
-                UNSECURE,
-                getEntityClient("context/client/client-unsecure.xml",
-                        "context/client/client.properties"));
-        uris.put(UNSECURE, "http://localhost:8080/swss/unsecure/entities");
 
         output = System.out;
 
         printTitle(output);
         printHelp(output);
 
-        runMainLoop(output, clients, uris);
+        runMainLoop(output, getClients(), getUris());
     }
 
     private static final void callEndpoint(final EntityClient client,
@@ -80,7 +73,7 @@ public class ConsoleClient {
         final Entity entity;
         final Integer id;
 
-        output.print("Give the id of the entity to query:");
+        output.print("Give the id of the entity to query: ");
         id = getInteger(scanner);
 
         output.println();
@@ -91,20 +84,43 @@ public class ConsoleClient {
             entity = client.getEntity(uri, id);
 
             if (entity == null) {
-                output.println(String.format("No entity with id %d exists", id));
+                output.println(
+                        String.format("No entity with id %d exists", id));
             } else {
                 output.println(String.format(
                         "Received entity with id %1$d and name %2$s",
                         entity.getId(), entity.getName()));
             }
         } catch (final WebServiceIOException e) {
-            output.println(String.format("Error: %s", e.getMostSpecificCause()
-                    .getMessage()));
+            output.println(String.format("Error: %s",
+                    e.getMostSpecificCause().getMessage()));
         }
 
         output.println("*****************************************************");
 
         waitForKeyPress(output, scanner);
+    }
+
+    private static final Map<String, EntityClient> getClients()
+            throws IOException {
+        final Map<String, EntityClient> clients = new LinkedHashMap<String, EntityClient>();
+
+        clients.put(UNSECURE,
+                getEntityClient("context/client/client-unsecure.xml",
+                        "context/client/client.properties"));
+
+        return clients;
+    }
+
+    private static final String getEndpointUri(final String propertiesPath)
+            throws IOException {
+        final Properties properties;
+
+        properties = new Properties();
+        properties.load(new ClassPathResource(propertiesPath).getInputStream());
+
+        return String.format(ENDPOINT_URL_TEMPLATE,
+                (String) properties.get(PROPERTY_ENDPOINT_URI));
     }
 
     private static final EntityClient getEntityClient(final String contextPath,
@@ -136,18 +152,29 @@ public class ConsoleClient {
 
         valid = false;
         while (!valid) {
-            try {
+            valid = scanner.hasNextInt();
+            if (valid) {
                 value = scanner.nextInt();
-                valid = true;
-            } catch (final InputMismatchException e) {
-                valid = false;
+            } else {
+                scanner.nextLine();
             }
         }
 
         return value;
     }
 
+    private static final Map<String, String> getUris() throws IOException {
+        final Map<String, String> uris = new LinkedHashMap<String, String>();
+
+        uris.put(UNSECURE, getEndpointUri(
+                "context/endpoint/endpoint-unsecure.properties"));
+
+        return uris;
+    }
+
     private static final void printClientOptions(final PrintStream output) {
+        output.println("Choose a client:");
+        output.println();
         output.println("1.- Unsecure");
     }
 
