@@ -26,7 +26,9 @@ package com.wandrell.example.swss.client.console;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
@@ -46,8 +48,16 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 public class ConsoleClient {
 
+    private static final String ENCRYPTION_WSS4J      = "encryption_wss4j";
+    private static final String ENCRYPTION_XWSS       = "encryption_xwss";
     private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
+    private static final String PASSWORD_DIGEST_WSS4J = "password_digest_wss4j";
+    private static final String PASSWORD_DIGEST_XWSS  = "password_digest_xwss";
+    private static final String PASSWORD_PLAIN_WSS4J  = "password_plain_wss4j";
+    private static final String PASSWORD_PLAIN_XWSS   = "password_plain_xwss";
     private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
+    private static final String SIGNATURE_WSS4J       = "signature_wss4j";
+    private static final String SIGNATURE_XWSS        = "signature_xwss";
     private static final String UNSECURE              = "unsecure";
 
     /**
@@ -106,8 +116,33 @@ public class ConsoleClient {
         final Map<String, EntityClient> clients = new LinkedHashMap<String, EntityClient>();
 
         clients.put(UNSECURE,
-                getEntityClient("context/client/client-unsecure.xml",
-                        "context/client/client.properties"));
+                getEntityClient("context/client/client-unsecure.xml"));
+        clients.put(PASSWORD_PLAIN_XWSS, getEntityClient(
+                "context/client/password/plain/xwss/client-password-plain-xwss.xml",
+                "context/client/password/plain/xwss/client-password-plain-xwss.properties"));
+        clients.put(PASSWORD_PLAIN_WSS4J, getEntityClient(
+                "context/client/password/plain/wss4j/client-password-plain-wss4j.xml"));
+        clients.put(PASSWORD_DIGEST_XWSS, getEntityClient(
+                "context/client/password/digest/xwss/client-password-digest-xwss.xml",
+                "context/client/password/digest/xwss/client-password-digest-xwss.properties"));
+        clients.put(PASSWORD_DIGEST_WSS4J, getEntityClient(
+                "context/client/password/digest/wss4j/client-password-digest-wss4j.xml"));
+        //clients.put(SIGNATURE_XWSS, getEntityClient(
+        //        "context/client/signature/xwss/client-signature-xwss.xml",
+        //        "context/client/signature/xwss/client-signature-xwss.properties",
+        //        "context/keystore/keystore.properties"));
+        //clients.put(SIGNATURE_WSS4J, getEntityClient(
+        //        "context/client/signature/wss4j/client-signature-wss4j.xml",
+        //        "context/keystore/keystore.properties",
+        //        "context/keystore/keystore-wss4j.properties"));
+        //clients.put(ENCRYPTION_XWSS, getEntityClient(
+        //        "context/client/encryption/xwss/client-encryption-xwss.xml",
+        //        "context/client/encryption/xwss/client-encryption-xwss.properties",
+        //        "context/keystore/keystore.properties"));
+        //clients.put(ENCRYPTION_WSS4J, getEntityClient(
+        //        "context/client/encryption/wss4j/client-encryption-wss4j.xml",
+        //        "context/keystore/keystore.properties",
+        //        "context/keystore/keystore-wss4j.properties"));
 
         return clients;
     }
@@ -124,17 +159,27 @@ public class ConsoleClient {
     }
 
     private static final EntityClient getEntityClient(final String contextPath,
-            final String propertiesPath) throws IOException {
+            final String... propertiesPath) throws IOException {
         final ClassPathXmlApplicationContext context;
         final PropertyPlaceholderConfigurer configurer;
-        final Properties properties;
+        final Properties propertiesBase;
         final EntityClient client;
+        final Collection<Properties> propertiesCol;
 
-        properties = new Properties();
-        properties.load(new ClassPathResource(propertiesPath).getInputStream());
+        propertiesBase = new Properties();
+        propertiesBase
+                .load(new ClassPathResource("context/client/client.properties")
+                        .getInputStream());
 
+        propertiesCol = new LinkedList<Properties>();
+        propertiesCol.add(propertiesBase);
+        for(final String path : propertiesPath){
+            propertiesBase.load(
+                    new ClassPathResource(path).getInputStream());
+        }
+        
         configurer = new PropertyPlaceholderConfigurer();
-        configurer.setProperties(properties);
+        configurer.setProperties(propertiesBase);
 
         context = new ClassPathXmlApplicationContext(contextPath);
         context.addBeanFactoryPostProcessor(configurer);
@@ -168,6 +213,22 @@ public class ConsoleClient {
 
         uris.put(UNSECURE, getEndpointUri(
                 "context/endpoint/endpoint-unsecure.properties"));
+        uris.put(PASSWORD_PLAIN_XWSS, getEndpointUri(
+                "context/client/password/plain/xwss/client-password-plain-xwss.xml"));
+        uris.put(PASSWORD_PLAIN_WSS4J, getEndpointUri(
+                "context/client/password/plain/wss4j/client-password-plain-wss4j.xml"));
+        uris.put(PASSWORD_DIGEST_XWSS, getEndpointUri(
+                "context/client/password/digest/xwss/client-password-digest-xwss.xml"));
+        uris.put(PASSWORD_DIGEST_WSS4J, getEndpointUri(
+                "context/client/password/digest/wss4j/client-password-digest-wss4j.xml"));
+        uris.put(SIGNATURE_XWSS, getEndpointUri(
+                "context/client/signature/xwss/client-signature-xwss.xml"));
+        uris.put(SIGNATURE_WSS4J, getEndpointUri(
+                "context/client/signature/wss4j/client-signature-wss4j.xml"));
+        uris.put(ENCRYPTION_XWSS, getEndpointUri(
+                "context/client/encryption/xwss/client-encryption-xwss.xml"));
+        uris.put(ENCRYPTION_WSS4J, getEndpointUri(
+                "context/client/encryption/wss4j/client-encryption-wss4j.xml"));
 
         return uris;
     }
