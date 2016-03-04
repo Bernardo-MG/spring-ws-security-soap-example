@@ -278,9 +278,12 @@ public class ConsoleClient {
     }
 
     private static final void printHelp(final PrintStream output) {
-        output.println("=================================================");
+        output.println("========================================================================");
         output.println("Pick an option. Write 'exit' to close the client.");
-        output.println("=================================================");
+        output.println();
+        output.println("The server should be running at the default URI for this client to work.");
+        output.println("Check the server log for the SOAP messages traces.");
+        output.println("========================================================================");
     }
 
     private static final void printTitle(final PrintStream output) {
