@@ -15,7 +15,7 @@
 
     <!-- Properties -->
     <context:property-placeholder
-        location="classpath:context/client/client.properties, classpath:context/interceptor/signature/wss4j/interceptor-signature-wss4j.properties, classpath:context/keystore/keystore-wss4j.properties" />
+        location="classpath:context/client/client.properties, context/keystore/keystore.properties, classpath:context/interceptor/signature/wss4j/interceptor-signature-wss4j.properties, classpath:context/keystore/keystore-wss4j.properties" />
 
     <!-- Imports base context -->
     <import resource="classpath:context/keystore/keystore-wss4j.xml" />
