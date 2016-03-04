@@ -80,12 +80,15 @@ public class ConsoleClient {
         final Entity entity;
         final Integer id;
 
-        output.print("Give the id of the entity to query: ");
-        id = getInteger(scanner);
+        output.println("------------------------------------");
+        output.println("Write the id of the entity to query.");
+        output.println("The id 1 is always valid.");
+        output.println("------------------------------------");
 
         output.println();
-        output.println("*****************************************************");
-        output.println(String.format("Querying %s", uri));
+        output.print("Id: ");
+        id = getInteger(scanner);
+        output.println();
 
         try {
             entity = client.getEntity(uri, id);
@@ -93,16 +96,16 @@ public class ConsoleClient {
             if (entity == null) {
                 output.println(String.format("No entity with id %d exists", id));
             } else {
-                output.println(String.format(
-                        "Received entity with id %1$d and name %2$s",
-                        entity.getId(), entity.getName()));
+                output.println("Found entity.");
+                output.println();
+                output.println(String.format("Entity id:\t%d", entity.getId()));
+                output.println(String.format("Entity name:\t%s",
+                        entity.getName()));
             }
         } catch (final WebServiceIOException e) {
             output.println(String.format("Error: %s", e.getMostSpecificCause()
                     .getMessage()));
         }
-
-        output.println("*****************************************************");
 
         waitForKeyPress(output, scanner);
     }
@@ -217,7 +220,7 @@ public class ConsoleClient {
     }
 
     private static final void printClientOptions(final PrintStream output) {
-        output.println("Choose a client:");
+        output.println("Choose a security configuration:");
         output.println();
         output.println("1.- Unsecure");
         output.println("2.- Plain password (XWSS)");
@@ -230,10 +233,54 @@ public class ConsoleClient {
         output.println("9.- Encryption (WSS4J)");
     }
 
+    private static final void printClientSelection(final String uri,
+            final String security, final PrintStream output) {
+        final String securityName;
+
+        switch (security) {
+            case UNSECURE:
+                securityName = "unsecure";
+                break;
+            case PASSWORD_PLAIN_XWSS:
+                securityName = "plain password (XWSS)";
+                break;
+            case PASSWORD_PLAIN_WSS4J:
+                securityName = "plain password (WSS4J)";
+                break;
+            case PASSWORD_DIGEST_XWSS:
+                securityName = "digested password (XWSS)";
+                break;
+            case PASSWORD_DIGEST_WSS4J:
+                securityName = "digested password (WSS4J)";
+                break;
+            case SIGNATURE_XWSS:
+                securityName = "signature (XWSS)";
+                break;
+            case SIGNATURE_WSS4J:
+                securityName = "signature (WSS4J)";
+                break;
+            case ENCRYPTION_XWSS:
+                securityName = "encryption (XWSS)";
+                break;
+            case ENCRYPTION_WSS4J:
+                securityName = "encryption (WSS4J)";
+                break;
+            default:
+                securityName = null;
+        }
+
+        output.println("+++++++++++++++++++++++++++++++++++++");
+        output.println(String.format("Preparing to query the %s endpoint.",
+                securityName));
+        output.println(String.format("This is located at %s", uri));
+        output.println("+++++++++++++++++++++++++++++++++++++");
+        output.println();
+    }
+
     private static final void printHelp(final PrintStream output) {
-        output.println("-------------------------------------------------");
+        output.println("=================================================");
         output.println("Pick an option. Write 'exit' to close the client.");
-        output.println("-------------------------------------------------");
+        output.println("=================================================");
     }
 
     private static final void printTitle(final PrintStream output) {
@@ -246,6 +293,7 @@ public class ConsoleClient {
             final Map<String, EntityClient> clients,
             final Map<String, String> uris) {
         final Scanner scanner = new Scanner(System.in);
+        String security;
         EntityClient client = null;
         String uri;
         String command;
@@ -259,47 +307,41 @@ public class ConsoleClient {
             output.println();
             switch (command) {
                 case "1":
-                    client = clients.get(UNSECURE);
-                    uri = uris.get(UNSECURE);
+                    security = UNSECURE;
                     break;
                 case "2":
-                    client = clients.get(PASSWORD_PLAIN_XWSS);
-                    uri = uris.get(PASSWORD_PLAIN_XWSS);
+                    security = PASSWORD_PLAIN_XWSS;
                     break;
                 case "3":
-                    client = clients.get(PASSWORD_PLAIN_WSS4J);
-                    uri = uris.get(PASSWORD_PLAIN_WSS4J);
+                    security = PASSWORD_PLAIN_WSS4J;
                     break;
                 case "4":
-                    client = clients.get(PASSWORD_DIGEST_XWSS);
-                    uri = uris.get(PASSWORD_DIGEST_XWSS);
+                    security = PASSWORD_DIGEST_XWSS;
                     break;
                 case "5":
-                    client = clients.get(PASSWORD_DIGEST_WSS4J);
-                    uri = uris.get(PASSWORD_DIGEST_WSS4J);
+                    security = PASSWORD_DIGEST_WSS4J;
                     break;
                 case "6":
-                    client = clients.get(SIGNATURE_XWSS);
-                    uri = uris.get(SIGNATURE_XWSS);
+                    security = SIGNATURE_XWSS;
                     break;
                 case "7":
-                    client = clients.get(SIGNATURE_WSS4J);
-                    uri = uris.get(SIGNATURE_WSS4J);
+                    security = SIGNATURE_WSS4J;
                     break;
                 case "8":
-                    client = clients.get(ENCRYPTION_XWSS);
-                    uri = uris.get(ENCRYPTION_XWSS);
+                    security = ENCRYPTION_XWSS;
                     break;
                 case "9":
-                    client = clients.get(ENCRYPTION_WSS4J);
-                    uri = uris.get(ENCRYPTION_WSS4J);
+                    security = ENCRYPTION_WSS4J;
                     break;
                 default:
-                    client = null;
-                    uri = null;
+                    security = null;
             }
 
-            if (client != null) {
+            if (security != null) {
+                client = clients.get(security);
+                uri = uris.get(security);
+
+                printClientSelection(uri, security, output);
                 callEndpoint(client, uri, output, scanner);
             }
         } while (!command.equalsIgnoreCase("exit"));
