@@ -136,8 +136,11 @@ public class EntityEndpoint {
         entity = getExampleEntityService().findById(request.getId());
 
         response = new GetEntityResponse();
-        if (entity != null) {
-            // The entity is transformed
+        if (entity == null) {
+            LOGGER.debug("Entity not found");
+        } else {
+            // The entity is transformed from the persistence model to the SOAP
+            // one
             entityResponse = new Entity();
             entityResponse.setId(entity.getId());
             entityResponse.setName(entity.getName());
@@ -146,8 +149,6 @@ public class EntityEndpoint {
             LOGGER.debug(
                     String.format("Found entity with id %1$d and name %2$s",
                             entityResponse.getId(), entityResponse.getName()));
-        } else {
-            LOGGER.debug("Entity not found");
         }
 
         return response;

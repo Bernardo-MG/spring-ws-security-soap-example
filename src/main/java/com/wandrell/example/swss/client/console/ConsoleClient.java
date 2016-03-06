@@ -405,6 +405,7 @@ public final class ConsoleClient {
                 break;
             default:
                 securityName = null;
+                break;
         }
 
         // Prints the header
@@ -495,6 +496,7 @@ public final class ConsoleClient {
                     break;
                 default:
                     security = null;
+                    break;
             }
 
             // Checks if it was a valid option
@@ -508,7 +510,7 @@ public final class ConsoleClient {
                 printQueryHeader(uri, security, output);
                 callEndpoint(client, uri, output, scanner);
             }
-        } while (!command.equalsIgnoreCase("exit"));
+        } while (!"exit".equalsIgnoreCase(command));
 
         scanner.close();
     }
