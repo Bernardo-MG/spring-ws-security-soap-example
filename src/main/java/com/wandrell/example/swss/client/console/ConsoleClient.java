@@ -45,20 +45,59 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 public class ConsoleClient {
 
+    /**
+     * Template for generating the final endpoint URL.
+     * <p>
+     * This is just the default URI for the web service, to which the endpoint
+     * path is to be added.
+     */
     private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
-
+    /**
+     * Property key for the endpoint URI.
+     */
     private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
 
+    /**
+     * Enumeration for all the security types supported by the console client.
+     * 
+     * @author Bernardo Martínez Garrido
+     */
     private enum Security {
+        /**
+         * Encryption using WSS4J.
+         */
         ENCRYPTION_WSS4J,
+        /**
+         * Encryption using XWSS.
+         */
         ENCRYPTION_XWSS,
-        ENDPOINT_URL_TEMPLATE,
+        /**
+         * Digested password using WSS4J.
+         */
         PASSWORD_DIGEST_WSS4J,
+        /**
+         * Digested password using XWSS.
+         */
         PASSWORD_DIGEST_XWSS,
+        /**
+         * Plain password using WSS4J.
+         */
         PASSWORD_PLAIN_WSS4J,
+        /**
+         * Plain password using XWSS.
+         */
         PASSWORD_PLAIN_XWSS,
+        /**
+         * Signature using WSS4J.
+         */
         SIGNATURE_WSS4J,
+        /**
+         * Signature using XWSS.
+         */
         SIGNATURE_XWSS,
+        /**
+         * Unsecure.
+         */
         UNSECURE
     }
 
@@ -70,20 +109,37 @@ public class ConsoleClient {
      * @throws IOException
      */
     public static void main(final String[] args) throws IOException {
-        final PrintStream output;
+        final PrintStream output; // Output for the client information
 
         output = System.out;
 
+        // The client header is printed
         printTitle(output);
         printHelp(output);
 
         runMainLoop(output, getClients(), getUris());
     }
 
+    /**
+     * Calls an endpoint by using the specified {@code EntityClient}.
+     * <p>
+     * The client should be the correct one for the endpoint. Otherwise an error
+     * may occur.
+     * <p>
+     * If the endpoint can't be reached a warning will be printed on the screen.
+     * 
+     * @param client
+     *            {@code EntityClient} which will call the endpoint
+     * @param uri
+     *            URI for the endpoint
+     * @param output
+     *            output for the client to print information
+     * @param scanner
+     */
     private static final void callEndpoint(final EntityClient client,
             final String uri, final PrintStream output, final Scanner scanner) {
-        final Entity entity;
-        final Integer id;
+        final Entity entity; // Queried entity
+        final Integer id;    // Id for the query
 
         output.println("------------------------------------");
         output.println("Write the id of the entity to query.");
@@ -99,9 +155,11 @@ public class ConsoleClient {
             entity = client.getEntity(uri, id);
 
             if (entity == null) {
+                // No entity found
                 output.println(
                         String.format("No entity with id %d exists", id));
             } else {
+                // Entity found
                 output.println("Found entity.");
                 output.println();
                 output.println(String.format("Entity id:\t%d", entity.getId()));
@@ -113,13 +171,23 @@ public class ConsoleClient {
                     e.getMostSpecificCause().getMessage()));
         }
 
-        waitForKeyPress(output, scanner);
+        // Waits so the result information can be checked
+        waitForEnter(output, scanner);
     }
 
-    private static final Map<Security, EntityClient> getClients()
-            throws IOException {
-        final Map<Security, EntityClient> clients = new LinkedHashMap<Security, EntityClient>();
+    /**
+     * Returns all the {@code EntityClient} instances, one for each security
+     * method.
+     * <p>
+     * These are loaded from Spring context files.
+     * 
+     * @return a {@code EntityClient} instance for each supported security
+     *         method
+     */
+    private static final Map<Security, EntityClient> getClients() {
+        final Map<Security, EntityClient> clients; // Returned clients
 
+        clients = new LinkedHashMap<Security, EntityClient>();
         clients.put(Security.UNSECURE,
                 getEntityClient("context/client/client-unsecure.xml"));
         clients.put(Security.PASSWORD_PLAIN_XWSS, getEntityClient(
@@ -142,9 +210,19 @@ public class ConsoleClient {
         return clients;
     }
 
+    /**
+     * Returns the URI for an endpoint. This is created from the path loaded
+     * from a properties file, and the endpoint URL template.
+     * 
+     * @param propertiesPath
+     *            path to the properties file with the endpoint path
+     * @return the fill URI for the endpoint
+     * @throws IOException
+     *             if any error occurs while loading the properties
+     */
     private static final String getEndpointUri(final String propertiesPath)
             throws IOException {
-        final Properties properties;
+        final Properties properties; // Properties with the endpoint data
 
         properties = new Properties();
         properties.load(new ClassPathResource(propertiesPath).getInputStream());
@@ -153,8 +231,18 @@ public class ConsoleClient {
                 (String) properties.get(PROPERTY_ENDPOINT_URI));
     }
 
-    private static final EntityClient getEntityClient(final String contextPath)
-            throws IOException {
+    /**
+     * Returns a {@code EntityClient} loaded from the context on the specified
+     * file.
+     * <p>
+     * This is loaded from a Spring context file.
+     * 
+     * @param contextPath
+     *            path to the context file.
+     * @return a {@code EntityClient} loaded from the specified context
+     */
+    private static final EntityClient
+            getEntityClient(final String contextPath) {
         final ClassPathXmlApplicationContext context;
         final EntityClient client;
 
@@ -167,26 +255,49 @@ public class ConsoleClient {
         return client;
     }
 
+    /**
+     * Returns an integer value read from the input.
+     * <p>
+     * This will try to parse an integer until one is found, rejecting all the
+     * invalid lines.
+     * 
+     * @param scanner
+     *            scanner for the input
+     * @return an integer read from the input
+     */
     private static final Integer getInteger(final Scanner scanner) {
-        Integer value = null;
-        Boolean valid;
+        Integer integer; // Parsed integer
+        Boolean valid;   // Status flag for the loop
 
         valid = false;
+        integer = null;
         while (!valid) {
+            // Runs until an integer is found
             valid = scanner.hasNextInt();
             if (valid) {
-                value = scanner.nextInt();
+                // Found an integer
+                integer = scanner.nextInt();
             } else {
+                // The line is not an integer
+                // It is rejected
                 scanner.nextLine();
             }
         }
 
-        return value;
+        return integer;
     }
 
+    /**
+     * Returns all the endpoint URIs, one for each security method.
+     * 
+     * @return an URI for each supported security method
+     * @throws IOException
+     *             if any error occurs while loading the URIs
+     */
     private static final Map<Security, String> getUris() throws IOException {
-        final Map<Security, String> uris = new LinkedHashMap<Security, String>();
+        final Map<Security, String> uris; // Returned URIs
 
+        uris = new LinkedHashMap<Security, String>();
         uris.put(Security.UNSECURE, getEndpointUri(
                 "context/endpoint/endpoint-unsecure.properties"));
         uris.put(Security.PASSWORD_PLAIN_XWSS, getEndpointUri(
@@ -209,6 +320,12 @@ public class ConsoleClient {
         return uris;
     }
 
+    /**
+     * Prints all the main options available to the console client.
+     * 
+     * @param output
+     *            output where the options will be printed
+     */
     private static final void printClientOptions(final PrintStream output) {
         output.println("Choose a security configuration:");
         output.println();
@@ -223,10 +340,39 @@ public class ConsoleClient {
         output.println("9.- Encryption (WSS4J)");
     }
 
-    private static final void printClientSelection(final String uri,
-            final Security security, final PrintStream output) {
-        final String securityName;
+    /**
+     * Prints the client help information.
+     * 
+     * @param output
+     *            output where the information will be printed
+     */
+    private static final void printHelp(final PrintStream output) {
+        output.println(
+                "========================================================================");
+        output.println("Pick an option. Write 'exit' to close the client.");
+        output.println();
+        output.println(
+                "The server should be running at the default URI for this client to work.");
+        output.println("Check the server log for the SOAP messages traces.");
+        output.println(
+                "========================================================================");
+    }
 
+    /**
+     * Prints the header telling which endpoint is going to be queried.
+     * 
+     * @param uri
+     *            URI for the endpoint
+     * @param security
+     *            security method used
+     * @param output
+     *            output where the header will be printed
+     */
+    private static final void printQueryHeader(final String uri,
+            final Security security, final PrintStream output) {
+        final String securityName; // Name of the security method
+
+        // Loads data to customize the header
         switch (security) {
             case UNSECURE:
                 securityName = "unsecure";
@@ -259,6 +405,7 @@ public class ConsoleClient {
                 securityName = null;
         }
 
+        // Prints the header
         output.println("+++++++++++++++++++++++++++++++++++++");
         output.println(String.format("Preparing to query the %s endpoint.",
                 securityName));
@@ -267,40 +414,55 @@ public class ConsoleClient {
         output.println();
     }
 
-    private static final void printHelp(final PrintStream output) {
-        output.println(
-                "========================================================================");
-        output.println("Pick an option. Write 'exit' to close the client.");
-        output.println();
-        output.println(
-                "The server should be running at the default URI for this client to work.");
-        output.println("Check the server log for the SOAP messages traces.");
-        output.println(
-                "========================================================================");
-    }
-
+    /**
+     * Prints the client title.
+     * 
+     * @param output
+     *            output where the client title will be printed
+     */
     private static final void printTitle(final PrintStream output) {
         output.println();
         output.println("Spring WSS example console client.");
         output.println();
     }
 
+    /**
+     * Runs the main application loop.
+     * <p>
+     * This is what keeps the client running and living. It can be stopped by
+     * the user through a specific console command.
+     * 
+     * @param output
+     *            output where all the information will be printed
+     * @param clients
+     *            an {@code EntityClient} instance for each security method
+     * @param uris
+     *            an endpoint URI for each security method
+     */
     private static final void runMainLoop(final PrintStream output,
             final Map<Security, EntityClient> clients,
             final Map<Security, String> uris) {
-        final Scanner scanner = new Scanner(System.in);
-        Security security;
-        EntityClient client = null;
-        String uri;
-        String command;
+        final Scanner scanner; // Scanner for reading the input
+        Security security;     // Selected security method
+        EntityClient client;   // Client for the selected security
+        String uri;            // Endpoint for the selected security
+        String command;        // Current user command
 
+        scanner = new Scanner(System.in);
+        // The main loop
+        // Stops when the 'exit' command is received
         do {
+            // Prints options
             output.println();
             printClientOptions(output);
             output.println();
+
+            // Reads command
             output.print("Pick an option: ");
             command = scanner.next();
             output.println();
+
+            // Loads security from the command
             switch (command) {
                 case "1":
                     security = Security.UNSECURE;
@@ -333,11 +495,15 @@ public class ConsoleClient {
                     security = null;
             }
 
+            // Checks if it was a valid option
             if (security != null) {
+                // Valid option
+                // The client and URI are acquired
                 client = clients.get(security);
                 uri = uris.get(security);
 
-                printClientSelection(uri, security, output);
+                // The endpoint is queried
+                printQueryHeader(uri, security, output);
                 callEndpoint(client, uri, output, scanner);
             }
         } while (!command.equalsIgnoreCase("exit"));
@@ -345,19 +511,29 @@ public class ConsoleClient {
         scanner.close();
     }
 
-    private static final void waitForKeyPress(final PrintStream output,
+    /**
+     * Waits until the 'enter' key is pressed.
+     * 
+     * @param output
+     *            output where the information will be printed
+     * @param scanner
+     *            scanner for reading the input
+     */
+    private static final void waitForEnter(final PrintStream output,
             final Scanner scanner) {
 
         output.println();
+        // The scanner is cleaned to remove any new line
         if (scanner.hasNextLine()) {
             scanner.nextLine();
         }
+
         output.println("Press Enter to continue.");
         scanner.nextLine();
     }
 
     /**
-     * Constructs a {@code ShellClient}.
+     * Constructs a {@code ConsoleClient}.
      */
     public ConsoleClient() {
         super();
