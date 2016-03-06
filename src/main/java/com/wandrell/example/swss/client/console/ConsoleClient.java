@@ -45,17 +45,22 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 public class ConsoleClient {
 
-    private static final String ENCRYPTION_WSS4J      = "encryption_wss4j";
-    private static final String ENCRYPTION_XWSS       = "encryption_xwss";
     private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
-    private static final String PASSWORD_DIGEST_WSS4J = "password_digest_wss4j";
-    private static final String PASSWORD_DIGEST_XWSS  = "password_digest_xwss";
-    private static final String PASSWORD_PLAIN_WSS4J  = "password_plain_wss4j";
-    private static final String PASSWORD_PLAIN_XWSS   = "password_plain_xwss";
+
     private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
-    private static final String SIGNATURE_WSS4J       = "signature_wss4j";
-    private static final String SIGNATURE_XWSS        = "signature_xwss";
-    private static final String UNSECURE              = "unsecure";
+
+    private enum Security {
+        ENCRYPTION_WSS4J,
+        ENCRYPTION_XWSS,
+        ENDPOINT_URL_TEMPLATE,
+        PASSWORD_DIGEST_WSS4J,
+        PASSWORD_DIGEST_XWSS,
+        PASSWORD_PLAIN_WSS4J,
+        PASSWORD_PLAIN_XWSS,
+        SIGNATURE_WSS4J,
+        SIGNATURE_XWSS,
+        UNSECURE
+    }
 
     /**
      * Main runnable method.
@@ -94,52 +99,45 @@ public class ConsoleClient {
             entity = client.getEntity(uri, id);
 
             if (entity == null) {
-                output.println(String.format("No entity with id %d exists", id));
+                output.println(
+                        String.format("No entity with id %d exists", id));
             } else {
                 output.println("Found entity.");
                 output.println();
                 output.println(String.format("Entity id:\t%d", entity.getId()));
-                output.println(String.format("Entity name:\t%s",
-                        entity.getName()));
+                output.println(
+                        String.format("Entity name:\t%s", entity.getName()));
             }
         } catch (final WebServiceIOException e) {
-            output.println(String.format("Error: %s", e.getMostSpecificCause()
-                    .getMessage()));
+            output.println(String.format("Error: %s",
+                    e.getMostSpecificCause().getMessage()));
         }
 
         waitForKeyPress(output, scanner);
     }
 
-    private static final Map<String, EntityClient> getClients()
+    private static final Map<Security, EntityClient> getClients()
             throws IOException {
-        final Map<String, EntityClient> clients = new LinkedHashMap<String, EntityClient>();
+        final Map<Security, EntityClient> clients = new LinkedHashMap<Security, EntityClient>();
 
-        clients.put(UNSECURE,
+        clients.put(Security.UNSECURE,
                 getEntityClient("context/client/client-unsecure.xml"));
-        clients.put(
-                PASSWORD_PLAIN_XWSS,
-                getEntityClient("context/client/password/plain/xwss/client-password-plain-xwss.xml"));
-        clients.put(
-                PASSWORD_PLAIN_WSS4J,
-                getEntityClient("context/client/password/plain/wss4j/client-password-plain-wss4j.xml"));
-        clients.put(
-                PASSWORD_DIGEST_XWSS,
-                getEntityClient("context/client/password/digest/xwss/client-password-digest-xwss.xml"));
-        clients.put(
-                PASSWORD_DIGEST_WSS4J,
-                getEntityClient("context/client/password/digest/wss4j/client-password-digest-wss4j.xml"));
-        clients.put(
-                SIGNATURE_XWSS,
-                getEntityClient("context/client/signature/xwss/client-signature-xwss.xml"));
-        clients.put(
-                SIGNATURE_WSS4J,
-                getEntityClient("context/client/signature/wss4j/client-signature-wss4j.xml"));
-        clients.put(
-                ENCRYPTION_XWSS,
-                getEntityClient("context/client/encryption/xwss/client-encryption-xwss.xml"));
-        clients.put(
-                ENCRYPTION_WSS4J,
-                getEntityClient("context/client/encryption/wss4j/client-encryption-wss4j.xml"));
+        clients.put(Security.PASSWORD_PLAIN_XWSS, getEntityClient(
+                "context/client/password/plain/xwss/client-password-plain-xwss.xml"));
+        clients.put(Security.PASSWORD_PLAIN_WSS4J, getEntityClient(
+                "context/client/password/plain/wss4j/client-password-plain-wss4j.xml"));
+        clients.put(Security.PASSWORD_DIGEST_XWSS, getEntityClient(
+                "context/client/password/digest/xwss/client-password-digest-xwss.xml"));
+        clients.put(Security.PASSWORD_DIGEST_WSS4J, getEntityClient(
+                "context/client/password/digest/wss4j/client-password-digest-wss4j.xml"));
+        clients.put(Security.SIGNATURE_XWSS, getEntityClient(
+                "context/client/signature/xwss/client-signature-xwss.xml"));
+        clients.put(Security.SIGNATURE_WSS4J, getEntityClient(
+                "context/client/signature/wss4j/client-signature-wss4j.xml"));
+        clients.put(Security.ENCRYPTION_XWSS, getEntityClient(
+                "context/client/encryption/xwss/client-encryption-xwss.xml"));
+        clients.put(Security.ENCRYPTION_WSS4J, getEntityClient(
+                "context/client/encryption/wss4j/client-encryption-wss4j.xml"));
 
         return clients;
     }
@@ -186,35 +184,27 @@ public class ConsoleClient {
         return value;
     }
 
-    private static final Map<String, String> getUris() throws IOException {
-        final Map<String, String> uris = new LinkedHashMap<String, String>();
+    private static final Map<Security, String> getUris() throws IOException {
+        final Map<Security, String> uris = new LinkedHashMap<Security, String>();
 
-        uris.put(UNSECURE,
-                getEndpointUri("context/endpoint/endpoint-unsecure.properties"));
-        uris.put(
-                PASSWORD_PLAIN_XWSS,
-                getEndpointUri("context/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties"));
-        uris.put(
-                PASSWORD_PLAIN_WSS4J,
-                getEndpointUri("context/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties"));
-        uris.put(
-                PASSWORD_DIGEST_XWSS,
-                getEndpointUri("context/endpoint/password/digest/xwss/endpoint-password-digest-xwss.properties"));
-        uris.put(
-                PASSWORD_DIGEST_WSS4J,
-                getEndpointUri("context/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties"));
-        uris.put(
-                SIGNATURE_XWSS,
-                getEndpointUri("context/endpoint/signature/xwss/endpoint-signature-xwss.properties"));
-        uris.put(
-                SIGNATURE_WSS4J,
-                getEndpointUri("context/endpoint/signature/wss4j/endpoint-signature-wss4j.properties"));
-        uris.put(
-                ENCRYPTION_XWSS,
-                getEndpointUri("context/endpoint/encryption/xwss/endpoint-encryption-xwss.properties"));
-        uris.put(
-                ENCRYPTION_WSS4J,
-                getEndpointUri("context/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties"));
+        uris.put(Security.UNSECURE, getEndpointUri(
+                "context/endpoint/endpoint-unsecure.properties"));
+        uris.put(Security.PASSWORD_PLAIN_XWSS, getEndpointUri(
+                "context/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties"));
+        uris.put(Security.PASSWORD_PLAIN_WSS4J, getEndpointUri(
+                "context/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties"));
+        uris.put(Security.PASSWORD_DIGEST_XWSS, getEndpointUri(
+                "context/endpoint/password/digest/xwss/endpoint-password-digest-xwss.properties"));
+        uris.put(Security.PASSWORD_DIGEST_WSS4J, getEndpointUri(
+                "context/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties"));
+        uris.put(Security.SIGNATURE_XWSS, getEndpointUri(
+                "context/endpoint/signature/xwss/endpoint-signature-xwss.properties"));
+        uris.put(Security.SIGNATURE_WSS4J, getEndpointUri(
+                "context/endpoint/signature/wss4j/endpoint-signature-wss4j.properties"));
+        uris.put(Security.ENCRYPTION_XWSS, getEndpointUri(
+                "context/endpoint/encryption/xwss/endpoint-encryption-xwss.properties"));
+        uris.put(Security.ENCRYPTION_WSS4J, getEndpointUri(
+                "context/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties"));
 
         return uris;
     }
@@ -234,7 +224,7 @@ public class ConsoleClient {
     }
 
     private static final void printClientSelection(final String uri,
-            final String security, final PrintStream output) {
+            final Security security, final PrintStream output) {
         final String securityName;
 
         switch (security) {
@@ -278,12 +268,15 @@ public class ConsoleClient {
     }
 
     private static final void printHelp(final PrintStream output) {
-        output.println("========================================================================");
+        output.println(
+                "========================================================================");
         output.println("Pick an option. Write 'exit' to close the client.");
         output.println();
-        output.println("The server should be running at the default URI for this client to work.");
+        output.println(
+                "The server should be running at the default URI for this client to work.");
         output.println("Check the server log for the SOAP messages traces.");
-        output.println("========================================================================");
+        output.println(
+                "========================================================================");
     }
 
     private static final void printTitle(final PrintStream output) {
@@ -293,10 +286,10 @@ public class ConsoleClient {
     }
 
     private static final void runMainLoop(final PrintStream output,
-            final Map<String, EntityClient> clients,
-            final Map<String, String> uris) {
+            final Map<Security, EntityClient> clients,
+            final Map<Security, String> uris) {
         final Scanner scanner = new Scanner(System.in);
-        String security;
+        Security security;
         EntityClient client = null;
         String uri;
         String command;
@@ -310,31 +303,31 @@ public class ConsoleClient {
             output.println();
             switch (command) {
                 case "1":
-                    security = UNSECURE;
+                    security = Security.UNSECURE;
                     break;
                 case "2":
-                    security = PASSWORD_PLAIN_XWSS;
+                    security = Security.PASSWORD_PLAIN_XWSS;
                     break;
                 case "3":
-                    security = PASSWORD_PLAIN_WSS4J;
+                    security = Security.PASSWORD_PLAIN_WSS4J;
                     break;
                 case "4":
-                    security = PASSWORD_DIGEST_XWSS;
+                    security = Security.PASSWORD_DIGEST_XWSS;
                     break;
                 case "5":
-                    security = PASSWORD_DIGEST_WSS4J;
+                    security = Security.PASSWORD_DIGEST_WSS4J;
                     break;
                 case "6":
-                    security = SIGNATURE_XWSS;
+                    security = Security.SIGNATURE_XWSS;
                     break;
                 case "7":
-                    security = SIGNATURE_WSS4J;
+                    security = Security.SIGNATURE_WSS4J;
                     break;
                 case "8":
-                    security = ENCRYPTION_XWSS;
+                    security = Security.ENCRYPTION_XWSS;
                     break;
                 case "9":
-                    security = ENCRYPTION_WSS4J;
+                    security = Security.ENCRYPTION_WSS4J;
                     break;
                 default:
                     security = null;
