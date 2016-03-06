@@ -1,8 +1,7 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-    xmlns:ent="http://wandrell.com/example/ws/entity">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header />
     <soapenv:Body>
-        <ent:getEntityRequest>
+        <ent:getEntityRequest xmlns:ent="http://wandrell.com/example/ws/entity">
             <ent:id>1</ent:id>
         </ent:getEntityRequest>
     </soapenv:Body>

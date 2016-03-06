@@ -5,9 +5,9 @@ jdk:
   - openjdk7
 matrix:
   include:
-    # Code artifacts deployed with JDK7
+    # Documentation deployed with JDK7
     - jdk: oraclejdk7
-      env: DEPLOY=true DEPLOY_DOCS=true
+      env: DEPLOY_DOCS=true
     
 before_install:
   # Sets the deployment flags

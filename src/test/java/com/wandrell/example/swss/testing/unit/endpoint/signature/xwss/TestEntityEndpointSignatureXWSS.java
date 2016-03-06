@@ -22,11 +22,15 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint.password.plain.xwss;
+package com.wandrell.example.swss.testing.unit.endpoint.signature.xwss;
+
+import java.security.KeyStore;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -34,11 +38,11 @@ import org.springframework.test.context.TestPropertySource;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
  * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS plain
@@ -47,43 +51,63 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
-        ServletXWSSContextConfig.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.PASSWORD_PLAIN,
-        InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
-        EndpointXWSSPropertiesConfig.PASSWORD_PLAIN,
-        EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER })
-public final class TestEntityEndpointPasswordPlainXWSS
-        extends AbstractTestEntityEndpointRequest {
+        ServletXWSSContextConfig.SIGNATURE, TestContextConfig.KEYSTORE })
+@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
+        SOAPPropertiesConfig.SIGNATURE,
+        InterceptorXWSSPropertiesConfig.SIGNATURE,
+        EndpointXWSSPropertiesConfig.SIGNATURE,
+        EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER, })
+public final class TestEntityEndpointSignatureXWSS {
 
+    /**
+     * Alias for the certificate for signing messages.
+     */
+    @Value("${keystore.alias}")
+    private String   alias;
+    /**
+     * Key store for signing messages.
+     */
+    @Autowired
+    @Qualifier("keyStore")
+    private KeyStore keystore;
     /**
      * Password for the passworded message.
      */
     @Value("${security.credentials.password}")
-    private String password;
+    private String   password;
+    /**
+     * Password for the certificate for signing messages.
+     */
+    @Value("${keystore.password}")
+    private String   passwordKey;
+    /**
+     * Path to the file containing the unsecured SOAP request.
+     */
+    @Value("${soap.request.path}")
+    private String   pathUnsecure;
     /**
      * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.template.path}")
-    private String pathValid;
+    private String   pathValid;
     /**
      * Username for the passworded message.
      */
     @Value("${security.credentials.user}")
-    private String username;
+    private String   username;
 
     /**
      * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
      */
-    public TestEntityEndpointPasswordPlainXWSS() {
+    public TestEntityEndpointSignatureXWSS() {
         super();
+        // TODO: Make this work
     }
 
-    @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils
-                    .getPlainPasswordStream(pathValid, username, password));
+            return new StreamSource(SecurityUtils.getSignedMessageStream(
+                    pathUnsecure, alias, passwordKey, alias, keystore));
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }

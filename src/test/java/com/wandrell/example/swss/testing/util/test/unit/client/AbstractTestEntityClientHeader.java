@@ -58,8 +58,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractTestEntityClientHeader extends
-        AbstractTestNGSpringContextTests {
+public abstract class AbstractTestEntityClientHeader
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
@@ -124,13 +124,12 @@ public abstract class AbstractTestEntityClientHeader extends
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.soapHeader(new QName(secHeaderUri,
-                secHeaderLocalPart));
+        requestMatcher = RequestMatchers
+                .soapHeader(new QName(secHeaderUri, secHeaderLocalPart));
 
         // Creates the response
-        responsePayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(responsePayloadInvalidPath));
+        responsePayload = new StreamSource(ClassLoader.class
+                .getResourceAsStream(responsePayloadInvalidPath));
         responseCreator = ResponseCreators.withPayload(responsePayload);
 
         // Creates the server mock
@@ -161,8 +160,8 @@ public abstract class AbstractTestEntityClientHeader extends
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers.soapHeader(new QName(secHeaderUri,
-                secHeaderLocalPart));
+        requestMatcher = RequestMatchers
+                .soapHeader(new QName(secHeaderUri, secHeaderLocalPart));
 
         // Creates the response
         responsePayload = new StreamSource(

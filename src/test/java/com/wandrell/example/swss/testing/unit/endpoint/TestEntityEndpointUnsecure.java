@@ -63,8 +63,8 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 @TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
         EndpointXWSSPropertiesConfig.UNSECURE,
         EndpointXWSSPropertiesConfig.BASE })
-public final class TestEntityEndpointUnsecure extends
-        AbstractTestNGSpringContextTests {
+public final class TestEntityEndpointUnsecure
+        extends AbstractTestNGSpringContextTests {
 
     /**
      * Application context to be used for creating the client mock.
@@ -105,9 +105,8 @@ public final class TestEntityEndpointUnsecure extends
         final Source requestPayload;           // SOAP payload for the request
 
         // Creates the request
-        requestPayload = new StreamSource(
-                ClassLoader.class
-                        .getResourceAsStream(requestPayloadInvalidPath));
+        requestPayload = new StreamSource(ClassLoader.class
+                .getResourceAsStream(requestPayloadInvalidPath));
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
@@ -136,8 +135,8 @@ public final class TestEntityEndpointUnsecure extends
         requestCreator = RequestCreators.withPayload(requestPayload);
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(
-                entityXsdPath));
+        responseMatcher = ResponseMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);

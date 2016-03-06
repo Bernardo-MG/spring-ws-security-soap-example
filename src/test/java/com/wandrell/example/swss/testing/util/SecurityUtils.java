@@ -49,7 +49,6 @@ import java.util.TimeZone;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
-import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
@@ -63,6 +62,7 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -104,7 +104,7 @@ public final class SecurityUtils {
      */
     public static final SOAPMessage getDigestedPasswordMessage(
             final String path, final String user, final String password)
-            throws Exception {
+                    throws Exception {
         final MessageFactory factory;
         final SOAPMessage message;
         final ByteArrayOutputStream out;
@@ -120,12 +120,12 @@ public final class SecurityUtils {
         return message;
     }
 
-    public static final InputStream getDigestedPasswordStream(
-            final String path, final String user, final String password)
-            throws Exception {
+    public static final InputStream getDigestedPasswordStream(final String path,
+            final String user, final String password) throws Exception {
 
-        return new ByteArrayInputStream(getDigestedPasswordMessageContent(path,
-                user, password).getBytes("UTF-8"));
+        return new ByteArrayInputStream(
+                getDigestedPasswordMessageContent(path, user, password)
+                        .getBytes("UTF-8"));
     }
 
     public static final SOAPMessage getPlainPasswordMessage(final String path,
@@ -140,18 +140,19 @@ public final class SecurityUtils {
 
     public static final InputStream getPlainPasswordStream(final String path,
             final String user, final String password) throws Exception {
-        return new ByteArrayInputStream(getPlainPasswordMessageContent(path,
-                user, password).getBytes("UTF-8"));
+        return new ByteArrayInputStream(
+                getPlainPasswordMessageContent(path, user, password)
+                        .getBytes("UTF-8"));
     }
 
-    public static final SOAPMessage getSignedMessage(
+    public static final SOAPMessage getSignedMessage(final String pathBase,
             final String privateKeyAlias, final String privateKeyPass,
-            final String certificateAlias, final String pathBase,
-            final KeyStore keystore) throws UnrecoverableKeyException,
-            KeyStoreException, NoSuchAlgorithmException, SAXException,
-            IOException, ParserConfigurationException, XMLSecurityException,
-            SOAPException, TransformerConfigurationException,
-            TransformerException, CertificateEncodingException {
+            final String certificateAlias, final KeyStore keystore)
+                    throws UnrecoverableKeyException, KeyStoreException,
+                    NoSuchAlgorithmException, SAXException, IOException,
+                    ParserConfigurationException, XMLSecurityException,
+                    SOAPException, TransformerConfigurationException,
+                    TransformerException, CertificateEncodingException {
         Element root = null;
         String BaseURI = ClassLoader.class.getResource(pathBase).toString();
         SOAPMessage soapMessage;
@@ -194,6 +195,19 @@ public final class SecurityUtils {
         return toMessage(doc);
     }
 
+    public static final InputStream getSignedMessageStream(
+            final String pathBase, final String privateKeyAlias,
+            final String privateKeyPass, final String certificateAlias,
+            final KeyStore keystore)
+                    throws UnsupportedEncodingException, Exception {
+        SOAPMessage msg = SecurityUtils.getSignedMessage(pathBase,
+                privateKeyAlias, privateKeyPass, certificateAlias, keystore);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        msg.writeTo(out);
+        String strMsg = new String(out.toByteArray());
+        return new ByteArrayInputStream(strMsg.getBytes());
+    }
+
     /**
      * Generates the digest value for the SOAP secure header.
      * <p>
@@ -212,7 +226,7 @@ public final class SecurityUtils {
      */
     private static final String generateDigest(final String password,
             final String date, final String nonce)
-            throws UnsupportedEncodingException {
+                    throws UnsupportedEncodingException {
         final ByteBuffer buf;
         byte[] toHash;
         byte[] hash;
@@ -263,7 +277,7 @@ public final class SecurityUtils {
      */
     private static final String getDigestedPasswordMessageContent(
             final String path, final String user, final String password)
-            throws Exception {
+                    throws Exception {
         final String nonce;
         final String date;
         final String digest;
@@ -307,26 +321,16 @@ public final class SecurityUtils {
         soapEnvelope = soapPart.getEnvelope();
         soapHeader = soapEnvelope.getHeader();
 
-        secElement = soapHeader
-                .addHeaderElement(soapEnvelope
-                        .createName(
-                                "Security",
-                                "wsse",
-                                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
-        binaryTokenElement = secElement
-                .addChildElement(soapEnvelope
-                        .createName(
-                                "BinarySecurityToken",
-                                "wsse",
-                                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
-        binaryTokenElement
-                .setAttribute(
-                        "EncodingType",
-                        "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary");
-        binaryTokenElement
-                .setAttribute(
-                        "ValueType",
-                        "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3");
+        secElement = soapHeader.addHeaderElement(soapEnvelope.createName(
+                "Security", "wsse",
+                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
+        binaryTokenElement = secElement.addChildElement(soapEnvelope.createName(
+                "BinarySecurityToken", "wsse",
+                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"));
+        binaryTokenElement.setAttribute("EncodingType",
+                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary");
+        binaryTokenElement.setAttribute("ValueType",
+                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3");
 
         return soapMessage;
     }
@@ -352,7 +356,7 @@ public final class SecurityUtils {
 
     private static final String getPlainPasswordMessageContent(
             final String path, final String user, final String password)
-            throws Exception {
+                    throws Exception {
         final Configuration cfg;
         final Template template;
         final Map<String, Object> data;
@@ -407,10 +411,7 @@ public final class SecurityUtils {
             throws IOException, SOAPException {
         SOAPMessage message = MessageFactory.newInstance().createMessage();
         SOAPPart sp = message.getSOAPPart();
-        Element imported = (Element) sp.importNode(
-                jdomDocument.getFirstChild(), true);
-        SOAPBody sb = message.getSOAPBody();
-        sb.appendChild(imported);
+        sp.setContent(new DOMSource(jdomDocument.getFirstChild()));
 
         return message;
     }

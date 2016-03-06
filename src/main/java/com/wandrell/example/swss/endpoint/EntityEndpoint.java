@@ -24,6 +24,10 @@
 
 package com.wandrell.example.swss.endpoint;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -52,6 +56,8 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * <p>
  * Note that the endpoint offers no security at all, as this concern is to be
  * handled by Spring.
+ *
+ * @author Bernardo Martínez Garrido
  */
 @Endpoint
 public class EntityEndpoint {
@@ -71,6 +77,11 @@ public class EntityEndpoint {
      * Name for the operation used to acquire an entity.
      */
     public static final String               REQUEST   = "getEntityRequest";
+    /**
+     * The logger used for logging the entity endpoint.
+     */
+    private static final Logger              LOGGER    = LoggerFactory
+            .getLogger(EntityEndpoint.class);
     /**
      * Service for accessing the {@code ExampleEntity} instances handled by the
      * web service.
@@ -116,16 +127,28 @@ public class EntityEndpoint {
         final ExampleEntity entity;       // Found entity
         final Entity entityResponse;      // Entity to return
 
+        checkNotNull(request, "Received a null pointer as request");
+
+        LOGGER.debug(
+                String.format("Received request for id %d", request.getId()));
+
         // Acquires the entity
         entity = getExampleEntityService().findById(request.getId());
 
         response = new GetEntityResponse();
-        if (entity != null) {
-            // The entity is transformed
+        if (entity == null) {
+            LOGGER.debug("Entity not found");
+        } else {
+            // The entity is transformed from the persistence model to the SOAP
+            // one
             entityResponse = new Entity();
             entityResponse.setId(entity.getId());
             entityResponse.setName(entity.getName());
             response.setEntity(entityResponse);
+
+            LOGGER.debug(
+                    String.format("Found entity with id %1$d and name %2$s",
+                            entityResponse.getId(), entityResponse.getName()));
         }
 
         return response;
