@@ -699,6 +699,10 @@
             <!-- Generates the javadocs -->
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+               <!-- Excludes generated code -->
+               <excludePackageNames>*.generated.*</excludePackageNames>
+            </configuration>
          </plugin>
          <plugin>
             <!-- PMD -->
