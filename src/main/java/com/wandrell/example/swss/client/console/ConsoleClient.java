@@ -43,7 +43,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-public class ConsoleClient {
+public final class ConsoleClient {
 
     /**
      * Template for generating the final endpoint URL.
@@ -107,6 +107,7 @@ public class ConsoleClient {
      * @param args
      *            command line arguments
      * @throws IOException
+     *             if any error occurs while loading the client
      */
     public static void main(final String[] args) throws IOException {
         final PrintStream output; // Output for the client information
@@ -135,6 +136,7 @@ public class ConsoleClient {
      * @param output
      *            output for the client to print information
      * @param scanner
+     *            scanner for the input
      */
     private static final void callEndpoint(final EntityClient client,
             final String uri, final PrintStream output, final Scanner scanner) {
@@ -534,8 +536,10 @@ public class ConsoleClient {
 
     /**
      * Constructs a {@code ConsoleClient}.
+     * <p>
+     * The constructor is hidden to avoid initialization.
      */
-    public ConsoleClient() {
+    private ConsoleClient() {
         super();
     }
 
