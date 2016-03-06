@@ -24,154 +24,31 @@
 
 package com.wandrell.example.swss.testing.unit.client.password.plain.xwss;
 
-import java.io.IOException;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.ws.test.client.MockWebServiceServer;
-import org.springframework.ws.test.client.RequestMatcher;
-import org.springframework.ws.test.client.RequestMatchers;
-import org.springframework.ws.test.client.ResponseCreator;
-import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
- * Unit tests for {@link EntityClient}.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>The client parses correctly formed SOAP messages.</li>
- * <li>The client can handle incorrectly formed SOAP messages.</li>
- * </ol>
+ * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS plain
+ * password protected client.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXWSSContextConfig.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.UNSECURE })
+        SOAPPropertiesConfig.UNSECURE, SOAPPropertiesConfig.PASSWORD_PLAIN })
 public final class TestEntityClientPasswordPlainXWSS
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractTestEntityClientHeader {
 
     /**
-     * The client being tested.
-     */
-    @Autowired
-    private EntityClient client;
-    /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer      entityId;
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String       entityName;
-    /**
-     * Path to XSD file which validates the SOAP messages.
-     */
-    @Value("${xsd.entity.path}")
-    private String       entityXsdPath;
-    /**
-     * Path to the file with the invalid response payload.
-     */
-    @Value("${soap.response.payload.invalid.path}")
-    private String       responsePayloadInvalidPath;
-    /**
-     * Path to the file with the valid response payload.
-     */
-    @Value("${soap.response.payload.path}")
-    private String       responsePayloadPath;
-
-    /**
-     * Constructs a {@code TestEntityClient}.
+     * Constructs a {@code TestEntityClientPasswordPlainXWSS}.
      */
     public TestEntityClientPasswordPlainXWSS() {
         super();
-    }
-
-    /**
-     * Tests that the client can handle incorrectly formed SOAP messages.
-     *
-     * @throws IOException
-     */
-    @Test
-    public final void testClient_Invalid() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
-        final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
-        final Entity result;                   // Queried entity
-
-        // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
-
-        // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
-
-        // Creates the server mock
-        mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(requestMatcher).andRespond(responseCreator);
-
-        // Calls the server mock
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals(result.getId(), 0);
-        Assert.assertEquals(result.getName(), null);
-
-        mockServer.verify();
-    }
-
-    /**
-     * Tests that the client parses correctly formed SOAP messages.
-     *
-     * @throws IOException
-     */
-    @Test
-    public final void testClient_Valid() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
-        final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
-        final Entity result;                   // Queried entity
-
-        // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
-
-        // Creates the response
-        responsePayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(responsePayloadPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
-
-        // Creates the server mock
-        mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(requestMatcher).andRespond(responseCreator);
-
-        // Calls the server mock
-        result = client.getEntity("http:somewhere.com", entityId);
-
-        Assert.assertEquals((Integer) result.getId(), entityId);
-        Assert.assertEquals(result.getName(), entityName);
-
-        mockServer.verify();
     }
 
 }

@@ -111,7 +111,7 @@ public final class KeystoreFactory {
      */
     public static final KeyStore getJCEKSKeystore(final String password,
             final String alias) throws NoSuchAlgorithmException,
-                    CertificateException, KeyStoreException, IOException {
+            CertificateException, KeyStoreException, IOException {
         final KeyStore ks;      // Generated key store
 
         ks = getKeystore(password, "JCEKS");
@@ -151,10 +151,10 @@ public final class KeystoreFactory {
      */
     public static final KeyStore getJKSKeystore(final String password,
             final String alias, final String issuer)
-                    throws NoSuchAlgorithmException, CertificateException,
-                    KeyStoreException, IOException, InvalidKeyException,
-                    NoSuchProviderException, OperatorCreationException,
-                    SignatureException {
+            throws NoSuchAlgorithmException, CertificateException,
+            KeyStoreException, IOException, InvalidKeyException,
+            NoSuchProviderException, OperatorCreationException,
+            SignatureException {
         final KeyStore ks;      // Generated key store
 
         ks = getKeystore(password);
@@ -195,10 +195,10 @@ public final class KeystoreFactory {
      */
     private static void addCertificate(final KeyStore ks, final String password,
             final String alias, final String issuer)
-                    throws NoSuchAlgorithmException, NoSuchProviderException,
-                    InvalidKeyException, OperatorCreationException,
-                    CertificateException, IOException, KeyStoreException,
-                    SignatureException {
+            throws NoSuchAlgorithmException, NoSuchProviderException,
+            InvalidKeyException, OperatorCreationException,
+            CertificateException, IOException, KeyStoreException,
+            SignatureException {
         final KeyPair keypair;          // Key pair for the certificate
         final Certificate certificate;  // Generated certificate
         final Certificate[] chain;      // Certificate chain
@@ -230,7 +230,7 @@ public final class KeystoreFactory {
      */
     private static final void addSecretKey(final KeyStore ks,
             final String alias, final String password)
-                    throws KeyStoreException {
+            throws KeyStoreException {
         final SecretKeyEntry secretKeyEntry;  // Secret key entry
         final PasswordProtection keyPassword; // Secret key password protection
         final SecretKey secretKey;            // Secret key password
@@ -305,9 +305,8 @@ public final class KeystoreFactory {
      */
     private static final Certificate getCertificate(final KeyPair keypair,
             final String issuer) throws IOException, OperatorCreationException,
-                    CertificateException, InvalidKeyException,
-                    NoSuchAlgorithmException, NoSuchProviderException,
-                    SignatureException {
+            CertificateException, InvalidKeyException, NoSuchAlgorithmException,
+            NoSuchProviderException, SignatureException {
         final X509v3CertificateBuilder builder; // Certificate builder
         final X509Certificate certificate;      // Certificate
 
@@ -451,7 +450,7 @@ public final class KeystoreFactory {
      */
     private static final KeyStore getKeystore(final String password,
             final String type) throws NoSuchAlgorithmException,
-                    CertificateException, IOException, KeyStoreException {
+            CertificateException, IOException, KeyStoreException {
         final KeyStore ks; // The returned key store
         final char[] pass; // The key store password
 
@@ -482,7 +481,7 @@ public final class KeystoreFactory {
      */
     private static final X509Certificate getSignedCertificate(
             final X509v3CertificateBuilder builder, final PrivateKey key)
-                    throws OperatorCreationException, CertificateException {
+            throws OperatorCreationException, CertificateException {
         final ContentSigner signer;   // Content signer
         final String provider;        // Provider
         final X509Certificate signed; // Signed certificate

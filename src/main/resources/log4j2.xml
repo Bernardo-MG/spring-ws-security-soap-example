@@ -41,6 +41,7 @@
         </logger>
 
         <logger name="org.springframework.ws.server.MessageTracing" level="trace" additivity="false">
+            <AppenderRef ref="console" />
             <AppenderRef ref="file" />
         </logger>
 

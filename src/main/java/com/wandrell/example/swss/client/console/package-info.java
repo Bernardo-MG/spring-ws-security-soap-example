@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2016 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,39 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.wandrell.example.swss.testing.util.config.context;
-
 /**
- * Configuration class for the test context files.
+ * Provides runnable clients to access the web services.
  * <p>
- * These are the same context configurations as the ones used for the servlets.
- *
- * @author Bernardo Martínez Garrido
+ * The only client included, the
+ * {@link com.wandrell.example.swss.client.console.ConsoleClient ConsoleClient},
+ * is a simple console-based client.
  */
-public final class WebServiceContextConfig {
 
-    /**
-     * Base web service context used on all the endpoints.
-     * <p>
-     * This is the application context used for the real web services, and
-     * shared by all the servlets.
-     */
-    public static final String BASE                = "classpath:context/applicationContext.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String PASSWORD_PLAIN_XWSS = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
-    /**
-     * Unsecure web service context.
-     */
-    public static final String UNSECURE            = "classpath:context/servlet/servlet-unsecure.xml";
-
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private WebServiceContextConfig() {
-        super();
-    }
-
-}
+package com.wandrell.example.swss.client.console;

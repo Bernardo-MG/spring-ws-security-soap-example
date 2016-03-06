@@ -22,43 +22,38 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test SOAP messages properties files.
+ * Configuration class for the WSS4J-based test interceptor properties files.
  * <p>
- * Each file contains the information for finding or generating test SOAP
- * messages.
+ * These files contain the data required for setting up an interceptor context.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class SOAPPropertiesConfig {
+public final class InterceptorWSS4JPropertiesConfig {
 
     /**
-     * Properties file with the encrypted SOAP test data.
+     * Properties file with the encrypted endpoint configuration.
      */
-    public static final String ENCRYPTION      = "classpath:config/soap/test-soap-encryption.properties";
+    public static final String ENCRYPTION      = "classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties";
     /**
-     * Properties file with the digested password SOAP test data.
+     * Properties file with the digested password endpoint configuration.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/soap/test-soap-password-digest.properties";
+    public static final String PASSWORD_DIGEST = "classpath:context/interceptor/password/digest/wss4j/interceptor-password-digest-wss4j.properties";
     /**
-     * Properties file with the plain password SOAP test data.
+     * Properties file with the plain password endpoint configuration.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/soap/test-soap-password-plain.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:context/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
     /**
-     * Properties file with the signature SOAP test data.
+     * Properties file with the signed endpoint configuration.
      */
-    public static final String SIGNATURE       = "classpath:config/soap/test-soap-signature.properties";
-    /**
-     * Properties file with the unsecure SOAP test data.
-     */
-    public static final String UNSECURE        = "classpath:config/soap/test-soap-unsecure.properties";
+    public static final String SIGNATURE       = "classpath:context/interceptor/signature/wss4j/interceptor-signature-wss4j.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private SOAPPropertiesConfig() {
+    private InterceptorWSS4JPropertiesConfig() {
         super();
     }
 

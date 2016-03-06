@@ -49,7 +49,6 @@ import java.util.TimeZone;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
-import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
@@ -63,6 +62,7 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -107,16 +107,12 @@ public final class SecurityUtils {
                     throws Exception {
         final MessageFactory factory;
         final SOAPMessage message;
-        final InputStream streamMessage;
         final ByteArrayOutputStream out;
-
-        streamMessage = new ByteArrayInputStream(
-                getDigestedPasswordMessageContent(path, user, password)
-                        .getBytes("UTF-8"));
 
         factory = MessageFactory.newInstance();
 
-        message = factory.createMessage(new MimeHeaders(), streamMessage);
+        message = factory.createMessage(new MimeHeaders(),
+                getDigestedPasswordStream(path, user, password));
 
         out = new ByteArrayOutputStream();
         message.writeTo(out);
@@ -124,24 +120,34 @@ public final class SecurityUtils {
         return message;
     }
 
+    public static final InputStream getDigestedPasswordStream(final String path,
+            final String user, final String password) throws Exception {
+
+        return new ByteArrayInputStream(
+                getDigestedPasswordMessageContent(path, user, password)
+                        .getBytes("UTF-8"));
+    }
+
     public static final SOAPMessage getPlainPasswordMessage(final String path,
             final String user, final String password) throws Exception {
         final MessageFactory factory;
-        final InputStream streamMessage;
-
-        streamMessage = new ByteArrayInputStream(
-                getPlainPasswordMessageContent(path, user, password)
-                        .getBytes("UTF-8"));
 
         factory = MessageFactory.newInstance();
 
-        return factory.createMessage(new MimeHeaders(), streamMessage);
+        return factory.createMessage(new MimeHeaders(),
+                getPlainPasswordStream(path, user, password));
     }
 
-    public static final SOAPMessage getSignedMessage(
+    public static final InputStream getPlainPasswordStream(final String path,
+            final String user, final String password) throws Exception {
+        return new ByteArrayInputStream(
+                getPlainPasswordMessageContent(path, user, password)
+                        .getBytes("UTF-8"));
+    }
+
+    public static final SOAPMessage getSignedMessage(final String pathBase,
             final String privateKeyAlias, final String privateKeyPass,
-            final String certificateAlias, final String pathBase,
-            final KeyStore keystore)
+            final String certificateAlias, final KeyStore keystore)
                     throws UnrecoverableKeyException, KeyStoreException,
                     NoSuchAlgorithmException, SAXException, IOException,
                     ParserConfigurationException, XMLSecurityException,
@@ -187,6 +193,19 @@ public final class SecurityUtils {
         XMLUtils.outputDOMc14nWithComments(doc, System.out);
 
         return toMessage(doc);
+    }
+
+    public static final InputStream getSignedMessageStream(
+            final String pathBase, final String privateKeyAlias,
+            final String privateKeyPass, final String certificateAlias,
+            final KeyStore keystore)
+                    throws UnsupportedEncodingException, Exception {
+        SOAPMessage msg = SecurityUtils.getSignedMessage(pathBase,
+                privateKeyAlias, privateKeyPass, certificateAlias, keystore);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        msg.writeTo(out);
+        String strMsg = new String(out.toByteArray());
+        return new ByteArrayInputStream(strMsg.getBytes());
     }
 
     /**
@@ -392,10 +411,7 @@ public final class SecurityUtils {
             throws IOException, SOAPException {
         SOAPMessage message = MessageFactory.newInstance().createMessage();
         SOAPPart sp = message.getSOAPPart();
-        Element imported = (Element) sp.importNode(jdomDocument.getFirstChild(),
-                true);
-        SOAPBody sb = message.getSOAPBody();
-        sb.appendChild(imported);
+        sp.setContent(new DOMSource(jdomDocument.getFirstChild()));
 
         return message;
     }

@@ -24,6 +24,10 @@
 
 package com.wandrell.example.swss.client;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
@@ -45,8 +49,16 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * <p>
  * If no result is received then the {@code null} value will be returned. And if
  * any exception occurs then it will be thrown as usual.
+ *
+ * @author Bernardo Martínez Garrido
  */
 public final class EntityClient extends WebServiceGatewaySupport {
+
+    /**
+     * The logger used for logging the entity client.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(EntityClient.class);
 
     /**
      * Constructs an {@code EntityClient}.
@@ -86,6 +98,12 @@ public final class EntityClient extends WebServiceGatewaySupport {
         final GetEntityResponse response; // Response with the resulting entity
         final Entity entity;              // Entity for the failed requests
 
+        checkNotNull(url, "Received a null pointer as url");
+        checkNotNull(entityId, "Received a null pointer as entity id");
+
+        LOGGER.debug(
+                String.format("Querying URL %1$s for id %2$d", url, entityId));
+
         // Generates request
         request = new GetEntityRequest();
         request.setId(entityId);
@@ -95,11 +113,15 @@ public final class EntityClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive(url, request,
                         new SoapActionCallback(EntityEndpoint.ACTION));
 
-        if (response == null) {
+        if ((response == null) || (response.getEntity() == null)) {
             // No response was received
             entity = null;
+            LOGGER.debug("No response received");
         } else {
             entity = response.getEntity();
+            LOGGER.debug(String.format(
+                    "Received response with id %1$d and name %2$s",
+                    entity.getId(), entity.getName()));
         }
 
         return entity;

@@ -37,10 +37,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -59,7 +59,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 @ContextConfiguration(locations = { TestContextConfig.DEFAULT })
 @TestPropertySource({ TestPropertiesConfig.ENTITY,
-        SOAPPropertiesConfig.UNSECURE, EndpointXWSSPropertiesConfig.UNSECURE })
+        SOAPPropertiesConfig.UNSECURE,
+        EndpointURLXWSSPropertiesConfig.UNSECURE })
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     /**

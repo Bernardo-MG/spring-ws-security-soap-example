@@ -34,10 +34,10 @@ import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.EndpointWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -60,7 +60,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
 @ContextConfiguration(locations = { TestContextConfig.DEFAULT })
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.USER,
         SOAPPropertiesConfig.PASSWORD_DIGEST,
-        EndpointWSS4JPropertiesConfig.PASSWORD_DIGEST })
+        EndpointURLWSS4JPropertiesConfig.PASSWORD_DIGEST })
 public final class ITEntityEndpointPasswordDigestWSS4J
         extends AbstractITEndpoint {
 

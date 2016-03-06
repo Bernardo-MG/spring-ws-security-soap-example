@@ -27,122 +27,66 @@ package com.wandrell.example.swss.testing.unit.endpoint.password.plain.xwss;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.ws.test.server.MockWebServiceClient;
-import org.springframework.ws.test.server.RequestCreator;
-import org.springframework.ws.test.server.RequestCreators;
-import org.springframework.ws.test.server.ResponseMatcher;
-import org.springframework.ws.test.server.ResponseMatchers;
-import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.context.WebServiceContextConfig;
+import com.wandrell.example.swss.testing.util.SecurityUtils;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Unit tests for the unsecured endpoint.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>The endpoint parses correctly formed SOAP messages.</li>
- * <li>The endpoint can handle incorrectly formed SOAP messages.</li>
- * </ol>
+ * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS plain
+ * password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { WebServiceContextConfig.BASE,
-        WebServiceContextConfig.PASSWORD_PLAIN_XWSS })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
+@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
+        ServletXWSSContextConfig.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesConfig.WSDL,
         SOAPPropertiesConfig.PASSWORD_PLAIN,
-        "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties",
-        "classpath:context/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties",
-        "classpath:context/endpoint/endpoint.properties" })
+        InterceptorXWSSPropertiesConfig.PASSWORD_PLAIN,
+        EndpointXWSSPropertiesConfig.PASSWORD_PLAIN,
+        EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER })
 public final class TestEntityEndpointPasswordPlainXWSS
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractTestEntityEndpointRequest {
 
     /**
-     * Application context to be used for creating the client mock.
+     * Password for the passworded message.
      */
-    @Autowired
-    private ApplicationContext applicationContext;
+    @Value("${security.credentials.password}")
+    private String password;
     /**
-     * Path to XSD file which validates the SOAP messages.
+     * Path to the file containing the valid SOAP request.
      */
-    @Value("${xsd.entity.path}")
-    private String             entityXsdPath;
+    @Value("${soap.request.template.path}")
+    private String pathValid;
     /**
-     * Path to the file with the valid request envelope.
+     * Username for the passworded message.
      */
-    @Value("${soap.request.path}")
-    private String             requestEnvelopePath;
-    /**
-     * Path to the file with the invalid request payload.
-     */
-    @Value("${soap.request.payload.invalid.path}")
-    private String             requestPayloadInvalidPath;
+    @Value("${security.credentials.user}")
+    private String username;
 
     /**
-     * Constructs a {@code TestEntityEndpointUnsecure}.
+     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
      */
     public TestEntityEndpointPasswordPlainXWSS() {
         super();
     }
 
-    /**
-     * Tests that the endpoint can handle incorrectly formed SOAP messages.
-     */
-    @Test
-    public final void testEndpoint_Invalid() throws Exception {
-        final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
-        final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestPayload;           // SOAP payload for the request
-
-        // Creates the request
-        requestPayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(requestPayloadInvalidPath));
-        requestCreator = RequestCreators.withPayload(requestPayload);
-
-        // Creates the response matcher
-        responseMatcher = ResponseMatchers.clientOrSenderFault();
-
-        // Creates the client mock
-        mockClient = MockWebServiceClient.createClient(applicationContext);
-
-        // Calls the endpoint
-        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
-    }
-
-    /**
-     * Tests that the endpoint parses correctly formed SOAP messages.
-     */
-    @Test
-    public final void testEndpoint_Valid() throws Exception {
-        final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
-        final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestEnvelope;          // SOAP envelope for the request
-
-        // Creates the client mock
-        mockClient = MockWebServiceClient.createClient(applicationContext);
-
-        // Creates the request
-        requestEnvelope = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestEnvelopePath));
-        requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
-
-        // Creates the response matcher
-        responseMatcher = ResponseMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
-
-        // Calls the endpoint
-        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
+    @Override
+    protected final Source getRequestEnvelope() {
+        try {
+            return new StreamSource(SecurityUtils
+                    .getPlainPasswordStream(pathValid, username, password));
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

@@ -43,17 +43,21 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
 /**
- * Unit tests for {@link EntityClient}.
+ * Unit tests for {@link EntityClient} checking that the client throws
+ * exceptions for SOAP errors.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>The client can handle error messages.</li>
- * <li>The client throws SOAP exceptions for received faults.</li>
- * <li>The client throws SOAP exceptions for version mismatch faults.</li>
+ * <li>Tests that the client throws an exception when receiving an error
+ * message.</li>
+ * <li>Tests that the client throws an exception when receiving an error
+ * message.</li>
+ * <li>Tests that the client throws an exception when receiving a SOAP version
+ * mismatch fault.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
@@ -69,7 +73,7 @@ public final class TestEntityClientExceptionSOAP
     @Autowired
     private EntityClient client;
     /**
-     * Id of the returned entity.
+     * Valid entity id.
      */
     @Value("${entity.id}")
     private Integer      entityId;
@@ -87,12 +91,14 @@ public final class TestEntityClientExceptionSOAP
     }
 
     /**
-     * Tests that the client can handle error messages.
+     * Tests that the client throws an exception when receiving an error
+     * message.
      *
      * @throws IOException
+     *             if there is any problem loading the entity schema file
      */
     @Test(expectedExceptions = WebServiceTransportException.class)
-    public final void testClient_Error() throws IOException {
+    public final void testClient_Error_Exception() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -113,12 +119,13 @@ public final class TestEntityClientExceptionSOAP
     }
 
     /**
-     * Tests that the client throws SOAP exceptions for received faults.
+     * Tests that the client throws an exception when receiving a SOAP fault.
      *
      * @throws IOException
+     *             if there is any problem loading the entity schema file
      */
     @Test(expectedExceptions = { SoapFaultClientException.class })
-    public final void testClient_Fault() throws IOException {
+    public final void testClient_Fault_Exception() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -140,12 +147,15 @@ public final class TestEntityClientExceptionSOAP
     }
 
     /**
-     * Tests that the client throws SOAP exceptions for version mismatch faults.
+     * Tests that the client throws an exception when receiving a SOAP version
+     * mismatch fault.
      *
      * @throws IOException
+     *             if there is any problem loading the entity schema file
      */
     @Test(expectedExceptions = { SoapFaultClientException.class })
-    public final void testClient_VersionMismatch() throws IOException {
+    public final void testClient_VersionMismatch_Exception()
+            throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response

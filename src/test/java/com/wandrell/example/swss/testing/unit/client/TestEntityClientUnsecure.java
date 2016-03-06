@@ -44,20 +44,19 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Unit tests for {@link EntityClient}.
+ * Unit tests for {@link EntityClient} checking that the client works as
+ * expected.
  * <p>
  * Checks the following cases:
  * <ol>
  * <li>The client parses correctly formed SOAP messages.</li>
  * <li>The client can handle incorrectly formed SOAP messages.</li>
- * <li>The client can handle error messages.</li>
- * <li>The client throws SOAP exceptions for received faults.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
@@ -74,12 +73,12 @@ public final class TestEntityClientUnsecure
     @Autowired
     private EntityClient client;
     /**
-     * Id of the returned entity.
+     * Expected id for the returned entity.
      */
     @Value("${entity.id}")
     private Integer      entityId;
     /**
-     * Name of the returned entity.
+     * Expected name for the returned entity.
      */
     @Value("${entity.name}")
     private String       entityName;
@@ -110,9 +109,10 @@ public final class TestEntityClientUnsecure
      * Tests that the client can handle incorrectly formed SOAP messages.
      *
      * @throws IOException
+     *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Invalid() throws IOException {
+    public final void testClient_Payload_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -145,9 +145,10 @@ public final class TestEntityClientUnsecure
      * Tests that the client parses correctly formed SOAP messages.
      *
      * @throws IOException
+     *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Valid() throws IOException {
+    public final void testClient_Payload_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response

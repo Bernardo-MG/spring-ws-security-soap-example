@@ -41,26 +41,28 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.config.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.TestPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.context.WebServiceContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
 /**
- * Unit tests for the unsecured endpoint.
+ * Unit tests for an unsecured endpoint testing that it handles payload-based
+ * SOAP messages correctly.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>The endpoint parses correctly formed SOAP messages.</li>
- * <li>The endpoint can handle incorrectly formed SOAP messages.</li>
+ * <li>The endpoint parses SOAP requests with a valid payload.</li>
+ * <li>The endpoint can handle SOAP requests with an invalid payload.</li>
  * </ol>
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { WebServiceContextConfig.BASE,
-        WebServiceContextConfig.UNSECURE })
+@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
+        ServletWSS4JContextConfig.UNSECURE })
 @TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        "classpath:context/endpoint/endpoint-unsecure.properties",
-        "classpath:context/endpoint/endpoint.properties" })
+        EndpointXWSSPropertiesConfig.UNSECURE,
+        EndpointXWSSPropertiesConfig.BASE })
 public final class TestEntityEndpointUnsecure
         extends AbstractTestNGSpringContextTests {
 
@@ -93,10 +95,10 @@ public final class TestEntityEndpointUnsecure
     }
 
     /**
-     * Tests that the endpoint can handle incorrectly formed SOAP messages.
+     * Tests that the endpoint can handle SOAP requests with a valid payload.
      */
     @Test
-    public final void testEndpoint_Invalid() throws Exception {
+    public final void testEndpoint_Payload_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
@@ -118,10 +120,10 @@ public final class TestEntityEndpointUnsecure
     }
 
     /**
-     * Tests that the endpoint parses correctly formed SOAP messages.
+     * Tests that the endpoint parses SOAP requests with a valid payload.
      */
     @Test
-    public final void testEndpoint_Valid() throws Exception {
+    public final void testEndpoint_Payload_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
