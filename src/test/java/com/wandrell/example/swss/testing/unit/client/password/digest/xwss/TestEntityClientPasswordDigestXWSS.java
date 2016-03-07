@@ -24,17 +24,14 @@
 
 package com.wandrell.example.swss.testing.unit.client.password.digest.xwss;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
  * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS plain
@@ -46,7 +43,8 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 @TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
         SOAPPropertiesConfig.UNSECURE, SOAPPropertiesConfig.PASSWORD_DIGEST,
         TestPropertiesConfig.USER })
-public final class TestEntityClientPasswordDigestXWSS {
+public final class TestEntityClientPasswordDigestXWSS
+        extends AbstractTestEntityClientHeader {
 
     /**
      * Password for the passworded message.
@@ -69,16 +67,6 @@ public final class TestEntityClientPasswordDigestXWSS {
      */
     public TestEntityClientPasswordDigestXWSS() {
         super();
-        // TODO: Make this work
-    }
-
-    protected final Source getRequestEnvelope() {
-        try {
-            return new StreamSource(SecurityUtils
-                    .getDigestedPasswordStream(pathValid, username, password));
-        } catch (final Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }

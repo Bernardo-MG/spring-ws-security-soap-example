@@ -105,7 +105,7 @@ public abstract class AbstractTestEntityClientEnvelope
      *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Header_Invalid() throws IOException {
+    public final void testClient_Envelope_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -114,7 +114,8 @@ public abstract class AbstractTestEntityClientEnvelope
         final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request matcher
-        requestEnvelope = getRequestEnvelope();
+        requestEnvelope = new StreamSource(ClassLoader.class
+                .getResourceAsStream(requestEnvelopeInvalidPath));
         requestMatcher = RequestMatchers.soapEnvelope(requestEnvelope);
 
         // Creates the response
@@ -142,7 +143,7 @@ public abstract class AbstractTestEntityClientEnvelope
      *             if there is any problem loading the entity schema file
      */
     @Test
-    public final void testClient_Header_Valid() throws IOException {
+    public final void testClient_Envelope_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
@@ -151,8 +152,7 @@ public abstract class AbstractTestEntityClientEnvelope
         final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request matcher
-        requestEnvelope = new StreamSource(ClassLoader.class
-                .getResourceAsStream(requestEnvelopeInvalidPath));
+        requestEnvelope = getRequestEnvelope();
         requestMatcher = RequestMatchers.soapEnvelope(requestEnvelope);
 
         // Creates the response
