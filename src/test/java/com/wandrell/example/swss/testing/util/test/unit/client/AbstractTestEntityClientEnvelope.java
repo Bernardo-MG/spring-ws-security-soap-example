@@ -26,7 +26,6 @@ package com.wandrell.example.swss.testing.util.test.unit.client;
 
 import java.io.IOException;
 
-import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
@@ -45,8 +44,8 @@ import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Abstract unit tests for an endpoint testing that it handles header-based SOAP
- * messages correctly.
+ * Abstract unit tests for an endpoint testing that it handles envelope-based
+ * SOAP messages correctly.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -58,7 +57,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractTestEntityClientHeader
+public abstract class AbstractTestEntityClientEnvelope
         extends AbstractTestNGSpringContextTests {
 
     /**
@@ -87,20 +86,15 @@ public abstract class AbstractTestEntityClientHeader
     @Value("${soap.response.payload.path}")
     private String       responsePayloadPath;
     /**
-     * Security header token name.
+     * Path to the file with the invalid request payload.
      */
-    @Value("${soap.header.security.name}")
-    private String       secHeaderLocalPart;
-    /**
-     * Security header token URI.
-     */
-    @Value("${soap.header.security.uri}")
-    private String       secHeaderUri;
+    @Value("${soap.request.invalid.path}")
+    private String       requestEnvelopeInvalidPath;
 
     /**
      * Constructs a {@code AbstractTestEntityClientHeader}.
      */
-    public AbstractTestEntityClientHeader() {
+    public AbstractTestEntityClientEnvelope() {
         super();
     }
 
@@ -117,10 +111,11 @@ public abstract class AbstractTestEntityClientHeader
         final ResponseCreator responseCreator; // Creator for the response
         final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
+        final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .soapHeader(new QName(secHeaderUri, secHeaderLocalPart));
+        requestEnvelope = getRequestEnvelope();
+        requestMatcher = RequestMatchers.soapEnvelope(requestEnvelope);
 
         // Creates the response
         responsePayload = new StreamSource(ClassLoader.class
@@ -153,10 +148,12 @@ public abstract class AbstractTestEntityClientHeader
         final ResponseCreator responseCreator; // Creator for the response
         final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
+        final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .soapHeader(new QName(secHeaderUri, secHeaderLocalPart));
+        requestEnvelope = new StreamSource(ClassLoader.class
+                .getResourceAsStream(requestEnvelopeInvalidPath));
+        requestMatcher = RequestMatchers.soapEnvelope(requestEnvelope);
 
         // Creates the response
         responsePayload = new StreamSource(
@@ -175,5 +172,12 @@ public abstract class AbstractTestEntityClientHeader
 
         mockServer.verify();
     }
+
+    /**
+     * Returns a valid SOAP request envelope in a {@code Source} class.
+     *
+     * @return a valid SOAP request envelope
+     */
+    protected abstract Source getRequestEnvelope();
 
 }
