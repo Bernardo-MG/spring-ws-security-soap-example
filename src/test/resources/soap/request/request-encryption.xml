@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header>
+      <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
+         <wsse:BinarySecurityToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" wsu:Id="XWSSGID-1457342963292-1411977871">MIICuTCCAiKgAwIBAgIEpKr1wzANBgkqhkiG9w0BAQsFADBtMRkwFwYDVQQDDBB3d3cud2FuZHJlbGwuY29tMREwDwYDVQQKDAhXYW5kcmVsbDENMAsGA1UECwwETm9uZTEPMA0GA1UEBwwGTG9uZG9uMRAwDgYDVQQIDAdFbmdsYW5kMQswCQYDVQQGEwJVSzAgFw0xNTAxMTgxMDMzMjZaGA8yMTE1MTIyNTEwMzMyNlowbTEZMBcGA1UEAwwQd3d3LndhbmRyZWxsLmNvbTERMA8GA1UECgwIV2FuZHJlbGwxDTALBgNVBAsMBE5vbmUxDzANBgNVBAcMBkxvbmRvbjEQMA4GA1UECAwHRW5nbGFuZDELMAkGA1UEBhMCVUswgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANJbrAGXELybayKT+YSvDoZavjGDaj3Gf8Tqg7tukXPKxANAWMQ7RqSm7ufXY0DQFVA37VALvpd9/Yx789rEFWAGOw58vMyFlUbv5YFoaJT+e5SZIj87sbMYHRQzm9SpCOYpt2rtXnhxbv6+bsAb44i3FefTyRVQunq2z5KUWTNhAgMBAAGjZDBiMB0GA1UdDgQWBBQySQfgyZef8ah0y6RT7EL3KYN7gTAPBgNVHRMBAf8EBTADAQH/MAsGA1UdDwQEAwIBtjAjBgNVHSUEHDAaBggrBgEFBQcDAQYIKwYBBQUHAwIGBFUdJQAwDQYJKoZIhvcNAQELBQADgYEAOkjnr94UEyclOCh07lIh24+EIkerGKLPfAGS4vqdWDLVjh9kxi9P5UCGpboL+HYPOK8b6tkLETgM1wwK/U5ISDe9FrevibFBirFGy9DRUPVJQ+UTL+oQSmTi/BM3duwS76sSZK2rHsSBF4kRMOM8F05NWY8yd9QJTXZykFE7SnY=</wsse:BinarySecurityToken>
+         <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="XWSSGID-1457342955880902312365">
+            <ds:SignedInfo>
+               <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#">
+                  <InclusiveNamespaces xmlns="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="wsse SOAP-ENV" />
+               </ds:CanonicalizationMethod>
+               <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+               <ds:Reference URI="#XWSSGID-1457342963300-1654704555">
+                  <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+                  <ds:DigestValue>/rAY/KxqcswINGUcPPApJ1eNL9E=</ds:DigestValue>
+               </ds:Reference>
+            </ds:SignedInfo>
+            <ds:SignatureValue>bJcjuX+GdTfhW716fYW+r9xlU0K9iAMcgR6d5gd8G3YdG6b4bXR+FquO01PZ2khes0fUOkW2L24n
+swzEdVFKltmQiermAw6m21fse6kYU9gVHaSftmwP9wdmiVPa5RKnB0FMQZiAfPHiRRl0BehblxnU
+94MBn/dFt8WzBn/+f8g=</ds:SignatureValue>
+            <ds:KeyInfo>
+               <wsse:SecurityTokenReference xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="XWSSGID-14573429632911645688743">
+                  <wsse:Reference URI="#XWSSGID-1457342963292-1411977871" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" />
+               </wsse:SecurityTokenReference>
+            </ds:KeyInfo>
+         </ds:Signature>
+      </wsse:Security>
+   </SOAP-ENV:Header>
+   <SOAP-ENV:Body xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="XWSSGID-1457342963300-1654704555">
+      <ns2:getEntityRequest xmlns:ns2="http://wandrell.com/example/ws/entity">
+         <ns2:id>1</ns2:id>
+      </ns2:getEntityRequest>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint.signature.xwss;
+package com.wandrell.example.swss.testing.unit.endpoint.encryption.xwss;
 
 import java.security.KeyStore;
 
@@ -50,13 +50,13 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletXWSSContextConfig.BASE,
-        ServletXWSSContextConfig.SIGNATURE, TestContextConfig.KEYSTORE })
+        ServletXWSSContextConfig.ENCRYPTION, TestContextConfig.KEYSTORE })
 @TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        SOAPPropertiesConfig.SIGNATURE,
-        InterceptorXWSSPropertiesConfig.SIGNATURE,
-        EndpointXWSSPropertiesConfig.SIGNATURE,
+        SOAPPropertiesConfig.ENCRYPTION,
+        InterceptorXWSSPropertiesConfig.ENCRYPTION,
+        EndpointXWSSPropertiesConfig.ENCRYPTION,
         EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER, })
-public final class TestEntityEndpointSignatureXWSS {
+public final class TestEntityEndpointEncryptionXWSS {
 
     /**
      * Alias for the certificate for signing messages.
@@ -85,11 +85,6 @@ public final class TestEntityEndpointSignatureXWSS {
     @Value("${soap.request.path}")
     private String   pathUnsecure;
     /**
-     * Path to the file containing the valid SOAP request.
-     */
-    @Value("${soap.request.template.path}")
-    private String   pathValid;
-    /**
      * Username for the passworded message.
      */
     @Value("${security.credentials.user}")
@@ -98,7 +93,7 @@ public final class TestEntityEndpointSignatureXWSS {
     /**
      * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
      */
-    public TestEntityEndpointSignatureXWSS() {
+    public TestEntityEndpointEncryptionXWSS() {
         super();
         // TODO: Make this work
     }

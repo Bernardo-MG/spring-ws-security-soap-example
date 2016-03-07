@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.unit.endpoint.signature.xwss;
+package com.wandrell.example.swss.testing.unit.endpoint.signature.wss4j;
 
 import java.security.KeyStore;
 
@@ -36,10 +36,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
 import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
@@ -49,14 +49,16 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXWSSContextConfig.BASE,
-        ServletXWSSContextConfig.SIGNATURE, TestContextConfig.KEYSTORE })
+@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
+        ServletWSS4JContextConfig.SIGNATURE, TestContextConfig.KEYSTORE,
+        TestContextConfig.KEYSTORE_WSS4J })
 @TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
         SOAPPropertiesConfig.SIGNATURE,
-        InterceptorXWSSPropertiesConfig.SIGNATURE,
-        EndpointXWSSPropertiesConfig.SIGNATURE,
-        EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER, })
-public final class TestEntityEndpointSignatureXWSS {
+        InterceptorWSS4JPropertiesConfig.SIGNATURE,
+        EndpointWSS4JPropertiesConfig.SIGNATURE,
+        EndpointWSS4JPropertiesConfig.BASE, TestPropertiesConfig.USER,
+        TestPropertiesConfig.KEYSTORE, TestPropertiesConfig.KEYSTORE_WSS4J })
+public final class TestEntityEndpointSignatureWSS4J {
 
     /**
      * Alias for the certificate for signing messages.
@@ -98,7 +100,7 @@ public final class TestEntityEndpointSignatureXWSS {
     /**
      * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
      */
-    public TestEntityEndpointSignatureXWSS() {
+    public TestEntityEndpointSignatureWSS4J() {
         super();
         // TODO: Make this work
     }
