@@ -73,7 +73,7 @@ public final class TestEntityEndpointPasswordDigestXWSS
     private String username;
 
     /**
-     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
+     * Constructs a {@code TestEntityEndpointPasswordDigestXWSS}.
      */
     public TestEntityEndpointPasswordDigestXWSS() {
         super();

@@ -33,7 +33,7 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
- * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS plain
+ * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS digested
  * password protected client.
  *
  * @author Bernardo Martínez Garrido

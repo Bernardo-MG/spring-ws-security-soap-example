@@ -33,7 +33,7 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
- * Implementation of {@code AbstractITEntityClientInvalid} for a password
+ * Implementation of {@code AbstractITEntityClientInvalid} for a plain password
  * protected web service using XWSS for the client and WSS4J for the web
  * service.
  *

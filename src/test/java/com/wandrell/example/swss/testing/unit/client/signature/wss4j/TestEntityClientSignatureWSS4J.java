@@ -34,8 +34,8 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
- * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS plain
- * password protected client.
+ * Implementation of {@code AbstractTestEntityClientHeader} for a WSS4J signed
+ * client.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -47,7 +47,7 @@ public final class TestEntityClientSignatureWSS4J
         extends AbstractTestEntityClientHeader {
 
     /**
-     * Constructs a {@code TestEntityClientPasswordDigestWSS4J}.
+     * Constructs a {@code TestEntityClientSignatureWSS4J}.
      */
     public TestEntityClientSignatureWSS4J() {
         super();

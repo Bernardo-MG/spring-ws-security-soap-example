@@ -85,7 +85,7 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
     private String  pathValid;
 
     /**
-     * Default constructor.
+     * Constructs a {@code ITEntityEndpointUnsecure}.
      */
     public ITEntityEndpointUnsecure() {
         super();

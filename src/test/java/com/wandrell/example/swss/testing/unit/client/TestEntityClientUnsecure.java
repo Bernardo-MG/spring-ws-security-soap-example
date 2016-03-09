@@ -51,7 +51,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Unit tests for {@link EntityClient} checking that the client works as
- * expected.
+ * expected when not using any security.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -99,7 +99,7 @@ public final class TestEntityClientUnsecure
     private String       responsePayloadPath;
 
     /**
-     * Constructs a {@code TestEntityClient}.
+     * Constructs a {@code TestEntityClientUnsecure}.
      */
     public TestEntityClientUnsecure() {
         super();

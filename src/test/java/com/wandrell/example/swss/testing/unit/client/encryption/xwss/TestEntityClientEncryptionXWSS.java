@@ -34,8 +34,8 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
- * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS plain
- * password protected client.
+ * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS encrypted
+ * client.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -47,7 +47,7 @@ public final class TestEntityClientEncryptionXWSS
         extends AbstractTestEntityClientHeader {
 
     /**
-     * Constructs a {@code TestEntityClientPasswordDigestXWSS}.
+     * Constructs a {@code TestEntityClientEncryptionXWSS}.
      */
     public TestEntityClientEncryptionXWSS() {
         super();

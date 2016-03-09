@@ -44,8 +44,8 @@ import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesCo
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS plain
- * password protected endpoint.
+ * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS
+ * encrypted endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -91,7 +91,7 @@ public final class TestEntityEndpointEncryptionXWSS {
     private String   username;
 
     /**
-     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
+     * Constructs a {@code TestEntityEndpointEncryptionXWSS}.
      */
     public TestEntityEndpointEncryptionXWSS() {
         super();

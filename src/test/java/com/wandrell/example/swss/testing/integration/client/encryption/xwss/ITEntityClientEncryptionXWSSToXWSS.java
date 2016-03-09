@@ -33,8 +33,8 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service using XWSS for both the client and the web service.
+ * Implementation of {@code AbstractITEntityClient} for an encrypted web service
+ * using XWSS for both the client and the web service.
  *
  * @author Bernardo Martínez Garrido
  */

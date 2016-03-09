@@ -32,8 +32,8 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4J
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service using XWSS for the client and WSS4J for the web service.
+ * Implementation of {@code AbstractITEntityClient} for an encrypted web service
+ * using XWSS for the client and WSS4J for the web service.
  *
  * @author Bernardo Martínez Garrido
  */

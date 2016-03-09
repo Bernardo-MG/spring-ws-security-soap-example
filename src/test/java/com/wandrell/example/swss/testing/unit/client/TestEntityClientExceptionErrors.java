@@ -55,7 +55,7 @@ public final class TestEntityClientExceptionErrors
     private EntityClient client;
 
     /**
-     * Constructs a {@code TestEntityClient}.
+     * Constructs a {@code TestEntityClientExceptionErrors}.
      */
     public TestEntityClientExceptionErrors() {
         super();

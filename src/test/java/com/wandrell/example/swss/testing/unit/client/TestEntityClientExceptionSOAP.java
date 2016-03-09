@@ -84,7 +84,7 @@ public final class TestEntityClientExceptionSOAP
     private String       entityXsdPath;
 
     /**
-     * Constructs a {@code TestEntityClient}.
+     * Constructs a {@code TestEntityClientExceptionSOAP}.
      */
     public TestEntityClientExceptionSOAP() {
         super();
