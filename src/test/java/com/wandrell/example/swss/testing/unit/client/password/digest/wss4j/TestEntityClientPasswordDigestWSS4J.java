@@ -24,7 +24,6 @@
 
 package com.wandrell.example.swss.testing.unit.client.password.digest.wss4j;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
@@ -45,22 +44,6 @@ import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntit
         TestPropertiesConfig.USER })
 public final class TestEntityClientPasswordDigestWSS4J
         extends AbstractTestEntityClientHeader {
-
-    /**
-     * Password for the passworded message.
-     */
-    @Value("${security.credentials.password}")
-    private String password;
-    /**
-     * Path to the file containing the valid SOAP request.
-     */
-    @Value("${soap.request.template.path}")
-    private String pathValid;
-    /**
-     * Username for the passworded message.
-     */
-    @Value("${security.credentials.user}")
-    private String username;
 
     /**
      * Constructs a {@code TestEntityClientPasswordDigestWSS4J}.
