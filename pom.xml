@@ -207,7 +207,7 @@
 
    <properties>
       <!-- Manifest data -->
-      <manifest.name>com/wandrell/demo/spring_soap_ws_security_example</manifest.name>
+      <manifest.name>com/wandrell/example/spring/wss</manifest.name>
       <!-- Dependencies versions -->
       <bouncycastle.version>1.54</bouncycastle.version>
       <commons.codec.version>1.10</commons.codec.version>
