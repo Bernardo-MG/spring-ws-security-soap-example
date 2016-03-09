@@ -73,13 +73,24 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
     }
 
     /**
-     * Tests that a message without a signature returns a fault.
+     * Tests that a message correctly encrypted returns the expected value.
      *
      * @throws Exception
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_Unsigned_ReturnsFault() throws Exception {
+    public final void testEndpoint_Encrypted_ReturnsFault() throws Exception {
+        // TODO: Get this working
+    }
+
+    /**
+     * Tests that an unencrypted message returns a fault.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_Unencrypted_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
         message = callWebService(
