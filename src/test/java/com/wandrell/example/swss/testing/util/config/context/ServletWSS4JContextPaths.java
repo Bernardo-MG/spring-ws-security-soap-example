@@ -25,40 +25,46 @@
 package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the XWSS-based test client context files.
+ * Configuration class for the test context files paths.
  * <p>
- * Each of these files serves to create a Spring context for a single client
- * which uses the XWSS implementation of the WSS standard.
+ * These are the same context configurations as the ones used for the servlets.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ClientXWSSContextConfig {
+public final class ServletWSS4JContextPaths {
 
     /**
-     * Context file for the encrypted client.
+     * Base web service context used on all the endpoints.
+     * <p>
+     * This is the application context used for the real web services, and
+     * shared by all the servlets.
      */
-    public static final String ENCRYPTION      = "classpath:context/client/encryption/xwss/client-encryption-xwss.xml";
+    public static final String BASE            = "classpath:context/applicationContext.xml";
     /**
-     * Context file for the digested password client.
+     * Plain password web service contextt.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/xwss/client-password-digest-xwss.xml";
+    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
     /**
-     * Context file for the plain password client.
+     * Plain password web service contextt.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/xwss/client-password-plain-xwss.xml";
+    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
     /**
-     * Context file for the signed client.
+     * Plain password web service contextt.
      */
-    public static final String SIGNATURE       = "classpath:context/client/signature/xwss/client-signature-xwss.xml";
+    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
     /**
-     * Context file for the unsecure client.
+     * Plain password web service contextt.
      */
-    public static final String UNSECURE        = "classpath:context/client/test-client-unsecure.xml";
+    public static final String SIGNATURE       = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
+    /**
+     * Unsecure web service context.
+     */
+    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ClientXWSSContextConfig() {
+    private ServletWSS4JContextPaths() {
         super();
     }
 

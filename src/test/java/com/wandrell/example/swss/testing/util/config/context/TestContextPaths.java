@@ -25,46 +25,38 @@
 package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the test context files.
+ * Configuration class for the test context files paths.
  * <p>
- * These are the same context configurations as the ones used for the servlets.
+ * These are generic small context configurations required in some tests.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ServletWSS4JContextConfig {
+public final class TestContextPaths {
 
     /**
-     * Base web service context used on all the endpoints.
+     * Default context file.
      * <p>
-     * This is the application context used for the real web services, and
-     * shared by all the servlets.
+     * For those test which don't need any context configuration but require
+     * loading Spring properties.
      */
-    public static final String BASE            = "classpath:context/applicationContext.xml";
+    public static final String DEFAULT        = "classpath:context/test-default.xml";
     /**
-     * Plain password web service contextt.
+     * Key stores context file.
+     * <p>
+     * Contains the configuration for the basic Java key stores.
      */
-    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
+    public static final String KEYSTORE       = "classpath:context/keystore/keystore.xml";
     /**
-     * Plain password web service contextt.
+     * WSS4J key stores context file.
+     * <p>
+     * Contains the configuration for the WSS4J Java key stores.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String SIGNATURE       = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
-    /**
-     * Unsecure web service context.
-     */
-    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String KEYSTORE_WSS4J = "classpath:context/keystore/keystore-wss4j.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ServletWSS4JContextConfig() {
+    private TestContextPaths() {
         super();
     }
 

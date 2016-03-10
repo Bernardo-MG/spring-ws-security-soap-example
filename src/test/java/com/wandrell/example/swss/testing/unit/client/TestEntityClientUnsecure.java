@@ -44,9 +44,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -61,9 +61,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.UNSECURE })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.UNSECURE })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
+        SOAPPropertiesPaths.UNSECURE })
 public final class TestEntityClientUnsecure
         extends AbstractTestNGSpringContextTests {
 

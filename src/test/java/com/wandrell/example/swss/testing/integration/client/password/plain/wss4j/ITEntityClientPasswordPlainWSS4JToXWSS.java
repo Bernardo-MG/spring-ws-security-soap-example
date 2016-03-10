@@ -27,9 +27,9 @@ package com.wandrell.example.swss.testing.integration.client.password.plain.wss4
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
 
 /**
@@ -39,9 +39,9 @@ import com.wandrell.example.swss.testing.util.test.integration.client.AbstractIT
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.USER,
-        EndpointURLXWSSPropertiesConfig.PASSWORD_PLAIN })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.USER,
+        EndpointURLXWSSPropertiesPaths.PASSWORD_PLAIN })
 public final class ITEntityClientPasswordPlainWSS4JToXWSS
         extends AbstractITEntityClient {
 

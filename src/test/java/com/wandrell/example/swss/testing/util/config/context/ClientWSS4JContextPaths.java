@@ -22,38 +22,43 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.properties;
+package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the XWSS-based test interceptor properties files.
+ * Configuration class for the WSS4J-based test client context files paths.
  * <p>
- * These files contain the data required for setting up an interceptor context.
+ * Each of these files serves to create a Spring context for a single client
+ * which uses the WSS4J implementation of the WSS standard.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class InterceptorXWSSPropertiesConfig {
+public final class ClientWSS4JContextPaths {
 
     /**
-     * Properties file with the encrypted endpoint configuration.
+     * Context file for the encrypted client.
      */
-    public static final String ENCRYPTION      = "classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
+    public static final String ENCRYPTION      = "classpath:context/client/encryption/wss4j/client-encryption-wss4j.xml";
     /**
-     * Properties file with the digested password endpoint configuration.
+     * Context file for the digested password client.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
+    public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/wss4j/client-password-digest-wss4j.xml";
     /**
-     * Properties file with the plain password endpoint configuration.
+     * Context file for the plain password client.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/wss4j/client-password-plain-wss4j.xml";
     /**
-     * Properties file with the signed endpoint configuration.
+     * Context file for the signed client.
      */
-    public static final String SIGNATURE       = "classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.properties";
+    public static final String SIGNATURE       = "classpath:context/client/signature/wss4j/client-signature-wss4j.xml";
+    /**
+     * Context file for the unsecure client.
+     */
+    public static final String UNSECURE        = "classpath:context/client/client-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private InterceptorXWSSPropertiesConfig() {
+    private ClientWSS4JContextPaths() {
         super();
     }
 

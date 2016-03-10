@@ -25,13 +25,14 @@
 package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the WSS4J-based test endpoints properties files.
+ * Configuration class for the WSS4J-based test endpoints properties files
+ * paths.
  * <p>
  * These files contain the data required for setting up an endpoint context.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointWSS4JPropertiesConfig {
+public final class EndpointWSS4JPropertiesPaths {
 
     /**
      * Properties file with the base endpoint configuration.
@@ -61,7 +62,7 @@ public final class EndpointWSS4JPropertiesConfig {
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointWSS4JPropertiesConfig() {
+    private EndpointWSS4JPropertiesPaths() {
         super();
     }
 

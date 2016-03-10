@@ -27,10 +27,10 @@ package com.wandrell.example.swss.testing.unit.client.signature.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
@@ -39,10 +39,10 @@ import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntit
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.SIGNATURE,
-        TestContextConfig.KEYSTORE, TestContextConfig.KEYSTORE_WSS4J })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.UNSECURE, SOAPPropertiesConfig.SIGNATURE })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.SIGNATURE,
+        TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
+        SOAPPropertiesPaths.UNSECURE, SOAPPropertiesPaths.SIGNATURE })
 public final class TestEntityClientSignatureWSS4J
         extends AbstractTestEntityClientHeader {
 

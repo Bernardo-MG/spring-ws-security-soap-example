@@ -33,10 +33,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
 /**
@@ -53,10 +53,10 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { TestContextConfig.DEFAULT })
-@TestPropertySource({ TestPropertiesConfig.ENTITY,
-        SOAPPropertiesConfig.ENCRYPTION,
-        EndpointURLWSS4JPropertiesConfig.ENCRYPTION })
+@ContextConfiguration(locations = { TestContextPaths.DEFAULT })
+@TestPropertySource({ TestPropertiesPaths.ENTITY,
+        SOAPPropertiesPaths.ENCRYPTION,
+        EndpointURLWSS4JPropertiesPaths.ENCRYPTION })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**

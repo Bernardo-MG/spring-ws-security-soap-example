@@ -27,9 +27,9 @@ package com.wandrell.example.swss.testing.integration.client.signature.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
@@ -38,9 +38,9 @@ import com.wandrell.example.swss.testing.util.test.integration.client.AbstractIT
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextConfig.SIGNATURE })
-@TestPropertySource({ TestPropertiesConfig.KEYSTORE_INVALID,
-        EndpointURLWSS4JPropertiesConfig.SIGNATURE })
+@ContextConfiguration(locations = { ClientXWSSContextPaths.SIGNATURE })
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE_INVALID,
+        EndpointURLWSS4JPropertiesPaths.SIGNATURE })
 public final class ITEntityClientSignatureXWSSToWSS4JInvalid
         extends AbstractITEntityClientInvalid {
 

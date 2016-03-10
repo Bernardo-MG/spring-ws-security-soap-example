@@ -25,13 +25,13 @@
 package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test properties files.
+ * Configuration class for the test properties files paths.
  * <p>
  * These contain generic data required in several tests.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class TestPropertiesConfig {
+public final class TestPropertiesPaths {
 
     /**
      * Properties file with the test entity configuration.
@@ -75,7 +75,7 @@ public final class TestPropertiesConfig {
     /**
      * Private constructor to avoid initialization.
      */
-    private TestPropertiesConfig() {
+    private TestPropertiesPaths() {
         super();
     }
 

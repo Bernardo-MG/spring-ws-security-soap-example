@@ -27,9 +27,9 @@ package com.wandrell.example.swss.testing.unit.client.password.digest.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
@@ -38,10 +38,10 @@ import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntit
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_DIGEST })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.UNSECURE, SOAPPropertiesConfig.PASSWORD_DIGEST,
-        TestPropertiesConfig.USER })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.PASSWORD_DIGEST })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
+        SOAPPropertiesPaths.UNSECURE, SOAPPropertiesPaths.PASSWORD_DIGEST,
+        TestPropertiesPaths.USER })
 public final class TestEntityClientPasswordDigestWSS4J
         extends AbstractTestEntityClientHeader {
 

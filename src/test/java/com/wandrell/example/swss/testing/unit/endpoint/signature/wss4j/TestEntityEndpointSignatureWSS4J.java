@@ -36,12 +36,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 
 /**
  * Implementation of {@code AbstractTestEntityEndpointRequest} for a WSS4J
@@ -49,15 +49,15 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
-        ServletWSS4JContextConfig.SIGNATURE, TestContextConfig.KEYSTORE,
-        TestContextConfig.KEYSTORE_WSS4J })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        SOAPPropertiesConfig.SIGNATURE,
-        InterceptorWSS4JPropertiesConfig.SIGNATURE,
-        EndpointWSS4JPropertiesConfig.SIGNATURE,
-        EndpointWSS4JPropertiesConfig.BASE, TestPropertiesConfig.USER,
-        TestPropertiesConfig.KEYSTORE, TestPropertiesConfig.KEYSTORE_WSS4J })
+@ContextConfiguration(locations = { ServletWSS4JContextPaths.BASE,
+        ServletWSS4JContextPaths.SIGNATURE, TestContextPaths.KEYSTORE,
+        TestContextPaths.KEYSTORE_WSS4J })
+@TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
+        SOAPPropertiesPaths.SIGNATURE,
+        InterceptorWSS4JPropertiesPaths.SIGNATURE,
+        EndpointWSS4JPropertiesPaths.SIGNATURE,
+        EndpointWSS4JPropertiesPaths.BASE, TestPropertiesPaths.USER,
+        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J })
 public final class TestEntityEndpointSignatureWSS4J {
 
     /**

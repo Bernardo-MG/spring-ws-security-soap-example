@@ -22,41 +22,39 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.context;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test context files.
+ * Configuration class for the XWSS-based test interceptor properties files
+ * paths.
  * <p>
- * These are generic small context configurations required in some tests.
+ * These files contain the data required for setting up an interceptor context.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class TestContextConfig {
+public final class InterceptorXWSSPropertiesPaths {
 
     /**
-     * Default context file.
-     * <p>
-     * For those test which don't need any context configuration but require
-     * loading Spring properties.
+     * Properties file with the encrypted endpoint configuration.
      */
-    public static final String DEFAULT        = "classpath:context/test-default.xml";
+    public static final String ENCRYPTION      = "classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
     /**
-     * Key stores context file.
-     * <p>
-     * Contains the configuration for the basic Java key stores.
+     * Properties file with the digested password endpoint configuration.
      */
-    public static final String KEYSTORE       = "classpath:context/keystore/keystore.xml";
+    public static final String PASSWORD_DIGEST = "classpath:context/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
     /**
-     * WSS4J key stores context file.
-     * <p>
-     * Contains the configuration for the WSS4J Java key stores.
+     * Properties file with the plain password endpoint configuration.
      */
-    public static final String KEYSTORE_WSS4J = "classpath:context/keystore/keystore-wss4j.xml";
+    public static final String PASSWORD_PLAIN  = "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
+    /**
+     * Properties file with the signed endpoint configuration.
+     */
+    public static final String SIGNATURE       = "classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private TestContextConfig() {
+    private InterceptorXWSSPropertiesPaths() {
         super();
     }
 

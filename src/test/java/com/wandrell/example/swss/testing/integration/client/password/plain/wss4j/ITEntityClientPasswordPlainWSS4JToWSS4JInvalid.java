@@ -27,9 +27,9 @@ package com.wandrell.example.swss.testing.integration.client.password.plain.wss4
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
@@ -38,9 +38,9 @@ import com.wandrell.example.swss.testing.util.test.integration.client.AbstractIT
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesConfig.USER_INVALID,
-        EndpointURLWSS4JPropertiesConfig.SIGNATURE })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesPaths.USER_INVALID,
+        EndpointURLWSS4JPropertiesPaths.SIGNATURE })
 public final class ITEntityClientPasswordPlainWSS4JToWSS4JInvalid
         extends AbstractITEntityClientInvalid {
 

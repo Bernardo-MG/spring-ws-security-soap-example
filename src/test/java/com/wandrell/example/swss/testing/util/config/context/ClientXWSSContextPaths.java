@@ -25,40 +25,40 @@
 package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the WSS4J-based test client context files.
+ * Configuration class for the XWSS-based test client context files paths.
  * <p>
  * Each of these files serves to create a Spring context for a single client
- * which uses the WSS4J implementation of the WSS standard.
+ * which uses the XWSS implementation of the WSS standard.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ClientWSS4JContextConfig {
+public final class ClientXWSSContextPaths {
 
     /**
      * Context file for the encrypted client.
      */
-    public static final String ENCRYPTION      = "classpath:context/client/encryption/wss4j/client-encryption-wss4j.xml";
+    public static final String ENCRYPTION      = "classpath:context/client/encryption/xwss/client-encryption-xwss.xml";
     /**
      * Context file for the digested password client.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/wss4j/client-password-digest-wss4j.xml";
+    public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/xwss/client-password-digest-xwss.xml";
     /**
      * Context file for the plain password client.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/wss4j/client-password-plain-wss4j.xml";
+    public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/xwss/client-password-plain-xwss.xml";
     /**
      * Context file for the signed client.
      */
-    public static final String SIGNATURE       = "classpath:context/client/signature/wss4j/client-signature-wss4j.xml";
+    public static final String SIGNATURE       = "classpath:context/client/signature/xwss/client-signature-xwss.xml";
     /**
      * Context file for the unsecure client.
      */
-    public static final String UNSECURE        = "classpath:context/client/client-unsecure.xml";
+    public static final String UNSECURE        = "classpath:context/client/test-client-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ClientWSS4JContextConfig() {
+    private ClientXWSSContextPaths() {
         super();
     }
 

@@ -22,49 +22,43 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.context;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test context files.
+ * Configuration class for the test SOAP messages properties files paths.
  * <p>
- * These are the same context configurations as the ones used for the servlets.
+ * Each file contains the information for finding or generating test SOAP
+ * messages.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ServletXWSSContextConfig {
+public final class SOAPPropertiesPaths {
 
     /**
-     * Base web service context used on all the endpoints.
-     * <p>
-     * This is the application context used for the real web services, and
-     * shared by all the servlets.
+     * Properties file with the encrypted SOAP test data.
      */
-    public static final String BASE            = "classpath:context/applicationContext.xml";
+    public static final String ENCRYPTION      = "classpath:config/soap/test-soap-encryption.properties";
     /**
-     * Plain password web service contextt.
+     * Properties file with the digested password SOAP test data.
      */
-    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
+    public static final String PASSWORD_DIGEST = "classpath:config/soap/test-soap-password-digest.properties";
     /**
-     * Plain password web service contextt.
+     * Properties file with the plain password SOAP test data.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
+    public static final String PASSWORD_PLAIN  = "classpath:config/soap/test-soap-password-plain.properties";
     /**
-     * Plain password web service contextt.
+     * Properties file with the signature SOAP test data.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
+    public static final String SIGNATURE       = "classpath:config/soap/test-soap-signature.properties";
     /**
-     * Plain password web service contextt.
+     * Properties file with the unsecure SOAP test data.
      */
-    public static final String SIGNATURE       = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
-    /**
-     * Unsecure web service context.
-     */
-    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String UNSECURE        = "classpath:config/soap/test-soap-unsecure.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ServletXWSSContextConfig() {
+    private SOAPPropertiesPaths() {
         super();
     }
 

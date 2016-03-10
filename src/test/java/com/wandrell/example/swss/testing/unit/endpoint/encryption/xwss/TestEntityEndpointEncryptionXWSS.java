@@ -36,12 +36,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 
 /**
  * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS
@@ -49,13 +49,13 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXWSSContextConfig.BASE,
-        ServletXWSSContextConfig.ENCRYPTION, TestContextConfig.KEYSTORE })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        SOAPPropertiesConfig.ENCRYPTION,
-        InterceptorXWSSPropertiesConfig.ENCRYPTION,
-        EndpointXWSSPropertiesConfig.ENCRYPTION,
-        EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER, })
+@ContextConfiguration(locations = { ServletXWSSContextPaths.BASE,
+        ServletXWSSContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
+@TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
+        SOAPPropertiesPaths.ENCRYPTION,
+        InterceptorXWSSPropertiesPaths.ENCRYPTION,
+        EndpointXWSSPropertiesPaths.ENCRYPTION,
+        EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER, })
 public final class TestEntityEndpointEncryptionXWSS {
 
     /**

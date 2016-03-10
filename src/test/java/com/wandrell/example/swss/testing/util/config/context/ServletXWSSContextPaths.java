@@ -22,43 +22,49 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.properties;
+package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the XWSS-based test endpoints URLs properties files.
+ * Configuration class for the test context files paths.
  * <p>
- * These files contain the URL for an endpoint and its WSDL. These endpoints use
- * the XWSS implementation of the WSS standard.
+ * These are the same context configurations as the ones used for the servlets.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointURLXWSSPropertiesConfig {
+public final class ServletXWSSContextPaths {
 
     /**
-     * Properties file with the encrypted endpoint URLs.
+     * Base web service context used on all the endpoints.
+     * <p>
+     * This is the application context used for the real web services, and
+     * shared by all the servlets.
      */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
+    public static final String BASE            = "classpath:context/applicationContext.xml";
     /**
-     * Properties file with the digested password endpoint URLs.
+     * Plain password web service contextt.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
+    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
     /**
-     * Properties file with the plain password endpoint URLs.
+     * Plain password web service contextt.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
+    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
     /**
-     * Properties file with the signed endpoint URLs.
+     * Plain password web service contextt.
      */
-    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
     /**
-     * Properties file with the unsecure endpoint URLs.
+     * Plain password web service contextt.
      */
-    public static final String UNSECURE        = "classpath:config/endpoint/test-endpoint-unsecure.properties";
+    public static final String SIGNATURE       = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
+    /**
+     * Unsecure web service context.
+     */
+    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointURLXWSSPropertiesConfig() {
+    private ServletXWSSContextPaths() {
         super();
     }
 

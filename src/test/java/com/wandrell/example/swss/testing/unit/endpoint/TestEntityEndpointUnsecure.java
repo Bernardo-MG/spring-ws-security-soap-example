@@ -41,10 +41,10 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 
 /**
  * Unit tests for an unsecured endpoint testing that it handles payload-based
@@ -58,11 +58,11 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
-        ServletWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.WSDL, SOAPPropertiesConfig.UNSECURE,
-        EndpointXWSSPropertiesConfig.UNSECURE,
-        EndpointXWSSPropertiesConfig.BASE })
+@ContextConfiguration(locations = { ServletWSS4JContextPaths.BASE,
+        ServletWSS4JContextPaths.UNSECURE })
+@TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
+        EndpointXWSSPropertiesPaths.UNSECURE,
+        EndpointXWSSPropertiesPaths.BASE })
 public final class TestEntityEndpointUnsecure
         extends AbstractTestNGSpringContextTests {
 

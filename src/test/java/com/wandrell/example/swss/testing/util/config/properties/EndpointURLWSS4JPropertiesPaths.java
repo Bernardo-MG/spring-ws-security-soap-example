@@ -25,40 +25,41 @@
 package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test SOAP messages properties files.
+ * Configuration class for the WSS4J-based test endpoints URLs properties files
+ * paths.
  * <p>
- * Each file contains the information for finding or generating test SOAP
- * messages.
+ * These files contain the URL for an endpoint and its WSDL. These endpoints use
+ * the WSS4J implementation of the WSS standard.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class SOAPPropertiesConfig {
+public final class EndpointURLWSS4JPropertiesPaths {
 
     /**
-     * Properties file with the encrypted SOAP test data.
+     * Properties file with the encrypted endpoint URLs.
      */
-    public static final String ENCRYPTION      = "classpath:config/soap/test-soap-encryption.properties";
+    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-wss4j.properties";
     /**
-     * Properties file with the digested password SOAP test data.
+     * Properties file with the digested password endpoint URLs.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/soap/test-soap-password-digest.properties";
+    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-wss4j.properties";
     /**
-     * Properties file with the plain password SOAP test data.
+     * Properties file with the plain password endpoint URLs.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/soap/test-soap-password-plain.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-wss4j.properties";
     /**
-     * Properties file with the signature SOAP test data.
+     * Properties file with the signed endpoint URLs.
      */
-    public static final String SIGNATURE       = "classpath:config/soap/test-soap-signature.properties";
+    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-wss4j.properties";
     /**
-     * Properties file with the unsecure SOAP test data.
+     * Properties file with the unsecure endpoint URLs.
      */
-    public static final String UNSECURE        = "classpath:config/soap/test-soap-unsecure.properties";
+    public static final String UNSECURE        = "classpath:config/endpoint/test-endpoint-unsecure.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private SOAPPropertiesConfig() {
+    private EndpointURLWSS4JPropertiesPaths() {
         super();
     }
 
