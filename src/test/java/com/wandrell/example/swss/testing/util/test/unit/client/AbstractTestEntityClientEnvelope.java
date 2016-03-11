@@ -31,6 +31,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatcher;
@@ -109,19 +110,15 @@ public abstract class AbstractTestEntityClientEnvelope
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
-        final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request matcher
-        requestEnvelope = new StreamSource(ClassLoader.class
-                .getResourceAsStream(requestEnvelopeInvalidPath));
-        requestMatcher = RequestMatchers.soapEnvelope(requestEnvelope);
+        requestMatcher = RequestMatchers.soapEnvelope(
+                new ClassPathResource(requestEnvelopeInvalidPath));
 
         // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
+        responseCreator = ResponseCreators
+                .withPayload(new ClassPathResource(responsePayloadInvalidPath));
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);

@@ -24,9 +24,6 @@
 
 package com.wandrell.example.swss.testing.unit.endpoint;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -102,12 +99,10 @@ public final class TestEntityEndpointUnsecure
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestPayload;           // SOAP payload for the request
 
         // Creates the request
-        requestPayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(requestPayloadInvalidPath));
-        requestCreator = RequestCreators.withPayload(requestPayload);
+        requestCreator = RequestCreators
+                .withPayload(new ClassPathResource(requestPayloadInvalidPath));
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers.clientOrSenderFault();
@@ -127,12 +122,10 @@ public final class TestEntityEndpointUnsecure
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestPayload;           // SOAP payload for the request
 
         // Creates the request
-        requestPayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(requestPayloadPath));
-        requestCreator = RequestCreators.withPayload(requestPayload);
+        requestCreator = RequestCreators
+                .withPayload(new ClassPathResource(requestPayloadPath));
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers

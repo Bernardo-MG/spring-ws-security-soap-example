@@ -25,7 +25,6 @@
 package com.wandrell.example.swss.testing.util.test.unit.endpoint;
 
 import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -113,12 +112,10 @@ public abstract class AbstractTestEntityEndpointRequest
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request
-        requestEnvelope = new StreamSource(ClassLoader.class
-                .getResourceAsStream(requestEnvelopeInvalidPath));
-        requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
+        requestCreator = RequestCreators.withSoapEnvelope(
+                new ClassPathResource(requestEnvelopeInvalidPath));
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers.clientOrSenderFault();

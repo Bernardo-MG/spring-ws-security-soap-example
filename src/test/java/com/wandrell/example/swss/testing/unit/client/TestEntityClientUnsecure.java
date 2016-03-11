@@ -26,9 +26,6 @@ package com.wandrell.example.swss.testing.unit.client;
 
 import java.io.IOException;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -116,7 +113,6 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
@@ -124,9 +120,8 @@ public final class TestEntityClientUnsecure
                 .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
+        responseCreator = ResponseCreators
+                .withPayload(new ClassPathResource(responsePayloadInvalidPath));
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
@@ -152,7 +147,6 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
@@ -160,9 +154,8 @@ public final class TestEntityClientUnsecure
                 .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(responsePayloadPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
+        responseCreator = ResponseCreators
+                .withPayload(new ClassPathResource(responsePayloadPath));
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);

@@ -27,11 +27,10 @@ package com.wandrell.example.swss.testing.util.test.unit.client;
 import java.io.IOException;
 
 import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatcher;
@@ -115,7 +114,6 @@ public abstract class AbstractTestEntityClientHeader
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
@@ -123,9 +121,8 @@ public abstract class AbstractTestEntityClientHeader
                 .soapHeader(new QName(secHeaderUri, secHeaderLocalPart));
 
         // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
+        responseCreator = ResponseCreators
+                .withPayload(new ClassPathResource(responsePayloadInvalidPath));
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
@@ -151,7 +148,6 @@ public abstract class AbstractTestEntityClientHeader
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
@@ -159,9 +155,8 @@ public abstract class AbstractTestEntityClientHeader
                 .soapHeader(new QName(secHeaderUri, secHeaderLocalPart));
 
         // Creates the response
-        responsePayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(responsePayloadPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
+        responseCreator = ResponseCreators
+                .withPayload(new ClassPathResource(responsePayloadPath));
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
