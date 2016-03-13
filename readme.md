@@ -53,15 +53,21 @@ The project has been tested on the following Java versions:
 * JDK 7
 * OpenJDK 7
 
-All other dependencies are handled through Maven, and noted in the included POM file. This includes the plugins used for running the demo in an embedded web server.
+All other dependencies are handled through Maven, and noted in the included POM file. This includes the plugins used for running the example in an embedded web server.
 
-### Running the demo
+### Running the example
 
-To run the demo just use the following Maven command:
+To run the example just use the following Maven command:
 
 ```
 $ mvn clean package jetty:run-war
 ```
+
+### Running the example on Java 8
+
+Sadly, the example currently can't be run on Java 8. This is due a compatibility issue with Spring-WS and the security implementations.
+
+Even the backwards compatibility of the new Java versions fails. Because of this the project should be run by using one of the tested JDKs, otherwise nothing can assure the demo will work correctly.
 
 ### URLs for the web services
 
