@@ -52,10 +52,9 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
 @ContextConfiguration(locations = { ServletXWSSContextPaths.BASE,
         ServletXWSSContextPaths.SIGNATURE, TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
-        SOAPPropertiesPaths.SIGNATURE,
-        InterceptorXWSSPropertiesPaths.SIGNATURE,
-        EndpointXWSSPropertiesPaths.SIGNATURE,
-        EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER, })
+        SOAPPropertiesPaths.SIGNATURE, InterceptorXWSSPropertiesPaths.SIGNATURE,
+        EndpointXWSSPropertiesPaths.SIGNATURE, EndpointXWSSPropertiesPaths.BASE,
+        TestPropertiesPaths.USER, })
 public final class TestEntityEndpointSignatureXWSS {
 
     /**

@@ -31,16 +31,15 @@ import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.repository.ExampleEntityRepository;
 
 /**
- * Default implementation of {@link ExampleEntityService}, making use of
- * Spring for dependency injection.
+ * Default implementation of {@link ExampleEntityService}, making use of Spring
+ * for dependency injection.
  * <p>
  * It uses an {@link ExampleEntityRepository} for acquiring the entities.
  *
  * @author Bernardo Martínez Garrido
  */
 @Service
-public class DefaultExampleEntityService
-        implements ExampleEntityService {
+public class DefaultExampleEntityService implements ExampleEntityService {
 
     /**
      * Repository for the {@code ExampleEntity} instances handled by the

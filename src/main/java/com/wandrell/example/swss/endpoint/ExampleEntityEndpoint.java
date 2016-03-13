@@ -63,24 +63,9 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 public class ExampleEntityEndpoint {
 
     /**
-     * The action for acquiring the entities.
-     * <p>
-     * When sending requests to the web service this action should be used if
-     * the authentication systems modifies the message.
-     */
-    public static final String               ACTION    = "http://wandrell.com/example/ws/entity/getEntity";
-    /**
-     * Namespace for the example entities.
-     */
-    public static final String               ENTITY_NS = "http://wandrell.com/example/ws/entity";
-    /**
-     * Name for the operation used to acquire an entity.
-     */
-    public static final String               REQUEST   = "getEntityRequest";
-    /**
      * The logger used for logging the entity endpoint.
      */
-    private static final Logger              LOGGER    = LoggerFactory
+    private static final Logger        LOGGER = LoggerFactory
             .getLogger(ExampleEntityEndpoint.class);
     /**
      * Service for accessing the {@code ExampleEntity} instances handled by the
@@ -118,8 +103,9 @@ public class ExampleEntityEndpoint {
      * @return JAXB annotated representation of the SOAP response with the
      *         entity
      */
-    @PayloadRoot(localPart = REQUEST, namespace = ENTITY_NS)
-    @SoapAction(ACTION)
+    @PayloadRoot(localPart = ExampleEntityEndpointConstants.REQUEST,
+            namespace = ExampleEntityEndpointConstants.ENTITY_NS)
+    @SoapAction(ExampleEntityEndpointConstants.ACTION)
     @ResponsePayload
     public final GetEntityResponse
             getEntity(@RequestPayload final GetEntityRequest request) {

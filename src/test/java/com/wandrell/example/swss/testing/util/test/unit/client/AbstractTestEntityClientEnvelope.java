@@ -77,6 +77,11 @@ public abstract class AbstractTestEntityClientEnvelope
     @Value("${entity.name}")
     private String       entityName;
     /**
+     * Path to the file with the invalid request payload.
+     */
+    @Value("${soap.request.invalid.path}")
+    private String       requestEnvelopeInvalidPath;
+    /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
@@ -86,11 +91,6 @@ public abstract class AbstractTestEntityClientEnvelope
      */
     @Value("${soap.response.payload.path}")
     private String       responsePayloadPath;
-    /**
-     * Path to the file with the invalid request payload.
-     */
-    @Value("${soap.request.invalid.path}")
-    private String       requestEnvelopeInvalidPath;
 
     /**
      * Constructs a {@code AbstractTestEntityClientHeader}.

@@ -39,8 +39,7 @@ import com.wandrell.example.swss.testing.util.test.integration.client.AbstractIT
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXWSSContextPaths.SIGNATURE })
-@TestPropertySource({ TestPropertiesPaths.ENTITY,
-        TestPropertiesPaths.KEYSTORE,
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
         EndpointURLWSS4JPropertiesPaths.SIGNATURE })
 public final class ITEntityClientSignatureXWSSToWSS4J
         extends AbstractITEntityClient {

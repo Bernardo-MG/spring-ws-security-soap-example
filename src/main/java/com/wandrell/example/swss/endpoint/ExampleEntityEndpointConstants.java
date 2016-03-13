@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2016the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,32 +22,37 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.integration.client.encryption.xwss;
-
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
+package com.wandrell.example.swss.endpoint;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for an encrypted web service
- * using XWSS for both the client and the web service.
- *
+ * Constants for the {@link ExampleEntityEndpoint}.
+ * <p>
+ * These define such things as the namespace of the SOAP action used.
+ * 
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextPaths.ENCRYPTION })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
-        EndpointURLXWSSPropertiesPaths.ENCRYPTION })
-public final class ITEntityClientEncryptionXWSSToXWSS
-        extends AbstractITEntityClient {
+public class ExampleEntityEndpointConstants {
 
     /**
-     * Default constructor.
+     * The action for acquiring the entities.
+     * <p>
+     * When sending requests to the web service this action should be used if
+     * the authentication systems modifies the message.
      */
-    public ITEntityClientEncryptionXWSSToXWSS() {
+    public static final String ACTION    = "http://wandrell.com/example/ws/entity/getEntity";
+    /**
+     * Namespace for the example entities.
+     */
+    public static final String ENTITY_NS = "http://wandrell.com/example/ws/entity";
+    /**
+     * Name for the operation used to acquire an entity.
+     */
+    public static final String REQUEST   = "getEntityRequest";
+
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private ExampleEntityEndpointConstants() {
         super();
     }
 

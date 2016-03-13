@@ -58,8 +58,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
-@TestPropertySource({ TestPropertiesPaths.ENTITY,
-        SOAPPropertiesPaths.UNSECURE,
+@TestPropertySource({ TestPropertiesPaths.ENTITY, SOAPPropertiesPaths.UNSECURE,
         EndpointURLXWSSPropertiesPaths.UNSECURE })
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 

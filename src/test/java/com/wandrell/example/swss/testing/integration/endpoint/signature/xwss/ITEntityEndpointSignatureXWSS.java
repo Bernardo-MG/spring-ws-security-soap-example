@@ -60,8 +60,8 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 @ContextConfiguration(
         locations = { TestContextPaths.DEFAULT, TestContextPaths.KEYSTORE })
-@TestPropertySource({ TestPropertiesPaths.ENTITY,
-        TestPropertiesPaths.KEYSTORE, SOAPPropertiesPaths.SIGNATURE,
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
+        SOAPPropertiesPaths.SIGNATURE,
         EndpointURLXWSSPropertiesPaths.SIGNATURE })
 public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
