@@ -34,7 +34,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  *
  * @author Bernardo Martínez Garrido
  */
-public interface ExampleEntityAccessService {
+public interface ExampleEntityService {
 
     /**
      * Returns a {@code ExampleEntity} with the given id.

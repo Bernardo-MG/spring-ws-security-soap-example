@@ -36,7 +36,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapAction;
 
 import com.wandrell.example.swss.model.ExampleEntity;
-import com.wandrell.example.swss.service.data.ExampleEntityAccessService;
+import com.wandrell.example.swss.service.data.ExampleEntityService;
 import com.wandrell.example.ws.generated.entity.Entity;
 import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
@@ -60,7 +60,7 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * @author Bernardo Martínez Garrido
  */
 @Endpoint
-public class EntityEndpoint {
+public class ExampleEntityEndpoint {
 
     /**
      * The action for acquiring the entities.
@@ -81,14 +81,14 @@ public class EntityEndpoint {
      * The logger used for logging the entity endpoint.
      */
     private static final Logger              LOGGER    = LoggerFactory
-            .getLogger(EntityEndpoint.class);
+            .getLogger(ExampleEntityEndpoint.class);
     /**
      * Service for accessing the {@code ExampleEntity} instances handled by the
      * web service.
      * <p>
      * This is injected by Spring.
      */
-    private final ExampleEntityAccessService entityService;
+    private final ExampleEntityService entityService;
 
     /**
      * Constructs a {@code ExampleEntityEndpoint}.
@@ -99,7 +99,7 @@ public class EntityEndpoint {
      *            the service for the {@code ExampleEntity} instances
      */
     @Autowired
-    public EntityEndpoint(final ExampleEntityAccessService service) {
+    public ExampleEntityEndpoint(final ExampleEntityService service) {
         super();
 
         entityService = service;
@@ -159,7 +159,7 @@ public class EntityEndpoint {
      *
      * @return the service used to handle the {@code ExampleEntity} instances
      */
-    private final ExampleEntityAccessService getExampleEntityService() {
+    private final ExampleEntityService getExampleEntityService() {
         return entityService;
     }
 

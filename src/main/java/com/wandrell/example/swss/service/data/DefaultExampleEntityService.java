@@ -31,7 +31,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.repository.ExampleEntityRepository;
 
 /**
- * Default implementation of {@link ExampleEntityAccessService}, making use of
+ * Default implementation of {@link ExampleEntityService}, making use of
  * Spring for dependency injection.
  * <p>
  * It uses an {@link ExampleEntityRepository} for acquiring the entities.
@@ -39,8 +39,8 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
  * @author Bernardo Martínez Garrido
  */
 @Service
-public class DefaultExampleEntityAccessService
-        implements ExampleEntityAccessService {
+public class DefaultExampleEntityService
+        implements ExampleEntityService {
 
     /**
      * Repository for the {@code ExampleEntity} instances handled by the
@@ -59,7 +59,7 @@ public class DefaultExampleEntityAccessService
      *            the repository for the {@code ExampleEntity} instances
      */
     @Autowired
-    public DefaultExampleEntityAccessService(
+    public DefaultExampleEntityService(
             final ExampleEntityRepository repository) {
         super();
 
