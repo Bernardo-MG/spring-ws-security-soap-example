@@ -51,9 +51,6 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * Both classes are JAXB annotated and generated from the same XSD file used for
  * creating the WSDL.
  * <p>
- * All the public constants contained in the endpoint match pieces of the
- * endpoint WSDL.
- * <p>
  * Note that the endpoint offers no security at all, as this concern is to be
  * handled by Spring.
  *
