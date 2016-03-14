@@ -32,6 +32,7 @@ import java.net.URL;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPConnectionFactory;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
@@ -45,6 +46,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
+
+import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
 
 /**
  * Abstract integration tests for an endpoint testing that it handles messages
@@ -174,8 +177,15 @@ public abstract class AbstractITEndpoint
     protected final SOAPMessage callWebService(final SOAPMessage request)
             throws SOAPException {
         final SOAPConnectionFactory soapConnectionFactory; // Connection factory
+        final MimeHeaders headers;                         // Message headers
 
         soapConnectionFactory = SOAPConnectionFactory.newInstance();
+
+        // Sets the SOAP action
+        headers = request.getMimeHeaders();
+        // TODO: Maybe the action should be loaded from the context
+        headers.addHeader("SOAPAction", ExampleEntityEndpointConstants.ACTION);
+        request.saveChanges();
 
         return soapConnectionFactory.createConnection().call(request, wsURL);
     }

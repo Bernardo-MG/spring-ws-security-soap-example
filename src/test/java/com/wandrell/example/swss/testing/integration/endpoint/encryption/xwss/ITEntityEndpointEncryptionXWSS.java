@@ -24,9 +24,11 @@
 
 package com.wandrell.example.swss.testing.integration.endpoint.encryption.xwss;
 
+import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
@@ -38,6 +40,7 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSP
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
+import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for an encryption protected
@@ -60,10 +63,20 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
 public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
 
     /**
+     * Id of the returned entity.
+     */
+    @Value("${entity.id}")
+    private Integer entityId;
+    /**
+     * Name of the returned entity.
+     */
+    @Value("${entity.name}")
+    private String  entityName;
+    /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
-    private String pathUnsigned;
+    private String  pathUnsigned;
 
     /**
      * Default constructor.
@@ -79,8 +92,25 @@ public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_Encrypted_ReturnsFault() throws Exception {
-        // TODO: Get this working
+    public final void testEndpoint_Encrypted_ReturnsEntity() throws Exception {
+
+        final SOAPMessage message; // Response message
+        final Entity entity;       // Entity from the response
+
+        // TODO: Move path to a constant
+        message = callWebService(
+                MessageFactory.newInstance().createMessage(null,
+                        new ClassPathResource(
+                                "soap/request/request-encryption-xwss.xml")
+                                        .getInputStream()));
+
+        Assert.assertNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
+
+        entity = SOAPParsingUtils.parseEntityFromMessage(message);
+
+        Assert.assertEquals((Integer) entity.getId(), entityId);
+        Assert.assertEquals(entity.getName(), entityName);
     }
 
     /**

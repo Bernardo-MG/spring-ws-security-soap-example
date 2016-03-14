@@ -32,10 +32,10 @@ import javax.xml.transform.stream.StreamSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextPaths;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesPaths;
@@ -102,8 +102,9 @@ public final class TestEntityEndpointEncryptionWSS4J {
 
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils.getSignedMessageStream(
-                    pathUnsecure, alias, passwordKey, alias, keystore));
+            return new StreamSource(
+                    new ClassPathResource("soap/request/request-encryption.xml")
+                            .getInputStream());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }

@@ -32,10 +32,10 @@ import javax.xml.transform.stream.StreamSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SecurityUtils;
 import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextPaths;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesPaths;
@@ -55,7 +55,7 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
         SOAPPropertiesPaths.ENCRYPTION,
         InterceptorXWSSPropertiesPaths.ENCRYPTION,
         EndpointXWSSPropertiesPaths.ENCRYPTION,
-        EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER, })
+        EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER })
 public final class TestEntityEndpointEncryptionXWSS {
 
     /**
@@ -100,8 +100,9 @@ public final class TestEntityEndpointEncryptionXWSS {
 
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils.getSignedMessageStream(
-                    pathUnsecure, alias, passwordKey, alias, keystore));
+            return new StreamSource(
+                    new ClassPathResource("soap/request/request-encryption.xml")
+                            .getInputStream());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
