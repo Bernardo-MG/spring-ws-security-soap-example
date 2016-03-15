@@ -7,7 +7,9 @@
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
-        Global application context. This is shared by all the servlets.
+        Global application context for the web service.
+        
+        This is shared by all the servlets.
     </description>
 
     <!-- Properties -->
