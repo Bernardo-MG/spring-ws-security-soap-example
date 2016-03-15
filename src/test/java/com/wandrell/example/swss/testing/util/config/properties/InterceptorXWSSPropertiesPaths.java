@@ -37,19 +37,19 @@ public final class InterceptorXWSSPropertiesPaths {
     /**
      * Properties file with the encrypted endpoint configuration.
      */
-    public static final String ENCRYPTION      = "classpath:context/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
+    public static final String ENCRYPTION      = "classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
     /**
      * Properties file with the digested password endpoint configuration.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
+    public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
     /**
      * Properties file with the plain password endpoint configuration.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:config/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
     /**
      * Properties file with the signed endpoint configuration.
      */
-    public static final String SIGNATURE       = "classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.properties";
+    public static final String SIGNATURE       = "classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties";
 
     /**
      * Private constructor to avoid initialization.

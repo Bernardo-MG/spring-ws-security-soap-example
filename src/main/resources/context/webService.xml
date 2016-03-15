@@ -8,12 +8,12 @@
 
     <description>
         Global application context for the web service.
-        
+
         This is shared by all the servlets.
     </description>
 
     <!-- Properties -->
-    <context:property-placeholder location="classpath:context/persistence.properties, classpath:context/keystore/keystore.properties, classpath:context/keystore/keystore-wss4j.properties" />
+    <context:property-placeholder location="classpath:config/persistence.properties, classpath:config/keystore/keystore.properties, classpath:config/keystore/keystore-wss4j.properties" />
 
     <!-- Imports -->
     <import resource="classpath:context/persistence.xml" />

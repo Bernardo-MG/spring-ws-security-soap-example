@@ -40,15 +40,15 @@ public final class TestPropertiesPaths {
     /**
      * Properties file with the keystore configuration.
      */
-    public static final String KEYSTORE                         = "classpath:context/keystore/keystore.properties";
+    public static final String KEYSTORE                         = "classpath:config/keystore/keystore.properties";
     /**
      * Properties file with the invalid keystore configuration.
      */
-    public static final String KEYSTORE_INVALID                 = "classpath:context/keystore/keystore2.properties";
+    public static final String KEYSTORE_INVALID                 = "classpath:config/keystore/keystore2.properties";
     /**
      * Properties file with the WSS4J keystore configuration.
      */
-    public static final String KEYSTORE_WSS4J                   = "classpath:context/keystore/keystore-wss4j.properties";
+    public static final String KEYSTORE_WSS4J                   = "classpath:config/keystore/keystore-wss4j.properties";
     /**
      * Properties file with the test invalid digested user and password
      * configuration.
