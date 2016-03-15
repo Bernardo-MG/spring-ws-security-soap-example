@@ -146,6 +146,56 @@ public final class SecurityUtils {
                         .getBytes("UTF-8"));
     }
 
+    public static final SOAPMessage getSignedMessage(final String pathBase,
+            final String privateKeyAlias, final String privateKeyPass,
+            final String certificateAlias, final KeyStore keystore)
+                    throws UnrecoverableKeyException, KeyStoreException,
+                    NoSuchAlgorithmException, SAXException, IOException,
+                    ParserConfigurationException, XMLSecurityException,
+                    SOAPException, TransformerConfigurationException,
+                    TransformerException, CertificateEncodingException {
+        Element root = null;
+        String BaseURI = new ClassPathResource(pathBase).getURI().toString();
+        SOAPMessage soapMessage;
+        Base64Converter base64 = new Base64Converter();
+        String token;
+        Node binaryToken;
+        X509Certificate cert;
+        PrivateKey privateKey;
+        XMLSignature sig;
+
+        soapMessage = getMessageToSign(pathBase);
+
+        // get the private key used to sign, from the keystore
+        privateKey = (PrivateKey) keystore.getKey(privateKeyAlias,
+                privateKeyPass.toCharArray());
+        cert = (X509Certificate) keystore.getCertificate(certificateAlias);
+
+        // create basic structure of signature
+        Document doc = toDocument(soapMessage);
+
+        org.apache.xml.security.Init.init();
+
+        sig = getSignature(doc, BaseURI, cert, privateKey);
+
+        // optional, but better
+        root = doc.getDocumentElement();
+        root.normalize();
+        root.getElementsByTagName("wsse:Security").item(0)
+                .appendChild(sig.getElement());
+
+        token = base64.encode(cert.getEncoded());
+
+        binaryToken = root.getElementsByTagName("wsse:BinarySecurityToken")
+                .item(0);
+        binaryToken.setTextContent(token);
+
+        // write signature to file
+        XMLUtils.outputDOMc14nWithComments(doc, System.out);
+
+        return toMessage(doc);
+    }
+
     public static final InputStream getSignedMessageStream(
             final String pathBase, final String privateKeyAlias,
             final String privateKeyPass, final String certificateAlias,
@@ -345,56 +395,6 @@ public final class SecurityUtils {
         sig.sign(privateKey);
 
         return sig;
-    }
-
-    public static final SOAPMessage getSignedMessage(final String pathBase,
-            final String privateKeyAlias, final String privateKeyPass,
-            final String certificateAlias, final KeyStore keystore)
-                    throws UnrecoverableKeyException, KeyStoreException,
-                    NoSuchAlgorithmException, SAXException, IOException,
-                    ParserConfigurationException, XMLSecurityException,
-                    SOAPException, TransformerConfigurationException,
-                    TransformerException, CertificateEncodingException {
-        Element root = null;
-        String BaseURI = new ClassPathResource(pathBase).getURI().toString();
-        SOAPMessage soapMessage;
-        Base64Converter base64 = new Base64Converter();
-        String token;
-        Node binaryToken;
-        X509Certificate cert;
-        PrivateKey privateKey;
-        XMLSignature sig;
-
-        soapMessage = getMessageToSign(pathBase);
-
-        // get the private key used to sign, from the keystore
-        privateKey = (PrivateKey) keystore.getKey(privateKeyAlias,
-                privateKeyPass.toCharArray());
-        cert = (X509Certificate) keystore.getCertificate(certificateAlias);
-
-        // create basic structure of signature
-        Document doc = toDocument(soapMessage);
-
-        org.apache.xml.security.Init.init();
-
-        sig = getSignature(doc, BaseURI, cert, privateKey);
-
-        // optional, but better
-        root = doc.getDocumentElement();
-        root.normalize();
-        root.getElementsByTagName("wsse:Security").item(0)
-                .appendChild(sig.getElement());
-
-        token = base64.encode(cert.getEncoded());
-
-        binaryToken = root.getElementsByTagName("wsse:BinarySecurityToken")
-                .item(0);
-        binaryToken.setTextContent(token);
-
-        // write signature to file
-        XMLUtils.outputDOMc14nWithComments(doc, System.out);
-
-        return toMessage(doc);
     }
 
     private static final Document toDocument(SOAPMessage soapMsg)

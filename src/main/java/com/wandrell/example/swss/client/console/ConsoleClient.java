@@ -46,18 +46,6 @@ import com.wandrell.example.ws.generated.entity.Entity;
 public final class ConsoleClient {
 
     /**
-     * Template for generating the final endpoint URL.
-     * <p>
-     * This is just the default URI for the web service, to which the endpoint
-     * path is to be added.
-     */
-    private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
-    /**
-     * Property key for the endpoint URI.
-     */
-    private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
-
-    /**
      * Enumeration for all the security types supported by the console client.
      *
      * @author Bernardo Martínez Garrido
@@ -92,6 +80,18 @@ public final class ConsoleClient {
                          */
         UNSECURE
     }
+    /**
+     * Template for generating the final endpoint URL.
+     * <p>
+     * This is just the default URI for the web service, to which the endpoint
+     * path is to be added.
+     */
+    private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
+
+    /**
+     * Property key for the endpoint URI.
+     */
+    private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
 
     /**
      * Main runnable method.

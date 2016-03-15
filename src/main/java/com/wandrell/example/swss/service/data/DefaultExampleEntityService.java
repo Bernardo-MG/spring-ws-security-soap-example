@@ -24,6 +24,8 @@
 
 package com.wandrell.example.swss.service.data;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,11 +64,14 @@ public class DefaultExampleEntityService implements ExampleEntityService {
             final ExampleEntityRepository repository) {
         super();
 
-        this.entityRepository = repository;
+        this.entityRepository = checkNotNull(repository,
+                "Received a null pointer as repository");
     }
 
     @Override
     public final ExampleEntity findById(final Integer identifier) {
+        checkNotNull(identifier, "Received a null pointer as identifier");
+
         return getExampleEntityRepository().findOne(identifier);
     }
 

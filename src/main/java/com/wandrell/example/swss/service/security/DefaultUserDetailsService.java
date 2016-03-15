@@ -83,6 +83,7 @@ public final class DefaultUserDetailsService implements UserDetailsService {
         } else if ("swss-cert".equalsIgnoreCase(username)) {
             // User for keystore-based security
             authorities = new LinkedList<>();
+
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
             user = new User(username, "123456", true, true, true, true,

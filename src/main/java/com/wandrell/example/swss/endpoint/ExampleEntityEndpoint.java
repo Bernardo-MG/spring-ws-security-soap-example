@@ -84,7 +84,8 @@ public class ExampleEntityEndpoint {
     public ExampleEntityEndpoint(final ExampleEntityService service) {
         super();
 
-        entityService = service;
+        entityService = checkNotNull(service,
+                "Received a null pointer as service");
     }
 
     /**
