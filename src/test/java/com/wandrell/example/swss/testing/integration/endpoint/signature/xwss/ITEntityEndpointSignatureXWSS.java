@@ -133,8 +133,8 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        // message =
-        // callWebService(securityUtils.getSignedMessage(alias,password,alias,pathInvalid,keystore));
+        // message = callWebService(SecurityUtils.getSignedMessage(pathUnsigned,
+        // alias, password, alias, keystore));
 
         // TODO: Get this working
 

@@ -72,6 +72,7 @@ import org.apache.xml.security.signature.XMLSignature;
 import org.apache.xml.security.transforms.Transforms;
 import org.apache.xml.security.utils.Constants;
 import org.apache.xml.security.utils.XMLUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -346,7 +347,7 @@ public final class SecurityUtils {
         return sig;
     }
 
-    private static final SOAPMessage getSignedMessage(final String pathBase,
+    public static final SOAPMessage getSignedMessage(final String pathBase,
             final String privateKeyAlias, final String privateKeyPass,
             final String certificateAlias, final KeyStore keystore)
                     throws UnrecoverableKeyException, KeyStoreException,
@@ -355,7 +356,7 @@ public final class SecurityUtils {
                     SOAPException, TransformerConfigurationException,
                     TransformerException, CertificateEncodingException {
         Element root = null;
-        String BaseURI = ClassLoader.class.getResource(pathBase).toString();
+        String BaseURI = new ClassPathResource(pathBase).getURI().toString();
         SOAPMessage soapMessage;
         Base64Converter base64 = new Base64Converter();
         String token;

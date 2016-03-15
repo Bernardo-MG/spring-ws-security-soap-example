@@ -135,11 +135,11 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
         // TODO: Get this working
 
-        // message = callWebService(SecurityUtils.getSignedMessage(alias,
-        // password, alias, pathUnsigned, keystore));
+        // message = callWebService(SecurityUtils.getSignedMessage(pathUnsigned,
+        // alias, password, alias, keystore));
 
-        // Assert.assertNull(message.getSOAPPart().getEnvelope().getBody()
-        // .getFault());
+        // Assert.assertNull(
+        // message.getSOAPPart().getEnvelope().getBody().getFault());
 
         // entity = SOAPParsingUtils.parseEntityFromMessage(message);
 
