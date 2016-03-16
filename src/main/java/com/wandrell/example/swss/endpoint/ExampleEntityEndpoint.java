@@ -132,7 +132,7 @@ public class ExampleEntityEndpoint {
 
             LOGGER.debug(
                     String.format("Found entity with id %1$d and name %2$s",
-                            entityResponse.getId(), entityResponse.getName()));
+                            entity.getId(), entity.getName()));
         }
 
         return response;
