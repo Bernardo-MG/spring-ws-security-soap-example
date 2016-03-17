@@ -42,11 +42,10 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Web service endpoint for {@link ExampleEntity}.
+ * Endpoint for the example entities.
  * <p>
- * It is as simple as it can be, having a single service which just receives a
- * {@link GetEntityRequest} asking for an entity with a specific id, and then
- * returns a {@code GetEntityResponse} which said id.
+ * It just receives a {@link GetEntityRequest} asking for an entity with a
+ * specific id, and then returns the {@link GetEntityResponse} with said id.
  * <p>
  * Both classes are JAXB annotated and generated from the same XSD file used for
  * creating the WSDL.
@@ -55,6 +54,9 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
  * handled by Spring.
  *
  * @author Bernardo Martínez Garrido
+ * @see GetEntityResponse
+ * @see GetEntityRequest
+ * @see Entity
  */
 @Endpoint
 public class ExampleEntityEndpoint {
@@ -89,17 +91,19 @@ public class ExampleEntityEndpoint {
     }
 
     /**
-     * Returns the {@code Entity} with the id received through a SOAP request.
-     * Both the request and response are handled through JAXB annotated classes.
+     * Returns a {@code GetEntityResponse} containing an {@code Entity} for the
+     * id received on the {@code GetEntityRequest}.
      * <p>
-     * The entity is transformed from a {@link ExampleEntity} instance returned
-     * by the repository to the {@link Entity} used by the generated classes.
+     * These are all JAXB annotated classes, representing the contents of SOAP
+     * requests and responses.
+     * <p>
+     * The actual data will be acquired from the persistence layer on a
+     * {@link ExampleEntity} bean, which will be transformed to the expected
+     * result.
      *
      * @param request
-     *            JAXB annotated representation of the SOAP request for the
-     *            entity
-     * @return JAXB annotated representation of the SOAP response with the
-     *         entity
+     *            payload of the SOAP request for the entity
+     * @return payload for the SOAP response with the entity
      */
     @PayloadRoot(localPart = ExampleEntityEndpointConstants.REQUEST,
             namespace = ExampleEntityEndpointConstants.ENTITY_NS)
