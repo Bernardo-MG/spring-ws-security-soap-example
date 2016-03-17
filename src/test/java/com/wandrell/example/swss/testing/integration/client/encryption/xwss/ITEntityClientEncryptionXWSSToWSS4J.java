@@ -27,20 +27,19 @@ package com.wandrell.example.swss.testing.integration.client.encryption.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service using XWSS for the client and WSS4J for the web service.
+ * Implementation of {@code AbstractITEntityClient} for an encrypted web service
+ * using XWSS for the client and WSS4J for the web service.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextConfig.ENCRYPTION })
-@TestPropertySource({ TestPropertiesConfig.ENTITY,
-        TestPropertiesConfig.KEYSTORE,
-        EndpointURLWSS4JPropertiesConfig.ENCRYPTION })
+@ContextConfiguration(locations = { ClientXWSSContextPaths.ENCRYPTION })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
+        EndpointURLWSS4JPropertiesPaths.ENCRYPTION })
 public final class ITEntityClientEncryptionXWSSToWSS4J {
 
     /**

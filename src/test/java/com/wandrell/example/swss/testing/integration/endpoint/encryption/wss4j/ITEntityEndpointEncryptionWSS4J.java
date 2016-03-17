@@ -24,20 +24,23 @@
 
 package com.wandrell.example.swss.testing.integration.endpoint.encryption.wss4j;
 
+import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
+import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for an encryption protected
@@ -53,17 +56,27 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { TestContextConfig.DEFAULT })
-@TestPropertySource({ TestPropertiesConfig.ENTITY,
-        SOAPPropertiesConfig.ENCRYPTION,
-        EndpointURLWSS4JPropertiesConfig.ENCRYPTION })
+@ContextConfiguration(locations = { TestContextPaths.DEFAULT })
+@TestPropertySource({ TestPropertiesPaths.ENTITY,
+        SOAPPropertiesPaths.ENCRYPTION,
+        EndpointURLWSS4JPropertiesPaths.ENCRYPTION })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
+    /**
+     * Id of the returned entity.
+     */
+    @Value("${entity.id}")
+    private Integer entityId;
+    /**
+     * Name of the returned entity.
+     */
+    @Value("${entity.name}")
+    private String  entityName;
     /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
-    private String pathUnsigned;
+    private String  pathUnsigned;
 
     /**
      * Default constructor.
@@ -73,13 +86,40 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
     }
 
     /**
-     * Tests that a message without a signature returns a fault.
+     * Tests that a message correctly encrypted returns the expected value.
      *
      * @throws Exception
      *             never, this is a required declaration
      */
     @Test
-    public final void testEndpoint_Unsigned_ReturnsFault() throws Exception {
+    public final void testEndpoint_Encrypted_ReturnsEntity() throws Exception {
+        final SOAPMessage message; // Response message
+        final Entity entity;       // Entity from the response
+
+        // TODO: Move path to a constant
+        message = callWebService(
+                MessageFactory.newInstance().createMessage(null,
+                        new ClassPathResource(
+                                "soap/request/request-encryption-wss4j.xml")
+                                        .getInputStream()));
+
+        Assert.assertNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
+
+        entity = SOAPParsingUtils.parseEntityFromMessage(message);
+
+        Assert.assertEquals((Integer) entity.getId(), entityId);
+        Assert.assertEquals(entity.getName(), entityName);
+    }
+
+    /**
+     * Tests that an unencrypted message returns a fault.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_Unencrypted_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
         message = callWebService(

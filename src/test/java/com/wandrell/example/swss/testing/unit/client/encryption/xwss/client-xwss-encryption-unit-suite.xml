@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ClientXWSSEncryptionUnit" parallel="instances" thread-count="4">
+
+    <test name="all" verbose="2">
+        <packages>
+            <package name="com.wandrell.example.swss.testing.unit.client.encryption.xwss" />
+        </packages>
+    </test>
+
+</suite>

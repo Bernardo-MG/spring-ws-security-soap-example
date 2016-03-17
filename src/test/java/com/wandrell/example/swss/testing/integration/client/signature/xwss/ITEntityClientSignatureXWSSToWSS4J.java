@@ -27,21 +27,20 @@ package com.wandrell.example.swss.testing.integration.client.signature.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service using XWSS for the client and WSS4J for the web service.
+ * Implementation of {@code AbstractITEntityClient} for a signed web service
+ * using XWSS for the client and WSS4J for the web service.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextConfig.SIGNATURE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY,
-        TestPropertiesConfig.KEYSTORE,
-        EndpointURLWSS4JPropertiesConfig.SIGNATURE })
+@ContextConfiguration(locations = { ClientXWSSContextPaths.SIGNATURE })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
+        EndpointURLWSS4JPropertiesPaths.SIGNATURE })
 public final class ITEntityClientSignatureXWSSToWSS4J
         extends AbstractITEntityClient {
 

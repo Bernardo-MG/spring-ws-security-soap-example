@@ -27,21 +27,21 @@ package com.wandrell.example.swss.testing.integration.client.password.plain.wss4
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
- * Implementation of {@code AbstractITEntityClientInvalid} for a password
+ * Implementation of {@code AbstractITEntityClientInvalid} for a plain password
  * protected web service using WSS4J for the client and XWSS for the web
  * service.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesConfig.USER_INVALID,
-        EndpointURLXWSSPropertiesConfig.SIGNATURE })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesPaths.USER_INVALID,
+        EndpointURLXWSSPropertiesPaths.SIGNATURE })
 public final class ITEntityClientPasswordPlainWSS4JToXWSSInvalid
         extends AbstractITEntityClientInvalid {
 

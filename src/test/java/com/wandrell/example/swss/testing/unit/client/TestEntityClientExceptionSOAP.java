@@ -43,8 +43,8 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 
 /**
  * Unit tests for {@link EntityClient} checking that the client throws
@@ -62,8 +62,8 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesCo
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.UNSECURE })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL })
 public final class TestEntityClientExceptionSOAP
         extends AbstractTestNGSpringContextTests {
 
@@ -84,7 +84,7 @@ public final class TestEntityClientExceptionSOAP
     private String       entityXsdPath;
 
     /**
-     * Constructs a {@code TestEntityClient}.
+     * Constructs a {@code TestEntityClientExceptionSOAP}.
      */
     public TestEntityClientExceptionSOAP() {
         super();

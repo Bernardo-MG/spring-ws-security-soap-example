@@ -32,11 +32,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
@@ -45,13 +45,13 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
-        ServletWSS4JContextConfig.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.PASSWORD_PLAIN,
-        InterceptorWSS4JPropertiesConfig.PASSWORD_PLAIN,
-        EndpointWSS4JPropertiesConfig.PASSWORD_PLAIN,
-        EndpointWSS4JPropertiesConfig.BASE, TestPropertiesConfig.USER })
+@ContextConfiguration(locations = { ServletWSS4JContextPaths.BASE,
+        ServletWSS4JContextPaths.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesPaths.WSDL,
+        SOAPPropertiesPaths.PASSWORD_PLAIN,
+        InterceptorWSS4JPropertiesPaths.PASSWORD_PLAIN,
+        EndpointWSS4JPropertiesPaths.PASSWORD_PLAIN,
+        EndpointWSS4JPropertiesPaths.BASE, TestPropertiesPaths.USER })
 public final class TestEntityEndpointPasswordPlainWSS4J
         extends AbstractTestEntityEndpointRequest {
 

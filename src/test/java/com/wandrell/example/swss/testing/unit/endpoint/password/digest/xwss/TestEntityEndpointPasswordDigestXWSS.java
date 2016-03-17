@@ -32,12 +32,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
@@ -46,13 +46,13 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWSS4JContextConfig.BASE,
-        ServletXWSSContextConfig.PASSWORD_DIGEST })
-@TestPropertySource({ TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.PASSWORD_DIGEST,
-        InterceptorXWSSPropertiesConfig.PASSWORD_DIGEST,
-        EndpointXWSSPropertiesConfig.PASSWORD_DIGEST,
-        EndpointXWSSPropertiesConfig.BASE, TestPropertiesConfig.USER })
+@ContextConfiguration(locations = { ServletWSS4JContextPaths.BASE,
+        ServletXWSSContextPaths.PASSWORD_DIGEST })
+@TestPropertySource({ TestPropertiesPaths.WSDL,
+        SOAPPropertiesPaths.PASSWORD_DIGEST,
+        InterceptorXWSSPropertiesPaths.PASSWORD_DIGEST,
+        EndpointXWSSPropertiesPaths.PASSWORD_DIGEST,
+        EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER })
 public final class TestEntityEndpointPasswordDigestXWSS
         extends AbstractTestEntityEndpointRequest {
 
@@ -73,7 +73,7 @@ public final class TestEntityEndpointPasswordDigestXWSS
     private String username;
 
     /**
-     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
+     * Constructs a {@code TestEntityEndpointPasswordDigestXWSS}.
      */
     public TestEntityEndpointPasswordDigestXWSS() {
         super();

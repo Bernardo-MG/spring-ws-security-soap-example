@@ -37,10 +37,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.config.context.TestContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -59,10 +59,10 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(
-        locations = { TestContextConfig.DEFAULT, TestContextConfig.KEYSTORE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY,
-        TestPropertiesConfig.KEYSTORE, SOAPPropertiesConfig.SIGNATURE,
-        EndpointURLXWSSPropertiesConfig.SIGNATURE })
+        locations = { TestContextPaths.DEFAULT, TestContextPaths.KEYSTORE })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
+        SOAPPropertiesPaths.SIGNATURE,
+        EndpointURLXWSSPropertiesPaths.SIGNATURE })
 public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
     /**
@@ -133,8 +133,8 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
-        // message =
-        // callWebService(securityUtils.getSignedMessage(alias,password,alias,pathInvalid,keystore));
+        // message = callWebService(SecurityUtils.getSignedMessage(pathUnsigned,
+        // alias, password, alias, keystore));
 
         // TODO: Get this working
 

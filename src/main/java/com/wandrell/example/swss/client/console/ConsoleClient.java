@@ -46,60 +46,52 @@ import com.wandrell.example.ws.generated.entity.Entity;
 public final class ConsoleClient {
 
     /**
-     * Template for generating the final endpoint URL.
-     * <p>
-     * This is just the default URI for the web service, to which the endpoint
-     * path is to be added.
-     */
-    private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
-    /**
-     * Property key for the endpoint URI.
-     */
-    private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
-
-    /**
      * Enumeration for all the security types supported by the console client.
-     * 
+     *
      * @author Bernardo Martínez Garrido
      */
     private enum Security {
         /**
          * Encryption using WSS4J.
          */
-        ENCRYPTION_WSS4J,
-        /**
-         * Encryption using XWSS.
-         */
-        ENCRYPTION_XWSS,
-        /**
-         * Digested password using WSS4J.
-         */
-        PASSWORD_DIGEST_WSS4J,
-        /**
-         * Digested password using XWSS.
-         */
-        PASSWORD_DIGEST_XWSS,
-        /**
-         * Plain password using WSS4J.
-         */
-        PASSWORD_PLAIN_WSS4J,
-        /**
-         * Plain password using XWSS.
-         */
-        PASSWORD_PLAIN_XWSS,
-        /**
-         * Signature using WSS4J.
-         */
-        SIGNATURE_WSS4J,
-        /**
-         * Signature using XWSS.
-         */
-        SIGNATURE_XWSS,
-        /**
-         * Unsecure.
-         */
+        ENCRYPTION_WSS4J, /**
+                           * Encryption using XWSS.
+                           */
+        ENCRYPTION_XWSS, /**
+                          * Digested password using WSS4J.
+                          */
+        PASSWORD_DIGEST_WSS4J, /**
+                                * Digested password using XWSS.
+                                */
+        PASSWORD_DIGEST_XWSS, /**
+                               * Plain password using WSS4J.
+                               */
+        PASSWORD_PLAIN_WSS4J, /**
+                               * Plain password using XWSS.
+                               */
+        PASSWORD_PLAIN_XWSS, /**
+                              * Signature using WSS4J.
+                              */
+        SIGNATURE_WSS4J, /**
+                          * Signature using XWSS.
+                          */
+        SIGNATURE_XWSS, /**
+                         * Unsecure.
+                         */
         UNSECURE
     }
+    /**
+     * Template for generating the final endpoint URL.
+     * <p>
+     * This is just the default URI for the web service, to which the endpoint
+     * path is to be added.
+     */
+    private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
+
+    /**
+     * Property key for the endpoint URI.
+     */
+    private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
 
     /**
      * Main runnable method.
@@ -128,7 +120,7 @@ public final class ConsoleClient {
      * may occur.
      * <p>
      * If the endpoint can't be reached a warning will be printed on the screen.
-     * 
+     *
      * @param client
      *            {@code EntityClient} which will call the endpoint
      * @param uri
@@ -182,7 +174,7 @@ public final class ConsoleClient {
      * method.
      * <p>
      * These are loaded from Spring context files.
-     * 
+     *
      * @return a {@code EntityClient} instance for each supported security
      *         method
      */
@@ -215,7 +207,7 @@ public final class ConsoleClient {
     /**
      * Returns the URI for an endpoint. This is created from the path loaded
      * from a properties file, and the endpoint URL template.
-     * 
+     *
      * @param propertiesPath
      *            path to the properties file with the endpoint path
      * @return the fill URI for the endpoint
@@ -238,7 +230,7 @@ public final class ConsoleClient {
      * file.
      * <p>
      * This is loaded from a Spring context file.
-     * 
+     *
      * @param contextPath
      *            path to the context file.
      * @return a {@code EntityClient} loaded from the specified context
@@ -262,7 +254,7 @@ public final class ConsoleClient {
      * <p>
      * This will try to parse an integer until one is found, rejecting all the
      * invalid lines.
-     * 
+     *
      * @param scanner
      *            scanner for the input
      * @return an integer read from the input
@@ -291,7 +283,7 @@ public final class ConsoleClient {
 
     /**
      * Returns all the endpoint URIs, one for each security method.
-     * 
+     *
      * @return an URI for each supported security method
      * @throws IOException
      *             if any error occurs while loading the URIs
@@ -300,31 +292,31 @@ public final class ConsoleClient {
         final Map<Security, String> uris; // Returned URIs
 
         uris = new LinkedHashMap<Security, String>();
-        uris.put(Security.UNSECURE, getEndpointUri(
-                "context/endpoint/endpoint-unsecure.properties"));
+        uris.put(Security.UNSECURE,
+                getEndpointUri("config/endpoint/endpoint-unsecure.properties"));
         uris.put(Security.PASSWORD_PLAIN_XWSS, getEndpointUri(
-                "context/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties"));
+                "config/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties"));
         uris.put(Security.PASSWORD_PLAIN_WSS4J, getEndpointUri(
-                "context/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties"));
+                "config/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties"));
         uris.put(Security.PASSWORD_DIGEST_XWSS, getEndpointUri(
-                "context/endpoint/password/digest/xwss/endpoint-password-digest-xwss.properties"));
+                "config/endpoint/password/digest/xwss/endpoint-password-digest-xwss.properties"));
         uris.put(Security.PASSWORD_DIGEST_WSS4J, getEndpointUri(
-                "context/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties"));
+                "config/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties"));
         uris.put(Security.SIGNATURE_XWSS, getEndpointUri(
-                "context/endpoint/signature/xwss/endpoint-signature-xwss.properties"));
+                "config/endpoint/signature/xwss/endpoint-signature-xwss.properties"));
         uris.put(Security.SIGNATURE_WSS4J, getEndpointUri(
-                "context/endpoint/signature/wss4j/endpoint-signature-wss4j.properties"));
+                "config/endpoint/signature/wss4j/endpoint-signature-wss4j.properties"));
         uris.put(Security.ENCRYPTION_XWSS, getEndpointUri(
-                "context/endpoint/encryption/xwss/endpoint-encryption-xwss.properties"));
+                "config/endpoint/encryption/xwss/endpoint-encryption-xwss.properties"));
         uris.put(Security.ENCRYPTION_WSS4J, getEndpointUri(
-                "context/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties"));
+                "config/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties"));
 
         return uris;
     }
 
     /**
      * Prints all the main options available to the console client.
-     * 
+     *
      * @param output
      *            output where the options will be printed
      */
@@ -344,7 +336,7 @@ public final class ConsoleClient {
 
     /**
      * Prints the client help information.
-     * 
+     *
      * @param output
      *            output where the information will be printed
      */
@@ -362,7 +354,7 @@ public final class ConsoleClient {
 
     /**
      * Prints the header telling which endpoint is going to be queried.
-     * 
+     *
      * @param uri
      *            URI for the endpoint
      * @param security
@@ -419,7 +411,7 @@ public final class ConsoleClient {
 
     /**
      * Prints the client title.
-     * 
+     *
      * @param output
      *            output where the client title will be printed
      */
@@ -434,7 +426,7 @@ public final class ConsoleClient {
      * <p>
      * This is what keeps the client running and living. It can be stopped by
      * the user through a specific console command.
-     * 
+     *
      * @param output
      *            output where all the information will be printed
      * @param clients
@@ -517,7 +509,7 @@ public final class ConsoleClient {
 
     /**
      * Waits until the 'enter' key is pressed.
-     * 
+     *
      * @param output
      *            output where the information will be printed
      * @param scanner

@@ -27,20 +27,21 @@ package com.wandrell.example.swss.testing.integration.client.password.digest.wss
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClient;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for a password protected web
- * service using WSS4J for the client and XWSS for the web service.
+ * Implementation of {@code AbstractITEntityClient} for a digested password
+ * protected web service using WSS4J for the client and XWSS for the web
+ * service.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.PASSWORD_DIGEST })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.USER,
-        EndpointURLXWSSPropertiesConfig.PASSWORD_DIGEST })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.PASSWORD_DIGEST })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.USER,
+        EndpointURLXWSSPropertiesPaths.PASSWORD_DIGEST })
 public final class ITEntityClientPasswordDigestWSS4JToXWSS
         extends AbstractITEntityClient {
 

@@ -26,9 +26,6 @@ package com.wandrell.example.swss.testing.unit.client;
 
 import java.io.IOException;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -44,14 +41,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Unit tests for {@link EntityClient} checking that the client works as
- * expected.
+ * expected when not using any security.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -61,9 +58,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.UNSECURE })
-@TestPropertySource({ TestPropertiesConfig.ENTITY, TestPropertiesConfig.WSDL,
-        SOAPPropertiesConfig.UNSECURE })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.UNSECURE })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
+        SOAPPropertiesPaths.UNSECURE })
 public final class TestEntityClientUnsecure
         extends AbstractTestNGSpringContextTests {
 
@@ -99,7 +96,7 @@ public final class TestEntityClientUnsecure
     private String       responsePayloadPath;
 
     /**
-     * Constructs a {@code TestEntityClient}.
+     * Constructs a {@code TestEntityClientUnsecure}.
      */
     public TestEntityClientUnsecure() {
         super();
@@ -116,7 +113,6 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
@@ -124,9 +120,8 @@ public final class TestEntityClientUnsecure
                 .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(ClassLoader.class
-                .getResourceAsStream(responsePayloadInvalidPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
+        responseCreator = ResponseCreators
+                .withPayload(new ClassPathResource(responsePayloadInvalidPath));
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
@@ -152,7 +147,6 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Source responsePayload;          // SOAP payload for the response
         final Entity result;                   // Queried entity
 
         // Creates the request matcher
@@ -160,9 +154,8 @@ public final class TestEntityClientUnsecure
                 .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
-        responsePayload = new StreamSource(
-                ClassLoader.class.getResourceAsStream(responsePayloadPath));
-        responseCreator = ResponseCreators.withPayload(responsePayload);
+        responseCreator = ResponseCreators
+                .withPayload(new ClassPathResource(responsePayloadPath));
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);

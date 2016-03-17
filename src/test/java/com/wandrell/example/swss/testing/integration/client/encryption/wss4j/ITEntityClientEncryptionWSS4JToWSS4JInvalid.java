@@ -27,21 +27,20 @@ package com.wandrell.example.swss.testing.integration.client.encryption.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextConfig;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesConfig;
-import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesConfig;
+import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
- * Implementation of {@code AbstractITEntityClientInvalid} for a signature
- * protected web service using WSS4J for the client and XWSS for the web
- * service.
+ * Implementation of {@code AbstractITEntityClientInvalid} for an encrypted web
+ * service using WSS4J for the client and XWSS for the web service.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextConfig.ENCRYPTION })
-@TestPropertySource({ TestPropertiesConfig.KEYSTORE_INVALID,
-        EndpointURLWSS4JPropertiesConfig.ENCRYPTION })
+@ContextConfiguration(locations = { ClientWSS4JContextPaths.ENCRYPTION })
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE_INVALID,
+        EndpointURLWSS4JPropertiesPaths.ENCRYPTION })
 public final class ITEntityClientEncryptionWSS4JToWSS4JInvalid
         extends AbstractITEntityClientInvalid {
 
