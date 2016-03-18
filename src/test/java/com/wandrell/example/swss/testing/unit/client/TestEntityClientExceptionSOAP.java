@@ -29,14 +29,12 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.client.WebServiceTransportException;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.test.client.MockWebServiceServer;
-import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
@@ -77,11 +75,6 @@ public final class TestEntityClientExceptionSOAP
      */
     @Value("${entity.id}")
     private Integer      entityId;
-    /**
-     * Path to XSD file which validates the SOAP messages.
-     */
-    @Value("${xsd.entity.path}")
-    private String       entityXsdPath;
 
     /**
      * Constructs a {@code TestEntityClientExceptionSOAP}.
@@ -100,19 +93,15 @@ public final class TestEntityClientExceptionSOAP
     @Test(expectedExceptions = WebServiceTransportException.class)
     public final void testClient_Error_Exception() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-
-        // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responseCreator = ResponseCreators.withError("Error");
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(requestMatcher).andRespond(responseCreator);
+        mockServer.expect(RequestMatchers.anything())
+                .andRespond(responseCreator);
 
         // Calls the server mock
         client.getEntity("http:somewhere.com", entityId);
@@ -127,12 +116,7 @@ public final class TestEntityClientExceptionSOAP
     @Test(expectedExceptions = { SoapFaultClientException.class })
     public final void testClient_Fault_Exception() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-
-        // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responseCreator = ResponseCreators
@@ -140,7 +124,8 @@ public final class TestEntityClientExceptionSOAP
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(requestMatcher).andRespond(responseCreator);
+        mockServer.expect(RequestMatchers.anything())
+                .andRespond(responseCreator);
 
         // Calls the server mock
         client.getEntity("http:somewhere.com", entityId);
@@ -157,12 +142,7 @@ public final class TestEntityClientExceptionSOAP
     public final void testClient_VersionMismatch_Exception()
             throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-
-        // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
 
         // Creates the response
         responseCreator = ResponseCreators.withVersionMismatchFault(
@@ -170,7 +150,8 @@ public final class TestEntityClientExceptionSOAP
 
         // Creates the server mock
         mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(requestMatcher).andRespond(responseCreator);
+        mockServer.expect(RequestMatchers.anything())
+                .andRespond(responseCreator);
 
         // Calls the server mock
         client.getEntity("http:somewhere.com", entityId);

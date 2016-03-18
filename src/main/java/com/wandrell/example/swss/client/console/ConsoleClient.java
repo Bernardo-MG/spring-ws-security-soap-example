@@ -80,6 +80,7 @@ public final class ConsoleClient {
                          */
         UNSECURE
     }
+
     /**
      * Template for generating the final endpoint URL.
      * <p>
