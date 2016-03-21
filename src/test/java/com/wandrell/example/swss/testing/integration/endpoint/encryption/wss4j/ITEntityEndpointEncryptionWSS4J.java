@@ -24,11 +24,9 @@
 
 package com.wandrell.example.swss.testing.integration.endpoint.encryption.wss4j;
 
-import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
@@ -97,11 +95,8 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
         final Entity entity;       // Entity from the response
 
         // TODO: Move path to a constant
-        message = callWebService(
-                MessageFactory.newInstance().createMessage(null,
-                        new ClassPathResource(
-                                "soap/request/request-encryption-wss4j.xml")
-                                        .getInputStream()));
+        message = callWebService(SOAPParsingUtils.parseMessageFromFile(
+                "soap/request/request-encryption-wss4j.xml"));
 
         Assert.assertNull(
                 message.getSOAPPart().getEnvelope().getBody().getFault());
