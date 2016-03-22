@@ -32,7 +32,7 @@ package com.wandrell.example.swss.endpoint;
  * 
  * @author Bernardo Martínez Garrido
  */
-public class ExampleEntityEndpointConstants {
+public final class ExampleEntityEndpointConstants {
 
     /**
      * The action for acquiring the entities.
