@@ -31,9 +31,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.soap.MessageFactory;
-import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
+
+import org.springframework.core.io.ClassPathResource;
 
 import com.wandrell.example.ws.generated.entity.Entity;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
@@ -90,10 +91,10 @@ public final class SOAPParsingUtils {
         final MessageFactory factory; // Factory for generating the message
         final InputStream streamFile; // Stream for the file contents
 
-        streamFile = ClassLoader.class.getResourceAsStream(path);
+        streamFile = new ClassPathResource(path).getInputStream();
         factory = MessageFactory.newInstance();
 
-        return factory.createMessage(new MimeHeaders(), streamFile);
+        return factory.createMessage(null, streamFile);
     }
 
     /**

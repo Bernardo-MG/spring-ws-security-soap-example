@@ -105,7 +105,7 @@ public final class SecurityUtils {
      */
     public static final SOAPMessage getDigestedPasswordMessage(
             final String path, final String user, final String password)
-                    throws Exception {
+            throws Exception {
         final MessageFactory factory;
         final SOAPMessage message;
         final ByteArrayOutputStream out;
@@ -149,11 +149,11 @@ public final class SecurityUtils {
     public static final SOAPMessage getSignedMessage(final String pathBase,
             final String privateKeyAlias, final String privateKeyPass,
             final String certificateAlias, final KeyStore keystore)
-                    throws UnrecoverableKeyException, KeyStoreException,
-                    NoSuchAlgorithmException, SAXException, IOException,
-                    ParserConfigurationException, XMLSecurityException,
-                    SOAPException, TransformerConfigurationException,
-                    TransformerException, CertificateEncodingException {
+            throws UnrecoverableKeyException, KeyStoreException,
+            NoSuchAlgorithmException, SAXException, IOException,
+            ParserConfigurationException, XMLSecurityException, SOAPException,
+            TransformerConfigurationException, TransformerException,
+            CertificateEncodingException {
         Element root = null;
         String BaseURI = new ClassPathResource(pathBase).getURI().toString();
         SOAPMessage soapMessage;
@@ -200,7 +200,7 @@ public final class SecurityUtils {
             final String pathBase, final String privateKeyAlias,
             final String privateKeyPass, final String certificateAlias,
             final KeyStore keystore)
-                    throws UnsupportedEncodingException, Exception {
+            throws UnsupportedEncodingException, Exception {
         SOAPMessage msg = SecurityUtils.getSignedMessage(pathBase,
                 privateKeyAlias, privateKeyPass, certificateAlias, keystore);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -227,7 +227,7 @@ public final class SecurityUtils {
      */
     private static final String generateDigest(final String password,
             final String date, final String nonce)
-                    throws UnsupportedEncodingException {
+            throws UnsupportedEncodingException {
         final ByteBuffer buf;
         byte[] toHash;
         byte[] hash;
@@ -278,7 +278,7 @@ public final class SecurityUtils {
      */
     private static final String getDigestedPasswordMessageContent(
             final String path, final String user, final String password)
-                    throws Exception {
+            throws Exception {
         final String nonce;
         final String date;
         final String digest;
@@ -357,7 +357,7 @@ public final class SecurityUtils {
 
     private static final String getPlainPasswordMessageContent(
             final String path, final String user, final String password)
-                    throws Exception {
+            throws Exception {
         final Configuration cfg;
         final Template template;
         final Map<String, Object> data;
