@@ -14,7 +14,7 @@ Several versions of the same endpoint are created, each using a different securi
 protocol. And for each of them there is a client.
 
 All these endpoints can be accessed directly, by using [their own URLs][endpoint-url],
-or with the help of the console client, which just gives an UI to the various clients.
+or with the help of the [console client][console-client], which just gives an UI to the various clients.
 
 ## Security
 
@@ -34,3 +34,4 @@ Each of them are offered in a XWSS and WSS4J variant.
 [wss4j]: https://ws.apache.org/wss4j/
 
 [endpoint-url]: ./urls.html
+[console-client]: ./client.html#consoleclient

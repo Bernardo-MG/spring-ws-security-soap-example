@@ -1,6 +1,6 @@
 # Configuration info
 
-While most of the configuration is very simple, a few things should be detailed a bit to make sure the project is easily understood.
+While the architecture tries to be very simple there are some things which require a bit of detailing.
 
 ## Persistence
 
