@@ -52,7 +52,7 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
 @ContextConfiguration(locations = { ServletXWSSContextPaths.BASE,
         ServletXWSSContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
-        SOAPPropertiesPaths.ENCRYPTION,
+        SOAPPropertiesPaths.ENCRYPTION_XWSS,
         InterceptorXWSSPropertiesPaths.ENCRYPTION,
         EndpointXWSSPropertiesPaths.ENCRYPTION,
         EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER })

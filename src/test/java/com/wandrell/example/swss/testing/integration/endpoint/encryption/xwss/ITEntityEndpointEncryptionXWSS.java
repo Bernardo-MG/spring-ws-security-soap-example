@@ -56,7 +56,7 @@ import com.wandrell.example.ws.generated.entity.Entity;
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY,
-        SOAPPropertiesPaths.ENCRYPTION,
+        SOAPPropertiesPaths.ENCRYPTION_XWSS,
         EndpointURLXWSSPropertiesPaths.ENCRYPTION })
 public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
 
@@ -75,6 +75,11 @@ public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
      */
     @Value("${soap.request.invalid.path}")
     private String  pathUnsigned;
+    /**
+     * Path to the file containing the valid SOAP request.
+     */
+    @Value("${soap.request.path}")
+    private String  pathValid;
 
     /**
      * Default constructor.
@@ -91,13 +96,12 @@ public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
      */
     @Test
     public final void testEndpoint_Encrypted_ReturnsEntity() throws Exception {
-
         final SOAPMessage message; // Response message
         final Entity entity;       // Entity from the response
 
         // TODO: Move path to a constant
-        message = callWebService(SOAPParsingUtils.parseMessageFromFile(
-                "soap/request/request-encryption-xwss.xml"));
+        message = callWebService(
+                SOAPParsingUtils.parseMessageFromFile(pathValid));
 
         Assert.assertNull(
                 message.getSOAPPart().getEnvelope().getBody().getFault());
