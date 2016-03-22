@@ -76,7 +76,7 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
-    private String   pathUnsigned;
+    private String   pathInvalid;
 
     /**
      * Default constructor.
@@ -87,7 +87,7 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
     @Override
     protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathUnsigned);
+        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
     }
 
     @Override

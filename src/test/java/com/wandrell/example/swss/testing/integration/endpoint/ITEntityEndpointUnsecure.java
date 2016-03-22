@@ -56,25 +56,15 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer entityId;
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String  entityName;
-    /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
-    private String  pathInvalid;
+    private String pathInvalid;
     /**
      * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.path}")
-    private String  pathValid;
+    private String pathValid;
 
     /**
      * Constructs a {@code ITEntityEndpointUnsecure}.

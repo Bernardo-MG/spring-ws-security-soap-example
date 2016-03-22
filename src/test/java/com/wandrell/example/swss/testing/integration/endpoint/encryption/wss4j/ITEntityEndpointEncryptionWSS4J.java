@@ -55,7 +55,7 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
-    private String pathUnencrypted;
+    private String pathInvalid;
     /**
      * Path to the file containing the valid SOAP request.
      */
@@ -71,7 +71,7 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     @Override
     protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathUnencrypted);
+        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
     }
 
     @Override
