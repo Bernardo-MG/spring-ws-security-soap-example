@@ -1,8 +1,8 @@
 # Endpoint URLs
 
-Each combination of authentication methods and WSS implementations is mapped to their own URL:
+Each endpoint uses their own combination of security protocol and WSS implementation:
 
-|Authentication method|WSS Implementation|URL|
+|Security|WSS Implementation|URL|
 |:-:|:-:|:-:|
 |None|None|[http://localhost:8080/swss/unsecure/entities](http://localhost:8080/swss/unsecure/entities)|
 |Plain Password|XWSS|[http://localhost:8080/swss/password/plain/xwss/entities](http://localhost:8080/swss/password/plain/xwss/entities)|
@@ -16,9 +16,9 @@ Each combination of authentication methods and WSS implementations is mapped to 
 
 ## WSDL
 
-Additionally there is a WSDL file for each of these endpoints, which is created by just adding the ".wsdl" suffix to the URL.
+All these endpoints generate a WSDL defining their interface, this is created by just adding the ".wsdl" suffix to the URL.
 
-|Authentication method|WSS Implementation|URL|
+|Security|WSS Implementation|URL|
 |:-:|:-:|:-:|
 |None|None|[http://localhost:8080/swss/unsecure/entities.wsdl](http://localhost:8080/swss/unsecure/entities.wsdl)|
 |Plain Password|XWSS|[http://localhost:8080/swss/password/plain/xwss/entities.wsdl](http://localhost:8080/swss/password/plain/xwss/entities.wsdl)|
