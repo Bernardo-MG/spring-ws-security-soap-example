@@ -39,7 +39,6 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4J
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for a password protected
@@ -47,8 +46,6 @@ import com.wandrell.example.ws.generated.entity.Entity;
  * <p>
  * It adds the following cases:
  * <ol>
- * <li>A valid message returns the expected value.</li>
- * <li>A message without a password returns a fault.</li>
  * <li>A message with a wrong password returns a fault.</li>
  * <li>A message with a wrong user returns a fault.</li>
  * </ol>
@@ -65,58 +62,31 @@ public final class ITEntityEndpointPasswordPlainWSS4J
         extends AbstractITEndpoint {
 
     /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer entityId;
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String  entityName;
-    /**
      * Password for the passworded message.
      */
     @Value("${security.credentials.password}")
-    private String  password;
+    private String password;
     /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
-    private String  pathInvalid;
+    private String pathInvalid;
     /**
      * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.template.path}")
-    private String  pathValid;
+    private String pathValid;
     /**
      * Username for the passworded message.
      */
     @Value("${security.credentials.user}")
-    private String  username;
+    private String username;
 
     /**
      * Default constructor.
      */
     public ITEntityEndpointPasswordPlainWSS4J() {
         super();
-    }
-
-    /**
-     * Tests that a message with invalid content returns a fault.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
-        final SOAPMessage message; // Response message
-
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
-
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
     /**
@@ -154,28 +124,15 @@ public final class ITEntityEndpointPasswordPlainWSS4J
                 message.getSOAPPart().getEnvelope().getBody().getFault());
     }
 
-    /**
-     * Tests that a valid message returns the expected value.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_ValidUserAndPassword_ReturnsEntity()
-            throws Exception {
-        final SOAPMessage message; // Response message
-        final Entity entity;       // Entity from the response
+    @Override
+    protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
+    }
 
-        message = callWebService(SecurityUtils
-                .getPlainPasswordMessage(pathValid, username, password));
-
-        Assert.assertNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
-
-        entity = SOAPParsingUtils.parseEntityFromMessage(message);
-
-        Assert.assertEquals((Integer) entity.getId(), entityId);
-        Assert.assertEquals(entity.getName(), entityName);
+    @Override
+    protected final SOAPMessage getValidSoapMessage() throws Exception {
+        return SecurityUtils.getPlainPasswordMessage(pathValid, username,
+                password);
     }
 
 }

@@ -48,6 +48,8 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
+import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
+import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Abstract integration tests for an endpoint testing that it handles messages
@@ -57,6 +59,8 @@ import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
  * <ol>
  * <li>The WSDL is being generated.</li>
  * <li>The WSDL contains the correct SOAP address.</li>
+ * <li>A valid message returns the expected value.</li>
+ * <li>An invalid message returns a fault.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running, and a Spring
@@ -68,21 +72,75 @@ public abstract class AbstractITEndpoint
         extends AbstractTestNGSpringContextTests {
 
     /**
+     * Id of the returned entity.
+     */
+    @Value("${entity.id}")
+    private Integer entityId;
+    /**
+     * Name of the returned entity.
+     */
+    @Value("${entity.name}")
+    private String  entityName;
+    /**
      * URL to the WSDL of the web service being tested.
      */
     @Value("${endpoint.wsdl.url}")
-    private String wsdlURL;
+    private String  wsdlURL;
     /**
      * URL to the web service being tested.
      */
     @Value("${endpoint.url}")
-    private String wsURL;
+    private String  wsURL;
 
     /**
      * Default constructor.
      */
     public AbstractITEndpoint() {
         super();
+    }
+
+    /**
+     * Tests that an invalid message returns a fault.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
+        final SOAPMessage message; // Response message
+
+        message = callWebService(getInvalidSoapMessage());
+
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
+    }
+
+    /**
+     * Tests that a valid message returns the expected value.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_Valid_ReturnsEntity() throws Exception {
+        final SOAPMessage message; // Response message
+        final SOAPMessage req;     // Request message
+        final Entity entity;       // Entity from the response
+
+        req = getValidSoapMessage();
+        if (req != null) {
+            // TODO: This is just to avoid problems with the test not yet
+            // working
+            message = callWebService(getValidSoapMessage());
+
+            Assert.assertNull(
+                    message.getSOAPPart().getEnvelope().getBody().getFault());
+
+            entity = SOAPParsingUtils.parseEntityFromMessage(message);
+
+            Assert.assertEquals((Integer) entity.getId(), entityId);
+            Assert.assertEquals(entity.getName(), entityName);
+        }
     }
 
     /**
@@ -189,5 +247,23 @@ public abstract class AbstractITEndpoint
 
         return soapConnectionFactory.createConnection().call(request, wsURL);
     }
+
+    /**
+     * Returns an invalid SOAP message for the endpoint being tested.
+     * 
+     * @return an invalid SOAP message
+     * @throws Exception
+     *             if any error occurs while preparing the SOAP message
+     */
+    protected abstract SOAPMessage getInvalidSoapMessage() throws Exception;
+
+    /**
+     * Returns a valid SOAP message for the endpoint being tested.
+     * 
+     * @return a valid SOAP message
+     * @throws Exception
+     *             if any error occurs while preparing the SOAP message
+     */
+    protected abstract SOAPMessage getValidSoapMessage() throws Exception;
 
 }

@@ -29,8 +29,6 @@ import javax.xml.soap.SOAPMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
@@ -38,17 +36,10 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4J
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for an encryption protected
  * endpoint using WSS4J.
- * <p>
- * It adds the following cases:
- * <ol>
- * <li>A message without a signature returns a fault.</li>
- * <li>A message with a valid signature returns the expected value.</li>
- * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *
@@ -61,25 +52,15 @@ import com.wandrell.example.ws.generated.entity.Entity;
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer entityId;
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String  entityName;
-    /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
-    private String  pathUnsigned;
+    private String pathUnencrypted;
     /**
      * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.path}")
-    private String  pathValid;
+    private String pathValid;
 
     /**
      * Default constructor.
@@ -88,45 +69,14 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
         super();
     }
 
-    /**
-     * Tests that a message correctly encrypted returns the expected value.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Encrypted_ReturnsEntity() throws Exception {
-        final SOAPMessage message; // Response message
-        final Entity entity;       // Entity from the response
-
-        // TODO: Move path to a constant
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathValid));
-
-        Assert.assertNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
-
-        entity = SOAPParsingUtils.parseEntityFromMessage(message);
-
-        Assert.assertEquals((Integer) entity.getId(), entityId);
-        Assert.assertEquals(entity.getName(), entityName);
+    @Override
+    protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+        return SOAPParsingUtils.parseMessageFromFile(pathUnencrypted);
     }
 
-    /**
-     * Tests that an unencrypted message returns a fault.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Unencrypted_ReturnsFault() throws Exception {
-        final SOAPMessage message; // Response message
-
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathUnsigned));
-
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+    @Override
+    protected final SOAPMessage getValidSoapMessage() throws Exception {
+        return SOAPParsingUtils.parseMessageFromFile(pathValid);
     }
 
 }

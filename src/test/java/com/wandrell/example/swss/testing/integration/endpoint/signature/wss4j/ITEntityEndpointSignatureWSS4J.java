@@ -33,8 +33,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
@@ -42,17 +40,10 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4J
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for a signature protected
  * endpoint using WSS4J.
- * <p>
- * It adds the following cases:
- * <ol>
- * <li>A message without a signature returns a fault.</li>
- * <li>A message with a valid signature returns the expected value.</li>
- * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *
@@ -70,16 +61,6 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
      */
     @Value("${keystore.alias}")
     private String   alias;
-    /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer  entityId;
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String   entityName;
     /**
      * Key store for signing messages.
      */
@@ -104,47 +85,16 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
         super();
     }
 
-    /**
-     * Tests that a message without a signature returns a fault.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Unsigned_ReturnsFault() throws Exception {
-        final SOAPMessage message; // Response message
-
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathUnsigned));
-
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+    @Override
+    protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+        return SOAPParsingUtils.parseMessageFromFile(pathUnsigned);
     }
 
-    /**
-     * Tests that a message with a valid signature returns the expected value.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_ValidSignature_ReturnsEntity()
-            throws Exception {
-        final SOAPMessage message; // Response message
-        final Entity entity;       // Entity from the response
-
-        // TODO: Get this working
-
-        // message = callWebService(SecurityUtils.getSignedMessage(pathUnsigned,
-        // alias, password, alias, keystore));
-
-        // Assert.assertNull(
-        // message.getSOAPPart().getEnvelope().getBody().getFault());
-
-        // entity = SOAPParsingUtils.parseEntityFromMessage(message);
-
-        // Assert.assertEquals((Integer) entity.getId(), entityId);
-        // Assert.assertEquals(entity.getName(), entityName);
+    @Override
+    protected final SOAPMessage getValidSoapMessage() throws Exception {
+        // return SecurityUtils.getSignedMessage(pathUnsigned,
+        // alias, password, alias, keystore);
+        return null;
     }
 
 }

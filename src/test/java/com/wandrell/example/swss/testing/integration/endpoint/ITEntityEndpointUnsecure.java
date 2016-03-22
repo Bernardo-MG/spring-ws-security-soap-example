@@ -24,17 +24,11 @@
 
 package com.wandrell.example.swss.testing.integration.endpoint;
 
-import java.io.IOException;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
@@ -42,7 +36,6 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSP
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Implementation of {@code AbstractITEndpoint} for an unsecured endpoint.
@@ -90,60 +83,14 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
         super();
     }
 
-    /**
-     * Tests that a message with invalid content returns a fault.
-     *
-     * @throws UnsupportedOperationException
-     *             never, this is a required declaration
-     * @throws SOAPException
-     *             never, this is a required declaration
-     * @throws IOException
-     *             never, this is a required declaration
-     * @throws JAXBException
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Invalid_ReturnsFault()
-            throws UnsupportedOperationException, SOAPException, IOException,
-            JAXBException {
-        final SOAPMessage message; // Response message
-
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathInvalid));
-
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
+    @Override
+    protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
     }
 
-    /**
-     * Tests that a valid message returns the expected value.
-     *
-     * @throws UnsupportedOperationException
-     *             never, this is a required declaration
-     * @throws SOAPException
-     *             never, this is a required declaration
-     * @throws IOException
-     *             never, this is a required declaration
-     * @throws JAXBException
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Valid_ReturnsEntity()
-            throws UnsupportedOperationException, SOAPException, IOException,
-            JAXBException {
-        final SOAPMessage message; // Response message
-        final Entity entity;       // Entity from the response
-
-        message = callWebService(
-                SOAPParsingUtils.parseMessageFromFile(pathValid));
-
-        Assert.assertNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
-
-        entity = SOAPParsingUtils.parseEntityFromMessage(message);
-
-        Assert.assertEquals((Integer) entity.getId(), entityId);
-        Assert.assertEquals(entity.getName(), entityName);
+    @Override
+    protected final SOAPMessage getValidSoapMessage() throws Exception {
+        return SOAPParsingUtils.parseMessageFromFile(pathValid);
     }
 
 }
