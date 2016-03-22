@@ -21,7 +21,8 @@ or with the help of the [console client][console-client], which just gives an UI
 These are the security protocols used for the endpoints:
 
 - No security, for the base service.
-- Username and password header, both plain and digested variants.
+- Username and plain password header.
+- Username and digested password header.
 - Signed message.
 - Encrypted data.
 
