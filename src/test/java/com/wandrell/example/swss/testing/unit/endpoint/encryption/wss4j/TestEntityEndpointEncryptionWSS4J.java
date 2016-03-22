@@ -24,13 +24,9 @@
 
 package com.wandrell.example.swss.testing.unit.endpoint.encryption.wss4j;
 
-import java.security.KeyStore;
-
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
@@ -53,7 +49,7 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
         ServletWSS4JContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
         TestContextPaths.KEYSTORE_WSS4J })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
-        SOAPPropertiesPaths.ENCRYPTION_XWSS,
+        SOAPPropertiesPaths.ENCRYPTION_WSS4J,
         InterceptorWSS4JPropertiesPaths.ENCRYPTION,
         EndpointWSS4JPropertiesPaths.ENCRYPTION,
         EndpointWSS4JPropertiesPaths.BASE, TestPropertiesPaths.USER,
@@ -61,36 +57,10 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
 public final class TestEntityEndpointEncryptionWSS4J {
 
     /**
-     * Alias for the certificate for signing messages.
-     */
-    @Value("${keystore.alias}")
-    private String   alias;
-    /**
-     * Key store for signing messages.
-     */
-    @Autowired
-    @Qualifier("keyStore")
-    private KeyStore keystore;
-    /**
-     * Password for the passworded message.
-     */
-    @Value("${security.credentials.password}")
-    private String   password;
-    /**
-     * Password for the certificate for signing messages.
-     */
-    @Value("${keystore.password}")
-    private String   passwordKey;
-    /**
-     * Path to the file containing the unsecured SOAP request.
+     * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.path}")
-    private String   pathUnsecure;
-    /**
-     * Username for the passworded message.
-     */
-    @Value("${security.credentials.user}")
-    private String   username;
+    private String pathValid;
 
     /**
      * Constructs a {@code TestEntityEndpointEncryptionWSS4J}.
@@ -103,8 +73,7 @@ public final class TestEntityEndpointEncryptionWSS4J {
     protected final Source getRequestEnvelope() {
         try {
             return new StreamSource(
-                    new ClassPathResource("soap/request/request-encryption.xml")
-                            .getInputStream());
+                    new ClassPathResource(pathValid).getInputStream());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
