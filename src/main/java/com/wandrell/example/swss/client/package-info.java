@@ -27,8 +27,8 @@
  * The only client included, the
  * {@link com.wandrell.example.swss.client.EntityClient EntityClient}, is
  * prepared for working with the the
- * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint ExampleEntityEndpoint}, no
- * matter the authentication method used.
+ * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
+ * ExampleEntityEndpoint}, no matter the authentication method used.
  * <p>
  * These are basic clients, meant to be used by other applications, such as the
  * {@link com.wandrell.example.swss.client.console.ConsoleClient ConsoleClient}.

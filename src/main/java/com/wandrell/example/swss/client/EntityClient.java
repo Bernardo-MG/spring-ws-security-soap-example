@@ -38,7 +38,9 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Client for acquiring {@link Entity} entities from the web service.
+ * Client for acquiring {@link Entity} entities from the web service. This is
+ * the JAXB class generated from the XSD files, not the {@code ExampleEntity}
+ * from the model.
  * <p>
  * It is a simple client, which only takes a URL and the numeric identifier for
  * an entity, and then queries the web service for it, returning the result.
@@ -79,6 +81,24 @@ public final class EntityClient extends WebServiceGatewaySupport {
     }
 
     /**
+     * Acquires an {@code Entity} from the web service by the id and using the
+     * default URI.
+     * <p>
+     * If the id is invalid then the resulting response will contain a null
+     * entity.
+     * <p>
+     * The method makes sure the expected SOAP action is used, to avoid
+     * unreachable endpoint errors when using some authentication methods.
+     *
+     * @param entityId
+     *            id of the queried {@code Entity}
+     * @return the {@code Entity} with the received id
+     */
+    public final Entity getEntity(final Integer entityId) {
+        return getEntity(getDefaultUri(), entityId);
+    }
+
+    /**
      * Acquires an {@code Entity} from the web service by the id.
      * <p>
      * If the id is invalid then the resulting response will contain a null
@@ -87,22 +107,22 @@ public final class EntityClient extends WebServiceGatewaySupport {
      * The method makes sure the expected SOAP action is used, to avoid
      * unreachable endpoint errors when using some authentication methods.
      *
-     * @param url
-     *            url to the web service
+     * @param uri
+     *            URI to the web service
      * @param entityId
      *            id of the queried {@code Entity}
      * @return the {@code Entity} with the received id
      */
-    public final Entity getEntity(final String url, final Integer entityId) {
+    public final Entity getEntity(final String uri, final Integer entityId) {
         final GetEntityRequest request;   // Request for acquiring the entity
         final GetEntityResponse response; // Response with the resulting entity
         final Entity entity;              // Entity for the failed requests
 
-        checkNotNull(url, "Received a null pointer as url");
+        checkNotNull(uri, "Received a null pointer as URI");
         checkNotNull(entityId, "Received a null pointer as entity id");
 
         LOGGER.debug(
-                String.format("Querying URL %1$s for id %2$d", url, entityId));
+                String.format("Querying URI %1$s for id %2$d", uri, entityId));
 
         // Generates request
         request = new GetEntityRequest();
@@ -110,7 +130,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
 
         // Sends request and receives response
         response = (GetEntityResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(url, request, new SoapActionCallback(
+                .marshalSendAndReceive(uri, request, new SoapActionCallback(
                         ExampleEntityEndpointConstants.ACTION));
 
         if ((response == null) || (response.getEntity() == null)) {
