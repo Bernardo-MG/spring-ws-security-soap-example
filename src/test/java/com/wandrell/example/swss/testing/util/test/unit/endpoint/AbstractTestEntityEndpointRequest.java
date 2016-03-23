@@ -87,11 +87,9 @@ public abstract class AbstractTestEntityEndpointRequest
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request
-        requestEnvelope = getRequestEnvelope();
-        requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
+        requestCreator = RequestCreators.withSoapEnvelope(getRequestEnvelope());
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers

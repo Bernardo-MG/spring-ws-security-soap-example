@@ -93,6 +93,7 @@ public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
     @Override
     protected final SOAPMessage getValidSoapMessage() throws Exception {
         // TODO: Get a valid signed SOAP message
+        
         // return SecurityUtils.getSignedMessage(pathUnsigned,
         // alias, password, alias, keystore);
         return null;
