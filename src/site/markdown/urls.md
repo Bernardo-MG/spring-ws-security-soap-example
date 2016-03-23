@@ -1,4 +1,10 @@
-# Endpoint URLs
+# URLs
+
+The web service uses the following base URL: [http://localhost:8080/swss/](http://localhost:8080/swss/).
+
+But this is just an empty URL leading nowhere. To actually use the web service one of the endpoints should be queried.
+
+## Endpoint URLs
 
 Each endpoint uses their own combination of security protocol and WSS implementation:
 
@@ -16,7 +22,7 @@ Each endpoint uses their own combination of security protocol and WSS implementa
 
 ## WSDL
 
-All these endpoints generate a WSDL defining their interface, this is created by just adding the ".wsdl" suffix to the URL.
+All these endpoints generate a WSDL defining their interface, this can be found by just adding the ".wsdl" suffix to the URL.
 
 |Security|WSS Implementation|URL|
 |:-:|:-:|:-:|

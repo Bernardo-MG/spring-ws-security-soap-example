@@ -2,7 +2,7 @@
 
 Key stores are used for encryption and signature based authentication, and are included as part of the project.
 
-If for some reason they need to be created anew the [KeystoreGenerator][keystore-generator] runnable class can be used. This will overwrite the existing key stores, renewing the validity dates of the certificates.
+If for some reason they need to be created anew just run the [KeystoreGenerator][keystore-generator]. This will overwrite the existing key stores, renewing the validity dates of the certificates.
 
 ## Included key stores
 
