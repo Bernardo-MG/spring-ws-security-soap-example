@@ -38,6 +38,9 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
+import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
+import com.wandrell.example.swss.testing.util.server.SoapActionRequestCreators;
+
 /**
  * Abstract unit tests for an endpoint testing that it handles envelope-based
  * SOAP messages correctly.
@@ -89,7 +92,9 @@ public abstract class AbstractTestEntityEndpointRequest
         final ResponseMatcher responseMatcher; // Matcher for the response
 
         // Creates the request
-        requestCreator = RequestCreators.withSoapEnvelope(getRequestEnvelope());
+        // TODO: Maybe the action should be loaded from the context
+        requestCreator = SoapActionRequestCreators.withSoapEnvelope(
+                ExampleEntityEndpointConstants.ACTION, getRequestEnvelope());
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers

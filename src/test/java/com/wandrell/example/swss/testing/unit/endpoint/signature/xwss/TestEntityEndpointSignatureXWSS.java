@@ -84,11 +84,6 @@ public final class TestEntityEndpointSignatureXWSS {
     @Value("${soap.request.path}")
     private String   pathUnsecure;
     /**
-     * Path to the file containing the valid SOAP request.
-     */
-    @Value("${soap.request.template.path}")
-    private String   pathValid;
-    /**
      * Username for the passworded message.
      */
     @Value("${security.credentials.user}")

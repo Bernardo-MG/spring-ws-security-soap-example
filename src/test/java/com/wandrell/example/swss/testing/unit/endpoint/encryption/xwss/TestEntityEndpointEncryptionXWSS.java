@@ -38,6 +38,7 @@ import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSProp
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
+import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
  * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS
@@ -52,7 +53,8 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
         InterceptorXWSSPropertiesPaths.ENCRYPTION,
         EndpointXWSSPropertiesPaths.ENCRYPTION,
         EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER })
-public final class TestEntityEndpointEncryptionXWSS {
+public final class TestEntityEndpointEncryptionXWSS
+        extends AbstractTestEntityEndpointRequest {
 
     /**
      * Path to the file containing the valid SOAP request.
@@ -65,9 +67,9 @@ public final class TestEntityEndpointEncryptionXWSS {
      */
     public TestEntityEndpointEncryptionXWSS() {
         super();
-        // TODO: Make this work
     }
 
+    @Override
     protected final Source getRequestEnvelope() {
         try {
             return new StreamSource(
