@@ -34,10 +34,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
+import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
@@ -52,8 +52,8 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
 @ContextConfiguration(
         locations = { TestContextPaths.DEFAULT, TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
-        SOAPPropertiesPaths.SIGNATURE,
-        EndpointURLXWSSPropertiesPaths.SIGNATURE })
+        SoapPropertiesPaths.SIGNATURE,
+        EndpointUrlXwssPropertiesPaths.SIGNATURE })
 public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
     /**
@@ -87,7 +87,7 @@ public final class ITEntityEndpointSignatureXWSS extends AbstractITEndpoint {
 
     @Override
     protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
+        return SoapMessageUtils.getMessage(pathInvalid);
     }
 
     @Override

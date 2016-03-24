@@ -32,12 +32,12 @@ import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
-import com.wandrell.example.swss.testing.util.SecurityUtils;
+import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
+import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
 /**
@@ -56,8 +56,8 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.USER,
-        SOAPPropertiesPaths.PASSWORD_PLAIN,
-        EndpointURLXWSSPropertiesPaths.PASSWORD_PLAIN })
+        SoapPropertiesPaths.PASSWORD_PLAIN,
+        EndpointUrlXwssPropertiesPaths.PASSWORD_PLAIN })
 public final class ITEntityEndpointPasswordPlainXWSS
         extends AbstractITEndpoint {
 
@@ -100,7 +100,7 @@ public final class ITEntityEndpointPasswordPlainXWSS
             throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SecurityUtils.getPlainPasswordMessage(
+        message = callWebService(SecureSoapMessages.getPlainPasswordMessage(
                 pathValid, username, password + "abc123"));
 
         Assert.assertNotNull(
@@ -117,7 +117,7 @@ public final class ITEntityEndpointPasswordPlainXWSS
     public final void testEndpoint_InvalidUser_ReturnsFault() throws Exception {
         final SOAPMessage message; // Response message
 
-        message = callWebService(SecurityUtils.getPlainPasswordMessage(
+        message = callWebService(SecureSoapMessages.getPlainPasswordMessage(
                 pathValid, username + "abc123", password));
 
         Assert.assertNotNull(
@@ -126,12 +126,12 @@ public final class ITEntityEndpointPasswordPlainXWSS
 
     @Override
     protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
+        return SoapMessageUtils.getMessage(pathInvalid);
     }
 
     @Override
     protected final SOAPMessage getValidSoapMessage() throws Exception {
-        return SecurityUtils.getPlainPasswordMessage(pathValid, username,
+        return SecureSoapMessages.getPlainPasswordMessage(pathValid, username,
                 password);
     }
 

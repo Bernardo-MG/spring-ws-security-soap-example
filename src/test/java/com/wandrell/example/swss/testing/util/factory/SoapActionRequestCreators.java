@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.server;
+package com.wandrell.example.swss.testing.util.factory;
 
 import java.io.IOException;
 
@@ -78,7 +78,7 @@ public final class SoapActionRequestCreators {
          * @param adaptee
          *            the message creator to adapt
          */
-        private SoapActionWebServiceMessageCreatorAdapter(final String action,
+        public SoapActionWebServiceMessageCreatorAdapter(final String action,
                 final WebServiceMessageCreator adaptee) {
             this.adaptee = adaptee;
             this.action = action;

@@ -22,44 +22,46 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.properties;
+package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the XWSS-based test endpoints URLs properties files
- * paths.
+ * Paths to the XWSS-based client context files.
  * <p>
- * These files contain the URL for an endpoint and its WSDL. These endpoints use
- * the XWSS implementation of the WSS standard.
+ * Each of these files can be used to create a Spring context for a single
+ * client, using XWSS interceptors to handle security.
+ * <p>
+ * These context files already include the required properties placeholders to
+ * make them work.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointURLXWSSPropertiesPaths {
+public final class ClientXwssContextPaths {
 
     /**
-     * Properties file with the encrypted endpoint URLs.
+     * Encrypted client.
      */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
+    public static final String ENCRYPTION      = "classpath:context/client/encryption/xwss/client-encryption-xwss.xml";
     /**
-     * Properties file with the digested password endpoint URLs.
+     * Digested password client.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
+    public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/xwss/client-password-digest-xwss.xml";
     /**
-     * Properties file with the plain password endpoint URLs.
+     * Plain password client.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/xwss/client-password-plain-xwss.xml";
     /**
-     * Properties file with the signed endpoint URLs.
+     * Signed client.
      */
-    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
+    public static final String SIGNATURE       = "classpath:context/client/signature/xwss/client-signature-xwss.xml";
     /**
-     * Properties file with the unsecure endpoint URLs.
+     * Unsecure client.
      */
-    public static final String UNSECURE        = "classpath:config/endpoint/test-endpoint-unsecure.properties";
+    public static final String UNSECURE        = "classpath:context/client/test-client-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointURLXWSSPropertiesPaths() {
+    private ClientXwssContextPaths() {
         super();
     }
 

@@ -25,41 +25,40 @@
 package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the WSS4J-based test endpoints URLs properties files
- * paths.
+ * Paths to the WSS4J-based endpoints URLs properties files.
  * <p>
- * These files contain the URL for an endpoint and its WSDL. These endpoints use
- * the WSS4J implementation of the WSS standard.
+ * These files contain the URL for an endpoint and its WSDL, each with their own
+ * security protocol.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointURLWSS4JPropertiesPaths {
+public final class EndpointUrlXwssPropertiesPaths {
 
     /**
-     * Properties file with the encrypted endpoint URLs.
+     * Encrypted endpoint.
      */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-wss4j.properties";
+    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
     /**
-     * Properties file with the digested password endpoint URLs.
+     * Digested password endpoint.
      */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-wss4j.properties";
+    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
     /**
-     * Properties file with the plain password endpoint URLs.
+     * Plain password endpoint.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-wss4j.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
     /**
-     * Properties file with the signed endpoint URLs.
+     * Signed endpoint.
      */
-    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-wss4j.properties";
+    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
     /**
-     * Properties file with the unsecure endpoint URLs.
+     * Unsecure endpoint.
      */
     public static final String UNSECURE        = "classpath:config/endpoint/test-endpoint-unsecure.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointURLWSS4JPropertiesPaths() {
+    private EndpointUrlXwssPropertiesPaths() {
         super();
     }
 

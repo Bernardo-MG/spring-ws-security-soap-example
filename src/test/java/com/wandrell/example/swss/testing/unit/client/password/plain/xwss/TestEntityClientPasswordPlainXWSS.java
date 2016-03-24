@@ -27,8 +27,8 @@ package com.wandrell.example.swss.testing.unit.client.password.plain.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.context.ClientXwssContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
@@ -38,9 +38,9 @@ import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntit
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextPaths.PASSWORD_PLAIN })
+@ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SOAPPropertiesPaths.UNSECURE, SOAPPropertiesPaths.PASSWORD_PLAIN })
+        SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.PASSWORD_PLAIN })
 public final class TestEntityClientPasswordPlainXWSS
         extends AbstractTestEntityClientHeader {
 

@@ -27,9 +27,9 @@ package com.wandrell.example.swss.testing.unit.client.signature.xwss;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.ClientXwssContextPaths;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
@@ -39,10 +39,10 @@ import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntit
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextPaths.SIGNATURE,
+@ContextConfiguration(locations = { ClientXwssContextPaths.SIGNATURE,
         TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SOAPPropertiesPaths.UNSECURE, SOAPPropertiesPaths.SIGNATURE })
+        SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.SIGNATURE })
 public final class TestEntityClientSignatureXWSS
         extends AbstractTestEntityClientHeader {
 

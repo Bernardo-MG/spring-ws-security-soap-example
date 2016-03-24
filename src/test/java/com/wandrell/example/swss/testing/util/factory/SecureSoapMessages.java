@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util;
+package com.wandrell.example.swss.testing.util.factory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -32,12 +32,8 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.SecureRandom;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -46,7 +42,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPElement;
@@ -76,69 +71,112 @@ import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
+
+import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 /**
- * Utilities class for security procedures.
+ * Factory method for secured SOAP messages.
+ * <p>
+ * These can be contained in a {@code SOAPMessage}, or be the input of an
+ * {@code InputStream}. In the second case the {@code InputStream} will point to
+ * a string containing the full message.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class SecurityUtils {
+public final class SecureSoapMessages {
 
     /**
      * Creates a SOAP message with a digested password, username and nonce.
      * <p>
-     * A freemarker template will be used for this. It will receive the
-     * generated values, and give a basic structure to the message.
+     * The nonce will be generated during the securing process.
+     * <p>
+     * A freemarker template should be provided, it will be used to generate the
+     * final message from the received parameters.
      *
      * @param path
      *            path to the freemarker template
+     * @param user
+     *            user to include in the message
      * @param password
-     *            password to use
-     * @return the text content for the passworded message
+     *            password to include in the message
+     * @return a digested password {@code SOAPMessage}
      * @return a SOAP message with a digested password, username and nonce
      * @throws Exception
-     *             when any error occurs during the message creation
+     *             if any error occurs during the message creation
      */
     public static final SOAPMessage getDigestedPasswordMessage(
             final String path, final String user, final String password)
             throws Exception {
-        final MessageFactory factory;
-        final SOAPMessage message;
-        final ByteArrayOutputStream out;
-
-        factory = MessageFactory.newInstance();
-
-        message = factory.createMessage(new MimeHeaders(),
+        return MessageFactory.newInstance().createMessage(new MimeHeaders(),
                 getDigestedPasswordStream(path, user, password));
-
-        out = new ByteArrayOutputStream();
-        message.writeTo(out);
-
-        return message;
     }
 
+    /**
+     * Creates a SOAP message with a digested password, username and nonce.
+     * <p>
+     * The nonce will be generated during the securing process.
+     * <p>
+     * A freemarker template should be provided, it will be used to generate the
+     * final message from the received parameters.
+     * 
+     * @param path
+     *            path to the freemarker template
+     * @param user
+     *            user to include in the message
+     * @param password
+     *            password to include in the message
+     * @return a SOAP message with a digested password, username and nonce
+     * @throws Exception
+     *             if any error occurs during the message creation
+     */
     public static final InputStream getDigestedPasswordStream(final String path,
             final String user, final String password) throws Exception {
-
         return new ByteArrayInputStream(
                 getDigestedPasswordMessageContent(path, user, password)
                         .getBytes("UTF-8"));
     }
 
+    /**
+     * Creates a SOAP message with a plain password and username.
+     * <p>
+     * A freemarker template should be provided, it will be used to generate the
+     * final message from the received parameters.
+     * 
+     * @param path
+     *            path to the freemarker template
+     * @param user
+     *            user to include in the message
+     * @param password
+     *            password to include in the message
+     * @return a SOAP message with a plain password and username
+     * @throws Exception
+     *             if any error occurs during the message creation
+     */
     public static final SOAPMessage getPlainPasswordMessage(final String path,
             final String user, final String password) throws Exception {
-        final MessageFactory factory;
-
-        factory = MessageFactory.newInstance();
-
-        return factory.createMessage(new MimeHeaders(),
+        return MessageFactory.newInstance().createMessage(new MimeHeaders(),
                 getPlainPasswordStream(path, user, password));
     }
 
+    /**
+     * Creates a SOAP message with a plain password and username.
+     * <p>
+     * A freemarker template should be provided, it will be used to generate the
+     * final message from the received parameters.
+     * 
+     * @param path
+     *            path to the freemarker template
+     * @param user
+     *            user to include in the message
+     * @param password
+     *            password to include in the message
+     * @return a SOAP message with a plain password and username
+     * @throws Exception
+     *             if any error occurs during the message creation
+     */
     public static final InputStream getPlainPasswordStream(final String path,
             final String user, final String password) throws Exception {
         return new ByteArrayInputStream(
@@ -146,14 +184,29 @@ public final class SecurityUtils {
                         .getBytes("UTF-8"));
     }
 
+    /**
+     * Creates a SOAP message with a signature.
+     * <p>
+     * A valid SOAP message is required, this will be the message to be signed.
+     * 
+     * @param pathBase
+     *            path to the SOAP message to sign
+     * @param privateKeyAlias
+     *            alias for the private key
+     * @param privateKeyPass
+     *            password for the private key
+     * @param certificateAlias
+     *            alias for the certificate
+     * @param keystore
+     *            key store for the signing
+     * @return a singed SOAP message
+     * @throws Exception
+     *             if any error occurs during the message creation
+     */
     public static final SOAPMessage getSignedMessage(final String pathBase,
             final String privateKeyAlias, final String privateKeyPass,
             final String certificateAlias, final KeyStore keystore)
-            throws UnrecoverableKeyException, KeyStoreException,
-            NoSuchAlgorithmException, SAXException, IOException,
-            ParserConfigurationException, XMLSecurityException, SOAPException,
-            TransformerConfigurationException, TransformerException,
-            CertificateEncodingException {
+            throws Exception {
         Element root = null;
         String BaseURI = new ClassPathResource(pathBase).getURI().toString();
         SOAPMessage soapMessage;
@@ -196,12 +249,30 @@ public final class SecurityUtils {
         return toMessage(doc);
     }
 
-    public static final InputStream getSignedMessageStream(
-            final String pathBase, final String privateKeyAlias,
-            final String privateKeyPass, final String certificateAlias,
-            final KeyStore keystore)
-            throws UnsupportedEncodingException, Exception {
-        SOAPMessage msg = SecurityUtils.getSignedMessage(pathBase,
+    /**
+     * Creates a SOAP message with a signature.
+     * <p>
+     * A valid SOAP message is required, this will be the message to be signed.
+     * 
+     * @param pathBase
+     *            path to the SOAP message to sign
+     * @param privateKeyAlias
+     *            alias for the private key
+     * @param privateKeyPass
+     *            password for the private key
+     * @param certificateAlias
+     *            alias for the certificate
+     * @param keystore
+     *            key store for the signing
+     * @return a singed SOAP message
+     * @throws Exception
+     *             if any error occurs during the message creation
+     */
+    public static final InputStream getSignedStream(final String pathBase,
+            final String privateKeyAlias, final String privateKeyPass,
+            final String certificateAlias, final KeyStore keystore)
+            throws Exception {
+        SOAPMessage msg = SecureSoapMessages.getSignedMessage(pathBase,
                 privateKeyAlias, privateKeyPass, certificateAlias, keystore);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         msg.writeTo(out);
@@ -228,41 +299,42 @@ public final class SecurityUtils {
     private static final String generateDigest(final String password,
             final String date, final String nonce)
             throws UnsupportedEncodingException {
-        final ByteBuffer buf;
-        byte[] toHash;
-        byte[] hash;
+        final ByteBuffer buf; // Buffers storing the data to digest
+        byte[] toHash;        // Bytes to generate the hash
 
+        // Fills buffer with data to digest
         buf = ByteBuffer.allocate(1000);
         buf.put(Base64.decodeBase64(nonce));
         buf.put(date.getBytes("UTF-8"));
         buf.put(password.getBytes("UTF-8"));
+
+        // Initializes hash bytes to the correct size
         toHash = new byte[buf.position()];
         buf.rewind();
+
+        // Copies bytes from the buffer to the hash bytes
         buf.get(toHash);
-        hash = DigestUtils.sha1(toHash);
 
-        return Base64.encodeBase64String(hash);
+        return Base64.encodeBase64String(DigestUtils.sha1(toHash));
     }
 
     /**
-     * Generates the date value for the SOAP secure header.
+     * Generates the current date in the format expected by the SOAP message.
      *
-     * @return the date value for the header
+     * @return the current date
      */
-    private static final String getDate() {
-        final DateFormat zuluTime;
-        final String date;
+    private static final String getCurrentDate() {
+        final DateFormat format; // Format to apply
 
-        zuluTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        zuluTime.setTimeZone(TimeZone.getTimeZone("UTC"));
+        // Zulu time format
+        format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-        date = zuluTime.format(new Date());
-
-        return date;
+        return format.format(new Date());
     }
 
     /**
-     * Generates the text content for the passworded message.
+     * Generates the text content for the digested password SOAP message.
      * <p>
      * This will be created from a freemarker template.
      *
@@ -272,37 +344,37 @@ public final class SecurityUtils {
      *            username to use
      * @param password
      *            password to use
-     * @return the text content for the passworded message
+     * @return the text content for the digested password message
      * @throws Exception
      *             if any error occurs during the message creation
      */
     private static final String getDigestedPasswordMessageContent(
             final String path, final String user, final String password)
             throws Exception {
-        final String nonce;
-        final String date;
-        final String digest;
-        final Configuration cfg;
-        final Template template;
-        final Map<String, Object> data;
-        final ByteArrayOutputStream out;
+        final String nonce;              // Nonce for the message
+        final String date;               // Current date
+        final String digest;             // Digested password
+        final Template template;         // Freemarker template
+        final Map<String, Object> data;  // Data for the template
+        final ByteArrayOutputStream out; // Steam with the message
 
-        cfg = new Configuration(Configuration.VERSION_2_3_0);
-        template = cfg.getTemplate(path);
-
+        // Generates security data
         nonce = getNonce();
-        date = getDate();
+        date = getCurrentDate();
         digest = generateDigest(password, date, nonce);
 
+        // Prepares the data for the template
         data = new LinkedHashMap<String, Object>();
-
         data.put("user", user);
         data.put("password", password);
         data.put("nonce", nonce);
         data.put("date", date);
         data.put("digest", digest);
 
+        // Processes the template to the output
         out = new ByteArrayOutputStream();
+        template = new Configuration(Configuration.VERSION_2_3_0)
+                .getTemplate(path);
         template.process(data, new OutputStreamWriter(out));
 
         return new String(out.toByteArray());
@@ -317,7 +389,7 @@ public final class SecurityUtils {
         final SOAPHeaderElement secElement;
         final SOAPElement binaryTokenElement;
 
-        soapMessage = SOAPParsingUtils.parseMessageFromFile(pathBase);
+        soapMessage = SoapMessageUtils.getMessage(pathBase);
         soapPart = soapMessage.getSOAPPart();
         soapEnvelope = soapPart.getEnvelope();
         soapHeader = soapEnvelope.getHeader();
@@ -337,15 +409,15 @@ public final class SecurityUtils {
     }
 
     /**
-     * Generates the nonce value for the SOAP secure header.
+     * Generates a nonce value for the SOAP secure header.
      *
-     * @return the nonce value for the header
+     * @return the nonce value
      * @throws Exception
      *             if any error occurs while generating the nonce
      */
     private static final String getNonce() throws Exception {
-        final SecureRandom random;
-        final byte[] nonceBytes;
+        final SecureRandom random; // Random value generator
+        final byte[] nonceBytes;   // Bytes to generate the nonce
 
         random = SecureRandom.getInstance("SHA1PRNG");
         random.setSeed(System.currentTimeMillis());
@@ -355,23 +427,37 @@ public final class SecurityUtils {
         return new String(Base64.encodeBase64(nonceBytes), "UTF-8");
     }
 
+    /**
+     * Generates the text content for the plain password SOAP message.
+     * <p>
+     * This will be created from a freemarker template.
+     *
+     * @param path
+     *            path to the freemarker template
+     * @param user
+     *            username to use
+     * @param password
+     *            password to use
+     * @return the text content for the plain passworde message
+     * @throws Exception
+     *             if any error occurs during the message creation
+     */
     private static final String getPlainPasswordMessageContent(
             final String path, final String user, final String password)
             throws Exception {
-        final Configuration cfg;
-        final Template template;
-        final Map<String, Object> data;
-        final ByteArrayOutputStream out;
+        final Template template;         // Freemarker template
+        final Map<String, Object> data;  // Data for the template
+        final ByteArrayOutputStream out; // Steam with the message
 
-        cfg = new Configuration(Configuration.VERSION_2_3_0);
-        template = cfg.getTemplate(path);
-
+        // Prepares the data for the template
         data = new LinkedHashMap<String, Object>();
-
         data.put("user", user);
         data.put("password", password);
 
+        // Processes the template to the output
         out = new ByteArrayOutputStream();
+        template = new Configuration(Configuration.VERSION_2_3_0)
+                .getTemplate(path);
         template.process(data, new OutputStreamWriter(out));
 
         return new String(out.toByteArray());
@@ -420,7 +506,7 @@ public final class SecurityUtils {
     /**
      * Private constructor to avoid initialization.
      */
-    private SecurityUtils() {
+    private SecureSoapMessages() {
         super();
     }
 

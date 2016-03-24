@@ -40,11 +40,11 @@ import com.wandrell.example.ws.generated.entity.Entity;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Utilities class for parsing SOAP messages.
+ * SOAP message generation utils.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class SOAPParsingUtils {
+public final class SoapMessageUtils {
 
     /**
      * Creates an {@code Entity} from the received {@code SOAPMessage}.
@@ -59,7 +59,7 @@ public final class SOAPParsingUtils {
      * @throws SOAPException
      *             if there is any problem when reading the SOAP message
      */
-    public static final Entity parseEntityFromMessage(final SOAPMessage message)
+    public static final Entity getEntity(final SOAPMessage message)
             throws JAXBException, SOAPException {
         final JAXBContext jc;             // Context for unmarshalling
         final Unmarshaller um;            // Unmarshaller for the SOAP message
@@ -86,7 +86,7 @@ public final class SOAPParsingUtils {
      * @throws IOException
      *             if there is any problem when reading the file
      */
-    public static final SOAPMessage parseMessageFromFile(final String path)
+    public static final SOAPMessage getMessage(final String path)
             throws SOAPException, IOException {
         final MessageFactory factory; // Factory for generating the message
         final InputStream streamFile; // Stream for the file contents
@@ -100,7 +100,7 @@ public final class SOAPParsingUtils {
     /**
      * Private constructor to avoid initialization.
      */
-    private SOAPParsingUtils() {
+    private SoapMessageUtils() {
         super();
     }
 

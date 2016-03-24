@@ -31,12 +31,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.context.ServletWss4jContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointWss4jPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorWss4jPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
+import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
@@ -45,13 +45,13 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWSS4JContextPaths.BASE,
-        ServletWSS4JContextPaths.PASSWORD_PLAIN })
+@ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
+        ServletWss4jContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesPaths.WSDL,
-        SOAPPropertiesPaths.PASSWORD_PLAIN,
-        InterceptorWSS4JPropertiesPaths.PASSWORD_PLAIN,
-        EndpointWSS4JPropertiesPaths.PASSWORD_PLAIN,
-        EndpointWSS4JPropertiesPaths.BASE, TestPropertiesPaths.USER })
+        SoapPropertiesPaths.PASSWORD_PLAIN,
+        InterceptorWss4jPropertiesPaths.PASSWORD_PLAIN,
+        EndpointWss4jPropertiesPaths.PASSWORD_PLAIN,
+        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER })
 public final class TestEntityEndpointPasswordPlainWSS4J
         extends AbstractTestEntityEndpointRequest {
 
@@ -81,7 +81,7 @@ public final class TestEntityEndpointPasswordPlainWSS4J
     @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils
+            return new StreamSource(SecureSoapMessages
                     .getPlainPasswordStream(pathValid, username, password));
         } catch (final Exception e) {
             throw new RuntimeException(e);

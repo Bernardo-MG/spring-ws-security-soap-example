@@ -22,47 +22,46 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.properties;
+package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the test SOAP messages properties files paths.
+ * Paths to the WSS4J-based client context files.
  * <p>
- * Each file contains the information for finding or generating test SOAP
- * messages.
+ * Each of these files can be used to create a Spring context for a single
+ * client, using WSS4J interceptors to handle security.
+ * <p>
+ * These context files already include the required properties placeholders to
+ * make them work.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class SOAPPropertiesPaths {
+public final class ClientWss4jContextPaths {
 
     /**
-     * Properties file with the encrypted SOAP test data for WSS4J endpoint.
+     * Encrypted client.
      */
-    public static final String ENCRYPTION_WSS4J = "classpath:config/soap/test-soap-encryption-wss4j.properties";
+    public static final String ENCRYPTION      = "classpath:context/client/encryption/wss4j/client-encryption-wss4j.xml";
     /**
-     * Properties file with the encrypted SOAP test data.
+     * Digested password client.
      */
-    public static final String ENCRYPTION_XWSS  = "classpath:config/soap/test-soap-encryption-xwss.properties";
+    public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/wss4j/client-password-digest-wss4j.xml";
     /**
-     * Properties file with the digested password SOAP test data.
+     * Plain password client.
      */
-    public static final String PASSWORD_DIGEST  = "classpath:config/soap/test-soap-password-digest.properties";
+    public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/wss4j/client-password-plain-wss4j.xml";
     /**
-     * Properties file with the plain password SOAP test data.
+     * Signed client.
      */
-    public static final String PASSWORD_PLAIN   = "classpath:config/soap/test-soap-password-plain.properties";
+    public static final String SIGNATURE       = "classpath:context/client/signature/wss4j/client-signature-wss4j.xml";
     /**
-     * Properties file with the signature SOAP test data.
+     * Unsecure client.
      */
-    public static final String SIGNATURE        = "classpath:config/soap/test-soap-signature.properties";
-    /**
-     * Properties file with the unsecure SOAP test data.
-     */
-    public static final String UNSECURE         = "classpath:config/soap/test-soap-unsecure.properties";
+    public static final String UNSECURE        = "classpath:context/client/client-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private SOAPPropertiesPaths() {
+    private ClientWss4jContextPaths() {
         super();
     }
 

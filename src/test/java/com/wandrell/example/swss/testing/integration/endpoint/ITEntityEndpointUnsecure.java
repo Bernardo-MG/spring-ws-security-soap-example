@@ -30,10 +30,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
+import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
@@ -51,8 +51,8 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, SOAPPropertiesPaths.UNSECURE,
-        EndpointURLXWSSPropertiesPaths.UNSECURE })
+@TestPropertySource({ TestPropertiesPaths.ENTITY, SoapPropertiesPaths.UNSECURE,
+        EndpointUrlXwssPropertiesPaths.UNSECURE })
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     /**
@@ -75,12 +75,12 @@ public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
     @Override
     protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
+        return SoapMessageUtils.getMessage(pathInvalid);
     }
 
     @Override
     protected final SOAPMessage getValidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathValid);
+        return SoapMessageUtils.getMessage(pathValid);
     }
 
 }

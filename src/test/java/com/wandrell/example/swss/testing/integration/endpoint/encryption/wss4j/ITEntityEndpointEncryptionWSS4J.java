@@ -30,10 +30,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
+import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLWSS4JPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlWss4jPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
@@ -47,8 +47,8 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY,
-        SOAPPropertiesPaths.ENCRYPTION_WSS4J,
-        EndpointURLWSS4JPropertiesPaths.ENCRYPTION })
+        SoapPropertiesPaths.ENCRYPTION_WSS4J,
+        EndpointUrlWss4jPropertiesPaths.ENCRYPTION })
 public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     /**
@@ -71,12 +71,12 @@ public final class ITEntityEndpointEncryptionWSS4J extends AbstractITEndpoint {
 
     @Override
     protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathInvalid);
+        return SoapMessageUtils.getMessage(pathInvalid);
     }
 
     @Override
     protected final SOAPMessage getValidSoapMessage() throws Exception {
-        return SOAPParsingUtils.parseMessageFromFile(pathValid);
+        return SoapMessageUtils.getMessage(pathValid);
     }
 
 }

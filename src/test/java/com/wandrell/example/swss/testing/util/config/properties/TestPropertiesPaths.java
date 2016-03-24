@@ -25,7 +25,7 @@
 package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test properties files paths.
+ * Paths to various test properties files.
  * <p>
  * These contain generic data required in several tests.
  *
@@ -34,41 +34,39 @@ package com.wandrell.example.swss.testing.util.config.properties;
 public final class TestPropertiesPaths {
 
     /**
-     * Properties file with the test entity configuration.
+     * Test entity information.
      */
     public static final String ENTITY                           = "classpath:config/test-entity.properties";
     /**
-     * Properties file with the keystore configuration.
+     * Key stores access and configuration.
      */
     public static final String KEYSTORE                         = "classpath:config/keystore/keystore.properties";
     /**
-     * Properties file with the invalid keystore configuration.
+     * Invalid key stores access and configuration.
      */
     public static final String KEYSTORE_INVALID                 = "classpath:config/keystore/keystore2.properties";
     /**
-     * Properties file with the WSS4J keystore configuration.
+     * WSS4J key stores access and configuration.
      */
     public static final String KEYSTORE_WSS4J                   = "classpath:config/keystore/keystore-wss4j.properties";
     /**
-     * Properties file with the test invalid digested user and password
-     * configuration.
+     * Invalid digested password configuration.
      */
     public static final String SECURITY_PASSWORD_DIGEST_INVALID = "classpath:config/security/test-security-password-digest-invalid.properties";
     /**
-     * Properties file with the test invalid plain user and password
-     * configuration.
+     * Invalid plain password configuration.
      */
     public static final String SECURITY_PASSWORD_PLAIN_INVALID  = "classpath:config/security/test-security-password-plain-invalid.properties";
     /**
-     * Properties file with the test user configuration.
+     * Test user authentication data.
      */
     public static final String USER                             = "classpath:config/user/test-user.properties";
     /**
-     * Properties file with the invalid test user configuration.
+     * Invalid test user authentication data.
      */
     public static final String USER_INVALID                     = "classpath:config/user/test-user-invalid.properties";
     /**
-     * Properties file with the test WSDL configuration.
+     * WSDL data.
      */
     public static final String WSDL                             = "classpath:config/endpoint/test-wsdl.properties";
 

@@ -25,36 +25,35 @@
 package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the WSS4J-based test interceptor properties files
- * paths.
+ * Paths to the WSS4J-based interceptor properties files.
  * <p>
  * These files contain the data required for setting up an interceptor context.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class InterceptorWSS4JPropertiesPaths {
+public final class InterceptorWss4jPropertiesPaths {
 
     /**
-     * Properties file with the encrypted endpoint configuration.
+     * Encryption interceptor.
      */
     public static final String ENCRYPTION      = "classpath:config/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties";
     /**
-     * Properties file with the digested password endpoint configuration.
+     * Digested password interceptor.
      */
     public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/wss4j/interceptor-password-digest-wss4j.properties";
     /**
-     * Properties file with the plain password endpoint configuration.
+     * Plain password interceptor.
      */
     public static final String PASSWORD_PLAIN  = "classpath:config/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
     /**
-     * Properties file with the signed endpoint configuration.
+     * Signature interceptor.
      */
     public static final String SIGNATURE       = "classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private InterceptorWSS4JPropertiesPaths() {
+    private InterceptorWss4jPropertiesPaths() {
         super();
     }
 

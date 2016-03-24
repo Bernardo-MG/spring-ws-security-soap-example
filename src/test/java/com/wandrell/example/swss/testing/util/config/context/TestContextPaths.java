@@ -25,29 +25,29 @@
 package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the test context files paths.
+ * Paths to the test context files.
  * <p>
- * These are generic small context configurations required in some tests.
+ * These are generic context configurations required by some of the tests.
  *
  * @author Bernardo Martínez Garrido
  */
 public final class TestContextPaths {
 
     /**
-     * Default context file.
+     * Default test context.
      * <p>
      * For those test which don't need any context configuration but require
      * loading Spring properties.
      */
     public static final String DEFAULT        = "classpath:context/test-default.xml";
     /**
-     * Key stores context file.
+     * Key stores.
      * <p>
      * Contains the configuration for the basic Java key stores.
      */
     public static final String KEYSTORE       = "classpath:context/keystore/keystore.xml";
     /**
-     * WSS4J key stores context file.
+     * WSS4J key stores.
      * <p>
      * Contains the configuration for the WSS4J Java key stores.
      */

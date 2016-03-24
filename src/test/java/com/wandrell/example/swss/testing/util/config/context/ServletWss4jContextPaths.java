@@ -25,46 +25,50 @@
 package com.wandrell.example.swss.testing.util.config.context;
 
 /**
- * Configuration class for the test context files paths.
+ * Paths to the WSS4J-based servlet context files.
  * <p>
- * These are the same context configurations as the ones used for the servlets.
+ * Each of these files can be used to create a Spring context for a single
+ * servlet, using WSS4J interceptors to handle security.
+ * <p>
+ * These are the same context configurations as the ones used for the
+ * application servlets.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ServletWSS4JContextPaths {
+public final class ServletWss4jContextPaths {
 
     /**
-     * Base web service context used on all the endpoints.
+     * Application-wide context configuration.
      * <p>
-     * This is the application context used for the real web services, and
-     * shared by all the servlets.
+     * This is the application context used for real web services, and shared by
+     * all the servlets.
      */
-    public static final String BASE            = "classpath:context/webService.xml";
+    public static final String APPLICATION_COMMON = "classpath:context/webService.xml";
     /**
-     * Plain password web service contextt.
+     * Encrypted servlet.
      */
-    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
+    public static final String ENCRYPTION         = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
     /**
-     * Plain password web service contextt.
+     * Digested password servlet.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
+    public static final String PASSWORD_DIGEST    = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
     /**
-     * Plain password web service contextt.
+     * Plain password servlet.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
+    public static final String PASSWORD_PLAIN     = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
     /**
-     * Plain password web service contextt.
+     * Signed servlet.
      */
-    public static final String SIGNATURE       = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
+    public static final String SIGNATURE          = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
     /**
-     * Unsecure web service context.
+     * Unsecure servlet.
      */
-    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String UNSECURE           = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ServletWSS4JContextPaths() {
+    private ServletWss4jContextPaths() {
         super();
     }
 

@@ -39,7 +39,7 @@ import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
-import com.wandrell.example.swss.testing.util.server.SoapActionRequestCreators;
+import com.wandrell.example.swss.testing.util.factory.SoapActionRequestCreators;
 
 /**
  * Abstract unit tests for an endpoint testing that it handles envelope-based

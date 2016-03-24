@@ -27,8 +27,8 @@ package com.wandrell.example.swss.testing.integration.client.password.plain.xwss
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientXWSSContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointURLXWSSPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.context.ClientXwssContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
@@ -38,9 +38,9 @@ import com.wandrell.example.swss.testing.util.test.integration.client.AbstractIT
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientXWSSContextPaths.PASSWORD_PLAIN })
+@ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesPaths.ENTITY,
-        EndpointURLXWSSPropertiesPaths.UNSECURE })
+        EndpointUrlXwssPropertiesPaths.UNSECURE })
 public final class ITEntityClientPasswordPlainXWSSToUnsecured
         extends AbstractITEntityClientInvalid {
 

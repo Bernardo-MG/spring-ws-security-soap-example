@@ -48,7 +48,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
-import com.wandrell.example.swss.testing.util.SOAPParsingUtils;
+import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
@@ -136,7 +136,7 @@ public abstract class AbstractITEndpoint
             Assert.assertNull(
                     message.getSOAPPart().getEnvelope().getBody().getFault());
 
-            entity = SOAPParsingUtils.parseEntityFromMessage(message);
+            entity = SoapMessageUtils.getEntity(message);
 
             Assert.assertEquals((Integer) entity.getId(), entityId);
             Assert.assertEquals(entity.getName(), entityName);

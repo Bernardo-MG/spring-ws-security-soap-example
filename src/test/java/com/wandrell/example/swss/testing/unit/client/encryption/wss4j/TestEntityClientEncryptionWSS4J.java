@@ -27,9 +27,9 @@ package com.wandrell.example.swss.testing.unit.client.encryption.wss4j;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.ClientWss4jContextPaths;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntityClientHeader;
 
@@ -39,10 +39,10 @@ import com.wandrell.example.swss.testing.util.test.unit.client.AbstractTestEntit
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextPaths.ENCRYPTION,
+@ContextConfiguration(locations = { ClientWss4jContextPaths.ENCRYPTION,
         TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SOAPPropertiesPaths.UNSECURE, SOAPPropertiesPaths.ENCRYPTION_XWSS })
+        SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.ENCRYPTION_XWSS })
 public final class TestEntityClientEncryptionWSS4J
         extends AbstractTestEntityClientHeader {
 

@@ -32,11 +32,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.ServletXwssContextPaths;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
@@ -46,13 +46,13 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXWSSContextPaths.BASE,
-        ServletXWSSContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
-@TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
-        SOAPPropertiesPaths.ENCRYPTION_XWSS,
-        InterceptorXWSSPropertiesPaths.ENCRYPTION,
-        EndpointXWSSPropertiesPaths.ENCRYPTION,
-        EndpointXWSSPropertiesPaths.BASE, TestPropertiesPaths.USER })
+@ContextConfiguration(locations = { ServletXwssContextPaths.BASE,
+        ServletXwssContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
+@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
+        SoapPropertiesPaths.ENCRYPTION_XWSS,
+        InterceptorXwssPropertiesPaths.ENCRYPTION,
+        EndpointXwssPropertiesPaths.ENCRYPTION,
+        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER })
 public final class TestEntityEndpointEncryptionXWSS
         extends AbstractTestEntityEndpointRequest {
 

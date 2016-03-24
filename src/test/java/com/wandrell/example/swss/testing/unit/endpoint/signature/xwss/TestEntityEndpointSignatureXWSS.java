@@ -35,13 +35,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.SecurityUtils;
-import com.wandrell.example.swss.testing.util.config.context.ServletXWSSContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.ServletXwssContextPaths;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorXWSSPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
+import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 
 /**
  * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS signed
@@ -49,12 +49,12 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXWSSContextPaths.BASE,
-        ServletXWSSContextPaths.SIGNATURE, TestContextPaths.KEYSTORE })
-@TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
-        SOAPPropertiesPaths.SIGNATURE, InterceptorXWSSPropertiesPaths.SIGNATURE,
-        EndpointXWSSPropertiesPaths.SIGNATURE, EndpointXWSSPropertiesPaths.BASE,
-        TestPropertiesPaths.USER, })
+@ContextConfiguration(locations = { ServletXwssContextPaths.BASE,
+        ServletXwssContextPaths.SIGNATURE, TestContextPaths.KEYSTORE })
+@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
+        SoapPropertiesPaths.SIGNATURE, InterceptorXwssPropertiesPaths.SIGNATURE,
+        EndpointXwssPropertiesPaths.SIGNATURE,
+        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER, })
 public final class TestEntityEndpointSignatureXWSS {
 
     /**
@@ -99,7 +99,7 @@ public final class TestEntityEndpointSignatureXWSS {
 
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecurityUtils.getSignedMessageStream(
+            return new StreamSource(SecureSoapMessages.getSignedStream(
                     pathUnsecure, alias, passwordKey, alias, keystore));
         } catch (final Exception e) {
             throw new RuntimeException(e);

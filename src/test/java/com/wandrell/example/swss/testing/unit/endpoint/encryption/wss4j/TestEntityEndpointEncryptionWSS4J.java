@@ -32,11 +32,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.testing.util.config.context.ServletWSS4JContextPaths;
+import com.wandrell.example.swss.testing.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointWSS4JPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.InterceptorWSS4JPropertiesPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.EndpointWss4jPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.InterceptorWss4jPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
@@ -46,14 +46,14 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWSS4JContextPaths.BASE,
-        ServletWSS4JContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
+@ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
+        ServletWss4jContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
         TestContextPaths.KEYSTORE_WSS4J })
-@TestPropertySource({ TestPropertiesPaths.WSDL, SOAPPropertiesPaths.UNSECURE,
-        SOAPPropertiesPaths.ENCRYPTION_WSS4J,
-        InterceptorWSS4JPropertiesPaths.ENCRYPTION,
-        EndpointWSS4JPropertiesPaths.ENCRYPTION,
-        EndpointWSS4JPropertiesPaths.BASE, TestPropertiesPaths.USER,
+@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
+        SoapPropertiesPaths.ENCRYPTION_WSS4J,
+        InterceptorWss4jPropertiesPaths.ENCRYPTION,
+        EndpointWss4jPropertiesPaths.ENCRYPTION,
+        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
         TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J })
 public final class TestEntityEndpointEncryptionWSS4J
         extends AbstractTestEntityEndpointRequest {

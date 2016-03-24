@@ -22,49 +22,38 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.testing.util.config.context;
+package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Configuration class for the test context files paths.
+ * Paths to the XWSS-based interceptor properties files.
  * <p>
- * These are the same context configurations as the ones used for the servlets.
+ * These files contain the data required for setting up an interceptor context.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ServletXWSSContextPaths {
+public final class InterceptorXwssPropertiesPaths {
 
     /**
-     * Base web service context used on all the endpoints.
-     * <p>
-     * This is the application context used for the real web services, and
-     * shared by all the servlets.
+     * Encryption interceptor.
      */
-    public static final String BASE            = "classpath:context/webService.xml";
+    public static final String ENCRYPTION      = "classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
     /**
-     * Plain password web service contextt.
+     * Digested password interceptor.
      */
-    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
+    public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
     /**
-     * Plain password web service contextt.
+     * Plain password interceptor.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
+    public static final String PASSWORD_PLAIN  = "classpath:config/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
     /**
-     * Plain password web service contextt.
+     * Signature interceptor.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
-    /**
-     * Plain password web service contextt.
-     */
-    public static final String SIGNATURE       = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
-    /**
-     * Unsecure web service context.
-     */
-    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String SIGNATURE       = "classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private ServletXWSSContextPaths() {
+    private InterceptorXwssPropertiesPaths() {
         super();
     }
 
