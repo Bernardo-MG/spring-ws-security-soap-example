@@ -22,12 +22,14 @@
  * SOFTWARE.
  */
 /**
- * Provides the model used by the web services.
+ * The model for the application.
  * <p>
- * This consists just on the
- * {@link com.wandrell.example.swss.model.ExampleEntity} interface and a
- * annotated implementation of it, the
- * {@link com.wandrell.example.swss.model.DefaultExampleEntity}.
+ * This consists just on a very simple entity, containing an id and a name.
+ * <p>
+ * The {@link com.wandrell.example.swss.model.ExampleEntity ExampleEntity}
+ * interface and a JPA implementation of it, the
+ * {@link com.wandrell.example.swss.model.DefaultExampleEntity
+ * DefaultExampleEntity}, represent it.
  * <p>
  * Remember that there is also a JAXB annotated model, uses for the SOAP
  * messages, in the generated classes package.

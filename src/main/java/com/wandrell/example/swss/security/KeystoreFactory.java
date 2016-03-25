@@ -77,9 +77,10 @@ import org.slf4j.LoggerFactory;
 /**
  * Factory for generating key stores.
  * <p>
- * This is meant to be used only to create new key stores when needed.
+ * This is meant for the {@link KeystoreGenerator}.
  *
  * @author Bernardo Martínez Garrido
+ * @see KeystoreGenerator
  */
 public final class KeystoreFactory {
 

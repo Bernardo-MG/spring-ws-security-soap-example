@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Provides console-based runnable clients to access the web services.
+ * Console-based runnable clients to access the web services.
  * <p>
  * Only a single client is included, the
  * {@link com.wandrell.example.swss.client.console.ConsoleClient ConsoleClient}.

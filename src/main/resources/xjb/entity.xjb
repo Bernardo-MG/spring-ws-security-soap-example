@@ -35,7 +35,7 @@
             <jxb:class>
                 <jxb:javadoc><![CDATA[Entity to be used by the example endpoints.
 </p>
-This will be part of the requests and responses sent between the client and the web service.]]]></jxb:javadoc>
+This will be part of the requests and responses sent between the client and the web service.]]></jxb:javadoc>
             </jxb:class>
         </jxb:bindings>
         <jxb:bindings node="//xs:complexType[@name='entity']//xs:element[@name='id']">

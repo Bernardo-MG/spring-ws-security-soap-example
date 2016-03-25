@@ -39,7 +39,12 @@ import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Runnable shell-based client.
+ * Runnable console-based client.
+ * <p>
+ * Requires access to some kind of console, such as the ones offered by the most
+ * common IDEs, as the UI will be displayed on it.
+ * <p>
+ * After running it a series of instructions will tell how to use the client.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -538,9 +543,7 @@ public final class ConsoleClient {
     }
 
     /**
-     * Constructs a {@code ConsoleClient}.
-     * <p>
-     * The constructor is hidden to avoid initialization.
+     * Private constructor to avoid initialization.
      */
     private ConsoleClient() {
         super();

@@ -38,19 +38,21 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Client for acquiring {@link Entity} entities from the web service. This is
- * the JAXB class generated from the XSD files, not the {@code ExampleEntity}
- * from the model.
+ * Client for acquiring {@link Entity} entities from the web service. This
+ * {@code Entity} is the JAXB class generated from the XSD files, not the
+ * {@code ExampleEntity} from the model.
  * <p>
  * It is a simple client, which only takes a URL and the numeric identifier for
- * an entity, and then queries the web service for it, returning the result.
+ * the entity, and then queries the web service for it, returning the result.
  * <p>
  * Internally a {@link SoapActionCallback} will be used when calling the web
- * service to avoid unreachable endpoint errors when using some authentication
- * methods, which otherwise would make it impossible to reach the endpoint.
+ * service to avoid the problems some security protocols, mostly encryption,
+ * cause which may make the endpoints unreachable.
  * <p>
- * If no result is received then the {@code null} value will be returned. And if
- * any exception occurs then it will be thrown as usual.
+ * The client handles the usual SOAP and transmission problems, and will throw
+ * exceptions for them. But if for any reason there is no error but no response
+ * is received, or an empty one is received, then a {@code null} will be
+ * returned.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -63,18 +65,17 @@ public final class EntityClient extends WebServiceGatewaySupport {
             .getLogger(EntityClient.class);
 
     /**
-     * Constructs an {@code EntityClient}.
+     * Default constructor.
      */
     public EntityClient() {
         super();
     }
 
     /**
-     * Constructs an {@code EntityClient} with the specified
-     * {@code WebServiceMessageFactory}.
+     * Constructs a client with the specified message factory.
      *
      * @param factory
-     *            the {@code WebServiceMessageFactory} to be used by the client
+     *            the message factory to use
      */
     public EntityClient(final WebServiceMessageFactory factory) {
         super(factory);

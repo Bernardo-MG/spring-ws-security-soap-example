@@ -35,7 +35,9 @@ import org.slf4j.LoggerFactory;
 /**
  * Executable class for generating the key stores used on the tests.
  * <p>
- * This is to be used in case the key stores are to be rebuilt for any reason.
+ * This is to be used only when for any reason new key stores are required.
+ * Otherwise, as long as the ones included in the application work they should
+ * be left untouched.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -70,6 +72,7 @@ public final class KeystoreGenerator {
         final String alias;
         final String issuer;
 
+        // TODO: Maybe this can be moved to configuration files
         jksMainPath = "src/main/resources/keystore/keystore.jks";
         jksSecondPath = "src/main/resources/keystore/keystore2.jks";
         jceksSymPath = "src/main/resources/keystore/symmetric.jceks";

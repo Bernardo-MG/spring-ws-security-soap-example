@@ -44,14 +44,18 @@ import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 /**
  * Endpoint for the example entities.
  * <p>
- * It just receives a {@link GetEntityRequest} asking for an entity with a
- * specific id, and then returns the {@link GetEntityResponse} with said id.
+ * It just receives a {@link GetEntityRequest} with the id for an entity and
+ * then returns a {@link GetEntityResponse} containing the entity for said id.
  * <p>
- * Both classes are JAXB annotated and generated from the same XSD file used for
- * creating the WSDL.
+ * Both the request and response classes are the JAXB annotated classes
+ * generated from the XSD file, which is the same one used for creating the WSDL
+ * for the endpoints.
  * <p>
  * Note that the endpoint offers no security at all, as this concern is to be
  * handled by Spring.
+ * <p>
+ * As the annotations found in the class imply, this endpoint is meant to be
+ * located and wired automatically by Spring.
  *
  * @author Bernardo Martínez Garrido
  * @see GetEntityResponse
@@ -66,6 +70,7 @@ public class ExampleEntityEndpoint {
      */
     private static final Logger        LOGGER = LoggerFactory
             .getLogger(ExampleEntityEndpoint.class);
+
     /**
      * Service for accessing the {@code ExampleEntity} instances handled by the
      * web service.
@@ -75,9 +80,7 @@ public class ExampleEntityEndpoint {
     private final ExampleEntityService entityService;
 
     /**
-     * Constructs a {@code ExampleEntityEndpoint}.
-     * <p>
-     * The constructor is meant to make use of Spring's IOC system.
+     * Constructs an endpoint for the example entities.
      *
      * @param service
      *            the service for the {@code ExampleEntity} instances
