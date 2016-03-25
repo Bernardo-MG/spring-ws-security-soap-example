@@ -99,20 +99,11 @@ public final class KeystoreFactory {
      * @param alias
      *            the alias for the secret key
      * @return the JCEKS key store
-     * @throws NoSuchAlgorithmException
-     *             if an algorithm required to create the key store could not be
-     *             found
-     * @throws CertificateException
-     *             if any of the certificates in the keystore could not be
-     *             loaded
-     * @throws KeyStoreException
-     *             if a key store related error ocurred
-     * @throws IOException
-     *             if there is an I/O or format problem with the key store data
+     * @throws Exception
+     *             if any error occurs during the key store creation
      */
     public static final KeyStore getJCEKSKeystore(final String password,
-            final String alias) throws NoSuchAlgorithmException,
-            CertificateException, KeyStoreException, IOException {
+            final String alias) throws Exception {
         final KeyStore ks;      // Generated key store
 
         ks = getKeystore(password, "JCEKS");
@@ -131,31 +122,11 @@ public final class KeystoreFactory {
      * @param issuer
      *            issuer for the certificate
      * @return the JKS key store
-     * @throws NoSuchAlgorithmException
-     *             if an algorithm required to create the key store could not be
-     *             found
-     * @throws CertificateException
-     *             if any of the certificates in the keystore could not be
-     *             loaded
-     * @throws KeyStoreException
-     *             if a key store related error ocurred
-     * @throws IOException
-     *             if there is an I/O or format problem with the key store data
-     * @throws InvalidKeyException
-     *             if there was a problem with the key
-     * @throws NoSuchProviderException
-     *             if a required provider is missing
-     * @throws OperatorCreationException
-     *             if there was a problem creation a bouncy castle operator
-     * @throws SignatureException
-     *             if any problem occurs while signing the certificate
+     * @throws Exception
+     *             if any error occurs during the key store creation
      */
     public static final KeyStore getJKSKeystore(final String password,
-            final String alias, final String issuer)
-            throws NoSuchAlgorithmException, CertificateException,
-            KeyStoreException, IOException, InvalidKeyException,
-            NoSuchProviderException, OperatorCreationException,
-            SignatureException {
+            final String alias, final String issuer) throws Exception {
         final KeyStore ks;      // Generated key store
 
         ks = getKeystore(password);
