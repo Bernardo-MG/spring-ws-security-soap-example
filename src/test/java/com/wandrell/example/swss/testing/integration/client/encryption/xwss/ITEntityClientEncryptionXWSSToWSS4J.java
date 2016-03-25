@@ -28,7 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.config.context.ClientXwssContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlWss4jPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 
 /**
@@ -39,7 +39,7 @@ import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPa
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.ENCRYPTION })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
-        EndpointUrlWss4jPropertiesPaths.ENCRYPTION })
+        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
 public final class ITEntityClientEncryptionXWSSToWSS4J {
 
     /**

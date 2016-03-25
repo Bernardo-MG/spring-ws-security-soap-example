@@ -40,6 +40,7 @@ import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 
@@ -57,7 +58,8 @@ import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
         InterceptorWss4jPropertiesPaths.SIGNATURE,
         EndpointWss4jPropertiesPaths.SIGNATURE,
         EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J })
+        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J,
+        TestEndpointWss4jPropertiesPaths.SIGNATURE })
 public final class TestEntityEndpointSignatureWSS4J {
 
     /**

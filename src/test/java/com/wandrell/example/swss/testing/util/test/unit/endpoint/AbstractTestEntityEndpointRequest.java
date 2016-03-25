@@ -38,7 +38,6 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
 import com.wandrell.example.swss.testing.util.factory.SoapActionRequestCreators;
 
 /**
@@ -74,6 +73,11 @@ public abstract class AbstractTestEntityEndpointRequest
      */
     @Value("${soap.request.invalid.path}")
     private String             requestEnvelopeInvalidPath;
+    /**
+     * SOAP action for the tested message.
+     */
+    @Value("${endpoint.action}")
+    private String             soapAction;
 
     /**
      * Constructs an {@code AbstractTestEntityEndpointRequest}.
@@ -92,9 +96,8 @@ public abstract class AbstractTestEntityEndpointRequest
         final ResponseMatcher responseMatcher; // Matcher for the response
 
         // Creates the request
-        // TODO: Maybe the action should be loaded from the context
-        requestCreator = SoapActionRequestCreators.withSoapEnvelope(
-                ExampleEntityEndpointConstants.ACTION, getRequestEnvelope());
+        requestCreator = SoapActionRequestCreators.withSoapEnvelope(soapAction,
+                getRequestEnvelope());
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers

@@ -37,6 +37,7 @@ import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
@@ -54,7 +55,8 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
         InterceptorWss4jPropertiesPaths.ENCRYPTION,
         EndpointWss4jPropertiesPaths.ENCRYPTION,
         EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J })
+        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J,
+        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
 public final class TestEntityEndpointEncryptionWSS4J
         extends AbstractTestEntityEndpointRequest {
 

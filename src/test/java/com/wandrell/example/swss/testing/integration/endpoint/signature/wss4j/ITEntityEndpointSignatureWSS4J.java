@@ -36,8 +36,8 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
@@ -53,7 +53,7 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
         locations = { TestContextPaths.DEFAULT, TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
         SoapPropertiesPaths.SIGNATURE,
-        EndpointUrlWss4jPropertiesPaths.SIGNATURE })
+        TestEndpointWss4jPropertiesPaths.SIGNATURE })
 public final class ITEntityEndpointSignatureWSS4J extends AbstractITEndpoint {
 
     /**

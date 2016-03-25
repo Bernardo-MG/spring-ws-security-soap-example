@@ -47,7 +47,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
 import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -81,6 +80,11 @@ public abstract class AbstractITEndpoint
      */
     @Value("${entity.name}")
     private String  entityName;
+    /**
+     * SOAP action for the tested message.
+     */
+    @Value("${endpoint.action}")
+    private String  soapAction;
     /**
      * URL to the WSDL of the web service being tested.
      */
@@ -241,8 +245,7 @@ public abstract class AbstractITEndpoint
 
         // Sets the SOAP action
         headers = request.getMimeHeaders();
-        // TODO: Maybe the action should be loaded from the context
-        headers.addHeader("SOAPAction", ExampleEntityEndpointConstants.ACTION);
+        headers.addHeader("SOAPAction", soapAction);
         request.saveChanges();
 
         return soapConnectionFactory.createConnection().call(request, wsURL);

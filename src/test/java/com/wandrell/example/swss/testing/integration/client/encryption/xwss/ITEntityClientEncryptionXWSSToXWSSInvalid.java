@@ -28,7 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.config.context.ClientXwssContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
@@ -40,7 +40,7 @@ import com.wandrell.example.swss.testing.util.test.integration.client.AbstractIT
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.ENCRYPTION })
 @TestPropertySource({ TestPropertiesPaths.KEYSTORE_INVALID,
-        EndpointUrlXwssPropertiesPaths.ENCRYPTION })
+        TestEndpointXwssPropertiesPaths.ENCRYPTION })
 public final class ITEntityClientEncryptionXWSSToXWSSInvalid
         extends AbstractITEntityClientInvalid {
 

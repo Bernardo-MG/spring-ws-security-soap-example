@@ -28,7 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.config.context.ClientWss4jContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.client.AbstractITEntityClientInvalid;
 
@@ -41,7 +41,7 @@ import com.wandrell.example.swss.testing.util.test.integration.client.AbstractIT
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesPaths.USER_INVALID,
-        EndpointUrlXwssPropertiesPaths.SIGNATURE })
+        TestEndpointXwssPropertiesPaths.SIGNATURE })
 public final class ITEntityClientPasswordPlainWSS4JToXWSSInvalid
         extends AbstractITEntityClientInvalid {
 

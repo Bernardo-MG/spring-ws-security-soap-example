@@ -25,14 +25,14 @@
 package com.wandrell.example.swss.testing.util.config.properties;
 
 /**
- * Paths to the WSS4J-based endpoints URLs properties files.
+ * Paths to the WSS4J-based endpoints test properties files.
  * <p>
  * These files contain the URL for an endpoint and its WSDL, each with their own
- * security protocol.
+ * security protocol, and the SOAP action for the tested operation.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointUrlWss4jPropertiesPaths {
+public final class TestEndpointWss4jPropertiesPaths {
 
     /**
      * Encrypted endpoint.
@@ -58,7 +58,7 @@ public final class EndpointUrlWss4jPropertiesPaths {
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointUrlWss4jPropertiesPaths() {
+    private TestEndpointWss4jPropertiesPaths() {
         super();
     }
 

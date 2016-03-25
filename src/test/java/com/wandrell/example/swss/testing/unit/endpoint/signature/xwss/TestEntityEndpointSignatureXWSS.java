@@ -40,6 +40,7 @@ import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 
@@ -54,7 +55,8 @@ import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.SIGNATURE, InterceptorXwssPropertiesPaths.SIGNATURE,
         EndpointXwssPropertiesPaths.SIGNATURE,
-        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER, })
+        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        TestEndpointXwssPropertiesPaths.SIGNATURE })
 public final class TestEntityEndpointSignatureXWSS {
 
     /**

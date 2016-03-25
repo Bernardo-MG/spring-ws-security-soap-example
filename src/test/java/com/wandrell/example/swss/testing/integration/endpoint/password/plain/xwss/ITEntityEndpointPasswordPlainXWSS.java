@@ -34,8 +34,8 @@ import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
@@ -57,7 +57,7 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.USER,
         SoapPropertiesPaths.PASSWORD_PLAIN,
-        EndpointUrlXwssPropertiesPaths.PASSWORD_PLAIN })
+        TestEndpointXwssPropertiesPaths.PASSWORD_PLAIN })
 public final class ITEntityEndpointPasswordPlainXWSS
         extends AbstractITEndpoint {
 

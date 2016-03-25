@@ -35,6 +35,7 @@ import com.wandrell.example.swss.testing.util.config.context.ServletWss4jContext
 import com.wandrell.example.swss.testing.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
@@ -51,7 +52,8 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
         SoapPropertiesPaths.PASSWORD_PLAIN,
         InterceptorWss4jPropertiesPaths.PASSWORD_PLAIN,
         EndpointWss4jPropertiesPaths.PASSWORD_PLAIN,
-        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER })
+        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        TestEndpointWss4jPropertiesPaths.PASSWORD_PLAIN })
 public final class TestEntityEndpointPasswordPlainWSS4J
         extends AbstractTestEntityEndpointRequest {
 

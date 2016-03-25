@@ -32,8 +32,8 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.testing.util.SoapMessageUtils;
 import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.EndpointUrlXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.integration.endpoint.AbstractITEndpoint;
 
@@ -48,7 +48,7 @@ import com.wandrell.example.swss.testing.util.test.integration.endpoint.Abstract
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY,
         SoapPropertiesPaths.ENCRYPTION_XWSS,
-        EndpointUrlXwssPropertiesPaths.ENCRYPTION })
+        TestEndpointXwssPropertiesPaths.ENCRYPTION })
 public final class ITEntityEndpointEncryptionXWSS extends AbstractITEndpoint {
 
     /**

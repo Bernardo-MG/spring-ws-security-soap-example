@@ -37,6 +37,7 @@ import com.wandrell.example.swss.testing.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.testing.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.InterceptorXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
@@ -52,7 +53,8 @@ import com.wandrell.example.swss.testing.util.test.unit.endpoint.AbstractTestEnt
         SoapPropertiesPaths.ENCRYPTION_XWSS,
         InterceptorXwssPropertiesPaths.ENCRYPTION,
         EndpointXwssPropertiesPaths.ENCRYPTION,
-        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER })
+        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        TestEndpointXwssPropertiesPaths.ENCRYPTION })
 public final class TestEntityEndpointEncryptionXWSS
         extends AbstractTestEntityEndpointRequest {
 
