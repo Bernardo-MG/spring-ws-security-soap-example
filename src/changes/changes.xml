@@ -11,5 +11,10 @@
 				First version of the example.
 			</action>
 		</release>
+      <release version="1.0.1" date="2016-26-3" description="First version">
+         <action dev="bmg" type="update">
+             Changed the tests class path.
+         </action>
+      </release>
 	</body>
 </document>
