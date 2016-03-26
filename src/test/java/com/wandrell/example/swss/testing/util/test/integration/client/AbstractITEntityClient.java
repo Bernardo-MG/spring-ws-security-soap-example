@@ -56,16 +56,19 @@ public abstract class AbstractITEntityClient
      */
     @Autowired
     private EntityClient client;
+
     /**
      * Id of the returned entity.
      */
     @Value("${entity.id}")
     private Integer      entityId;
+
     /**
      * Name of the returned entity.
      */
     @Value("${entity.name}")
     private String       entityName;
+
     /**
      * URL for the WS.
      */

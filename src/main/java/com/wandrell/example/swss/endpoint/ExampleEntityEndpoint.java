@@ -42,19 +42,25 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Web service endpoint for {@link ExampleEntity}.
+ * Endpoint for the example entities.
  * <p>
- * It is as simple as it can be, having a single service which just receives a
- * {@link GetEntityRequest} asking for an entity with a specific id, and then
- * returns a {@code GetEntityResponse} which said id.
+ * It just receives a {@link GetEntityRequest} with the id for an entity and
+ * then returns a {@link GetEntityResponse} containing the entity for said id.
  * <p>
- * Both classes are JAXB annotated and generated from the same XSD file used for
- * creating the WSDL.
+ * Both the request and response classes are the JAXB annotated classes
+ * generated from the XSD file, which is the same one used for creating the WSDL
+ * for the endpoints.
  * <p>
  * Note that the endpoint offers no security at all, as this concern is to be
  * handled by Spring.
+ * <p>
+ * As the annotations found in the class imply, this endpoint is meant to be
+ * located and wired automatically by Spring.
  *
  * @author Bernardo Martínez Garrido
+ * @see GetEntityResponse
+ * @see GetEntityRequest
+ * @see Entity
  */
 @Endpoint
 public class ExampleEntityEndpoint {
@@ -64,6 +70,7 @@ public class ExampleEntityEndpoint {
      */
     private static final Logger        LOGGER = LoggerFactory
             .getLogger(ExampleEntityEndpoint.class);
+
     /**
      * Service for accessing the {@code ExampleEntity} instances handled by the
      * web service.
@@ -73,9 +80,7 @@ public class ExampleEntityEndpoint {
     private final ExampleEntityService entityService;
 
     /**
-     * Constructs a {@code ExampleEntityEndpoint}.
-     * <p>
-     * The constructor is meant to make use of Spring's IOC system.
+     * Constructs an endpoint for the example entities.
      *
      * @param service
      *            the service for the {@code ExampleEntity} instances
@@ -89,17 +94,19 @@ public class ExampleEntityEndpoint {
     }
 
     /**
-     * Returns the {@code Entity} with the id received through a SOAP request.
-     * Both the request and response are handled through JAXB annotated classes.
+     * Returns a {@code GetEntityResponse} containing an {@code Entity} for the
+     * id received on the {@code GetEntityRequest}.
      * <p>
-     * The entity is transformed from a {@link ExampleEntity} instance returned
-     * by the repository to the {@link Entity} used by the generated classes.
+     * These are all JAXB annotated classes, representing the contents of SOAP
+     * requests and responses.
+     * <p>
+     * The actual data will be acquired from the persistence layer on a
+     * {@link ExampleEntity} bean, which will be transformed to the expected
+     * result.
      *
      * @param request
-     *            JAXB annotated representation of the SOAP request for the
-     *            entity
-     * @return JAXB annotated representation of the SOAP response with the
-     *         entity
+     *            payload of the SOAP request for the entity
+     * @return payload for the SOAP response with the entity
      */
     @PayloadRoot(localPart = ExampleEntityEndpointConstants.REQUEST,
             namespace = ExampleEntityEndpointConstants.ENTITY_NS)

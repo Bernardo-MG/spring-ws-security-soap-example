@@ -10,18 +10,19 @@ Small web service showing the use of Spring WS Security for a SOAP web service.
 
 ## Features
 
-The project offers various examples showing how to set up the [WSS4J][wss4j] and [XWSS][xwss] [WS-Security][ws-security] implementations for the [Spring-WS][spring-ws] framework.
+The project offers examples showing how to set up the [WSS4J][wss4j] and [XWSS][xwss] [WS-Security][ws-security] implementations for the [Spring-WS][spring-ws] framework.
 
-The following authentication methods, along a web service without any kind of authentication, are used:
+The following security protocols are used and applied each to an endpoint:
 
+- Unsecure.
 - Plain password.
 - Digested password.
 - Signature.
 - Encryption.
 
-Each of them is applied to a different WS.
+WSS4J and XWSS variants are included.
 
-Additionally, several tests making sure that the web services work as intended.
+To make sure these are working as expected there are several tests included. These also show how to test secured endpoints.
 
 ## Documentation
 
@@ -62,6 +63,13 @@ To run the example just use the following Maven command:
 ```
 $ mvn clean package jetty:run-war
 ```
+
+After this the endpoints can be accessed directly, but using the URLs given
+lower, or through the console client, which will make use of the client
+class included in the project.
+
+This console client can be used by just running the ConsoleClient class,
+located in the com.wandrell.example.swss.client.console folder.
 
 ### Running the example on Java 8
 

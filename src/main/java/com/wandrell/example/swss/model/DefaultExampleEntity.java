@@ -54,6 +54,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
      */
     @Transient
     private static final long serialVersionUID = 1328776989450853491L;
+
     /**
      * Entity's ID.
      */
@@ -61,6 +62,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Integer           entityId;
+
     /**
      * Name of the entity.
      * <p>
@@ -71,7 +73,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
     private String            entityName;
 
     /**
-     * Constructs a {@code JPAExampleEntity}.
+     * Constructs an example entity.
      */
     public DefaultExampleEntity() {
         super();

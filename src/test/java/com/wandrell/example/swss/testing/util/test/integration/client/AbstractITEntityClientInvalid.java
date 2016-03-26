@@ -55,6 +55,7 @@ public abstract class AbstractITEntityClientInvalid
      */
     @Autowired
     private EntityClient client;
+
     /**
      * URL for the WS.
      */

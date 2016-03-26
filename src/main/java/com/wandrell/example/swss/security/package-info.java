@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Provides factories for generating key stores.
+ * Factories for generating key stores.
  * <p>
  * These classes are to be used only when fresh key stores are required for the
  * project.

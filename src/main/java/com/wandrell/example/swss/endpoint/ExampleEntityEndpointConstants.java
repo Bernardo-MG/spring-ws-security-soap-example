@@ -32,7 +32,7 @@ package com.wandrell.example.swss.endpoint;
  * 
  * @author Bernardo Martínez Garrido
  */
-public class ExampleEntityEndpointConstants {
+public final class ExampleEntityEndpointConstants {
 
     /**
      * The action for acquiring the entities.
@@ -41,10 +41,12 @@ public class ExampleEntityEndpointConstants {
      * the authentication systems modifies the message.
      */
     public static final String ACTION    = "http://wandrell.com/example/ws/entity/getEntity";
+
     /**
      * Namespace for the example entities.
      */
     public static final String ENTITY_NS = "http://wandrell.com/example/ws/entity";
+
     /**
      * Name for the operation used to acquire an entity.
      */

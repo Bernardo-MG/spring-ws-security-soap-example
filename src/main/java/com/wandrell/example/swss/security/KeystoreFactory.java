@@ -77,9 +77,10 @@ import org.slf4j.LoggerFactory;
 /**
  * Factory for generating key stores.
  * <p>
- * This is meant to be used only to create new key stores when needed.
+ * This is meant for the {@link KeystoreGenerator}.
  *
  * @author Bernardo Martínez Garrido
+ * @see KeystoreGenerator
  */
 public final class KeystoreFactory {
 
@@ -98,26 +99,17 @@ public final class KeystoreFactory {
      * @param alias
      *            the alias for the secret key
      * @return the JCEKS key store
-     * @throws NoSuchAlgorithmException
-     *             if an algorithm required to create the key store could not be
-     *             found
-     * @throws CertificateException
-     *             if any of the certificates in the keystore could not be
-     *             loaded
-     * @throws KeyStoreException
-     *             if a key store related error ocurred
-     * @throws IOException
-     *             if there is an I/O or format problem with the key store data
+     * @throws Exception
+     *             if any error occurs during the key store creation
      */
     public static final KeyStore getJCEKSKeystore(final String password,
-            final String alias) throws NoSuchAlgorithmException,
-                    CertificateException, KeyStoreException, IOException {
-        final KeyStore ks;      // Generated key store
+            final String alias) throws Exception {
+        final KeyStore kstore; // Generated key store
 
-        ks = getKeystore(password, "JCEKS");
-        addSecretKey(ks, alias, password);
+        kstore = getKeystore(password, "JCEKS");
+        addSecretKey(kstore, alias, password);
 
-        return ks;
+        return kstore;
     }
 
     /**
@@ -130,43 +122,23 @@ public final class KeystoreFactory {
      * @param issuer
      *            issuer for the certificate
      * @return the JKS key store
-     * @throws NoSuchAlgorithmException
-     *             if an algorithm required to create the key store could not be
-     *             found
-     * @throws CertificateException
-     *             if any of the certificates in the keystore could not be
-     *             loaded
-     * @throws KeyStoreException
-     *             if a key store related error ocurred
-     * @throws IOException
-     *             if there is an I/O or format problem with the key store data
-     * @throws InvalidKeyException
-     *             if there was a problem with the key
-     * @throws NoSuchProviderException
-     *             if a required provider is missing
-     * @throws OperatorCreationException
-     *             if there was a problem creation a bouncy castle operator
-     * @throws SignatureException
-     *             if any problem occurs while signing the certificate
+     * @throws Exception
+     *             if any error occurs during the key store creation
      */
     public static final KeyStore getJKSKeystore(final String password,
-            final String alias, final String issuer)
-                    throws NoSuchAlgorithmException, CertificateException,
-                    KeyStoreException, IOException, InvalidKeyException,
-                    NoSuchProviderException, OperatorCreationException,
-                    SignatureException {
-        final KeyStore ks;      // Generated key store
+            final String alias, final String issuer) throws Exception {
+        final KeyStore kstore; // Generated key store
 
-        ks = getKeystore(password);
-        addCertificate(ks, password, alias, issuer);
+        kstore = getKeystore(password);
+        addCertificate(kstore, password, alias, issuer);
 
-        return ks;
+        return kstore;
     }
 
     /**
      * Adds a certificate to a key store.
      * 
-     * @param ks
+     * @param kstore
      *            key store where the certificate will be added
      * @param password
      *            password for the certificate
@@ -193,12 +165,12 @@ public final class KeystoreFactory {
      * @throws SignatureException
      *             if any problem occurs while signing the certificate
      */
-    private static void addCertificate(final KeyStore ks, final String password,
-            final String alias, final String issuer)
-                    throws NoSuchAlgorithmException, NoSuchProviderException,
-                    InvalidKeyException, OperatorCreationException,
-                    CertificateException, IOException, KeyStoreException,
-                    SignatureException {
+    private static void addCertificate(final KeyStore kstore,
+            final String password, final String alias, final String issuer)
+            throws NoSuchAlgorithmException, NoSuchProviderException,
+            InvalidKeyException, OperatorCreationException,
+            CertificateException, IOException, KeyStoreException,
+            SignatureException {
         final KeyPair keypair;          // Key pair for the certificate
         final Certificate certificate;  // Generated certificate
         final Certificate[] chain;      // Certificate chain
@@ -208,7 +180,7 @@ public final class KeystoreFactory {
 
         chain = new Certificate[] { certificate };
 
-        ks.setKeyEntry(alias, keypair.getPrivate(), password.toCharArray(),
+        kstore.setKeyEntry(alias, keypair.getPrivate(), password.toCharArray(),
                 chain);
 
         LOGGER.debug(String.format(
@@ -219,7 +191,7 @@ public final class KeystoreFactory {
     /**
      * Adds a secret key to the received key store.
      * 
-     * @param ks
+     * @param kstore
      *            key store where the secret key will be added
      * @param alias
      *            alias for the secret key
@@ -228,9 +200,9 @@ public final class KeystoreFactory {
      * @throws KeyStoreException
      *             if a key store related error occurred
      */
-    private static final void addSecretKey(final KeyStore ks,
+    private static final void addSecretKey(final KeyStore kstore,
             final String alias, final String password)
-                    throws KeyStoreException {
+            throws KeyStoreException {
         final SecretKeyEntry secretKeyEntry;  // Secret key entry
         final PasswordProtection keyPassword; // Secret key password protection
         final SecretKey secretKey;            // Secret key password
@@ -244,7 +216,7 @@ public final class KeystoreFactory {
 
         secretKeyEntry = new SecretKeyEntry(secretKey);
         keyPassword = new PasswordProtection(password.toCharArray());
-        ks.setEntry(alias, secretKeyEntry, keyPassword);
+        kstore.setEntry(alias, secretKeyEntry, keyPassword);
 
         LOGGER.debug(
                 String.format("Added secret key with alias %s and password %s",
@@ -305,9 +277,8 @@ public final class KeystoreFactory {
      */
     private static final Certificate getCertificate(final KeyPair keypair,
             final String issuer) throws IOException, OperatorCreationException,
-                    CertificateException, InvalidKeyException,
-                    NoSuchAlgorithmException, NoSuchProviderException,
-                    SignatureException {
+            CertificateException, InvalidKeyException, NoSuchAlgorithmException,
+            NoSuchProviderException, SignatureException {
         final X509v3CertificateBuilder builder; // Certificate builder
         final X509Certificate certificate;      // Certificate
 
@@ -451,19 +422,19 @@ public final class KeystoreFactory {
      */
     private static final KeyStore getKeystore(final String password,
             final String type) throws NoSuchAlgorithmException,
-                    CertificateException, IOException, KeyStoreException {
-        final KeyStore ks; // The returned key store
-        final char[] pass; // The key store password
+            CertificateException, IOException, KeyStoreException {
+        final KeyStore kstore; // The returned key store
+        final char[] pass;     // The key store password
 
-        ks = KeyStore.getInstance(type);
+        kstore = KeyStore.getInstance(type);
 
         pass = password.toCharArray();
-        ks.load(null, pass);
+        kstore.load(null, pass);
 
         LOGGER.debug(String.format("Created %s key store with password %s",
                 type, password));
 
-        return ks;
+        return kstore;
     }
 
     /**
@@ -482,7 +453,7 @@ public final class KeystoreFactory {
      */
     private static final X509Certificate getSignedCertificate(
             final X509v3CertificateBuilder builder, final PrivateKey key)
-                    throws OperatorCreationException, CertificateException {
+            throws OperatorCreationException, CertificateException {
         final ContentSigner signer;   // Content signer
         final String provider;        // Provider
         final X509Certificate signed; // Signed certificate

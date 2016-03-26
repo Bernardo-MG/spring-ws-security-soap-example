@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Provides the services handling data access.
+ * The services handling data access.
  */
 
 package com.wandrell.example.swss.service.data;

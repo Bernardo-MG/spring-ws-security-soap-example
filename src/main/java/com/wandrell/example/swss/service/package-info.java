@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Provides the services handling business logic.
+ * The services handling business logic.
  * <p>
  * It is divided into a {@link com.wandrell.example.swss.service.data data
  * package} and a {@link com.wandrell.example.swss.service.security security

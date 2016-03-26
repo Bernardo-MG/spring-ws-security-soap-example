@@ -25,8 +25,12 @@
 package com.wandrell.example.swss.security;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.security.Security;
+import java.security.cert.CertificateException;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
@@ -35,7 +39,9 @@ import org.slf4j.LoggerFactory;
 /**
  * Executable class for generating the key stores used on the tests.
  * <p>
- * This is to be used in case the key stores are to be rebuilt for any reason.
+ * This is to be used only when for any reason new key stores are required.
+ * Otherwise, as long as the ones included in the application work they should
+ * be left untouched.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -56,19 +62,15 @@ public final class KeystoreGenerator {
      *             if any problem occurs while generating the key stores
      */
     public static final void main(final String[] args) throws Exception {
-        final FileOutputStream fos;
-        final FileOutputStream fosjks;
-        final FileOutputStream fosSecond;
-        final FileOutputStream fosSym;
-        final KeyStore jksMain;
-        final KeyStore jksSecond;
-        final KeyStore jceksSym;
-        final String jksMainPath;
-        final String jksSecondPath;
-        final String jceksSymPath;
-        final String password;
-        final String alias;
-        final String issuer;
+        final KeyStore jksMain;     // Main key store
+        final KeyStore jksSecond;   // Second key store
+        final KeyStore jceksSym;    // Symmetric key store
+        final String jksMainPath;   // Path for the main key store
+        final String jksSecondPath; // Path for the second key store
+        final String jceksSymPath;  // Path for the symmetric key store
+        final String password;      // Password to apply to the key stores
+        final String alias;         // Alias for the certificate
+        final String issuer;        // Issuer for the certificate
 
         jksMainPath = "src/main/resources/keystore/keystore.jks";
         jksSecondPath = "src/main/resources/keystore/keystore2.jks";
@@ -87,11 +89,7 @@ public final class KeystoreGenerator {
         jksMain = KeystoreFactory.getJKSKeystore(password, alias, issuer);
 
         // Saves the main keystore
-        fos = new FileOutputStream(jksMainPath);
-        fosjks = new FileOutputStream(jksMainPath);
-        jksMain.store(fosjks, password.toCharArray());
-        fosjks.close();
-        fos.close();
+        saveToFile(jksMain, jksMainPath, password.toCharArray());
 
         LOGGER.trace("Created main key store");
 
@@ -102,9 +100,7 @@ public final class KeystoreGenerator {
         jksSecond = KeystoreFactory.getJKSKeystore(password, alias, issuer);
 
         // Saves the second keystore
-        fosSecond = new FileOutputStream(jksSecondPath);
-        jksSecond.store(fosSecond, password.toCharArray());
-        fosSecond.close();
+        saveToFile(jksSecond, jksSecondPath, password.toCharArray());
 
         LOGGER.trace("Created second key store");
 
@@ -115,13 +111,41 @@ public final class KeystoreGenerator {
         jceksSym = KeystoreFactory.getJCEKSKeystore(password, alias);
 
         // Saves the symmetric keystore
-        fosSym = new FileOutputStream(jceksSymPath);
-        jceksSym.store(fosSym, password.toCharArray());
-        fosSym.close();
+        saveToFile(jceksSym, jceksSymPath, password.toCharArray());
 
         LOGGER.trace("Created symmetric key store");
 
         LOGGER.trace("Finished creating key stores");
+    }
+
+    /**
+     * Saves the received key store to a file.
+     * 
+     * @param keyStore
+     *            key store to save
+     * @param path
+     *            path where the key store will be saved
+     * @param password
+     *            password to applyt to the saved key store
+     * @throws KeyStoreException
+     *             if the keystore has not been initialized
+     * @throws NoSuchAlgorithmException
+     *             if the appropriate data integrity algorithm could not be
+     *             found
+     * @throws CertificateException
+     *             if any of the certificates included in the keystore data
+     *             could not be stored
+     * @throws IOException
+     *             if an I/O error occurs
+     */
+    private static final void saveToFile(final KeyStore keyStore,
+            final String path, final char[] password) throws KeyStoreException,
+            NoSuchAlgorithmException, CertificateException, IOException {
+        final FileOutputStream output; // Output stream for the keystore
+
+        output = new FileOutputStream(path);
+        keyStore.store(output, password);
+        output.close();
     }
 
     /**

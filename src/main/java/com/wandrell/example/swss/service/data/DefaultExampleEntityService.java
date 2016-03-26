@@ -33,10 +33,8 @@ import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.repository.ExampleEntityRepository;
 
 /**
- * Default implementation of {@link ExampleEntityService}, making use of Spring
- * for dependency injection.
- * <p>
- * It uses an {@link ExampleEntityRepository} for acquiring the entities.
+ * Default implementation of {@link ExampleEntityService}, using an
+ * {@link ExampleEntityRepository} for acquiring the entities.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -46,18 +44,14 @@ public class DefaultExampleEntityService implements ExampleEntityService {
     /**
      * Repository for the {@code ExampleEntity} instances handled by the
      * service.
-     * <p>
-     * This is injected by Spring.
      */
     private final ExampleEntityRepository entityRepository;
 
     /**
-     * Constructs a {@code DefaultExampleEntityService}.
-     * <p>
-     * The constructor is meant to make use of Spring's IOC system.
+     * Constructs an entities service.
      *
      * @param repository
-     *            the repository for the {@code ExampleEntity} instances
+     *            the repository for the entity instances
      */
     @Autowired
     public DefaultExampleEntityService(

@@ -40,7 +40,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 /**
  * Service for handling users authentication data.
  * <p>
- * This is used by the the user-based authentication systems.
+ * This is used by the the user-based authentication systems, and for that
+ * reason implements an interface from the Spring framework.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -53,7 +54,7 @@ public final class DefaultUserDetailsService implements UserDetailsService {
             .getLogger(DefaultUserDetailsService.class);
 
     /**
-     * Constructs a {@code DefaultUserDetailsService}.
+     * Constructs a user details service.
      */
     public DefaultUserDetailsService() {
         super();
@@ -62,8 +63,9 @@ public final class DefaultUserDetailsService implements UserDetailsService {
     @Override
     public final UserDetails loadUserByUsername(final String username)
             throws UsernameNotFoundException {
-        final UserDetails user;
-        final Collection<SimpleGrantedAuthority> authorities;
+        final UserDetails user; // Details for the user
+        final Collection<SimpleGrantedAuthority> authorities; // Privileges of
+                                                              // the user
 
         checkNotNull(username, "Received a null pointer as username");
 
@@ -73,22 +75,8 @@ public final class DefaultUserDetailsService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
             user = new User(username, "myPassword", authorities);
-        } else if ("www.wandrell.com".equalsIgnoreCase(username)) {
-            // User for keystore-based security
-            authorities = new LinkedList<>();
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-            user = new User(username, "password", true, true, true, true,
-                    authorities);
-        } else if ("swss-cert".equalsIgnoreCase(username)) {
-            // User for keystore-based security
-            authorities = new LinkedList<>();
-
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-            user = new User(username, "123456", true, true, true, true,
-                    authorities);
         } else {
+            // User not found
             LOGGER.debug(
                     String.format("User for username %s not found", username));
 

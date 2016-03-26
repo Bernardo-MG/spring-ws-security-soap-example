@@ -41,8 +41,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.swss.testing.util.config.context.ClientWSS4JContextPaths;
-import com.wandrell.example.swss.testing.util.config.properties.SOAPPropertiesPaths;
+import com.wandrell.example.swss.testing.util.config.context.ClientWss4jContextPaths;
+import com.wandrell.example.swss.testing.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.testing.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.ws.generated.entity.Entity;
 
@@ -58,9 +58,9 @@ import com.wandrell.example.ws.generated.entity.Entity;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWSS4JContextPaths.UNSECURE })
+@ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SOAPPropertiesPaths.UNSECURE })
+        SoapPropertiesPaths.UNSECURE })
 public final class TestEntityClientUnsecure
         extends AbstractTestNGSpringContextTests {
 
@@ -69,26 +69,31 @@ public final class TestEntityClientUnsecure
      */
     @Autowired
     private EntityClient client;
+
     /**
      * Expected id for the returned entity.
      */
     @Value("${entity.id}")
     private Integer      entityId;
+
     /**
      * Expected name for the returned entity.
      */
     @Value("${entity.name}")
     private String       entityName;
+
     /**
      * Path to XSD file which validates the SOAP messages.
      */
     @Value("${xsd.entity.path}")
     private String       entityXsdPath;
+
     /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
     private String       responsePayloadInvalidPath;
+
     /**
      * Path to the file with the valid response payload.
      */

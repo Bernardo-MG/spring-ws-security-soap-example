@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Provides the repositories used to access the web services data.
+ * Repositories for the persistence layer.
  * <p>
  * The {@link com.wandrell.example.swss.repository.ExampleEntityRepository} is a
  * simple Spring-JPA repository, meant to allow querying the entities returned

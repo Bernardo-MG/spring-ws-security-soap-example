@@ -38,6 +38,8 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
+import com.wandrell.example.swss.testing.util.factory.SoapActionRequestCreators;
+
 /**
  * Abstract unit tests for an endpoint testing that it handles envelope-based
  * SOAP messages correctly.
@@ -61,16 +63,24 @@ public abstract class AbstractTestEntityEndpointRequest
      */
     @Autowired
     private ApplicationContext applicationContext;
+
     /**
      * Path to XSD file which validates the SOAP messages.
      */
     @Value("${xsd.entity.path}")
     private String             entityXsdPath;
+
     /**
      * Path to the file with the invalid request payload.
      */
     @Value("${soap.request.invalid.path}")
     private String             requestEnvelopeInvalidPath;
+
+    /**
+     * SOAP action for the tested message.
+     */
+    @Value("${endpoint.action}")
+    private String             soapAction;
 
     /**
      * Constructs an {@code AbstractTestEntityEndpointRequest}.
@@ -87,11 +97,10 @@ public abstract class AbstractTestEntityEndpointRequest
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
-        final Source requestEnvelope;          // SOAP envelope for the request
 
         // Creates the request
-        requestEnvelope = getRequestEnvelope();
-        requestCreator = RequestCreators.withSoapEnvelope(requestEnvelope);
+        requestCreator = SoapActionRequestCreators.withSoapEnvelope(soapAction,
+                getRequestEnvelope());
 
         // Creates the response matcher
         responseMatcher = ResponseMatchers

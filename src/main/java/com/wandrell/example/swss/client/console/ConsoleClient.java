@@ -39,47 +39,17 @@ import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Runnable shell-based client.
+ * Runnable console-based client.
+ * <p>
+ * Requires access to some kind of console, such as the ones offered by the most
+ * common IDEs, as the UI will be displayed on it.
+ * <p>
+ * After running it a series of instructions will tell how to use the client.
  *
  * @author Bernardo Martínez Garrido
  */
 public final class ConsoleClient {
 
-    /**
-     * Enumeration for all the security types supported by the console client.
-     *
-     * @author Bernardo Martínez Garrido
-     */
-    private enum Security {
-        /**
-         * Encryption using WSS4J.
-         */
-        ENCRYPTION_WSS4J, /**
-                           * Encryption using XWSS.
-                           */
-        ENCRYPTION_XWSS, /**
-                          * Digested password using WSS4J.
-                          */
-        PASSWORD_DIGEST_WSS4J, /**
-                                * Digested password using XWSS.
-                                */
-        PASSWORD_DIGEST_XWSS, /**
-                               * Plain password using WSS4J.
-                               */
-        PASSWORD_PLAIN_WSS4J, /**
-                               * Plain password using XWSS.
-                               */
-        PASSWORD_PLAIN_XWSS, /**
-                              * Signature using WSS4J.
-                              */
-        SIGNATURE_WSS4J, /**
-                          * Signature using XWSS.
-                          */
-        SIGNATURE_XWSS, /**
-                         * Unsecure.
-                         */
-        UNSECURE
-    }
     /**
      * Template for generating the final endpoint URL.
      * <p>
@@ -92,6 +62,50 @@ public final class ConsoleClient {
      * Property key for the endpoint URI.
      */
     private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
+
+    /**
+     * Enumeration for all the security types supported by the console client.
+     *
+     * @author Bernardo Martínez Garrido
+     */
+    private enum Security {
+        /**
+         * Encryption using WSS4J.
+         */
+        ENCRYPTION_WSS4J,
+        /**
+         * Encryption using XWSS.
+         */
+        ENCRYPTION_XWSS,
+        /**
+         * Digested password using WSS4J.
+         */
+        PASSWORD_DIGEST_WSS4J,
+        /**
+         * Digested password using XWSS.
+         */
+        PASSWORD_DIGEST_XWSS,
+        /**
+         * Plain password using WSS4J.
+         */
+        PASSWORD_PLAIN_WSS4J,
+        /**
+         * Plain password using XWSS.
+         */
+        PASSWORD_PLAIN_XWSS,
+        /**
+         * Signature using WSS4J.
+         */
+        SIGNATURE_WSS4J,
+        /**
+         * Signature using XWSS.
+         */
+        SIGNATURE_XWSS,
+        /**
+         * Unsecure.
+         */
+        UNSECURE
+    }
 
     /**
      * Main runnable method.
@@ -443,7 +457,7 @@ public final class ConsoleClient {
         String uri;            // Endpoint for the selected security
         String command;        // Current user command
 
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in, "UTF-8");
         // The main loop
         // Stops when the 'exit' command is received
         do {
@@ -529,9 +543,7 @@ public final class ConsoleClient {
     }
 
     /**
-     * Constructs a {@code ConsoleClient}.
-     * <p>
-     * The constructor is hidden to avoid initialization.
+     * Private constructor to avoid initialization.
      */
     private ConsoleClient() {
         super();
