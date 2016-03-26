@@ -41,18 +41,22 @@ public final class ClientXwssContextPaths {
      * Encrypted client.
      */
     public static final String ENCRYPTION      = "classpath:context/client/encryption/xwss/client-encryption-xwss.xml";
+
     /**
      * Digested password client.
      */
     public static final String PASSWORD_DIGEST = "classpath:context/client/password/digest/xwss/client-password-digest-xwss.xml";
+
     /**
      * Plain password client.
      */
     public static final String PASSWORD_PLAIN  = "classpath:context/client/password/plain/xwss/client-password-plain-xwss.xml";
+
     /**
      * Signed client.
      */
     public static final String SIGNATURE       = "classpath:context/client/signature/xwss/client-signature-xwss.xml";
+
     /**
      * Unsecure client.
      */

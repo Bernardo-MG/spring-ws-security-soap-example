@@ -63,11 +63,13 @@ public final class TestEntityEndpointPasswordDigestXwss
      */
     @Value("${security.credentials.password}")
     private String password;
+
     /**
      * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.template.path}")
     private String pathValid;
+
     /**
      * Username for the passworded message.
      */

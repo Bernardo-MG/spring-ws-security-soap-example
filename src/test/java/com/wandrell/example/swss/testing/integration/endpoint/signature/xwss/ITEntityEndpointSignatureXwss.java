@@ -61,17 +61,20 @@ public final class ITEntityEndpointSignatureXwss extends AbstractITEndpoint {
      */
     @Value("${keystore.alias}")
     private String   alias;
+
     /**
      * Key store for signing messages.
      */
     @Autowired
     @Qualifier("keyStore")
     private KeyStore keystore;
+
     /**
      * Password for the certificate for signing messages.
      */
     @Value("${keystore.password}")
     private String   password;
+
     /**
      * Path to the file containing the invalid SOAP request.
      */

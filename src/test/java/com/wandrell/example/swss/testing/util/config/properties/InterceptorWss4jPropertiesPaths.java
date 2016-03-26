@@ -37,14 +37,17 @@ public final class InterceptorWss4jPropertiesPaths {
      * Encryption interceptor.
      */
     public static final String ENCRYPTION      = "classpath:config/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties";
+
     /**
      * Digested password interceptor.
      */
     public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/wss4j/interceptor-password-digest-wss4j.properties";
+
     /**
      * Plain password interceptor.
      */
     public static final String PASSWORD_PLAIN  = "classpath:config/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
+
     /**
      * Signature interceptor.
      */

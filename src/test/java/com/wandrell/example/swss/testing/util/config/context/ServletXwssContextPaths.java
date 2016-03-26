@@ -44,22 +44,27 @@ public final class ServletXwssContextPaths {
      * all the servlets.
      */
     public static final String BASE            = "classpath:context/webService.xml";
+
     /**
      * Encrypted servlet.
      */
     public static final String ENCRYPTION      = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
+
     /**
      * Digested password servlet.
      */
     public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
+
     /**
      * Plain password servlet.
      */
     public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
+
     /**
      * Signed servlet.
      */
     public static final String SIGNATURE       = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
+
     /**
      * Unsecure servlet.
      */

@@ -66,16 +66,19 @@ public final class ITEntityEndpointPasswordPlainXwss
      */
     @Value("${security.credentials.password}")
     private String password;
+
     /**
      * Path to the file containing the invalid SOAP request.
      */
     @Value("${soap.request.invalid.path}")
     private String pathInvalid;
+
     /**
      * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.template.path}")
     private String pathValid;
+
     /**
      * Username for the passworded message.
      */

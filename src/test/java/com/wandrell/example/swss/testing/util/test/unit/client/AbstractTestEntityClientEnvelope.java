@@ -66,26 +66,31 @@ public abstract class AbstractTestEntityClientEnvelope
      */
     @Autowired
     private EntityClient client;
+
     /**
      * Expected id for the returned entity.
      */
     @Value("${entity.id}")
     private Integer      entityId;
+
     /**
      * Expected name for the returned entity.
      */
     @Value("${entity.name}")
     private String       entityName;
+
     /**
      * Path to the file with the invalid request payload.
      */
     @Value("${soap.request.invalid.path}")
     private String       requestEnvelopeInvalidPath;
+
     /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
     private String       responsePayloadInvalidPath;
+
     /**
      * Path to the file with the valid response payload.
      */

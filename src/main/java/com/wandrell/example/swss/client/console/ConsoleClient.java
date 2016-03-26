@@ -457,7 +457,7 @@ public final class ConsoleClient {
         String uri;            // Endpoint for the selected security
         String command;        // Current user command
 
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in, "UTF-8");
         // The main loop
         // Stops when the 'exit' command is received
         do {

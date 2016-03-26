@@ -37,22 +37,27 @@ public final class EndpointWss4jPropertiesPaths {
      * Common endpoint configuration.
      */
     public static final String COMMON          = "classpath:config/endpoint/endpoint.properties";
+
     /**
      * Encrypted endpoint.
      */
     public static final String ENCRYPTION      = "classpath:config/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties";
+
     /**
      * Digested password endpoint.
      */
     public static final String PASSWORD_DIGEST = "classpath:config/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties";
+
     /**
      * Plain password endpoint.
      */
     public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties";
+
     /**
      * Signed endpoint.
      */
     public static final String SIGNATURE       = "classpath:config/endpoint/signature/wss4j/endpoint-signature-wss4j.properties";
+
     /**
      * Unsecure endpoint.
      */

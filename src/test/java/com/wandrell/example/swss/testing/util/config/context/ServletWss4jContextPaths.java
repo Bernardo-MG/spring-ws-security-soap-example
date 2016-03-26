@@ -44,22 +44,27 @@ public final class ServletWss4jContextPaths {
      * all the servlets.
      */
     public static final String APPLICATION_COMMON = "classpath:context/webService.xml";
+
     /**
      * Encrypted servlet.
      */
     public static final String ENCRYPTION         = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
+
     /**
      * Digested password servlet.
      */
     public static final String PASSWORD_DIGEST    = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
+
     /**
      * Plain password servlet.
      */
     public static final String PASSWORD_PLAIN     = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
+
     /**
      * Signed servlet.
      */
     public static final String SIGNATURE          = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
+
     /**
      * Unsecure servlet.
      */

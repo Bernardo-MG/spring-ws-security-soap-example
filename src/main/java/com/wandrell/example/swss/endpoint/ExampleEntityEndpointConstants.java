@@ -41,10 +41,12 @@ public final class ExampleEntityEndpointConstants {
      * the authentication systems modifies the message.
      */
     public static final String ACTION    = "http://wandrell.com/example/ws/entity/getEntity";
+
     /**
      * Namespace for the example entities.
      */
     public static final String ENTITY_NS = "http://wandrell.com/example/ws/entity";
+
     /**
      * Name for the operation used to acquire an entity.
      */

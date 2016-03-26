@@ -63,16 +63,19 @@ public abstract class AbstractTestEntityEndpointRequest
      */
     @Autowired
     private ApplicationContext applicationContext;
+
     /**
      * Path to XSD file which validates the SOAP messages.
      */
     @Value("${xsd.entity.path}")
     private String             entityXsdPath;
+
     /**
      * Path to the file with the invalid request payload.
      */
     @Value("${soap.request.invalid.path}")
     private String             requestEnvelopeInvalidPath;
+
     /**
      * SOAP action for the tested message.
      */

@@ -38,18 +38,22 @@ public final class TestEndpointWss4jPropertiesPaths {
      * Encrypted endpoint.
      */
     public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-wss4j.properties";
+
     /**
      * Digested password endpoint.
      */
     public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-wss4j.properties";
+
     /**
      * Plain password endpoint.
      */
     public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-wss4j.properties";
+
     /**
      * Signed endpoint.
      */
     public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-wss4j.properties";
+
     /**
      * Unsecure endpoint.
      */

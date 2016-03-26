@@ -37,14 +37,17 @@ public final class InterceptorXwssPropertiesPaths {
      * Encryption interceptor.
      */
     public static final String ENCRYPTION      = "classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
+
     /**
      * Digested password interceptor.
      */
     public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
+
     /**
      * Plain password interceptor.
      */
     public static final String PASSWORD_PLAIN  = "classpath:config/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
+
     /**
      * Signature interceptor.
      */

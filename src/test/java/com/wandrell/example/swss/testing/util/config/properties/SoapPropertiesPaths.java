@@ -38,22 +38,27 @@ public final class SoapPropertiesPaths {
      * Encrypted SOAP messages for the WSS4J interceptors.
      */
     public static final String ENCRYPTION_WSS4J = "classpath:config/soap/test-soap-encryption-wss4j.properties";
+
     /**
      * Encrypted SOAP messages for the XWSS interceptors.
      */
     public static final String ENCRYPTION_XWSS  = "classpath:config/soap/test-soap-encryption-xwss.properties";
+
     /**
      * Digested password SOAP messages.
      */
     public static final String PASSWORD_DIGEST  = "classpath:config/soap/test-soap-password-digest.properties";
+
     /**
      * Plain password SOAP messages.
      */
     public static final String PASSWORD_PLAIN   = "classpath:config/soap/test-soap-password-plain.properties";
+
     /**
      * Signed SOAP messages.
      */
     public static final String SIGNATURE        = "classpath:config/soap/test-soap-signature.properties";
+
     /**
      * Unsecure SOAP messages.
      */

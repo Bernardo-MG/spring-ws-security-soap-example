@@ -56,6 +56,7 @@ public final class ITEntityEndpointEncryptionWss4j extends AbstractITEndpoint {
      */
     @Value("${soap.request.invalid.path}")
     private String pathInvalid;
+
     /**
      * Path to the file containing the valid SOAP request.
      */

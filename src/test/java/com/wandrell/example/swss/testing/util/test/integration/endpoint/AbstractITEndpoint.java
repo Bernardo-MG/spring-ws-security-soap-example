@@ -75,21 +75,25 @@ public abstract class AbstractITEndpoint
      */
     @Value("${entity.id}")
     private Integer entityId;
+
     /**
      * Name of the returned entity.
      */
     @Value("${entity.name}")
     private String  entityName;
+
     /**
      * SOAP action for the tested message.
      */
     @Value("${endpoint.action}")
     private String  soapAction;
+
     /**
      * URL to the WSDL of the web service being tested.
      */
     @Value("${endpoint.wsdl.url}")
     private String  wsdlURL;
+
     /**
      * URL to the web service being tested.
      */

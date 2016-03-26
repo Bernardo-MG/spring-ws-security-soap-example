@@ -40,12 +40,14 @@ public final class TestContextPaths {
      * loading Spring properties.
      */
     public static final String DEFAULT        = "classpath:context/test-default.xml";
+
     /**
      * Key stores.
      * <p>
      * Contains the configuration for the basic Java key stores.
      */
     public static final String KEYSTORE       = "classpath:context/keystore/keystore.xml";
+
     /**
      * WSS4J key stores.
      * <p>

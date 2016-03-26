@@ -68,16 +68,19 @@ public final class TestEntityEndpointUnsecure
      */
     @Autowired
     private ApplicationContext applicationContext;
+
     /**
      * Path to XSD file which validates the SOAP messages.
      */
     @Value("${xsd.entity.path}")
     private String             entityXsdPath;
+
     /**
      * Path to the file with the invalid request payload.
      */
     @Value("${soap.request.payload.invalid.path}")
     private String             requestPayloadInvalidPath;
+
     /**
      * Path to the file with the valid request payload.
      */

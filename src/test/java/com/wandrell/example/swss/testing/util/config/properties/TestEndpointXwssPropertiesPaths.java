@@ -38,18 +38,22 @@ public final class TestEndpointXwssPropertiesPaths {
      * Encrypted endpoint.
      */
     public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
+
     /**
      * Digested password endpoint.
      */
     public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
+
     /**
      * Plain password endpoint.
      */
     public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
+
     /**
      * Signed endpoint.
      */
     public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
+
     /**
      * Unsecure endpoint.
      */

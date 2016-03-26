@@ -64,6 +64,7 @@ public final class SoapActionRequestCreators {
          * Action to be added into the request.
          */
         private final String                   action;
+
         /**
          * Adapted message creator.
          */

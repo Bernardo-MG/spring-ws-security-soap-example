@@ -70,6 +70,7 @@ public final class TestEntityClientExceptionSoap
      */
     @Autowired
     private EntityClient client;
+
     /**
      * Valid entity id.
      */

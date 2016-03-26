@@ -67,27 +67,32 @@ public final class TestEntityEndpointSignatureWss4j {
      */
     @Value("${keystore.alias}")
     private String   alias;
+
     /**
      * Key store for signing messages.
      */
     @Autowired
     @Qualifier("keyStore")
     private KeyStore keystore;
+
     /**
      * Password for the passworded message.
      */
     @Value("${security.credentials.password}")
     private String   password;
+
     /**
      * Password for the certificate for signing messages.
      */
     @Value("${keystore.password}")
     private String   passwordKey;
+
     /**
      * Path to the file containing the unsecured SOAP request.
      */
     @Value("${soap.request.path}")
     private String   pathUnsecure;
+
     /**
      * Username for the passworded message.
      */
