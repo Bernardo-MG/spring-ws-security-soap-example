@@ -1,6 +1,8 @@
 language: java
 jdk:
+# JDK 8 is not supported
 #  - oraclejdk8
+# JDK 7 is set to deploy the docs in the configuration matrix
 #  - oraclejdk7
   - openjdk7
 matrix:
