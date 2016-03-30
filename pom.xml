@@ -95,7 +95,7 @@
                                  <pluginExecutionFilter>
                                     <groupId>org.jvnet.jaxb2.maven2</groupId>
                                     <artifactId>maven-jaxb2-plugin</artifactId>
-                                    <versionRange>[0.1,)</versionRange>
+                                    <versionRange>[${plugin.jaxb2.version},)</versionRange>
                                     <goals>
                                        <goal>generate</goal>
                                     </goals>
@@ -109,7 +109,7 @@
                                  <pluginExecutionFilter>
                                     <groupId>org.codehaus.mojo</groupId>
                                     <artifactId>build-helper-maven-plugin</artifactId>
-                                    <versionRange>[1.0,)</versionRange>
+                                    <versionRange>[${plugin.buildhelp.version},)</versionRange>
                                     <goals>
                                        <goal>add-source</goal>
                                        <goal>add-test-source</goal>
