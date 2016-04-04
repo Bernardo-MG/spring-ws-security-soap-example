@@ -21,8 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/**
- * The services handling data access.
- */
 
-package com.wandrell.example.swss.service.data;
+package com.wandrell.example.swss.service.domain;
+
+import com.wandrell.example.swss.model.ExampleEntity;
+
+/**
+ * Interface for the service to access {@link ExampleEntity} instances.
+ * <p>
+ * As it is meant for the endpoint, it just allows finding an entity by the id.
+ *
+ * @author Bernardo Martínez Garrido
+ */
+public interface ExampleEntityService {
+
+    /**
+     * Returns a {@code ExampleEntity} with the given id.
+     * <p>
+     * If no instance exists with that id then the value {@code null} is
+     * returned.
+     *
+     * @param identifier
+     *            identifier of the {@code ExampleEntity} to find
+     * @return the {@code ExampleEntity} with the given id or {@code null}
+     */
+    public ExampleEntity findById(final Integer identifier);
+
+}

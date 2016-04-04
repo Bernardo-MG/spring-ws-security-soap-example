@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.service.data;
+package com.wandrell.example.swss.service.domain;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
