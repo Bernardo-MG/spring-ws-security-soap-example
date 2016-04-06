@@ -17,6 +17,8 @@ before_install:
   - chmod +x ./.scripts/create-maven-settings.sh
   - chmod +x ./.scripts/deploy.sh
   - chmod +x ./.scripts/deploy-site.sh
+  # Prepares CI environment
+  - source ./.scripts/load-travis-environment.sh
   # Creates Maven settings
   - ./.scripts/create-maven-settings.sh
 script:
