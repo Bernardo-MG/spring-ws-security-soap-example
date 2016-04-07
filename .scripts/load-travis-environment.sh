@@ -43,6 +43,8 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
    export VERSION_TYPE=release;
 elif [ "$TRAVIS_BRANCH" == "develop" ]; then
    export VERSION_TYPE=develop;
+else
+   export VERSION_TYPE=other;
 fi
 
 echo "CI environmental variables set:";
