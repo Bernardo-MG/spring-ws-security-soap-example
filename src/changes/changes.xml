@@ -16,6 +16,9 @@
              Updated CI scripts.
          </action>
          <action dev="bmg" type="update">
+             Cleaned up dependencies.
+         </action>
+         <action dev="bmg" type="update">
              Changed the domain service class path.
          </action>
          <action dev="bmg" type="update">
