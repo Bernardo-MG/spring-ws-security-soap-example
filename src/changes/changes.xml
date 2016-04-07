@@ -11,7 +11,7 @@
 				First version of the example.
 			</action>
 		</release>
-      <release version="1.0.1" date="2016-07-04" description="Miscelany updates">
+      <release version="1.0.1" date="2016-07-04" description="Updates and corrections">
          <action dev="bmg" type="update">
              Updated CI scripts.
          </action>
@@ -23,6 +23,9 @@
          </action>
          <action dev="bmg" type="update">
              Cleaned up test files and corrected namespace declarations.
+         </action>
+         <action dev="bmg" type="fix">
+             Key store generator now closes the streams on exceptions.
          </action>
       </release>
 	</body>
