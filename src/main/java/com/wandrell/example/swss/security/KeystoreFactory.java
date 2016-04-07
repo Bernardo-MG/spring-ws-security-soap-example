@@ -93,7 +93,7 @@ public final class KeystoreFactory {
     /**
      * Creates a Java Cryptographic Extension Key Store (JCEKS), which will
      * include a secret key.
-     * 
+     *
      * @param password
      *            the password to be used on the key store
      * @param alias
@@ -114,7 +114,7 @@ public final class KeystoreFactory {
 
     /**
      * Creates a Java Key Store (JKS), which will include a certificate.
-     * 
+     *
      * @param password
      *            password for the certificate
      * @param alias
@@ -137,7 +137,7 @@ public final class KeystoreFactory {
 
     /**
      * Adds a certificate to a key store.
-     * 
+     *
      * @param kstore
      *            key store where the certificate will be added
      * @param password
@@ -167,10 +167,10 @@ public final class KeystoreFactory {
      */
     private static void addCertificate(final KeyStore kstore,
             final String password, final String alias, final String issuer)
-            throws NoSuchAlgorithmException, NoSuchProviderException,
-            InvalidKeyException, OperatorCreationException,
-            CertificateException, IOException, KeyStoreException,
-            SignatureException {
+                    throws NoSuchAlgorithmException, NoSuchProviderException,
+                    InvalidKeyException, OperatorCreationException,
+                    CertificateException, IOException, KeyStoreException,
+                    SignatureException {
         final KeyPair keypair;          // Key pair for the certificate
         final Certificate certificate;  // Generated certificate
         final Certificate[] chain;      // Certificate chain
@@ -190,7 +190,7 @@ public final class KeystoreFactory {
 
     /**
      * Adds a secret key to the received key store.
-     * 
+     *
      * @param kstore
      *            key store where the secret key will be added
      * @param alias
@@ -202,7 +202,7 @@ public final class KeystoreFactory {
      */
     private static final void addSecretKey(final KeyStore kstore,
             final String alias, final String password)
-            throws KeyStoreException {
+                    throws KeyStoreException {
         final SecretKeyEntry secretKeyEntry;  // Secret key entry
         final PasswordProtection keyPassword; // Secret key password protection
         final SecretKey secretKey;            // Secret key password
@@ -225,7 +225,7 @@ public final class KeystoreFactory {
 
     /**
      * Returns a {@code SubjectKeyIdentifier} for the received {@code Key}.
-     * 
+     *
      * @param key
      *            the key for generating the identifier
      * @return a {@code SubjectKeyIdentifier} for the received {@code Key}
@@ -234,15 +234,15 @@ public final class KeystoreFactory {
      */
     private static SubjectKeyIdentifier
             createSubjectKeyIdentifier(final Key key) throws IOException {
-        final ASN1Sequence seq;    // Sequence for the key info
-        ASN1InputStream is = null; // Stream for reading the key
+        final ASN1Sequence seq;        // Sequence for the key info
+        ASN1InputStream stream = null; // Stream for reading the key
 
         try {
-            is = new ASN1InputStream(
+            stream = new ASN1InputStream(
                     new ByteArrayInputStream(key.getEncoded()));
-            seq = (ASN1Sequence) is.readObject();
+            seq = (ASN1Sequence) stream.readObject();
         } finally {
-            IOUtils.closeQuietly(is);
+            IOUtils.closeQuietly(stream);
         }
 
         return new BcX509ExtensionUtils()
@@ -251,7 +251,7 @@ public final class KeystoreFactory {
 
     /**
      * Returns a {@code Certificate} with the received data.
-     * 
+     *
      * @param keypair
      *            key pair for the certificate
      * @param issuer
@@ -277,8 +277,9 @@ public final class KeystoreFactory {
      */
     private static final Certificate getCertificate(final KeyPair keypair,
             final String issuer) throws IOException, OperatorCreationException,
-            CertificateException, InvalidKeyException, NoSuchAlgorithmException,
-            NoSuchProviderException, SignatureException {
+                    CertificateException, InvalidKeyException,
+                    NoSuchAlgorithmException, NoSuchProviderException,
+                    SignatureException {
         final X509v3CertificateBuilder builder; // Certificate builder
         final X509Certificate certificate;      // Certificate
 
@@ -301,7 +302,7 @@ public final class KeystoreFactory {
 
     /**
      * Returns a certificate builder.
-     * 
+     *
      * @param publicKey
      *            public key for the certificate builder
      * @param issuer
@@ -354,7 +355,7 @@ public final class KeystoreFactory {
 
     /**
      * Creates a key pair.
-     * 
+     *
      * @return the key pair
      * @throws NoSuchAlgorithmException
      *             if the required algorithm for the key pair does not exist
@@ -380,7 +381,7 @@ public final class KeystoreFactory {
 
     /**
      * Generates a default JKS key store.
-     * 
+     *
      * @param password
      *            the password for the key store
      * @return the JKS key store
@@ -403,7 +404,7 @@ public final class KeystoreFactory {
 
     /**
      * Generates a key store of the specified type.
-     * 
+     *
      * @param password
      *            the password for the key store
      * @param type
@@ -422,7 +423,7 @@ public final class KeystoreFactory {
      */
     private static final KeyStore getKeystore(final String password,
             final String type) throws NoSuchAlgorithmException,
-            CertificateException, IOException, KeyStoreException {
+                    CertificateException, IOException, KeyStoreException {
         final KeyStore kstore; // The returned key store
         final char[] pass;     // The key store password
 
@@ -439,7 +440,7 @@ public final class KeystoreFactory {
 
     /**
      * Returns a signed certificate.
-     * 
+     *
      * @param builder
      *            builder to create the certificate
      * @param key
@@ -453,7 +454,7 @@ public final class KeystoreFactory {
      */
     private static final X509Certificate getSignedCertificate(
             final X509v3CertificateBuilder builder, final PrivateKey key)
-            throws OperatorCreationException, CertificateException {
+                    throws OperatorCreationException, CertificateException {
         final ContentSigner signer;   // Content signer
         final String provider;        // Provider
         final X509Certificate signed; // Signed certificate

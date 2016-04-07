@@ -32,6 +32,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.security.cert.CertificateException;
 
+import org.apache.commons.io.IOUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -148,9 +149,7 @@ public final class KeystoreGenerator {
             output = new FileOutputStream(path);
             keyStore.store(output, password);
         } finally {
-            if (output != null) {
-                output.close();
-            }
+            IOUtils.closeQuietly(output);
         }
     }
 
