@@ -6,14 +6,23 @@
 		<author email="programming@wandrell.com">Bernardo Martínez Garrido</author>
 	</properties>
 	<body>
-		<release version="1.0.0" date="2016-26-3" description="First version">
+		<release version="1.0.0" date="2016-26-03" description="First version">
 			<action dev="bmg" type="update">
 				First version of the example.
 			</action>
 		</release>
-      <release version="1.0.1" date="2016-26-3" description="First version">
+      <release version="1.0.1" date="2016-07-04" description="Miscelany updates">
+         <action dev="bmg" type="update">
+             Updated CI scripts.
+         </action>
+         <action dev="bmg" type="update">
+             Changed the domain service class path.
+         </action>
          <action dev="bmg" type="update">
              Changed the tests class path.
+         </action>
+         <action dev="bmg" type="update">
+             Cleaned up test files and corrected namespace declarations.
          </action>
       </release>
 	</body>
