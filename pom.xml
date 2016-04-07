@@ -420,6 +420,15 @@
          <version>${guava.version}</version>
       </dependency>
       <dependency>
+         <!-- SAAJ -->
+         <groupId>com.sun.xml.messaging.saaj</groupId>
+         <artifactId>saaj-impl</artifactId>
+         <version>${saaj.version}</version>
+      </dependency>
+      <!-- ============================================== -->
+      <!-- =========== VERSION ENFORCEMENT ============== -->
+      <!-- ============================================== -->
+      <dependency>
          <!-- JAXB API -->
          <groupId>javax.xml.bind</groupId>
          <artifactId>jaxb-api</artifactId>
@@ -430,12 +439,6 @@
          <groupId>javax.activation</groupId>
          <artifactId>activation</artifactId>
          <version>${javax.activation.version}</version>
-      </dependency>
-      <dependency>
-         <!-- SAAJ -->
-         <groupId>com.sun.xml.messaging.saaj</groupId>
-         <artifactId>saaj-impl</artifactId>
-         <version>${saaj.version}</version>
       </dependency>
       <dependency>
          <!-- STAX API -->
