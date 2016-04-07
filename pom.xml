@@ -1,726 +1,786 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-   <!-- ********************************************** -->
-   <!-- ****************** BASE POM ****************** -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- ****************** BASE POM ****************** -->
+    <!-- ********************************************** -->
 
-   <parent>
-      <groupId>com.wandrell.maven</groupId>
-      <artifactId>base-pom</artifactId>
-      <version>0.1.1</version>
-   </parent>
+    <parent>
+        <groupId>com.wandrell.maven</groupId>
+        <artifactId>base-pom</artifactId>
+        <version>0.1.1</version>
+    </parent>
 
-   <!-- ********************************************** -->
-   <!-- **************** PROJECT INFO **************** -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- **************** PROJECT INFO **************** -->
+    <!-- ********************************************** -->
 
-   <groupId>com.wandrell.example</groupId>
-   <artifactId>swss-soap-example</artifactId>
-   <version>1.0.0</version>
-   <packaging>war</packaging>
+    <groupId>com.wandrell.example</groupId>
+    <artifactId>swss-soap-example</artifactId>
+    <version>1.0.1</version>
+    <packaging>war</packaging>
 
-   <name>Spring Web Services WS-Security Example</name>
-   <description>An example showing how to configure Spring-WS Security for a SOAP web service</description>
-   <url>https://github.com/bernardo-mg/spring-ws-security-soap-example</url>
-   <inceptionYear>2015</inceptionYear>
+    <name>Spring Web Services WS-Security Example</name>
+    <description>An example showing how to configure Spring-WS Security for a SOAP web service</description>
+    <url>https://github.com/bernardo-mg/spring-ws-security-soap-example</url>
+    <inceptionYear>2015</inceptionYear>
 
-   <licenses>
-      <license>
-         <name>MIT License</name>
-         <url>http://www.opensource.org/licenses/mit-license.php</url>
-         <distribution>repo</distribution>
-      </license>
-   </licenses>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-   <!-- ********************************************** -->
-   <!-- ********* INFRASTRUCTURE AND SERVICES ******** -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- ********* INFRASTRUCTURE AND SERVICES ******** -->
+    <!-- ********************************************** -->
 
-   <scm>
-      <connection>scm:git:https://github.com/bernardo-mg/spring-ws-security-soap-example.git</connection>
-      <developerConnection>scm:git:https://github.com/bernardo-mg/spring-ws-security-soap-example.git</developerConnection>
-      <tag>head</tag>
-      <url>https://www.github.com/bernardo-mg/spring-ws-security-soap-example</url>
-   </scm>
+    <scm>
+        <connection>scm:git:https://github.com/bernardo-mg/spring-ws-security-soap-example.git</connection>
+        <developerConnection>scm:git:https://github.com/bernardo-mg/spring-ws-security-soap-example.git</developerConnection>
+        <tag>head</tag>
+        <url>https://www.github.com/bernardo-mg/spring-ws-security-soap-example</url>
+    </scm>
 
-   <issueManagement>
-      <system>GitHub</system>
-      <url>https://www.github.com/bernardo-mg/spring-ws-security-soap-example/issues</url>
-   </issueManagement>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://www.github.com/bernardo-mg/spring-ws-security-soap-example/issues</url>
+    </issueManagement>
 
-   <ciManagement>
-      <system>Travis CI</system>
-      <url>https://travis-ci.org/Bernardo-MG/spring-ws-security-soap-example</url>
-      <notifiers />
-   </ciManagement>
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/Bernardo-MG/spring-ws-security-soap-example</url>
+        <notifiers />
+    </ciManagement>
 
-   <!-- ********************************************** -->
-   <!-- ****************** PROFILES ****************** -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- ****************** PROFILES ****************** -->
+    <!-- ********************************************** -->
 
-   <profiles>
-      <profile>
-         <!-- Profile for the Eclipse Maven plugin -->
-         <!-- Sets the POM so this plugin does not give the usual unregistered goals 
-            errors -->
-         <!-- It will be activated automatically on Eclipse if this has the m2e plugin, 
-            by detecting the version property -->
-         <id>eclipse-maven</id>
-         <activation>
-            <property>
-               <name>m2e.version</name>
-            </property>
-         </activation>
-         <build>
-            <pluginManagement>
-               <plugins>
-                  <plugin>
-                     <!-- m2e lifecycle mapping -->
-                     <!-- This is used to configure the Maven plugin for Eclipse. -->
-                     <!-- Among other things, it allows registering goals, which 
-                        Eclipse would otherwise reject. -->
-                     <!-- It has no real effect on Maven. -->
-                     <groupId>org.eclipse.m2e</groupId>
-                     <artifactId>lifecycle-mapping</artifactId>
-                     <version>${plugin.lifecycle.version}</version>
-                     <configuration>
-                        <lifecycleMappingMetadata>
-                           <pluginExecutions>
-                              <pluginExecution>
-                                 <!-- JAXB2 plugin configuration -->
-                                 <pluginExecutionFilter>
-                                    <groupId>org.jvnet.jaxb2.maven2</groupId>
-                                    <artifactId>maven-jaxb2-plugin</artifactId>
-                                    <versionRange>[0.1,)</versionRange>
-                                    <goals>
-                                       <goal>generate</goal>
-                                    </goals>
-                                 </pluginExecutionFilter>
-                                 <action>
-                                    <execute />
-                                 </action>
-                              </pluginExecution>
-                              <pluginExecution>
-                                 <!-- Build helper plugin configuration -->
-                                 <pluginExecutionFilter>
-                                    <groupId>org.codehaus.mojo</groupId>
-                                    <artifactId>build-helper-maven-plugin</artifactId>
-                                    <versionRange>[1.0,)</versionRange>
-                                    <goals>
-                                       <goal>add-source</goal>
-                                       <goal>add-test-source</goal>
-                                       <goal>add-resource</goal>
-                                       <goal>add-test-resource</goal>
-                                       <goal>maven-version</goal>
-                                       <goal>parse-version</goal>
-                                       <goal>timestamp-property</goal>
-                                    </goals>
-                                 </pluginExecutionFilter>
-                                 <action>
-                                    <execute>
-                                       <runOnConfiguration>true</runOnConfiguration>
-                                       <runOnIncremental>true</runOnIncremental>
-                                    </execute>
-                                 </action>
-                              </pluginExecution>
-                           </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                        <downloadSources>true</downloadSources>
-                        <downloadJavadocs>true</downloadJavadocs>
-                     </configuration>
-                  </plugin>
-               </plugins>
-            </pluginManagement>
-         </build>
-      </profile>
-      <profile>
-         <!-- Release site deployment profile -->
-         <!-- Sets the site repository to point to the releases repo -->
-         <id>deploy-site-release</id>
-         <activation>
-            <!-- Active by default so the repository appears in the reports -->
-            <activeByDefault>true</activeByDefault>
-         </activation>
-         <distributionManagement>
-            <site>
-               <id>site</id>
-               <name>Project Documentation Site</name>
-               <url>ftp://docs.wandrell.com/swss-soap-example</url>
-            </site>
-         </distributionManagement>
-      </profile>
-      <profile>
-         <!-- Development site deployment profile -->
-         <!-- Sets the site repository to point to the development repo -->
-         <id>deploy-site-development</id>
-         <distributionManagement>
-            <site>
-               <id>site-development</id>
-               <name>Project Development Documentation Site</name>
-               <url>ftp://docs.wandrell.com/swss-soap-example</url>
-            </site>
-         </distributionManagement>
-      </profile>
-      <profile>
-         <!-- Deployment profile -->
-         <!-- Sets ups the environment for deployment -->
-         <id>deployment</id>
-         <properties>
-            <!-- Tests are skipped -->
-            <maven.test.skip>true</maven.test.skip>
-         </properties>
-      </profile>
-   </profiles>
+    <profiles>
+        <profile>
+            <!-- Profile for the Eclipse Maven plugin -->
+            <!-- Sets the POM so this plugin does not give the usual unregistered
+                goals errors -->
+            <!-- It will be activated automatically on Eclipse if this has the m2e
+                plugin, by detecting the version property -->
+            <id>eclipse-maven</id>
+            <activation>
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <!-- m2e lifecycle mapping -->
+                            <!-- This is used to configure the Maven plugin for Eclipse. -->
+                            <!-- Among other things, it allows registering goals,
+                                which Eclipse would otherwise reject. -->
+                            <!-- It has no real effect on Maven. -->
+                            <groupId>org.eclipse.m2e</groupId>
+                            <artifactId>lifecycle-mapping</artifactId>
+                            <version>${plugin.lifecycle.version}</version>
+                            <configuration>
+                                <lifecycleMappingMetadata>
+                                    <pluginExecutions>
+                                        <pluginExecution>
+                                            <!-- JAXB2 plugin configuration -->
+                                            <pluginExecutionFilter>
+                                                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                                                <artifactId>maven-jaxb2-plugin</artifactId>
+                                                <versionRange>[${plugin.jaxb2.version},)</versionRange>
+                                                <goals>
+                                                    <goal>generate</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <execute />
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <!-- Build helper plugin configuration -->
+                                            <pluginExecutionFilter>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>build-helper-maven-plugin</artifactId>
+                                                <versionRange>[${plugin.buildhelp.version},)</versionRange>
+                                                <goals>
+                                                    <goal>add-source</goal>
+                                                    <goal>add-test-source</goal>
+                                                    <goal>add-resource</goal>
+                                                    <goal>add-test-resource</goal>
+                                                    <goal>maven-version</goal>
+                                                    <goal>parse-version</goal>
+                                                    <goal>timestamp-property</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <execute>
+                                                    <runOnConfiguration>true</runOnConfiguration>
+                                                    <runOnIncremental>true</runOnIncremental>
+                                                </execute>
+                                            </action>
+                                        </pluginExecution>
+                                    </pluginExecutions>
+                                </lifecycleMappingMetadata>
+                                <downloadSources>true</downloadSources>
+                                <downloadJavadocs>true</downloadJavadocs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <!-- Release site deployment profile -->
+            <!-- Sets the site repository to point to the releases repo -->
+            <id>deploy-site-release</id>
+            <activation>
+                <!-- Active by default so the repository appears in the reports -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <site>
+                    <id>site</id>
+                    <name>Project Documentation Site</name>
+                    <url>ftp://docs.wandrell.com/swss-soap-example</url>
+                </site>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <!-- Development site deployment profile -->
+            <!-- Sets the site repository to point to the development repo -->
+            <id>deploy-site-development</id>
+            <distributionManagement>
+                <site>
+                    <id>site-development</id>
+                    <name>Project Development Documentation Site</name>
+                    <url>ftp://docs.wandrell.com/swss-soap-example</url>
+                </site>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <!-- Deployment profile -->
+            <!-- Sets ups the environment for deployment -->
+            <id>deployment</id>
+            <properties>
+                <!-- Tests are skipped -->
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
 
-   <!-- ********************************************** -->
-   <!-- *********** ORGANIZATION AND MEMBERS ********* -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- *********** ORGANIZATION AND MEMBERS ********* -->
+    <!-- ********************************************** -->
 
-   <organization>
-      <name>Bernardo Martínez Garrido</name>
-      <url>https://github.com/Bernardo-MG</url>
-   </organization>
+    <organization>
+        <name>Bernardo Martínez Garrido</name>
+        <url>https://github.com/Bernardo-MG</url>
+    </organization>
 
-   <developers>
-      <developer>
-         <id>bmg</id>
-         <name>Bernardo Martínez Garrido</name>
-         <email>programming@wandrell.com</email>
-         <url>https://github.com/Bernardo-MG</url>
-         <organization>Bernardo Martínez Garrido</organization>
-         <organizationUrl>https://github.com/Bernardo-MG</organizationUrl>
-         <roles>
-            <role>Developer</role>
-         </roles>
-         <timezone>+1</timezone>
-         <properties />
-      </developer>
-   </developers>
+    <developers>
+        <developer>
+            <id>bmg</id>
+            <name>Bernardo Martínez Garrido</name>
+            <email>programming@wandrell.com</email>
+            <url>https://github.com/Bernardo-MG</url>
+            <organization>Bernardo Martínez Garrido</organization>
+            <organizationUrl>https://github.com/Bernardo-MG</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+            <properties />
+        </developer>
+    </developers>
 
-   <!-- ********************************************** -->
-   <!-- **************** PROPERTIES ****************** -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- **************** PROPERTIES ****************** -->
+    <!-- ********************************************** -->
 
-   <properties>
-      <!-- Manifest data -->
-      <manifest.name>com/wandrell/example/spring/wss</manifest.name>
-      <!-- Dependencies versions -->
-      <bouncycastle.version>1.54</bouncycastle.version>
-      <commons.codec.version>1.10</commons.codec.version>
-      <commons.io.version>2.4</commons.io.version>
-      <commons.logging.version>1.2</commons.logging.version>
-      <ehcache.version>2.6.11</ehcache.version>
-      <freemarker.version>2.3.23</freemarker.version>
-      <guava.version>19.0</guava.version>
-      <h2.version>1.4.191</h2.version>
-      <hibernate.version>5.1.0.Final</hibernate.version>
-      <hikari.version>2.3.12</hikari.version>
-      <testng.version>6.9.8</testng.version>
-      <javax.activation.version>1.1.1</javax.activation.version>
-      <jaxb.version>2.2.11</jaxb.version>
-      <log4j.version>2.5</log4j.version>
-      <saaj.version>1.3.25</saaj.version>
-      <slf4j.version>1.7.16</slf4j.version>
-      <spring.data.version>1.9.2.RELEASE</spring.data.version>
-      <spring.version>4.2.4.RELEASE</spring.version>
-      <spring.security.version>4.0.3.RELEASE</spring.security.version>
-      <spring.shell.version>1.1.0.RELEASE</spring.shell.version>
-      <spring.ws.version>2.2.4.RELEASE</spring.ws.version>
-      <stax.version>1.2.0</stax.version>
-      <stax.api.version>1.0-2</stax.api.version>
-      <testng.version>6.9.9</testng.version>
-      <wsdl4j.version>1.6.3</wsdl4j.version>
-      <wss4j.version>1.6.19</wss4j.version>
-      <xwssecurity.version>3.0</xwssecurity.version>
-      <!-- Plugins versions -->
-      <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
-      <plugin.changes.version>2.11</plugin.changes.version>
-      <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
-      <plugin.jetty.version>9.1.5.v20140505</plugin.jetty.version>
-      <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
-      <plugin.war.version>2.6</plugin.war.version>
-      <!-- Maven Site -->
-      <site.skin.version>0.2.4</site.skin.version>
-      <!-- Testing server -->
-      <server.test.path>/swss</server.test.path>
-   </properties>
+    <properties>
+        <!-- Manifest data -->
+        <manifest.name>com/wandrell/example/spring/wss</manifest.name>
+        <!-- Dependencies versions -->
+        <ant.version>1.9.6</ant.version>
+        <bouncycastle.version>1.54</bouncycastle.version>
+        <commons.codec.version>1.10</commons.codec.version>
+        <commons.io.version>2.4</commons.io.version>
+        <commons.logging.version>1.2</commons.logging.version>
+        <ehcache.version>2.6.11</ehcache.version>
+        <freemarker.version>2.3.23</freemarker.version>
+        <guava.version>19.0</guava.version>
+        <h2.version>1.4.191</h2.version>
+        <hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
+        <hibernate.version>5.1.0.Final</hibernate.version>
+        <hikari.version>2.4.5</hikari.version>
+        <testng.version>6.9.8</testng.version>
+        <javax.activation.version>1.1.1</javax.activation.version>
+        <javax.stax.api.version>1.0-2</javax.stax.api.version>
+        <jaxb.version>2.2.11</jaxb.version>
+        <log4j.version>2.5</log4j.version>
+        <saaj.api.version>1.3.5</saaj.api.version>
+        <saaj.impl.version>1.3.25</saaj.impl.version>
+        <slf4j.version>1.7.16</slf4j.version>
+        <spring.data.version>1.9.2.RELEASE</spring.data.version>
+        <spring.version>4.2.5.RELEASE</spring.version>
+        <spring.security.version>4.0.3.RELEASE</spring.security.version>
+        <spring.shell.version>1.1.0.RELEASE</spring.shell.version>
+        <spring.ws.version>2.2.4.RELEASE</spring.ws.version>
+        <stax.api.version>1.0.1</stax.api.version>
+        <stax.impl.version>1.2.0</stax.impl.version>
+        <testng.version>6.9.9</testng.version>
+        <wsdl4j.version>1.6.3</wsdl4j.version>
+        <wss4j.version>1.6.19</wss4j.version>
+        <xmlapis.version>2.0.2</xmlapis.version>
+        <xmlsec.version>2.0.6</xmlsec.version>
+        <xwssecurity.version>3.0</xwssecurity.version>
+        <!-- Plugins versions -->
+        <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
+        <plugin.changes.version>2.11</plugin.changes.version>
+        <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
+        <plugin.jetty.version>9.1.5.v20140505</plugin.jetty.version>
+        <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
+        <plugin.war.version>2.6</plugin.war.version>
+        <!-- Maven Site -->
+        <site.skin.version>0.2.4</site.skin.version>
+        <!-- Testing server -->
+        <server.test.path>/swss</server.test.path>
+    </properties>
 
-   <!-- ********************************************** -->
-   <!-- *************** DEPENDENCIES ***************** -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- *************** DEPENDENCIES ***************** -->
+    <!-- ********************************************** -->
 
-   <dependencies>
-      <!-- ============================================== -->
-      <!-- ================== SPRING ==================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Spring Beans -->
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-beans</artifactId>
-         <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Spring Context -->
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-context</artifactId>
-         <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Spring Data JPA -->
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-jpa</artifactId>
-         <version>${spring.data.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Spring Security -->
-         <groupId>org.springframework.security</groupId>
-         <artifactId>spring-security-core</artifactId>
-         <version>${spring.security.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Spring WS -->
-         <groupId>org.springframework.ws</groupId>
-         <artifactId>spring-ws-core</artifactId>
-         <version>${spring.ws.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Spring WS Security -->
-         <groupId>org.springframework.ws</groupId>
-         <artifactId>spring-ws-security</artifactId>
-         <version>${spring.ws.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ========= PERSISTENCE DEPENDENCIES =========== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Ehcache -->
-         <groupId>net.sf.ehcache</groupId>
-         <artifactId>ehcache-core</artifactId>
-         <version>${ehcache.version}</version>
-      </dependency>
-      <dependency>
-         <!-- H2 -->
-         <groupId>com.h2database</groupId>
-         <artifactId>h2</artifactId>
-         <version>${h2.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hikari CP -->
-         <groupId>com.zaxxer</groupId>
-         <artifactId>HikariCP-java6</artifactId>
-         <version>${hikari.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================ HIBERNATE =================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Entity Manager -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-entitymanager</artifactId>
-         <version>${hibernate.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Hibernate Ehcache -->
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-ehcache</artifactId>
-         <version>${hibernate.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================= SECURITY =================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Bouncy Castle Certificate Generation -->
-         <groupId>org.bouncycastle</groupId>
-         <artifactId>bcpkix-jdk15on</artifactId>
-         <version>${bouncycastle.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Bouncy Castle Provider -->
-         <groupId>org.bouncycastle</groupId>
-         <artifactId>bcprov-jdk15on</artifactId>
-         <version>${bouncycastle.version}</version>
-      </dependency>
-      <dependency>
-         <!-- WSS4j -->
-         <groupId>org.apache.ws.security</groupId>
-         <artifactId>wss4j</artifactId>
-         <version>${wss4j.version}</version>
-      </dependency>
-      <dependency>
-         <!-- XWSS -->
-         <groupId>com.sun.xml.wss</groupId>
-         <artifactId>xws-security</artifactId>
-         <version>${xwssecurity.version}</version>
-         <exclusions>
-            <exclusion>
-               <groupId>javax.xml.crypto</groupId>
-               <artifactId>xmldsig</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- =============== WEB SERVICES ================= -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Wsdl4j -->
-         <groupId>wsdl4j</groupId>
-         <artifactId>wsdl4j</artifactId>
-         <version>${wsdl4j.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================== LOGGING =================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Commons Logging -->
-         <groupId>commons-logging</groupId>
-         <artifactId>commons-logging</artifactId>
-         <version>${commons.logging.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Log4j Core -->
-         <groupId>org.apache.logging.log4j</groupId>
-         <artifactId>log4j-core</artifactId>
-         <version>${log4j.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Log4j Commons Logging Bridge -->
-         <groupId>org.apache.logging.log4j</groupId>
-         <artifactId>log4j-jcl</artifactId>
-         <version>${log4j.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Log4j SLF4J Bridge -->
-         <groupId>org.apache.logging.log4j</groupId>
-         <artifactId>log4j-slf4j-impl</artifactId>
-         <version>${log4j.version}</version>
-      </dependency>
-      <dependency>
-         <!-- SL4J API -->
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-api</artifactId>
-         <version>${slf4j.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ============ OTHER DEPENDENCIES ============== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Commons IO -->
-         <groupId>commons-io</groupId>
-         <artifactId>commons-io</artifactId>
-         <version>${commons.io.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Guava -->
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guava.version}</version>
-      </dependency>
-      <dependency>
-         <!-- JAXB API -->
-         <groupId>javax.xml.bind</groupId>
-         <artifactId>jaxb-api</artifactId>
-         <version>${jaxb.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Javax activation -->
-         <groupId>javax.activation</groupId>
-         <artifactId>activation</artifactId>
-         <version>${javax.activation.version}</version>
-      </dependency>
-      <dependency>
-         <!-- SAAJ -->
-         <groupId>com.sun.xml.messaging.saaj</groupId>
-         <artifactId>saaj-impl</artifactId>
-         <version>${saaj.version}</version>
-      </dependency>
-      <dependency>
-         <!-- STAX API -->
-         <groupId>javax.xml.stream</groupId>
-         <artifactId>stax-api</artifactId>
-         <version>${stax.api.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Commons Codec -->
-         <groupId>commons-codec</groupId>
-         <artifactId>commons-codec</artifactId>
-         <version>${commons.codec.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- Freemarker -->
-         <groupId>org.freemarker</groupId>
-         <artifactId>freemarker</artifactId>
-         <version>${freemarker.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- Spring Test -->
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-test</artifactId>
-         <version>${spring.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- Spring WS Test -->
-         <groupId>org.springframework.ws</groupId>
-         <artifactId>spring-ws-test</artifactId>
-         <version>${spring.ws.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- StAX -->
-         <groupId>stax</groupId>
-         <artifactId>stax</artifactId>
-         <version>${stax.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- TestNG -->
-         <groupId>org.testng</groupId>
-         <artifactId>testng</artifactId>
-         <version>${testng.version}</version>
-         <scope>test</scope>
-      </dependency>
-   </dependencies>
+    <dependencies>
+        <!-- ============================================== -->
+        <!-- ================== SPRING ==================== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Spring Beans -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring Core -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring Context -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring Data JPA -->
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring Security -->
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring WS -->
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring WS Security -->
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-security</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring WS XML -->
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-xml</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- ========= PERSISTENCE DEPENDENCIES =========== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Ehcache -->
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+        <dependency>
+            <!-- H2 -->
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Hikari CP -->
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikari.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- ================ HIBERNATE =================== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Entity Manager -->
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Hibernate Ehcache -->
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Hibernate JPA API -->
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>${hibernate.jpa.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- ================= SECURITY =================== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Bouncy Castle Certificate Generation -->
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>${bouncycastle.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Bouncy Castle Provider -->
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>${bouncycastle.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WSS4j -->
+            <groupId>org.apache.ws.security</groupId>
+            <artifactId>wss4j</artifactId>
+            <version>${wss4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Apache XML Security -->
+            <groupId>org.apache.santuario</groupId>
+            <artifactId>xmlsec</artifactId>
+            <version>${xmlsec.version}</version>
+        </dependency>
+        <dependency>
+            <!-- XWSS -->
+            <groupId>com.sun.xml.wss</groupId>
+            <artifactId>xws-security</artifactId>
+            <version>${xwssecurity.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.crypto</groupId>
+                    <artifactId>xmldsig</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- =============== WEB SERVICES ================= -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Wsdl4j -->
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>${wsdl4j.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- ================== LOGGING =================== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Commons Logging -->
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Log4j Core -->
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Log4j Commons Logging Bridge -->
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Log4j SLF4J Bridge -->
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <!-- SL4J API -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- ============ OTHER DEPENDENCIES ============== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Commons IO -->
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Guava -->
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <!-- SAAJ API -->
+            <groupId>javax.xml.soap</groupId>
+            <artifactId>saaj-api</artifactId>
+            <version>${saaj.api.version}</version>
+        </dependency>
+        <dependency>
+            <!-- SAAJ -->
+            <groupId>com.sun.xml.messaging.saaj</groupId>
+            <artifactId>saaj-impl</artifactId>
+            <version>${saaj.impl.version}</version>
+        </dependency>
+        <dependency>
+            <!-- XML APIs -->
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>${xmlapis.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- =========== VERSION ENFORCEMENT ============== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- JAXB API -->
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Javax activation -->
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${javax.activation.version}</version>
+        </dependency>
+        <dependency>
+            <!-- STAX API -->
+            <groupId>javax.xml.stream</groupId>
+            <artifactId>stax-api</artifactId>
+            <version>${javax.stax.api.version}</version>
+        </dependency>
+        <!-- ============================================== -->
+        <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
+        <!-- ============================================== -->
+        <dependency>
+            <!-- Ant -->
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>${ant.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Commons Codec -->
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons.codec.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Freemarker -->
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Spring Test -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Spring WS Test -->
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-test</artifactId>
+            <version>${spring.ws.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- StAX API -->
+            <groupId>stax</groupId>
+            <artifactId>stax-api</artifactId>
+            <version>${stax.api.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- StAX -->
+            <groupId>stax</groupId>
+            <artifactId>stax</artifactId>
+            <version>${stax.impl.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- TestNG -->
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-   <!-- ********************************************** -->
-   <!-- ******************* BUILD ******************** -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- ******************* BUILD ******************** -->
+    <!-- ********************************************** -->
 
-   <build>
-      <defaultGoal>clean package jetty:run-war</defaultGoal>
-      <plugins>
-         <plugin>
-            <!-- Changes -->
-            <!-- Takes care of the changes log -->
-            <!-- It is set to also validate the changes log file -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-changes-plugin</artifactId>
-            <version>${plugin.changes.version}</version>
-            <executions>
-               <!-- Changes plugin is bound to the pre-site phase -->
-               <execution>
-                  <id>check-changes</id>
-                  <phase>pre-site</phase>
-                  <goals>
-                     <goal>changes-check</goal>
-                  </goals>
-               </execution>
-               <execution>
-                  <id>validate-changes</id>
-                  <phase>pre-site</phase>
-                  <goals>
-                     <goal>changes-validate</goal>
-                  </goals>
-                  <configuration>
-                     <failOnError>true</failOnError>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <!-- Failsafe -->
-            <!-- Runs integration tests -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <configuration>
-               <suiteXmlFiles>
-                  <!-- Path to the integration tests suite file -->
-                  <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_integration_suite.xml</suiteXmlFile>
-               </suiteXmlFiles>
-            </configuration>
-         </plugin>
-         <plugin>
-            <!-- Site -->
-            <!-- Generates the Maven Site -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <dependencies>
-               <dependency>
-                  <!-- Docs Maven Skin -->
-                  <groupId>com.wandrell.maven.skins</groupId>
-                  <artifactId>docs-maven-skin</artifactId>
-                  <version>${site.skin.version}</version>
-               </dependency>
-               <dependency>
-                  <!-- Velocity -->
-                  <groupId>org.apache.velocity</groupId>
-                  <artifactId>velocity</artifactId>
-                  <version>${plugin.site.velocity.version}</version>
-               </dependency>
-            </dependencies>
-         </plugin>
-         <plugin>
-            <!-- Surefire -->
-            <!-- Runs unit tests -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-               <suiteXmlFiles>
-                  <!-- Path to the unit tests suite file -->
-                  <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
-               </suiteXmlFiles>
-            </configuration>
-         </plugin>
-         <plugin>
-            <!-- WAR -->
-            <!-- Generates the WAR file -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>${plugin.war.version}</version>
-         </plugin>
-         <plugin>
-            <!-- Jetty -->
-            <!-- Jetty will run the web service during the integration tests -->
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <version>${plugin.jetty.version}</version>
-            <configuration>
-               <stopKey>STOP</stopKey>
-               <stopPort>9999</stopPort>
-               <stopWait>5</stopWait>
-               <webApp>
-                  <contextPath>${server.test.path}</contextPath>
-               </webApp>
-               <contextXml>${project.build.outputDirectory}/jetty/jetty.xml</contextXml>
-            </configuration>
-            <executions>
-               <execution>
-                  <id>start-jetty-it</id>
-                  <phase>pre-integration-test</phase>
-                  <goals>
-                     <goal>start</goal>
-                  </goals>
-                  <configuration>
-                     <scanIntervalSeconds>0</scanIntervalSeconds>
-                     <daemon>true</daemon>
-                  </configuration>
-               </execution>
-               <execution>
-                  <id>stop-jetty-it</id>
-                  <phase>post-integration-test</phase>
-                  <goals>
-                     <goal>stop</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <!-- Build helper -->
-            <!-- Adds the generated files to the Maven classpath -->
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <version>${plugin.buildhelp.version}</version>
-            <executions>
-               <execution>
-                  <id>add-source</id>
-                  <goals>
-                     <goal>add-source</goal>
-                  </goals>
-                  <configuration>
-                     <sources>
-                        <!-- JAXB generated sources -->
-                        <source>${project.build.directory}/generated-sources/xjc</source>
-                     </sources>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <!-- JAXB2 -->
-            <!-- Generates source code from the WSDL files -->
-            <groupId>org.jvnet.jaxb2.maven2</groupId>
-            <artifactId>maven-jaxb2-plugin</artifactId>
-            <version>${plugin.jaxb2.version}</version>
-            <executions>
-               <execution>
-                  <id>generate-jaxb</id>
-                  <goals>
-                     <goal>generate</goal>
-                  </goals>
-               </execution>
-            </executions>
-            <configuration>
-               <schemaDirectory>${project.basedir}/src/main/resources/xsd/</schemaDirectory>
-               <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
-            </configuration>
-            <dependencies>
-               <dependency>
-                  <!-- JAXB Core -->
-                  <groupId>com.sun.xml.bind</groupId>
-                  <artifactId>jaxb-core</artifactId>
-                  <version>${jaxb.version}</version>
-               </dependency>
-               <dependency>
-                  <!-- JAXB Implementation -->
-                  <groupId>com.sun.xml.bind</groupId>
-                  <artifactId>jaxb-impl</artifactId>
-                  <version>${jaxb.version}</version>
-               </dependency>
-               <dependency>
-                  <!-- JAXB XJC -->
-                  <groupId>com.sun.xml.bind</groupId>
-                  <artifactId>jaxb-xjc</artifactId>
-                  <version>${jaxb.version}</version>
-               </dependency>
-            </dependencies>
-         </plugin>
-      </plugins>
-   </build>
+    <build>
+        <defaultGoal>clean package jetty:run-war</defaultGoal>
+        <plugins>
+            <plugin>
+                <!-- Changes -->
+                <!-- Takes care of the changes log -->
+                <!-- It is set to also validate the changes log file -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changes-plugin</artifactId>
+                <version>${plugin.changes.version}</version>
+                <executions>
+                    <!-- Changes plugin is bound to the pre-site phase -->
+                    <execution>
+                        <id>check-changes</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>changes-check</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>validate-changes</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>changes-validate</goal>
+                        </goals>
+                        <configuration>
+                            <failOnError>true</failOnError>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Failsafe -->
+                <!-- Runs integration tests -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <suiteXmlFiles>
+                        <!-- Path to the integration tests suite file -->
+                        <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_integration_suite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Site -->
+                <!-- Generates the Maven Site -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <!-- Docs Maven Skin -->
+                        <groupId>com.wandrell.maven.skins</groupId>
+                        <artifactId>docs-maven-skin</artifactId>
+                        <version>${site.skin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <!-- Velocity -->
+                        <groupId>org.apache.velocity</groupId>
+                        <artifactId>velocity</artifactId>
+                        <version>${plugin.site.velocity.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <!-- Surefire -->
+                <!-- Runs unit tests -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <suiteXmlFiles>
+                        <!-- Path to the unit tests suite file -->
+                        <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- WAR -->
+                <!-- Generates the WAR file -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${plugin.war.version}</version>
+            </plugin>
+            <plugin>
+                <!-- Jetty -->
+                <!-- Jetty will run the web service during the integration tests -->
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${plugin.jetty.version}</version>
+                <configuration>
+                    <stopKey>STOP</stopKey>
+                    <stopPort>9999</stopPort>
+                    <stopWait>5</stopWait>
+                    <webApp>
+                        <contextPath>${server.test.path}</contextPath>
+                    </webApp>
+                    <contextXml>${project.build.outputDirectory}/jetty/jetty.xml</contextXml>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty-it</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty-it</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Build helper -->
+                <!-- Adds the generated files to the Maven classpath -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${plugin.buildhelp.version}</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <!-- JAXB generated sources -->
+                                <source>${project.build.directory}/generated-sources/xjc</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- JAXB2 -->
+                <!-- Generates source code from the WSDL files -->
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>${plugin.jaxb2.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-jaxb</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaDirectory>${project.basedir}/src/main/resources/xsd/</schemaDirectory>
+                    <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <!-- JAXB Core -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-core</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <!-- JAXB Implementation -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <!-- JAXB XJC -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-xjc</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 
-   <!-- ********************************************** -->
-   <!-- ****************** REPORTS ******************* -->
-   <!-- ********************************************** -->
+    <!-- ********************************************** -->
+    <!-- ****************** REPORTS ******************* -->
+    <!-- ********************************************** -->
 
-   <reporting>
-      <plugins>
-         <plugin>
-            <!-- Checkstyle -->
-            <!-- Checks that the source files comply with style standards -->
-            <!-- It is using a customized rules file -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <configuration>
-               <!-- The customized rules file -->
-               <configLocation>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</configLocation>
-               <!-- Excludes generated code -->
-               <excludes>**/generated/**/*</excludes>
-            </configuration>
-         </plugin>
-         <plugin>
-            <!-- Javadoc -->
-            <!-- Generates the javadocs -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-               <!-- Excludes generated code -->
-               <excludePackageNames>*.generated.*</excludePackageNames>
-            </configuration>
-         </plugin>
-         <plugin>
-            <!-- PMD -->
-            <!-- Checks that the code complies with a series of code quality rules -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-pmd-plugin</artifactId>
-            <configuration>
-               <rulesets>
-                  <!-- The customized rules file -->
-                  <ruleset>${project.basedir}/src/config/pmd/pmd-rules.xml</ruleset>
-               </rulesets>
-               <excludes>
-                  <!-- Excludes generated code -->
-                  <exclude>**/generated/**/*</exclude>
-               </excludes>
-            </configuration>
-         </plugin>
-      </plugins>
-   </reporting>
+    <reporting>
+        <plugins>
+            <plugin>
+                <!-- Checkstyle -->
+                <!-- Checks that the source files comply with style standards -->
+                <!-- It is using a customized rules file -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <!-- The customized rules file -->
+                    <configLocation>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</configLocation>
+                    <!-- Excludes generated code -->
+                    <excludes>**/generated/**/*</excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Javadoc -->
+                <!-- Generates the javadocs -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <!-- Excludes generated code -->
+                    <excludePackageNames>*.generated.*</excludePackageNames>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- PMD -->
+                <!-- Checks that the code complies with a series of code quality
+                    rules -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <configuration>
+                    <rulesets>
+                        <!-- The customized rules file -->
+                        <ruleset>${project.basedir}/src/config/pmd/pmd-rules.xml</ruleset>
+                    </rulesets>
+                    <excludes>
+                        <!-- Excludes generated code -->
+                        <exclude>**/generated/**/*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>

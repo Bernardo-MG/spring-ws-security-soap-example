@@ -8,8 +8,8 @@
       </wsse:Security>
    </soap-env:Header>
    <soap-env:Body>
-      <ns2:getEntityRequest xmlns:ns2="http://wandrell.com/example/ws/entity">
-         <ns2:id>1</ns2:id>
-      </ns2:getEntityRequest>
+      <ent:getEntityRequest xmlns:ent="http://wandrell.com/example/ws/entity">
+         <ent:id>1</ent:id>
+      </ent:getEntityRequest>
    </soap-env:Body>
 </soap-env:Envelope>

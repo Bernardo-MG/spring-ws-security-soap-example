@@ -32,6 +32,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.security.cert.CertificateException;
 
+import org.apache.commons.io.IOUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,7 @@ public final class KeystoreGenerator {
 
     /**
      * Runs the generator and creates a new set of key stores.
-     * 
+     *
      * @param args
      *            the arguments
      * @throws Exception
@@ -120,7 +121,7 @@ public final class KeystoreGenerator {
 
     /**
      * Saves the received key store to a file.
-     * 
+     *
      * @param keyStore
      *            key store to save
      * @param path
@@ -139,13 +140,17 @@ public final class KeystoreGenerator {
      *             if an I/O error occurs
      */
     private static final void saveToFile(final KeyStore keyStore,
-            final String path, final char[] password) throws KeyStoreException,
-            NoSuchAlgorithmException, CertificateException, IOException {
-        final FileOutputStream output; // Output stream for the keystore
+            final String path, final char[] password)
+                    throws KeyStoreException, NoSuchAlgorithmException,
+                    CertificateException, IOException {
+        FileOutputStream output = null; // Output stream for the keystore
 
-        output = new FileOutputStream(path);
-        keyStore.store(output, password);
-        output.close();
+        try {
+            output = new FileOutputStream(path);
+            keyStore.store(output, password);
+        } finally {
+            IOUtils.closeQuietly(output);
+        }
     }
 
     /**
