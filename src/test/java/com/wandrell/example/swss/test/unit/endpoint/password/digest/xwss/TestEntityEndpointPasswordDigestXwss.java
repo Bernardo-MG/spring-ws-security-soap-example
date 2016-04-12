@@ -42,8 +42,7 @@ import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS
- * digested password protected endpoint.
+ * Unit test for a XWSS digested password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */

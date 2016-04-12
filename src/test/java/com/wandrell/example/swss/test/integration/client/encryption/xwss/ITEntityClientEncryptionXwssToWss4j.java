@@ -32,8 +32,8 @@ import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPr
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for an encrypted web service
- * using XWSS for the client and WSS4J for the web service.
+ * Integration test for an encrypted web service using XWSS for the client and
+ * WSS4J for the web service.
  *
  * @author Bernardo Martínez Garrido
  */

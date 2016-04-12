@@ -34,8 +34,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
- * Implementation of {@code AbstractTestEntityClientHeader} for a XWSS encrypted
- * client.
+ * Unit test for a XWSS encrypted client.
  *
  * @author Bernardo Martínez Garrido
  */

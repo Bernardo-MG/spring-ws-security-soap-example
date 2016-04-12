@@ -41,8 +41,7 @@ import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a WSS4J plain
- * password protected endpoint.
+ * Unit test for a WSS4J plain password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */

@@ -45,8 +45,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a WSS4J
- * signed endpoint.
+ * Unit test for a WSS4J signed endpoint.
  *
  * @author Bernardo Martínez Garrido
  */

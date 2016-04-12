@@ -42,8 +42,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITEndpoint;
 
 /**
- * Implementation of {@code AbstractITEndpoint} for a signature protected
- * endpoint using WSS4J.
+ * Integration test for a signature protected endpoint using WSS4J.
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *

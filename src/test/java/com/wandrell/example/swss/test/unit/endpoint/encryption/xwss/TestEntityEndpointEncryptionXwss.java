@@ -42,8 +42,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS
- * encrypted endpoint.
+ * Unit test for a XWSS encrypted endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
