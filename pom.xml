@@ -240,7 +240,6 @@
         <wsdl4j.version>1.6.3</wsdl4j.version>
         <wss4j.version>1.6.19</wss4j.version>
         <xmlapis.version>2.0.2</xmlapis.version>
-        <xmlsec.version>2.0.6</xmlsec.version>
         <xwssecurity.version>3.0</xwssecurity.version>
         <!-- Plugins versions -->
         <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
@@ -373,12 +372,6 @@
             <groupId>org.apache.ws.security</groupId>
             <artifactId>wss4j</artifactId>
             <version>${wss4j.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Apache XML Security -->
-            <groupId>org.apache.santuario</groupId>
-            <artifactId>xmlsec</artifactId>
-            <version>${xmlsec.version}</version>
         </dependency>
         <dependency>
             <!-- XWSS -->
