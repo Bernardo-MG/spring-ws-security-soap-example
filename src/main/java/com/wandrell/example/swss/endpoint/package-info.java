@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * The web service endpoints.
+ * Web service endpoints.
  * <p>
  * A single and simple endpoint,
  * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint

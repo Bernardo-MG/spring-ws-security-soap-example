@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * The services handling security.
+ * Security services.
  */
 
 package com.wandrell.example.swss.service.security;

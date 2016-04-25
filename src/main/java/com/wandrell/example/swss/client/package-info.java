@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Clients for the web services.
+ * Clients for the web service endpoints.
  * <p>
  * The only client included, the
  * {@link com.wandrell.example.swss.client.EntityClient EntityClient}, is

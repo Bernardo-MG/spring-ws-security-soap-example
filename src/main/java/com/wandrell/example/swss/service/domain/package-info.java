@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * The services handling access to the domain objects.
+ * Domain model services.
  */
 
 package com.wandrell.example.swss.service.domain;
