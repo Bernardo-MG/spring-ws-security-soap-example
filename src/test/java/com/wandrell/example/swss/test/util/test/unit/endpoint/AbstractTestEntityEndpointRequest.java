@@ -85,6 +85,7 @@ public abstract class AbstractTestEntityEndpointRequest
      */
     public AbstractTestEntityEndpointRequest() {
         super();
+        // TODO: The endpoint dependencies, mostly the service, should be mocked
     }
 
     /**
