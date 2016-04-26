@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.ws.WebServiceMessageFactory;
+import org.springframework.ws.client.core.WebServiceMessageCallback;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -40,17 +41,18 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Client for acquiring entities from the web service.
- * <p>
- * The client only handles the JAXB classes created from the XSD fiel, and not
- * the domain model classes.
+ * Client for querying the web service.
  * <p>
  * The only operation supported is querying an endpoint by sending an entity's
- * id, receiving back that entity's data.
+ * id, and receiving back that entity's data.
  * <p>
- * Internally a {@link SoapActionCallback} will be used when calling the web
- * service to avoid the problems caused by some security protocols, mostly
- * encryption, which may make the endpoints unreachable.
+ * As with the endpoint, this client is unsecured. Any security concern is to be
+ * taken care by Spring. This means that by default it will only be able to
+ * query unsecure endpoints.
+ * <p>
+ * Some security protocols, such as encryption, may make endpoints unreachable.
+ * To solve this a {@link SoapActionCallback} will be used by the client when
+ * querying.
  * <p>
  * If any of the usual SOAP or transmission problems arise, the client will
  * throw an exception. But if for any reason there is no error but no response
@@ -85,18 +87,19 @@ public final class EntityClient extends WebServiceGatewaySupport {
     }
 
     /**
-     * Acquires an entity from the web service by the id, and using the default
-     * URI.
+     * Acquires an entity from the web service by sending the id. The default
+     * URI will be used, and should be set before calling the method.
      * <p>
-     * If the id is invalid then the resulting response will contain a null
-     * entity.
+     * If the id is invalid then the resulting response will contain an empty
+     * entity, with a negative id.
      * <p>
-     * The method makes sure the expected SOAP action is used, to avoid
-     * unreachable endpoint errors when using some authentication methods.
+     * The SOAP request will include, in the HTTP header, the SOAP action, to
+     * avoid unreachable endpoints when using some authentication methods such
+     * as encryption.
      *
      * @param entityId
-     *            id of the queried {@code Entity}
-     * @return the {@code Entity} with the received id
+     *            id of the queried entity
+     * @return the entity with the received id
      */
     public final ExampleEntity getEntity(final Integer entityId) {
         return getEntity(getDefaultUri(), entityId);
@@ -105,23 +108,25 @@ public final class EntityClient extends WebServiceGatewaySupport {
     /**
      * Acquires an entity from the web service by the id.
      * <p>
-     * If the id is invalid then the resulting response will contain a null
-     * entity.
+     * If the id is invalid then the resulting response will contain an empty
+     * entity, with a negative id.
      * <p>
-     * The method makes sure the expected SOAP action is used, to avoid
-     * unreachable endpoint errors when using some authentication methods.
+     * The SOAP request will include, in the HTTP header, the SOAP action, to
+     * avoid unreachable endpoints when using some authentication methods such
+     * as encryption.
      *
      * @param uri
-     *            URI to the web service
+     *            URI to the endpoint
      * @param entityId
-     *            id of the queried {@code Entity}
-     * @return the {@code Entity} with the received id
+     *            id of the queried entity
+     * @return the entity with the received id
      */
     public final ExampleEntity getEntity(final String uri,
             final Integer entityId) {
-        final GetEntityRequest request;   // Request for acquiring the entity
-        final GetEntityResponse response; // Response with the resulting entity
-        final ExampleEntity entity;       // Entity with the response data
+        final GetEntityRequest request;     // Request for acquiring the entity
+        final GetEntityResponse response;   // Response with the result
+        final ExampleEntity entity;         // Entity with the response data
+        final WebServiceMessageCallback cb; // Callback with the SOAP action
 
         checkNotNull(uri, "Received a null pointer as URI");
         checkNotNull(entityId, "Received a null pointer as entity id");
@@ -133,10 +138,12 @@ public final class EntityClient extends WebServiceGatewaySupport {
         request = new GetEntityRequest();
         request.setId(entityId);
 
+        // Prepares callback
+        cb = new SoapActionCallback(ExampleEntityEndpointConstants.ACTION);
+
         // Sends request and receives response
         response = (GetEntityResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(uri, request, new SoapActionCallback(
-                        ExampleEntityEndpointConstants.ACTION));
+                .marshalSendAndReceive(uri, request, cb);
 
         if ((response == null) || (response.getEntity() == null)) {
             // No response was received
@@ -145,15 +152,16 @@ public final class EntityClient extends WebServiceGatewaySupport {
             LOGGER.debug("No response received");
         } else {
             entity = new DefaultExampleEntity();
-            if (response.getEntity().getName() != null) {
+            if (response.getEntity().getName() == null) {
+                // The response was empty
+                LOGGER.debug("Received an empty response");
+            } else {
                 // The response was not empty
                 BeanUtils.copyProperties(response.getEntity(), entity);
 
                 LOGGER.debug(String.format(
                         "Received response with id %1$d and name %2$s",
                         entity.getId(), entity.getName()));
-            } else {
-                LOGGER.debug("Received an empty response");
             }
 
         }

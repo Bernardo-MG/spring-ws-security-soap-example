@@ -29,21 +29,20 @@ import java.io.Serializable;
 /**
  * A simple entity for the example application.
  * <p>
- * This is meant to be the internal model used by the web service, mostly meant
- * for creating the persistence entities. The one for the SOAP messages is in
- * the generated classes package.
+ * This is meant to be the internal domain model used by the web service. The
+ * one for the SOAP messages is in the JAXB generated classes package.
  *
  * @author Bernardo Martínez Garrido
  */
 public interface ExampleEntity extends Serializable {
 
     /**
-     * Returns the ID assigned to this entity.
+     * Returns the identifier assigned to this entity.
      * <p>
-     * If no ID has been assigned yet, then the value will be {@code null} or
-     * lower than zero.
+     * If no identifier has been assigned yet, then the value will be
+     * {@code null} or lower than zero.
      *
-     * @return the entity's ID
+     * @return the entity's identifier
      */
     public Integer getId();
 
@@ -55,10 +54,10 @@ public interface ExampleEntity extends Serializable {
     public String getName();
 
     /**
-     * Sets the ID assigned to this entity.
+     * Sets the identifier assigned to this entity.
      *
      * @param identifier
-     *            the ID for the entity
+     *            the identifier for the entity
      */
     public void setId(final Integer identifier);
 

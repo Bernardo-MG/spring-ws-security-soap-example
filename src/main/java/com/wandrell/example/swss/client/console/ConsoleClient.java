@@ -41,8 +41,8 @@ import com.wandrell.example.swss.model.ExampleEntity;
 /**
  * Runnable console-based client.
  * <p>
- * Requires access to some kind of console, such as the ones offered by the most
- * common IDEs, as the UI will be displayed on it.
+ * Requires a console, such as the ones offered by the most common IDEs, to be
+ * used as the UI.
  * <p>
  * After running it a series of instructions will tell how to use the client.
  *

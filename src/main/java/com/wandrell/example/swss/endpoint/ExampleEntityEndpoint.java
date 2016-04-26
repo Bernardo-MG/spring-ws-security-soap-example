@@ -97,14 +97,16 @@ public class ExampleEntityEndpoint {
     }
 
     /**
-     * Returns a response containing the data of the entity for which the id was
-     * received on the request.
+     * Receives a query for an entity, identified by its id, and returns the
+     * data for this entity.
      * <p>
-     * All the classes received and returned by this method are JAXB classes
-     * created from the XSD file, prepared to generate SOAP messages from them.
+     * The data to be returned will be acquired from the persistence layer, and
+     * then set into the response. But the domain model classes won't be
+     * returned.
      * <p>
-     * The data returned will be acquired from the persistence layer, and then
-     * set into the response.
+     * Instead JAXB beans, generated from the XSD file, will be used both for
+     * mapping the SOAP request payload, and to generate the SOAP response
+     * payload.
      *
      * @param request
      *            payload of the SOAP request for the entity
@@ -130,19 +132,21 @@ public class ExampleEntityEndpoint {
 
         response = new GetEntityResponse();
         if (entity == null) {
+            entityResponse = null;
+
             LOGGER.debug("Entity not found");
         } else {
-            // The entity is transformed from the persistence model to the SOAP
-            // one
             entityResponse = new Entity();
-            BeanUtils.copyProperties(entity, entityResponse);
 
-            response.setEntity(entityResponse);
+            // The entity is transformed from the domain model to the JAXB model
+            BeanUtils.copyProperties(entity, entityResponse);
 
             LOGGER.debug(
                     String.format("Found entity with id %1$d and name %2$s",
                             entity.getId(), entity.getName()));
         }
+
+        response.setEntity(entityResponse);
 
         return response;
     }

@@ -29,7 +29,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
 /**
  * Service for the example entity domain.
  * <p>
- * As it is meant for the endpoint, it just allows finding an entity by the id.
+ * As it is meant for the endpoints it just allows finding an entity by the id.
  *
  * @author Bernardo Martínez Garrido
  */

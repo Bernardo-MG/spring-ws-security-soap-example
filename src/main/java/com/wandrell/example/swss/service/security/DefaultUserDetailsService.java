@@ -38,10 +38,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
- * Service for handling users authentication data.
+ * Users authentication service.
  * <p>
  * This is used by the the user-based authentication systems, and for that
  * reason implements an interface from the Spring framework.
+ * <p>
+ * To make it as simple as possible, the users are not loaded from anywhere,
+ * instead the validation is hardcoded inside the service.
  *
  * @author Bernardo Martínez Garrido
  */
