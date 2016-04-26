@@ -37,6 +37,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -53,9 +54,8 @@ import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
         ServletXwssContextPaths.SIGNATURE, TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.SIGNATURE, InterceptorXwssPropertiesPaths.SIGNATURE,
-        EndpointXwssPropertiesPaths.SIGNATURE,
-        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestEndpointXwssPropertiesPaths.SIGNATURE })
+        EndpointXwssPropertiesPaths.SIGNATURE, EndpointPropertiesPaths.COMMON,
+        TestPropertiesPaths.USER, TestEndpointXwssPropertiesPaths.SIGNATURE })
 public final class TestEntityEndpointSignatureXwss {
 
     /**

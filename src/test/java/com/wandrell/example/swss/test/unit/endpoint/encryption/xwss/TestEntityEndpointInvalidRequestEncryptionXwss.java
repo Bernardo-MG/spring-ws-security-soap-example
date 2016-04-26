@@ -30,6 +30,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -47,9 +48,8 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.ENCRYPTION_XWSS,
         InterceptorXwssPropertiesPaths.ENCRYPTION,
-        EndpointXwssPropertiesPaths.ENCRYPTION,
-        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestEndpointXwssPropertiesPaths.ENCRYPTION })
+        EndpointXwssPropertiesPaths.ENCRYPTION, EndpointPropertiesPaths.COMMON,
+        TestPropertiesPaths.USER, TestEndpointXwssPropertiesPaths.ENCRYPTION })
 public final class TestEntityEndpointInvalidRequestEncryptionXwss
         extends AbstractTestEntityEndpointInvalidRequest {
 

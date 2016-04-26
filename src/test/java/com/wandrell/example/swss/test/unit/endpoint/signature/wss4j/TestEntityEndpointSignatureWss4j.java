@@ -38,6 +38,7 @@ import org.springframework.test.context.TestPropertySource;
 import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -56,9 +57,9 @@ import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.SIGNATURE,
         InterceptorWss4jPropertiesPaths.SIGNATURE,
-        EndpointWss4jPropertiesPaths.SIGNATURE,
-        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J,
+        EndpointWss4jPropertiesPaths.SIGNATURE, EndpointPropertiesPaths.COMMON,
+        TestPropertiesPaths.USER, TestPropertiesPaths.KEYSTORE,
+        TestPropertiesPaths.KEYSTORE_WSS4J,
         TestEndpointWss4jPropertiesPaths.SIGNATURE })
 public final class TestEntityEndpointSignatureWss4j {
 

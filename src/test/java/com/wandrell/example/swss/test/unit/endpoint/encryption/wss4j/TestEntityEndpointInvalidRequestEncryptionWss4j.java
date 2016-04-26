@@ -31,6 +31,7 @@ import org.springframework.test.context.TestPropertySource;
 import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -49,9 +50,9 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.ENCRYPTION_WSS4J,
         InterceptorWss4jPropertiesPaths.ENCRYPTION,
-        EndpointWss4jPropertiesPaths.ENCRYPTION,
-        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J,
+        EndpointWss4jPropertiesPaths.ENCRYPTION, EndpointPropertiesPaths.COMMON,
+        TestPropertiesPaths.USER, TestPropertiesPaths.KEYSTORE,
+        TestPropertiesPaths.KEYSTORE_WSS4J,
         TestEndpointWss4jPropertiesPaths.ENCRYPTION })
 public final class TestEntityEndpointInvalidRequestEncryptionWss4j
         extends AbstractTestEntityEndpointInvalidRequest {

@@ -33,6 +33,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -52,7 +53,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
         SoapPropertiesPaths.PASSWORD_PLAIN,
         InterceptorWss4jPropertiesPaths.PASSWORD_PLAIN,
         EndpointWss4jPropertiesPaths.PASSWORD_PLAIN,
-        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        EndpointPropertiesPaths.COMMON, TestPropertiesPaths.USER,
         TestEndpointWss4jPropertiesPaths.PASSWORD_PLAIN })
 public final class TestEntityEndpointRequestPasswordPlainWss4j
         extends AbstractTestEntityEndpointRequest {

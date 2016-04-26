@@ -40,6 +40,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
@@ -59,8 +60,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 @ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
         ServletWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
-        EndpointXwssPropertiesPaths.UNSECURE,
-        EndpointXwssPropertiesPaths.COMMON })
+        EndpointXwssPropertiesPaths.UNSECURE, EndpointPropertiesPaths.COMMON })
 public final class TestEntityEndpointUnsecure
         extends AbstractTestNGSpringContextTests {
 

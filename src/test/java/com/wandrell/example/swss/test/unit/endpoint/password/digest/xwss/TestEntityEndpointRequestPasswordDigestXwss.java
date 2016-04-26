@@ -33,6 +33,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -52,7 +53,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
         SoapPropertiesPaths.PASSWORD_DIGEST,
         InterceptorXwssPropertiesPaths.PASSWORD_DIGEST,
         EndpointXwssPropertiesPaths.PASSWORD_DIGEST,
-        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        EndpointPropertiesPaths.COMMON, TestPropertiesPaths.USER,
         TestEndpointXwssPropertiesPaths.PASSWORD_DIGEST })
 public final class TestEntityEndpointRequestPasswordDigestXwss
         extends AbstractTestEntityEndpointRequest {

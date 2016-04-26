@@ -22,46 +22,33 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.util.config.properties;
+package com.wandrell.example.swss.test.util.config.context;
 
 /**
- * Paths to the WSS4J-based endpoints configuration properties files.
+ * Paths to the servlet context files.
  * <p>
- * These files contain the data required for setting up an endpoint context.
+ * These are the context files shared by all the servlets, not matter their
+ * type.
+ * <p>
+ * These are the same context configurations as the ones used for the
+ * application servlets.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointWss4jPropertiesPaths {
+public final class ServletContextPaths {
 
     /**
-     * Encrypted endpoint.
+     * Application-wide context configuration.
+     * <p>
+     * This is the application context used for real web services, and shared by
+     * all the servlets.
      */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties";
-
-    /**
-     * Digested password endpoint.
-     */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties";
-
-    /**
-     * Plain password endpoint.
-     */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties";
-
-    /**
-     * Signed endpoint.
-     */
-    public static final String SIGNATURE       = "classpath:config/endpoint/signature/wss4j/endpoint-signature-wss4j.properties";
-
-    /**
-     * Unsecure endpoint.
-     */
-    public static final String UNSECURE        = "classpath:config/endpoint/endpoint-unsecure.properties";
+    public static final String APPLICATION_COMMON = "classpath:context/webService.xml";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointWss4jPropertiesPaths() {
+    private ServletContextPaths() {
         super();
     }
 

@@ -25,43 +25,26 @@
 package com.wandrell.example.swss.test.util.config.properties;
 
 /**
- * Paths to the WSS4J-based endpoints configuration properties files.
+ * Paths to the endpoints configuration properties files.
+ * <p>
+ * These are the configuration files shared by all the servlets, not matter
+ * their type.
  * <p>
  * These files contain the data required for setting up an endpoint context.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class EndpointWss4jPropertiesPaths {
+public final class EndpointPropertiesPaths {
 
     /**
-     * Encrypted endpoint.
+     * Common endpoint configuration.
      */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties";
-
-    /**
-     * Digested password endpoint.
-     */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/password/digest/wss4j/endpoint-password-digest-wss4j.properties";
-
-    /**
-     * Plain password endpoint.
-     */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/password/plain/wss4j/endpoint-password-plain-wss4j.properties";
-
-    /**
-     * Signed endpoint.
-     */
-    public static final String SIGNATURE       = "classpath:config/endpoint/signature/wss4j/endpoint-signature-wss4j.properties";
-
-    /**
-     * Unsecure endpoint.
-     */
-    public static final String UNSECURE        = "classpath:config/endpoint/endpoint-unsecure.properties";
+    public static final String COMMON = "classpath:config/endpoint/endpoint.properties";
 
     /**
      * Private constructor to avoid initialization.
      */
-    private EndpointWss4jPropertiesPaths() {
+    private EndpointPropertiesPaths() {
         super();
     }
 
