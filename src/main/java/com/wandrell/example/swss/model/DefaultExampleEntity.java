@@ -39,7 +39,9 @@ import javax.persistence.Transient;
 import com.google.common.base.MoreObjects;
 
 /**
- * JPA annotated implementation of {@link ExampleEntity}.
+ * Persistent entity for the example application.
+ * <p>
+ * This makes use of JPA annotations for the persistence configuration.
  * <p>
  * For the JAXB annotated model check the generated classes folder.
  *

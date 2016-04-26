@@ -38,20 +38,21 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Client for acquiring {@link Entity} entities from the web service. This
- * {@code Entity} is the JAXB class generated from the XSD files, not the
- * {@code ExampleEntity} from the model.
+ * Client for acquiring entities from the web service.
  * <p>
- * It is a simple client, which only takes a URL and the numeric identifier for
- * the entity, and then queries the web service for it, returning the result.
+ * The client only handles the JAXB classes created from the XSD fiel, and not
+ * the domain model classes.
+ * <p>
+ * The only operation supported is querying an endpoint by sending an entity's
+ * id, receiving back that entity's data.
  * <p>
  * Internally a {@link SoapActionCallback} will be used when calling the web
- * service to avoid the problems some security protocols, mostly encryption,
- * cause which may make the endpoints unreachable.
+ * service to avoid the problems caused by some security protocols, mostly
+ * encryption, which may make the endpoints unreachable.
  * <p>
- * The client handles the usual SOAP and transmission problems, and will throw
- * exceptions for them. But if for any reason there is no error but no response
- * is received, or an empty one is received, then a {@code null} will be
+ * If any of the usual SOAP or transmission problems arise, the client will
+ * throw an exception. But if for any reason there is no error but no response
+ * is received, or an empty one is received, then a {@code null} value will be
  * returned.
  *
  * @author Bernardo Martínez Garrido
@@ -82,8 +83,8 @@ public final class EntityClient extends WebServiceGatewaySupport {
     }
 
     /**
-     * Acquires an {@code Entity} from the web service by the id and using the
-     * default URI.
+     * Acquires an entity from the web service by the id, and using the default
+     * URI.
      * <p>
      * If the id is invalid then the resulting response will contain a null
      * entity.
@@ -100,7 +101,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
     }
 
     /**
-     * Acquires an {@code Entity} from the web service by the id.
+     * Acquires an entity from the web service by the id.
      * <p>
      * If the id is invalid then the resulting response will contain a null
      * entity.

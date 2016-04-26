@@ -27,7 +27,7 @@ package com.wandrell.example.swss.service.domain;
 import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
- * Interface for the service to access {@link ExampleEntity} instances.
+ * Service for the example entity domain.
  * <p>
  * As it is meant for the endpoint, it just allows finding an entity by the id.
  *
