@@ -38,6 +38,7 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -55,7 +56,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
         ServletWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         EndpointXwssPropertiesPaths.UNSECURE,

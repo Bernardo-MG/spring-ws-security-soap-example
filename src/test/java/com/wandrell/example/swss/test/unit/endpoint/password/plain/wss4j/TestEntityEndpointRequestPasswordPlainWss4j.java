@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
@@ -45,7 +46,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
         ServletWss4jContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesPaths.WSDL,
         SoapPropertiesPaths.PASSWORD_PLAIN,
