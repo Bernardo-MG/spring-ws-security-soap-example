@@ -63,7 +63,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private Integer           entityId;
+    private Integer           id               = -1;
 
     /**
      * Name of the entity.
@@ -72,7 +72,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
      * tests.
      */
     @Column(name = "name", nullable = false)
-    private String            entityName;
+    private String            name             = "";
 
     /**
      * Constructs an example entity.
@@ -96,39 +96,37 @@ public final class DefaultExampleEntity implements ExampleEntity {
         }
 
         final DefaultExampleEntity other = (DefaultExampleEntity) obj;
-        return Objects.equals(entityId, other.entityId);
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public final Integer getId() {
-        return entityId;
+        return id;
     }
 
     @Override
     public final String getName() {
-        return entityName;
+        return name;
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(entityId);
+        return Objects.hash(id);
     }
 
     @Override
-    public final void setId(final Integer identifier) {
-        entityId = checkNotNull(identifier,
-                "Received a null pointer as identifier");
+    public final void setId(final Integer value) {
+        id = checkNotNull(value, "Received a null pointer as identifier");
     }
 
     @Override
-    public final void setName(final String name) {
-        entityName = checkNotNull(name, "Received a null pointer as name");
+    public final void setName(final String value) {
+        name = checkNotNull(value, "Received a null pointer as name");
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("entityId", entityId)
-                .toString();
+        return MoreObjects.toStringHelper(this).add("entityId", id).toString();
     }
 
 }

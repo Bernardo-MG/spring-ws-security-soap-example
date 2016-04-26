@@ -28,12 +28,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.model.DefaultExampleEntity;
+import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
@@ -96,7 +98,7 @@ public final class EntityClient extends WebServiceGatewaySupport {
      *            id of the queried {@code Entity}
      * @return the {@code Entity} with the received id
      */
-    public final Entity getEntity(final Integer entityId) {
+    public final ExampleEntity getEntity(final Integer entityId) {
         return getEntity(getDefaultUri(), entityId);
     }
 
@@ -115,10 +117,11 @@ public final class EntityClient extends WebServiceGatewaySupport {
      *            id of the queried {@code Entity}
      * @return the {@code Entity} with the received id
      */
-    public final Entity getEntity(final String uri, final Integer entityId) {
+    public final ExampleEntity getEntity(final String uri,
+            final Integer entityId) {
         final GetEntityRequest request;   // Request for acquiring the entity
         final GetEntityResponse response; // Response with the resulting entity
-        final Entity entity;              // Entity for the failed requests
+        final ExampleEntity entity;       // Entity with the response data
 
         checkNotNull(uri, "Received a null pointer as URI");
         checkNotNull(entityId, "Received a null pointer as entity id");
@@ -138,12 +141,21 @@ public final class EntityClient extends WebServiceGatewaySupport {
         if ((response == null) || (response.getEntity() == null)) {
             // No response was received
             entity = null;
+
             LOGGER.debug("No response received");
         } else {
-            entity = response.getEntity();
-            LOGGER.debug(String.format(
-                    "Received response with id %1$d and name %2$s",
-                    entity.getId(), entity.getName()));
+            entity = new DefaultExampleEntity();
+            if (response.getEntity().getName() != null) {
+                // The response was not empty
+                BeanUtils.copyProperties(response.getEntity(), entity);
+
+                LOGGER.debug(String.format(
+                        "Received response with id %1$d and name %2$s",
+                        entity.getId(), entity.getName()));
+            } else {
+                LOGGER.debug("Received an empty response");
+            }
+
         }
 
         return entity;

@@ -36,7 +36,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.client.WebServiceIOException;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
  * Runnable console-based client.
@@ -51,6 +51,42 @@ import com.wandrell.example.ws.generated.entity.Entity;
 public final class ConsoleClient {
 
     /**
+     * Enumeration for all the security types supported by the console client.
+     *
+     * @author Bernardo Martínez Garrido
+     */
+    private enum Security {
+        /**
+         * Encryption using WSS4J.
+         */
+        ENCRYPTION_WSS4J, /**
+                           * Encryption using XWSS.
+                           */
+        ENCRYPTION_XWSS, /**
+                          * Digested password using WSS4J.
+                          */
+        PASSWORD_DIGEST_WSS4J, /**
+                                * Digested password using XWSS.
+                                */
+        PASSWORD_DIGEST_XWSS, /**
+                               * Plain password using WSS4J.
+                               */
+        PASSWORD_PLAIN_WSS4J, /**
+                               * Plain password using XWSS.
+                               */
+        PASSWORD_PLAIN_XWSS, /**
+                              * Signature using WSS4J.
+                              */
+        SIGNATURE_WSS4J, /**
+                          * Signature using XWSS.
+                          */
+        SIGNATURE_XWSS, /**
+                         * Unsecure.
+                         */
+        UNSECURE
+    }
+
+    /**
      * Template for generating the final endpoint URL.
      * <p>
      * This is just the default URI for the web service, to which the endpoint
@@ -62,50 +98,6 @@ public final class ConsoleClient {
      * Property key for the endpoint URI.
      */
     private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
-
-    /**
-     * Enumeration for all the security types supported by the console client.
-     *
-     * @author Bernardo Martínez Garrido
-     */
-    private enum Security {
-        /**
-         * Encryption using WSS4J.
-         */
-        ENCRYPTION_WSS4J,
-        /**
-         * Encryption using XWSS.
-         */
-        ENCRYPTION_XWSS,
-        /**
-         * Digested password using WSS4J.
-         */
-        PASSWORD_DIGEST_WSS4J,
-        /**
-         * Digested password using XWSS.
-         */
-        PASSWORD_DIGEST_XWSS,
-        /**
-         * Plain password using WSS4J.
-         */
-        PASSWORD_PLAIN_WSS4J,
-        /**
-         * Plain password using XWSS.
-         */
-        PASSWORD_PLAIN_XWSS,
-        /**
-         * Signature using WSS4J.
-         */
-        SIGNATURE_WSS4J,
-        /**
-         * Signature using XWSS.
-         */
-        SIGNATURE_XWSS,
-        /**
-         * Unsecure.
-         */
-        UNSECURE
-    }
 
     /**
      * Main runnable method.
@@ -146,8 +138,8 @@ public final class ConsoleClient {
      */
     private static final void callEndpoint(final EntityClient client,
             final String uri, final PrintStream output, final Scanner scanner) {
-        final Entity entity; // Queried entity
-        final Integer id;    // Id for the query
+        final ExampleEntity entity; // Queried entity
+        final Integer id;           // Id for the query
 
         output.println("------------------------------------");
         output.println("Write the id of the entity to query.");

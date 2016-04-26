@@ -31,7 +31,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
  * Abstract integration tests for {@link EntityClient} testing that it handles
@@ -87,7 +87,7 @@ public abstract class AbstractITEntityClient
      */
     @Test
     public final void testEndpoint_InvalidId_ReturnsNull() {
-        final Entity entity; // Returned entity
+        final ExampleEntity entity; // Returned entity
 
         entity = client.getEntity(wsUrl, -1);
 
@@ -99,11 +99,11 @@ public abstract class AbstractITEntityClient
      */
     @Test
     public final void testEndpoint_ValidId_ReturnsValid() {
-        final Entity entity; // Returned entity
+        final ExampleEntity entity; // Returned entity
 
         entity = client.getEntity(wsUrl, 1);
 
-        Assert.assertEquals((Integer) entity.getId(), entityId);
+        Assert.assertEquals(entity.getId(), entityId);
         Assert.assertEquals(entity.getName(), entityName);
     }
 

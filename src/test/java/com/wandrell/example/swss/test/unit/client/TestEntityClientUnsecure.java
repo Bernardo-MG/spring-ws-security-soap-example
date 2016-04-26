@@ -41,10 +41,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Unit tests for {@link EntityClient} checking that the client works as
@@ -118,7 +118,7 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -135,8 +135,8 @@ public final class TestEntityClientUnsecure
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), 0);
-        Assert.assertEquals(result.getName(), null);
+        Assert.assertEquals(result.getId(), new Integer(-1));
+        Assert.assertEquals(result.getName(), "");
 
         mockServer.verify();
     }
@@ -152,7 +152,7 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -169,7 +169,7 @@ public final class TestEntityClientUnsecure
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals((Integer) result.getId(), entityId);
+        Assert.assertEquals(result.getId(), entityId);
         Assert.assertEquals(result.getName(), entityName);
 
         mockServer.verify();

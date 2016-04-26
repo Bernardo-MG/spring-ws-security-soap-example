@@ -41,7 +41,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
  * Abstract unit tests for an endpoint testing that it handles header-based SOAP
@@ -120,7 +120,7 @@ public abstract class AbstractTestEntityClientHeader
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -137,8 +137,8 @@ public abstract class AbstractTestEntityClientHeader
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), 0);
-        Assert.assertEquals(result.getName(), null);
+        Assert.assertEquals(result.getId(), new Integer(-1));
+        Assert.assertEquals(result.getName(), "");
 
         mockServer.verify();
     }
@@ -154,7 +154,7 @@ public abstract class AbstractTestEntityClientHeader
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -171,7 +171,7 @@ public abstract class AbstractTestEntityClientHeader
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals((Integer) result.getId(), entityId);
+        Assert.assertEquals(result.getId(), entityId);
         Assert.assertEquals(result.getName(), entityName);
 
         mockServer.verify();
