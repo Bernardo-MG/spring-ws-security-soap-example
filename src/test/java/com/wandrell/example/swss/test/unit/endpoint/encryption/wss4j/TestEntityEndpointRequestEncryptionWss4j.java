@@ -22,71 +22,61 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.endpoint.password.digest.xwss;
+package com.wandrell.example.swss.test.unit.endpoint.encryption.wss4j;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
-import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
-import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestEndpointXwssPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Unit test for a XWSS digested password protected endpoint.
+ * Unit test for a XWSS encrypted endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
-        ServletXwssContextPaths.PASSWORD_DIGEST })
-@TestPropertySource({ TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.PASSWORD_DIGEST,
-        InterceptorXwssPropertiesPaths.PASSWORD_DIGEST,
-        EndpointXwssPropertiesPaths.PASSWORD_DIGEST,
-        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestEndpointXwssPropertiesPaths.PASSWORD_DIGEST })
-public final class TestEntityEndpointPasswordDigestXwss
+        ServletWss4jContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
+        TestContextPaths.KEYSTORE_WSS4J })
+@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
+        SoapPropertiesPaths.ENCRYPTION_WSS4J,
+        InterceptorWss4jPropertiesPaths.ENCRYPTION,
+        EndpointWss4jPropertiesPaths.ENCRYPTION,
+        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J,
+        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
+public final class TestEntityEndpointRequestEncryptionWss4j
         extends AbstractTestEntityEndpointRequest {
-
-    /**
-     * Password for the passworded message.
-     */
-    @Value("${security.credentials.password}")
-    private String password;
 
     /**
      * Path to the file containing the valid SOAP request.
      */
-    @Value("${soap.request.template.path}")
+    @Value("${soap.request.path}")
     private String pathValid;
 
     /**
-     * Username for the passworded message.
+     * Constructs a {@code TestEntityEndpointEncryptionWSS4J}.
      */
-    @Value("${security.credentials.user}")
-    private String username;
-
-    /**
-     * Constructs a {@code TestEntityEndpointPasswordDigestXWSS}.
-     */
-    public TestEntityEndpointPasswordDigestXwss() {
+    public TestEntityEndpointRequestEncryptionWss4j() {
         super();
     }
 
     @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecureSoapMessages
-                    .getDigestedPasswordStream(pathValid, username, password));
+            return new StreamSource(
+                    new ClassPathResource(pathValid).getInputStream());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }

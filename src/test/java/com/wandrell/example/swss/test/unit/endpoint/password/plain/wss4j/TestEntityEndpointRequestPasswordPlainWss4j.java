@@ -22,61 +22,70 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.endpoint.encryption.wss4j;
+package com.wandrell.example.swss.test.unit.endpoint.password.plain.wss4j;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
-import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
+import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Unit test for a XWSS encrypted endpoint.
+ * Unit test for a WSS4J plain password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
-        ServletWss4jContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
-        TestContextPaths.KEYSTORE_WSS4J })
-@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
-        SoapPropertiesPaths.ENCRYPTION_WSS4J,
-        InterceptorWss4jPropertiesPaths.ENCRYPTION,
-        EndpointWss4jPropertiesPaths.ENCRYPTION,
+        ServletWss4jContextPaths.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesPaths.WSDL,
+        SoapPropertiesPaths.PASSWORD_PLAIN,
+        InterceptorWss4jPropertiesPaths.PASSWORD_PLAIN,
+        EndpointWss4jPropertiesPaths.PASSWORD_PLAIN,
         EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J,
-        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
-public final class TestEntityEndpointEncryptionWss4j
+        TestEndpointWss4jPropertiesPaths.PASSWORD_PLAIN })
+public final class TestEntityEndpointRequestPasswordPlainWss4j
         extends AbstractTestEntityEndpointRequest {
+
+    /**
+     * Password for the passworded message.
+     */
+    @Value("${security.credentials.password}")
+    private String password;
 
     /**
      * Path to the file containing the valid SOAP request.
      */
-    @Value("${soap.request.path}")
+    @Value("${soap.request.template.path}")
     private String pathValid;
 
     /**
-     * Constructs a {@code TestEntityEndpointEncryptionWSS4J}.
+     * Username for the passworded message.
      */
-    public TestEntityEndpointEncryptionWss4j() {
+    @Value("${security.credentials.user}")
+    private String username;
+
+    /**
+     * Constructs a {@code TestEntityEndpointPasswordPlainWSS4J}.
+     */
+    public TestEntityEndpointRequestPasswordPlainWss4j() {
         super();
     }
 
     @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(
-                    new ClassPathResource(pathValid).getInputStream());
+            return new StreamSource(SecureSoapMessages
+                    .getPlainPasswordStream(pathValid, username, password));
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }

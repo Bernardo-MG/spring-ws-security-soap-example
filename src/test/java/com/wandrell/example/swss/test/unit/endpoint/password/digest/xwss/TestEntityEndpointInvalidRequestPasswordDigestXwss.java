@@ -22,10 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.endpoint.password.plain.xwss;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
+package com.wandrell.example.swss.test.unit.endpoint.password.digest.xwss;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
@@ -38,24 +35,23 @@ import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssProp
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
-import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
+import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointInvalidRequest;
 
 /**
- * Unit test for a XWSS plain password protected endpoint.
+ * Unit test for a XWSS digested password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
-        ServletXwssContextPaths.PASSWORD_PLAIN })
+        ServletXwssContextPaths.PASSWORD_DIGEST })
 @TestPropertySource({ TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.PASSWORD_PLAIN,
-        InterceptorXwssPropertiesPaths.PASSWORD_PLAIN,
-        EndpointXwssPropertiesPaths.PASSWORD_PLAIN,
+        SoapPropertiesPaths.PASSWORD_DIGEST,
+        InterceptorXwssPropertiesPaths.PASSWORD_DIGEST,
+        EndpointXwssPropertiesPaths.PASSWORD_DIGEST,
         EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestEndpointXwssPropertiesPaths.PASSWORD_PLAIN })
-public final class TestEntityEndpointPasswordPlainXwss
-        extends AbstractTestEntityEndpointRequest {
+        TestEndpointXwssPropertiesPaths.PASSWORD_DIGEST })
+public final class TestEntityEndpointInvalidRequestPasswordDigestXwss
+        extends AbstractTestEntityEndpointInvalidRequest {
 
     /**
      * Password for the passworded message.
@@ -76,20 +72,10 @@ public final class TestEntityEndpointPasswordPlainXwss
     private String username;
 
     /**
-     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
+     * Constructs a {@code TestEntityEndpointPasswordDigestXWSS}.
      */
-    public TestEntityEndpointPasswordPlainXwss() {
+    public TestEntityEndpointInvalidRequestPasswordDigestXwss() {
         super();
-    }
-
-    @Override
-    protected final Source getRequestEnvelope() {
-        try {
-            return new StreamSource(SecureSoapMessages
-                    .getPlainPasswordStream(pathValid, username, password));
-        } catch (final Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }
