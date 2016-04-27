@@ -209,10 +209,10 @@
         <!-- Manifest data -->
         <manifest.name>com/wandrell/example/spring/wss</manifest.name>
         <!-- Dependencies versions -->
-        <ant.version>1.9.6</ant.version>
+        <ant.version>1.9.7</ant.version>
         <bouncycastle.version>1.54</bouncycastle.version>
         <commons.codec.version>1.10</commons.codec.version>
-        <commons.io.version>2.4</commons.io.version>
+        <commons.io.version>2.5</commons.io.version>
         <commons.logging.version>1.2</commons.logging.version>
         <ehcache.version>2.6.11</ehcache.version>
         <freemarker.version>2.3.23</freemarker.version>
@@ -221,25 +221,26 @@
         <hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
         <hibernate.version>5.1.0.Final</hibernate.version>
         <hikari.version>2.4.5</hikari.version>
-        <testng.version>6.9.8</testng.version>
+        <testng.version>6.9.10</testng.version>
         <javax.activation.version>1.1.1</javax.activation.version>
         <javax.stax.api.version>1.0-2</javax.stax.api.version>
         <jaxb.version>2.2.11</jaxb.version>
+        <joda.time.version>2.9.3</joda.time.version>
         <log4j.version>2.5</log4j.version>
         <saaj.api.version>1.3.5</saaj.api.version>
         <saaj.impl.version>1.3.25</saaj.impl.version>
-        <slf4j.version>1.7.16</slf4j.version>
-        <spring.data.version>1.9.2.RELEASE</spring.data.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <spring.data.version>1.10.1.RELEASE</spring.data.version>
         <spring.version>4.2.5.RELEASE</spring.version>
-        <spring.security.version>4.0.3.RELEASE</spring.security.version>
-        <spring.shell.version>1.1.0.RELEASE</spring.shell.version>
-        <spring.ws.version>2.2.4.RELEASE</spring.ws.version>
+        <spring.security.version>4.0.4.RELEASE</spring.security.version>
+        <spring.ws.version>2.3.0.RELEASE</spring.ws.version>
         <stax.api.version>1.0.1</stax.api.version>
         <stax.impl.version>1.2.0</stax.impl.version>
-        <testng.version>6.9.9</testng.version>
+        <testng.version>6.9.10</testng.version>
         <wsdl4j.version>1.6.3</wsdl4j.version>
         <wss4j.version>1.6.19</wss4j.version>
         <xmlapis.version>2.0.2</xmlapis.version>
+        <xmlsec.version>2.0.6</xmlsec.version>
         <xwssecurity.version>3.0</xwssecurity.version>
         <!-- Plugins versions -->
         <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
@@ -385,6 +386,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <!-- Apache XML Security For Java -->
+            <groupId>org.apache.santuario</groupId>
+            <artifactId>xmlsec</artifactId>
+            <version>${xmlsec.version}</version>
+        </dependency>
         <!-- ============================================== -->
         <!-- =============== WEB SERVICES ================= -->
         <!-- ============================================== -->
@@ -474,6 +481,12 @@
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
             <version>${javax.activation.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Joda Time -->
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
         </dependency>
         <dependency>
             <!-- STAX API -->
