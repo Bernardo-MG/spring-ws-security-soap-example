@@ -34,11 +34,6 @@ package com.wandrell.example.swss.test.util.config.properties;
 public final class EndpointXwssPropertiesPaths {
 
     /**
-     * Common endpoint configuration.
-     */
-    public static final String COMMON          = "classpath:config/endpoint/endpoint.properties";
-
-    /**
      * Encrypted endpoint.
      */
     public static final String ENCRYPTION      = "classpath:config/endpoint/encryption/xwss/endpoint-encryption-xwss.properties";

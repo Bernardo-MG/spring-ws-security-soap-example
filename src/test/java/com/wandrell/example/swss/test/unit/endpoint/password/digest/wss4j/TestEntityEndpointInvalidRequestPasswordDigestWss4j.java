@@ -24,37 +24,35 @@
 
 package com.wandrell.example.swss.test.unit.endpoint.password.digest.wss4j;
 
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
-import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
+import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointInvalidRequest;
 
 /**
  * Unit test for a XWSS digested password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
         ServletWss4jContextPaths.PASSWORD_DIGEST })
 @TestPropertySource({ TestPropertiesPaths.WSDL,
         SoapPropertiesPaths.PASSWORD_DIGEST,
         InterceptorWss4jPropertiesPaths.PASSWORD_DIGEST,
         EndpointWss4jPropertiesPaths.PASSWORD_DIGEST,
-        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        EndpointPropertiesPaths.COMMON, TestPropertiesPaths.USER,
         TestEndpointWss4jPropertiesPaths.PASSWORD_DIGEST })
-public final class TestEntityEndpointPasswordDigestWss4j
-        extends AbstractTestEntityEndpointRequest {
+public final class TestEntityEndpointInvalidRequestPasswordDigestWss4j
+        extends AbstractTestEntityEndpointInvalidRequest {
 
     /**
      * Password for the passworded message.
@@ -77,18 +75,8 @@ public final class TestEntityEndpointPasswordDigestWss4j
     /**
      * Constructs a {@code TestEntityEndpointPasswordDigestWSS4J}.
      */
-    public TestEntityEndpointPasswordDigestWss4j() {
+    public TestEntityEndpointInvalidRequestPasswordDigestWss4j() {
         super();
-    }
-
-    @Override
-    protected final Source getRequestEnvelope() {
-        try {
-            return new StreamSource(SecureSoapMessages
-                    .getDigestedPasswordStream(pathValid, username, password));
-        } catch (final Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }

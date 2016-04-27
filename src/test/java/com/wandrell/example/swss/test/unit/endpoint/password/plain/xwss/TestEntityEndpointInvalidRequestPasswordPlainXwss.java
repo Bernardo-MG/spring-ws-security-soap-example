@@ -22,94 +22,61 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.endpoint.signature.xwss;
+package com.wandrell.example.swss.test.unit.endpoint.password.plain.xwss;
 
-import java.security.KeyStore;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
-import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
+import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointInvalidRequest;
 
 /**
- * Unit test for a XWSS signed endpoint.
+ * Unit test for a XWSS plain password protected endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXwssContextPaths.BASE,
-        ServletXwssContextPaths.SIGNATURE, TestContextPaths.KEYSTORE })
-@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
-        SoapPropertiesPaths.SIGNATURE, InterceptorXwssPropertiesPaths.SIGNATURE,
-        EndpointXwssPropertiesPaths.SIGNATURE, EndpointPropertiesPaths.COMMON,
-        TestPropertiesPaths.USER, TestEndpointXwssPropertiesPaths.SIGNATURE })
-public final class TestEntityEndpointSignatureXwss {
-
-    /**
-     * Alias for the certificate for signing messages.
-     */
-    @Value("${keystore.alias}")
-    private String   alias;
-
-    /**
-     * Key store for signing messages.
-     */
-    @Autowired
-    @Qualifier("keyStore")
-    private KeyStore keystore;
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
+        ServletXwssContextPaths.PASSWORD_PLAIN })
+@TestPropertySource({ TestPropertiesPaths.WSDL,
+        SoapPropertiesPaths.PASSWORD_PLAIN,
+        InterceptorXwssPropertiesPaths.PASSWORD_PLAIN,
+        EndpointXwssPropertiesPaths.PASSWORD_PLAIN,
+        EndpointPropertiesPaths.COMMON, TestPropertiesPaths.USER,
+        TestEndpointXwssPropertiesPaths.PASSWORD_PLAIN })
+public final class TestEntityEndpointInvalidRequestPasswordPlainXwss
+        extends AbstractTestEntityEndpointInvalidRequest {
 
     /**
      * Password for the passworded message.
      */
     @Value("${security.credentials.password}")
-    private String   password;
+    private String password;
 
     /**
-     * Password for the certificate for signing messages.
+     * Path to the file containing the valid SOAP request.
      */
-    @Value("${keystore.password}")
-    private String   passwordKey;
-
-    /**
-     * Path to the file containing the unsecured SOAP request.
-     */
-    @Value("${soap.request.path}")
-    private String   pathUnsecure;
+    @Value("${soap.request.template.path}")
+    private String pathValid;
 
     /**
      * Username for the passworded message.
      */
     @Value("${security.credentials.user}")
-    private String   username;
+    private String username;
 
     /**
-     * Constructs a {@code TestEntityEndpointSignatureXWSS}.
+     * Constructs a {@code TestEntityEndpointPasswordPlainXWSS}.
      */
-    public TestEntityEndpointSignatureXwss() {
+    public TestEntityEndpointInvalidRequestPasswordPlainXwss() {
         super();
-        // TODO: Make this work
-    }
-
-    protected final Source getRequestEnvelope() {
-        try {
-            return new StreamSource(SecureSoapMessages.getSignedStream(
-                    pathUnsecure, alias, passwordKey, alias, keystore));
-        } catch (final Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }

@@ -24,8 +24,6 @@
 
 package com.wandrell.example.swss.test.util.test.unit.endpoint;
 
-import javax.xml.transform.Source;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -33,19 +31,18 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
+import org.springframework.ws.test.server.RequestCreators;
 import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
-
 /**
- * Abstract unit tests for an endpoint testing that it handles envelope-based
- * SOAP messages correctly.
+ * Abstract unit tests for an endpoint testing that it handles invalid
+ * envelope-based SOAP messages correctly.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>The endpoint parses SOAP requests with a valid envelope.</li>
+ * <li>The endpoint can handle SOAP requests with an invalid envelope.</li>
  * </ol>
  * <p>
  * This base test is meant for those endpoints where the full envelope is more
@@ -53,7 +50,7 @@ import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
  *
  * @author Bernardo Martínez Garrido
  */
-public abstract class AbstractTestEntityEndpointRequest
+public abstract class AbstractTestEntityEndpointInvalidRequest
         extends AbstractTestNGSpringContextTests {
 
     /**
@@ -83,27 +80,26 @@ public abstract class AbstractTestEntityEndpointRequest
     /**
      * Constructs an {@code AbstractTestEntityEndpointRequest}.
      */
-    public AbstractTestEntityEndpointRequest() {
+    public AbstractTestEntityEndpointInvalidRequest() {
         super();
-        // TODO: The endpoint dependencies, mostly the service, should be mocked
+        // TODO: Combine with the other request test once the random bug is fixed
     }
 
     /**
-     * Tests that the endpoint parses SOAP requests with a valid envelope.
+     * Tests that the endpoint can handle invalid SOAP messages.
      */
     @Test
-    public final void testEndpoint_Envelope_Valid() throws Exception {
+    public final void testEndpoint_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
         final RequestCreator requestCreator;   // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
 
         // Creates the request
-        requestCreator = SoapActionRequestCreators.withSoapEnvelope(soapAction,
-                getRequestEnvelope());
+        requestCreator = RequestCreators.withSoapEnvelope(
+                new ClassPathResource(requestEnvelopeInvalidPath));
 
         // Creates the response matcher
-        responseMatcher = ResponseMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+        responseMatcher = ResponseMatchers.clientOrSenderFault();
 
         // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);
@@ -111,12 +107,5 @@ public abstract class AbstractTestEntityEndpointRequest
         // Calls the endpoint
         mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
     }
-
-    /**
-     * Returns a valid SOAP request envelope in a {@code Source} class.
-     *
-     * @return a valid SOAP request envelope
-     */
-    protected abstract Source getRequestEnvelope();
 
 }

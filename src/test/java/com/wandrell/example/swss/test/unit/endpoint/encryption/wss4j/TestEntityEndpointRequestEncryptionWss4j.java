@@ -22,16 +22,13 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.endpoint.signature.wss4j;
-
-import java.security.KeyStore;
+package com.wandrell.example.swss.test.unit.endpoint.encryption.wss4j;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
@@ -44,74 +41,44 @@ import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPro
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
+import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Unit test for a WSS4J signed endpoint.
+ * Unit test for a XWSS encrypted endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
-        ServletWss4jContextPaths.SIGNATURE, TestContextPaths.KEYSTORE,
+        ServletWss4jContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
         TestContextPaths.KEYSTORE_WSS4J })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
-        SoapPropertiesPaths.SIGNATURE,
-        InterceptorWss4jPropertiesPaths.SIGNATURE,
-        EndpointWss4jPropertiesPaths.SIGNATURE, EndpointPropertiesPaths.COMMON,
+        SoapPropertiesPaths.ENCRYPTION_WSS4J,
+        InterceptorWss4jPropertiesPaths.ENCRYPTION,
+        EndpointWss4jPropertiesPaths.ENCRYPTION, EndpointPropertiesPaths.COMMON,
         TestPropertiesPaths.USER, TestPropertiesPaths.KEYSTORE,
         TestPropertiesPaths.KEYSTORE_WSS4J,
-        TestEndpointWss4jPropertiesPaths.SIGNATURE })
-public final class TestEntityEndpointSignatureWss4j {
+        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
+public final class TestEntityEndpointRequestEncryptionWss4j
+        extends AbstractTestEntityEndpointRequest {
 
     /**
-     * Alias for the certificate for signing messages.
-     */
-    @Value("${keystore.alias}")
-    private String   alias;
-
-    /**
-     * Key store for signing messages.
-     */
-    @Autowired
-    @Qualifier("keyStore")
-    private KeyStore keystore;
-
-    /**
-     * Password for the passworded message.
-     */
-    @Value("${security.credentials.password}")
-    private String   password;
-
-    /**
-     * Password for the certificate for signing messages.
-     */
-    @Value("${keystore.password}")
-    private String   passwordKey;
-
-    /**
-     * Path to the file containing the unsecured SOAP request.
+     * Path to the file containing the valid SOAP request.
      */
     @Value("${soap.request.path}")
-    private String   pathUnsecure;
+    private String pathValid;
 
     /**
-     * Username for the passworded message.
+     * Constructs a {@code TestEntityEndpointEncryptionWSS4J}.
      */
-    @Value("${security.credentials.user}")
-    private String   username;
-
-    /**
-     * Constructs a {@code TestEntityEndpointSignatureWSS4J}.
-     */
-    public TestEntityEndpointSignatureWss4j() {
+    public TestEntityEndpointRequestEncryptionWss4j() {
         super();
-        // TODO: Make this work
     }
 
+    @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecureSoapMessages.getSignedStream(
-                    pathUnsecure, alias, passwordKey, alias, keystore));
+            return new StreamSource(
+                    new ClassPathResource(pathValid).getInputStream());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
