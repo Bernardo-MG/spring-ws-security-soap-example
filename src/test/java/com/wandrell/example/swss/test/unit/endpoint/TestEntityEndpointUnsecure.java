@@ -57,7 +57,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
         ServletWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         EndpointXwssPropertiesPaths.UNSECURE, EndpointPropertiesPaths.COMMON })

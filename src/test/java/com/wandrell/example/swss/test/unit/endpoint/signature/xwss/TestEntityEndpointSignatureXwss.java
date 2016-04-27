@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
@@ -50,7 +51,7 @@ import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXwssContextPaths.BASE,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
         ServletXwssContextPaths.SIGNATURE, TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.SIGNATURE, InterceptorXwssPropertiesPaths.SIGNATURE,

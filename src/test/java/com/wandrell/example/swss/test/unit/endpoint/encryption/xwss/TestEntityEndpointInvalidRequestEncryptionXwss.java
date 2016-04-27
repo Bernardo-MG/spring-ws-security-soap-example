@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
@@ -43,13 +44,14 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXwssContextPaths.BASE,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
         ServletXwssContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.ENCRYPTION_XWSS,
         InterceptorXwssPropertiesPaths.ENCRYPTION,
         EndpointXwssPropertiesPaths.ENCRYPTION, EndpointPropertiesPaths.COMMON,
-        TestPropertiesPaths.USER, TestEndpointXwssPropertiesPaths.ENCRYPTION })
+        TestPropertiesPaths.USER, TestEndpointXwssPropertiesPaths.ENCRYPTION,
+        TestPropertiesPaths.KEYSTORE })
 public final class TestEntityEndpointInvalidRequestEncryptionXwss
         extends AbstractTestEntityEndpointInvalidRequest {
 

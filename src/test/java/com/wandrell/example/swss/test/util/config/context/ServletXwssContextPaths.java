@@ -38,14 +38,6 @@ package com.wandrell.example.swss.test.util.config.context;
 public final class ServletXwssContextPaths {
 
     /**
-     * Application-wide context configuration.
-     * <p>
-     * This is the application context used for real web services, and shared by
-     * all the servlets.
-     */
-    public static final String BASE            = "classpath:context/webService.xml";
-
-    /**
      * Encrypted servlet.
      */
     public static final String ENCRYPTION      = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";

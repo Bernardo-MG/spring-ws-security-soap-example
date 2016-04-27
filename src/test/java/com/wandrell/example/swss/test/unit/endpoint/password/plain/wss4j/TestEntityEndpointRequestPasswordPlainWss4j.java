@@ -47,7 +47,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
         ServletWss4jContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesPaths.WSDL,
         SoapPropertiesPaths.PASSWORD_PLAIN,

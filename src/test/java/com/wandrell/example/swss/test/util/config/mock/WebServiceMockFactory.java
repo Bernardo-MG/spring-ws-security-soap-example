@@ -22,41 +22,47 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.util.config.context;
+package com.wandrell.example.swss.test.util.config.mock;
+
+import org.mockito.Matchers;
+import org.mockito.Mockito;
+
+import com.wandrell.example.swss.model.ExampleEntity;
+import com.wandrell.example.swss.service.domain.ExampleEntityService;
 
 /**
- * Paths to the servlet context files.
- * <p>
- * These are the context files shared by all the servlets, not matter their
- * type.
- * <p>
- * These are the same context configurations as the ones used for the
- * application servlets.
+ * Factory which creates mocked dependencies for the web service endpoints.
  *
  * @author Bernardo Martínez Garrido
  */
-public final class ServletContextPaths {
+public final class WebServiceMockFactory {
 
     /**
-     * Application-wide context configuration.
-     * <p>
-     * This is the application context used for real web services, and shared by
-     * all the servlets.
+     * Default constructor.
      */
-    public static final String APPLICATION        = "classpath:context/webService.xml";
-
-    /**
-     * Mocked application context configuration.
-     * <p>
-     * This is an application context using mocked dependencies.
-     */
-    public static final String APPLICATION_MOCKED = "classpath:context/test-web-service.xml";
-
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private ServletContextPaths() {
+    public WebServiceMockFactory() {
         super();
+    }
+
+    /**
+     * Returns a mocked example entity domain service.
+     * 
+     * @return a mocked domain service
+     */
+    public final ExampleEntityService getExampleEntityService() {
+        final ExampleEntityService service; // Mocked service
+        final ExampleEntity entity;         // Mocked returned entity
+
+        // Mocks the entity
+        entity = Mockito.mock(ExampleEntity.class);
+        Mockito.when(entity.getId()).thenReturn(1);
+        Mockito.when(entity.getName()).thenReturn("name");
+
+        // Mocks the service
+        service = Mockito.mock(ExampleEntityService.class);
+        Mockito.when(service.findById(Matchers.anyInt())).thenReturn(entity);
+
+        return service;
     }
 
 }

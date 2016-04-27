@@ -82,7 +82,8 @@ public abstract class AbstractTestEntityEndpointInvalidRequest
      */
     public AbstractTestEntityEndpointInvalidRequest() {
         super();
-        // TODO: Combine with the other request test once the random bug is fixed
+        // TODO: Combine with the other request test once the random bug is
+        // fixed
     }
 
     /**

@@ -51,7 +51,7 @@ import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_COMMON,
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
         ServletWss4jContextPaths.SIGNATURE, TestContextPaths.KEYSTORE,
         TestContextPaths.KEYSTORE_WSS4J })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
