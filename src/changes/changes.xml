@@ -1,43 +1,46 @@
-<document xmlns="http://maven.apache.org/changes/1.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
-	<properties>
-		<title>Project Changes</title>
-		<author email="programming@wandrell.com">Bernardo Martínez Garrido</author>
-	</properties>
-	<body>
-		<release version="1.0.0" date="2016-26-03" description="First version">
-			<action dev="bmg" type="update">
-				First version of the example.
-			</action>
-		</release>
-      <release version="1.0.1" date="2016-07-04" description="Updates and corrections">
-         <action dev="bmg" type="update">
-             Updated CI scripts.
-         </action>
-         <action dev="bmg" type="update">
-             Cleaned up dependencies.
-         </action>
-         <action dev="bmg" type="update">
-             The client now makes use of the domain model, and not the JAXB generated model.
-         </action>
-         <action dev="bmg" type="update">
-             Changed the domain service class path.
-         </action>
-         <action dev="bmg" type="update">
-             Changed the tests class path.
-         </action>
-         <action dev="bmg" type="update">
-             Cleaned up test files and corrected namespace declarations.
-         </action>
-         <action dev="bmg" type="fix">
-             Key store generator now closes the streams on exceptions.
-         </action>
-      </release>
-      <release version="1.1.0" date="2016-26-04" description="Client now uses the domain model">
-         <action dev="bmg" type="update">
-             The client now makes use of the domain model, and not the JAXB generated model.
-         </action>
-      </release>
-	</body>
+<document xmlns="http://maven.apache.org/changes/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+    <properties>
+        <title>Project Changes</title>
+        <author email="programming@wandrell.com">Bernardo Martínez Garrido</author>
+    </properties>
+    <body>
+        <release version="1.0.0" date="2016-26-03" description="First version">
+            <action dev="bmg" type="update">
+                First version of the example.
+            </action>
+        </release>
+        <release version="1.0.1" date="2016-07-04" description="Updates and corrections">
+            <action dev="bmg" type="update">
+                Updated CI scripts.
+            </action>
+            <action dev="bmg" type="update">
+                Cleaned up dependencies.
+            </action>
+            <action dev="bmg" type="update">
+                The client now makes use of the domain model, and not the JAXB generated model.
+            </action>
+            <action dev="bmg" type="update">
+                Changed the domain service class path.
+            </action>
+            <action dev="bmg" type="update">
+                Changed the tests class path.
+            </action>
+            <action dev="bmg" type="update">
+                Cleaned up test files and corrected namespace declarations.
+            </action>
+            <action dev="bmg" type="fix">
+                Key store generator now closes the streams on exceptions.
+            </action>
+        </release>
+        <release version="1.1.0" date="2016-27-04"
+            description="Domain model in the client. Corrected unit tests.">
+            <action dev="bmg" type="update">
+                The client now makes use of the domain model, and not the JAXB generated model.
+            </action>
+            <action dev="bmg" type="fix">
+                The endpoint unit tests now use mocked dependencies.
+            </action>
+        </release>
+    </body>
 </document>
