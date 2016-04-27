@@ -24,9 +24,21 @@
 
 package com.wandrell.example.swss.test.util.config.mock;
 
+import java.io.IOException;
+
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.UnsupportedCallbackException;
+
+import org.apache.wss4j.common.ext.WSPasswordCallback;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
+import org.springframework.ws.soap.security.callback.AbstractCallbackHandler;
 
+import com.sun.xml.wss.impl.callback.PasswordValidationCallback;
+import com.sun.xml.wss.impl.callback.PasswordValidationCallback.PasswordValidationException;
+import com.sun.xml.wss.impl.callback.PasswordValidationCallback.PasswordValidator;
+import com.sun.xml.wss.impl.callback.PasswordValidationCallback.Request;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.service.domain.ExampleEntityService;
 
@@ -46,7 +58,7 @@ public final class WebServiceMockFactory {
 
     /**
      * Returns a mocked example entity domain service.
-     * 
+     *
      * @return a mocked domain service
      */
     public final ExampleEntityService getExampleEntityService() {
@@ -63,6 +75,60 @@ public final class WebServiceMockFactory {
         Mockito.when(service.findById(Matchers.anyInt())).thenReturn(entity);
 
         return service;
+    }
+
+    /**
+     * Returns a mocked callback handler which validates any data.
+     *
+     * @return a mocked callback handler
+     * @throws PasswordValidationException
+     *             never, this is a required declaration
+     */
+    public final CallbackHandler getValidationCallbackHandler()
+            throws PasswordValidationException {
+        final CallbackHandler callbackHandler;     // Mocked handler
+        final PasswordValidator passwordValidator; // Mocked validator
+
+        passwordValidator = getPasswordValidator();
+
+        callbackHandler = new AbstractCallbackHandler() {
+
+            @Override
+            protected void handleInternal(final Callback callback)
+                    throws IOException, UnsupportedCallbackException {
+                if (callback instanceof PasswordValidationCallback) {
+                    ((PasswordValidationCallback) callback)
+                            .setValidator(passwordValidator);
+                } else if (callback instanceof WSPasswordCallback) {
+                    // TODO:The callback handler should accept any password
+                    // Where is this password being validated?
+                    ((WSPasswordCallback) callback).setPassword("myPassword");
+                }
+            }
+
+        };
+
+        return callbackHandler;
+    }
+
+    /**
+     * Returns a mocked password validator.
+     * <p>
+     * This validates any password.
+     *
+     * @return a mocked password validator
+     * @throws PasswordValidationException
+     *             never, this is a required declaration
+     */
+    private final PasswordValidator getPasswordValidator()
+            throws PasswordValidationException {
+        final PasswordValidator passwordValidator; // Mocked validator
+
+        passwordValidator = Mockito.mock(PasswordValidator.class);
+        Mockito.when(passwordValidator.validate(Matchers.any(Request.class)))
+                .thenReturn(true);
+
+        return passwordValidator;
     }
 
 }

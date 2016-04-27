@@ -13,6 +13,7 @@
     <!-- Properties -->
     <context:property-placeholder location="classpath:config/test-web-service.properties" />
 
+    <!-- Mock factory -->
     <bean id="mocksFactory" class="${factory.mock.class}" />
 
     <bean id="exampleEntityService" class="${service.domain.class}"

@@ -40,27 +40,32 @@ public final class ServletXwssContextPaths {
     /**
      * Encrypted servlet.
      */
-    public static final String ENCRYPTION      = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
+    public static final String ENCRYPTION            = "classpath:context/servlet/encryption/xwss/servlet-encryption-xwss.xml";
 
     /**
      * Digested password servlet.
      */
-    public static final String PASSWORD_DIGEST = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
+    public static final String PASSWORD_DIGEST       = "classpath:context/servlet/password/digest/xwss/servlet-password-digest-xwss.xml";
 
     /**
      * Plain password servlet.
      */
-    public static final String PASSWORD_PLAIN  = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
+    public static final String PASSWORD_PLAIN        = "classpath:context/servlet/password/plain/xwss/servlet-password-plain-xwss.xml";
+
+    /**
+     * Plain password servlet with mocked dependencies.
+     */
+    public static final String PASSWORD_PLAIN_MOCKED = "classpath:context/servlet/password/plain/xwss/test-servlet-password-plain-xwss.xml";
 
     /**
      * Signed servlet.
      */
-    public static final String SIGNATURE       = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
+    public static final String SIGNATURE             = "classpath:context/servlet/signature/xwss/servlet-signature-xwss.xml";
 
     /**
      * Unsecure servlet.
      */
-    public static final String UNSECURE        = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String UNSECURE              = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
