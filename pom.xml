@@ -370,6 +370,12 @@
             <version>${bouncycastle.version}</version>
         </dependency>
         <dependency>
+            <!-- Commons Codec -->
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons.codec.version}</version>
+        </dependency>
+        <dependency>
             <!-- WSS4j -->
             <groupId>org.apache.ws.security</groupId>
             <artifactId>wss4j</artifactId>
@@ -503,13 +509,6 @@
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
             <version>${ant.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <!-- Commons Codec -->
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>${commons.codec.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
