@@ -214,7 +214,7 @@
         <commons.codec.version>1.10</commons.codec.version>
         <commons.io.version>2.5</commons.io.version>
         <commons.logging.version>1.2</commons.logging.version>
-        <ehcache.version>2.6.11</ehcache.version>
+        <ehcache.version>2.10.2</ehcache.version>
         <freemarker.version>2.3.23</freemarker.version>
         <guava.version>19.0</guava.version>
         <h2.version>1.4.191</h2.version>
@@ -318,7 +318,7 @@
         <dependency>
             <!-- Ehcache -->
             <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
+            <artifactId>ehcache</artifactId>
             <version>${ehcache.version}</version>
         </dependency>
         <dependency>
