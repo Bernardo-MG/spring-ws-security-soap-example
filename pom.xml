@@ -239,7 +239,7 @@
         <stax.impl.version>1.2.0</stax.impl.version>
         <testng.version>6.9.10</testng.version>
         <wsdl4j.version>1.6.3</wsdl4j.version>
-        <wss4j.version>1.6.19</wss4j.version>
+        <wss4j.version>2.1.5</wss4j.version>
         <xmlapis.version>2.0.2</xmlapis.version>
         <xmlsec.version>2.0.6</xmlsec.version>
         <xwssecurity.version>3.0</xwssecurity.version>
@@ -377,8 +377,8 @@
         </dependency>
         <dependency>
             <!-- WSS4j -->
-            <groupId>org.apache.ws.security</groupId>
-            <artifactId>wss4j</artifactId>
+            <groupId>org.apache.wss4j</groupId>
+            <artifactId>wss4j-ws-security-dom</artifactId>
             <version>${wss4j.version}</version>
         </dependency>
         <dependency>
