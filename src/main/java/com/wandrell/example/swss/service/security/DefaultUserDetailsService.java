@@ -61,6 +61,7 @@ public final class DefaultUserDetailsService implements UserDetailsService {
      */
     public DefaultUserDetailsService() {
         super();
+        // TODO: Maybe this should receive the valid users and passwords
     }
 
     @Override
@@ -78,6 +79,12 @@ public final class DefaultUserDetailsService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
             user = new User(username, "myPassword", authorities);
+        } else if ("swss-cert".equalsIgnoreCase(username)) {
+            // User for password-based security
+            authorities = new LinkedList<SimpleGrantedAuthority>();
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+            user = new User(username, "123456", authorities);
         } else {
             // User not found
             LOGGER.debug(
