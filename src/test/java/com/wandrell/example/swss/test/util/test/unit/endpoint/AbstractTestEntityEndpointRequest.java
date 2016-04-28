@@ -33,6 +33,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
+import org.springframework.ws.test.server.RequestCreators;
 import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
@@ -46,6 +47,7 @@ import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
  * Checks the following cases:
  * <ol>
  * <li>The endpoint parses SOAP requests with a valid envelope.</li>
+ * <li>The endpoint can handle invalid SOAP messages.</li>
  * </ol>
  * <p>
  * This base test is meant for those endpoints where the full envelope is more
@@ -104,6 +106,29 @@ public abstract class AbstractTestEntityEndpointRequest
         // Creates the response matcher
         responseMatcher = ResponseMatchers
                 .validPayload(new ClassPathResource(entityXsdPath));
+
+        // Creates the client mock
+        mockClient = MockWebServiceClient.createClient(applicationContext);
+
+        // Calls the endpoint
+        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
+    }
+
+    /**
+     * Tests that the endpoint can handle invalid SOAP messages.
+     */
+    @Test
+    public final void testEndpoint_Invalid() throws Exception {
+        final MockWebServiceClient mockClient; // Mocked client
+        final RequestCreator requestCreator;   // Creator for the request
+        final ResponseMatcher responseMatcher; // Matcher for the response
+
+        // Creates the request
+        requestCreator = RequestCreators.withSoapEnvelope(
+                new ClassPathResource(requestEnvelopeInvalidPath));
+
+        // Creates the response matcher
+        responseMatcher = ResponseMatchers.clientOrSenderFault();
 
         // Creates the client mock
         mockClient = MockWebServiceClient.createClient(applicationContext);
