@@ -38,6 +38,9 @@
             <action dev="bmg" type="update">
                 The client now makes use of the domain model, and not the JAXB generated model.
             </action>
+            <action dev="bmg" type="update">
+                Updated to the new WSS4J classes used on Spring-WS 2.3.0.
+            </action>
             <action dev="bmg" type="fix">
                 The endpoint unit tests now use mocked dependencies.
             </action>
