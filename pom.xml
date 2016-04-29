@@ -376,9 +376,9 @@
             <version>${commons.codec.version}</version>
         </dependency>
         <dependency>
-            <!-- WSS4j -->
+            <!-- WSS4j Common -->
             <groupId>org.apache.wss4j</groupId>
-            <artifactId>wss4j-ws-security-dom</artifactId>
+            <artifactId>wss4j-ws-security-common</artifactId>
             <version>${wss4j.version}</version>
         </dependency>
         <dependency>
