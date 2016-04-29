@@ -18,7 +18,8 @@
                 Cleaned up dependencies.
             </action>
             <action dev="bmg" type="update">
-                The client now makes use of the domain model, and not the JAXB generated model.
+                The client now makes use of the domain
+                model, and not the JAXB generated model.
             </action>
             <action dev="bmg" type="update">
                 Changed the domain service class path.
@@ -27,25 +28,35 @@
                 Changed the tests class path.
             </action>
             <action dev="bmg" type="update">
-                Cleaned up test files and corrected namespace declarations.
+                Cleaned up test files and corrected
+                namespace declarations.
             </action>
             <action dev="bmg" type="fix">
-                Key store generator now closes the streams on exceptions.
+                Key store generator now closes the
+                streams on exceptions.
             </action>
         </release>
-        <release version="1.1.0" date="2016-27-04"
+        <release version="1.1.0" date="2016-29-04"
             description="Domain model in the client. Corrected unit tests.">
             <action dev="bmg" type="update">
-                The client now makes use of the domain model, and not the JAXB generated model.
+                The client now makes use of the domain
+                model, and not the JAXB generated model.
             </action>
             <action dev="bmg" type="update">
-                Updated to the new WSS4J classes used on Spring-WS 2.3.0.
+                Updated to the new WSS4J classes used
+                on Spring-WS 2.3.0.
             </action>
             <action dev="bmg" type="update">
-                The entity client no longer can return null values.
+                The entity client no longer can return
+                null values.
             </action>
             <action dev="bmg" type="fix">
-                The endpoint unit tests now use mocked dependencies.
+                The endpoint unit tests now use mocked
+                dependencies.
+            </action>
+            <action dev="bmg" type="fix">
+                The generated classes classpath
+                matches the project one.
             </action>
         </release>
     </body>

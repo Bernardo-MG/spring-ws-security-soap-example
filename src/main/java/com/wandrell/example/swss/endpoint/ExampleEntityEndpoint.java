@@ -36,11 +36,11 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapAction;
 
+import com.wandrell.example.swss.generated.entity.Entity;
+import com.wandrell.example.swss.generated.entity.GetEntityRequest;
+import com.wandrell.example.swss.generated.entity.GetEntityResponse;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.service.domain.ExampleEntityService;
-import com.wandrell.example.ws.generated.entity.Entity;
-import com.wandrell.example.ws.generated.entity.GetEntityRequest;
-import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
  * Endpoint for the example entities.

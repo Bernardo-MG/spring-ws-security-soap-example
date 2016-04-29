@@ -47,8 +47,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
+import com.wandrell.example.swss.generated.entity.Entity;
 import com.wandrell.example.swss.test.util.SoapMessageUtils;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
  * Abstract integration tests for an endpoint testing that it handles messages
@@ -172,7 +172,7 @@ public abstract class AbstractITEndpoint
 
     /**
      * Tests that the WSDL contains the correct SOAP address.
-     * 
+     *
      * @throws ParserConfigurationException
      *             never, this is a required declaration
      * @throws SAXException
@@ -210,7 +210,7 @@ public abstract class AbstractITEndpoint
 
     /**
      * Acquires a child element based on the name.
-     * 
+     *
      * @param parent
      *            the element where the search will be made
      * @param name
@@ -257,7 +257,7 @@ public abstract class AbstractITEndpoint
 
     /**
      * Returns an invalid SOAP message for the endpoint being tested.
-     * 
+     *
      * @return an invalid SOAP message
      * @throws Exception
      *             if any error occurs while preparing the SOAP message
@@ -266,7 +266,7 @@ public abstract class AbstractITEndpoint
 
     /**
      * Returns a valid SOAP message for the endpoint being tested.
-     * 
+     *
      * @return a valid SOAP message
      * @throws Exception
      *             if any error occurs while preparing the SOAP message

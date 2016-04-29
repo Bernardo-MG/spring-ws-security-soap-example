@@ -34,10 +34,10 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 import com.wandrell.example.swss.endpoint.ExampleEntityEndpointConstants;
+import com.wandrell.example.swss.generated.entity.GetEntityRequest;
+import com.wandrell.example.swss.generated.entity.GetEntityResponse;
 import com.wandrell.example.swss.model.DefaultExampleEntity;
 import com.wandrell.example.swss.model.ExampleEntity;
-import com.wandrell.example.ws.generated.entity.GetEntityRequest;
-import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
  * Client for querying the web service endpoints.
