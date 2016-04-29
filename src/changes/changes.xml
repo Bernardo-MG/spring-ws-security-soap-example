@@ -50,6 +50,9 @@
                 The entity client no longer can return
                 null values.
             </action>
+            <action dev="bmg" type="update">
+                There is now an interface for entity clients.
+            </action>
             <action dev="bmg" type="fix">
                 The endpoint unit tests now use mocked
                 dependencies.

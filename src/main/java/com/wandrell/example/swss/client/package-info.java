@@ -24,8 +24,8 @@
 /**
  * Clients for the web service endpoints.
  * <p>
- * The {@link com.wandrell.example.swss.client.EntityClient EntityClient} is
- * prepared for working with the the
+ * The {@link com.wandrell.example.swss.client.DefaultEntityClient
+ * DefaultEntityClient} is prepared for working with the the
  * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
  * ExampleEntityEndpoint}, no matter the authentication method used, as long as
  * the correct interceptors are used for both of them. The context files

@@ -34,8 +34,8 @@ import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
- * Abstract integration tests for {@link EntityClient} testing that it handles
- * messages correctly.
+ * Abstract integration tests for an {@link EntityClient} testing that it
+ * handles messages correctly.
  * <p>
  * Checks the following cases:
  * <ol>

@@ -40,12 +40,12 @@ import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
 /**
- * Unit tests for {@link EntityClient} checking that the client throws
+ * Unit tests for {@link DefaultEntityClient} checking that the client throws
  * exceptions for SOAP errors.
  * <p>
  * Checks the following cases:
@@ -62,14 +62,14 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL })
-public final class TestEntityClientExceptionSoap
+public final class TestDefaultEntityClientExceptionSoap
         extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
      */
     @Autowired
-    private EntityClient client;
+    private DefaultEntityClient client;
 
     /**
      * Valid entity id.
@@ -80,7 +80,7 @@ public final class TestEntityClientExceptionSoap
     /**
      * Constructs a {@code TestEntityClientExceptionSOAP}.
      */
-    public TestEntityClientExceptionSoap() {
+    public TestDefaultEntityClientExceptionSoap() {
         super();
     }
 

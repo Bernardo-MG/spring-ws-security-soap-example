@@ -30,11 +30,11 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.client.WebServiceTransportException;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
 
 /**
- * Unit tests for {@link EntityClient} checking that the client throws
+ * Unit tests for {@link DefaultEntityClient} checking that the client throws
  * exceptions for common non SOAP errors.
  * <p>
  * Checks the following cases:
@@ -45,19 +45,19 @@ import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPath
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
-public final class TestEntityClientExceptionErrors
+public final class TestDefaultEntityClientExceptionErrors
         extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
      */
     @Autowired
-    private EntityClient client;
+    private DefaultEntityClient client;
 
     /**
      * Constructs a {@code TestEntityClientExceptionErrors}.
      */
-    public TestEntityClientExceptionErrors() {
+    public TestDefaultEntityClientExceptionErrors() {
         super();
     }
 

@@ -40,14 +40,14 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
 /**
- * Unit tests for {@link EntityClient} checking that the client works as
+ * Unit tests for {@link DefaultEntityClient} checking that the client works as
  * expected when not using any security.
  * <p>
  * Checks the following cases:
@@ -61,14 +61,14 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
         SoapPropertiesPaths.UNSECURE })
-public final class TestEntityClientUnsecure
+public final class TestDefaultEntityClientUnsecure
         extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
      */
     @Autowired
-    private EntityClient client;
+    private DefaultEntityClient client;
 
     /**
      * Expected id for the returned entity.
@@ -103,7 +103,7 @@ public final class TestEntityClientUnsecure
     /**
      * Constructs a {@code TestEntityClientUnsecure}.
      */
-    public TestEntityClientUnsecure() {
+    public TestDefaultEntityClientUnsecure() {
         super();
     }
 

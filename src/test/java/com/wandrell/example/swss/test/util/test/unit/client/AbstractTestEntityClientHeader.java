@@ -40,7 +40,7 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
@@ -64,7 +64,7 @@ public abstract class AbstractTestEntityClientHeader
      * The client being tested.
      */
     @Autowired
-    private EntityClient client;
+    private DefaultEntityClient client;
 
     /**
      * Expected id for the returned entity.

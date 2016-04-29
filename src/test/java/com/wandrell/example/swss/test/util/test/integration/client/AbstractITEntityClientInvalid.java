@@ -33,8 +33,8 @@ import org.testng.annotations.Test;
 import com.wandrell.example.swss.client.EntityClient;
 
 /**
- * Integration tests for {@link EntityClient} testing that it generates a fault
- * when the message is invalid.
+ * Integration tests for an {@link EntityClient} testing that it generates a
+ * fault when the message is invalid.
  * <p>
  * Checks the following cases:
  * <ol>

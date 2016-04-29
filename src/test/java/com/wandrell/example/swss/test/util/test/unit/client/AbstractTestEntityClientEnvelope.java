@@ -41,7 +41,7 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
@@ -65,37 +65,37 @@ public abstract class AbstractTestEntityClientEnvelope
      * The client being tested.
      */
     @Autowired
-    private EntityClient client;
+    private DefaultEntityClient client;
 
     /**
      * Expected id for the returned entity.
      */
     @Value("${entity.id}")
-    private Integer      entityId;
+    private Integer             entityId;
 
     /**
      * Expected name for the returned entity.
      */
     @Value("${entity.name}")
-    private String       entityName;
+    private String              entityName;
 
     /**
      * Path to the file with the invalid request payload.
      */
     @Value("${soap.request.invalid.path}")
-    private String       requestEnvelopeInvalidPath;
+    private String              requestEnvelopeInvalidPath;
 
     /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
-    private String       responsePayloadInvalidPath;
+    private String              responsePayloadInvalidPath;
 
     /**
      * Path to the file with the valid response payload.
      */
     @Value("${soap.response.payload.path}")
-    private String       responsePayloadPath;
+    private String              responsePayloadPath;
 
     /**
      * Constructs a {@code AbstractTestEntityClientHeader}.
