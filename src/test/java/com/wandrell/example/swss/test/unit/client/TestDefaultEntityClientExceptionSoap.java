@@ -75,7 +75,7 @@ public final class TestDefaultEntityClientExceptionSoap
      * Valid entity id.
      */
     @Value("${entity.id}")
-    private Integer      entityId;
+    private Integer             entityId;
 
     /**
      * Constructs a {@code TestEntityClientExceptionSOAP}.

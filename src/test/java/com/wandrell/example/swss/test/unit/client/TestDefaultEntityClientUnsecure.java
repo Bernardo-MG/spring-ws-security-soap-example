@@ -74,31 +74,31 @@ public final class TestDefaultEntityClientUnsecure
      * Expected id for the returned entity.
      */
     @Value("${entity.id}")
-    private Integer      entityId;
+    private Integer             entityId;
 
     /**
      * Expected name for the returned entity.
      */
     @Value("${entity.name}")
-    private String       entityName;
+    private String              entityName;
 
     /**
      * Path to XSD file which validates the SOAP messages.
      */
     @Value("${xsd.entity.path}")
-    private String       entityXsdPath;
+    private String              entityXsdPath;
 
     /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
-    private String       responsePayloadInvalidPath;
+    private String              responsePayloadInvalidPath;
 
     /**
      * Path to the file with the valid response payload.
      */
     @Value("${soap.response.payload.path}")
-    private String       responsePayloadPath;
+    private String              responsePayloadPath;
 
     /**
      * Constructs a {@code TestEntityClientUnsecure}.

@@ -70,37 +70,37 @@ public abstract class AbstractTestEntityClientHeader
      * Expected id for the returned entity.
      */
     @Value("${entity.id}")
-    private Integer      entityId;
+    private Integer             entityId;
 
     /**
      * Expected name for the returned entity.
      */
     @Value("${entity.name}")
-    private String       entityName;
+    private String              entityName;
 
     /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
-    private String       responsePayloadInvalidPath;
+    private String              responsePayloadInvalidPath;
 
     /**
      * Path to the file with the valid response payload.
      */
     @Value("${soap.response.payload.path}")
-    private String       responsePayloadPath;
+    private String              responsePayloadPath;
 
     /**
      * Security header token name.
      */
     @Value("${soap.header.security.name}")
-    private String       secHeaderLocalPart;
+    private String              secHeaderLocalPart;
 
     /**
      * Security header token URI.
      */
     @Value("${soap.header.security.uri}")
-    private String       secHeaderUri;
+    private String              secHeaderUri;
 
     /**
      * Constructs a {@code AbstractTestEntityClientHeader}.

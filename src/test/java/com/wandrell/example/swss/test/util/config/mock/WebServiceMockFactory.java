@@ -38,7 +38,8 @@ import org.springframework.ws.soap.security.callback.AbstractCallbackHandler;
 import com.sun.xml.wss.impl.callback.PasswordValidationCallback;
 import com.sun.xml.wss.impl.callback.PasswordValidationCallback.PasswordValidationException;
 import com.sun.xml.wss.impl.callback.PasswordValidationCallback.PasswordValidator;
-import com.sun.xml.wss.impl.callback.PasswordValidationCallback.Request;
+import com.sun.xml.wss.impl.callback.TimestampValidationCallback;
+import com.sun.xml.wss.impl.callback.TimestampValidationCallback.TimestampValidator;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.service.domain.ExampleEntityService;
 
@@ -103,6 +104,9 @@ public final class WebServiceMockFactory {
                     // TODO:The callback handler should accept any password
                     // Where is this password being validated?
                     ((WSPasswordCallback) callback).setPassword("myPassword");
+                } else if (callback instanceof TimestampValidationCallback) {
+                    ((TimestampValidationCallback) callback)
+                            .setValidator(getTimestampValidator());
                 }
             }
 
@@ -125,8 +129,26 @@ public final class WebServiceMockFactory {
         final PasswordValidator passwordValidator; // Mocked validator
 
         passwordValidator = Mockito.mock(PasswordValidator.class);
-        Mockito.when(passwordValidator.validate(Matchers.any(Request.class)))
+        Mockito.when(passwordValidator.validate(
+                Matchers.any(PasswordValidationCallback.Request.class)))
                 .thenReturn(true);
+
+        return passwordValidator;
+    }
+
+    /**
+     * Returns a mocked timestamp validator.
+     * <p>
+     * This validates any timestamp.
+     *
+     * @return a mocked timestamp validator
+     * @throws PasswordValidationException
+     *             never, this is a required declaration
+     */
+    private final TimestampValidator getTimestampValidator() {
+        final TimestampValidator passwordValidator; // Mocked validator
+
+        passwordValidator = Mockito.mock(TimestampValidator.class);
 
         return passwordValidator;
     }

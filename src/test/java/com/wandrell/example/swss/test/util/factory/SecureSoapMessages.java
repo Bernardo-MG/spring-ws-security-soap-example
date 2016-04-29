@@ -109,7 +109,7 @@ public final class SecureSoapMessages {
      */
     public static final SOAPMessage getDigestedPasswordMessage(
             final String path, final String user, final String password)
-                    throws Exception {
+            throws Exception {
         return MessageFactory.newInstance().createMessage(new MimeHeaders(),
                 getDigestedPasswordStream(path, user, password));
     }
@@ -206,7 +206,7 @@ public final class SecureSoapMessages {
     public static final SOAPMessage getSignedMessage(final String pathBase,
             final String privateKeyAlias, final String privateKeyPass,
             final String certificateAlias, final KeyStore keystore)
-                    throws Exception {
+            throws Exception {
         Element root = null;
         String BaseURI = new ClassPathResource(pathBase).getURI().toString();
         SOAPMessage soapMessage;
@@ -271,7 +271,7 @@ public final class SecureSoapMessages {
     public static final InputStream getSignedStream(final String pathBase,
             final String privateKeyAlias, final String privateKeyPass,
             final String certificateAlias, final KeyStore keystore)
-                    throws Exception {
+            throws Exception {
         SOAPMessage msg = SecureSoapMessages.getSignedMessage(pathBase,
                 privateKeyAlias, privateKeyPass, certificateAlias, keystore);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -298,7 +298,7 @@ public final class SecureSoapMessages {
      */
     private static final String generateDigest(final String password,
             final String date, final String nonce)
-                    throws UnsupportedEncodingException {
+            throws UnsupportedEncodingException {
         final ByteBuffer buf; // Buffers storing the data to digest
         byte[] toHash;        // Bytes to generate the hash
 
@@ -350,7 +350,7 @@ public final class SecureSoapMessages {
      */
     private static final String getDigestedPasswordMessageContent(
             final String path, final String user, final String password)
-                    throws Exception {
+            throws Exception {
         final String nonce;              // Nonce for the message
         final String date;               // Current date
         final String digest;             // Digested password
@@ -444,7 +444,7 @@ public final class SecureSoapMessages {
      */
     private static final String getPlainPasswordMessageContent(
             final String path, final String user, final String password)
-                    throws Exception {
+            throws Exception {
         final Template template;         // Freemarker template
         final Map<String, Object> data;  // Data for the template
         final ByteArrayOutputStream out; // Steam with the message
