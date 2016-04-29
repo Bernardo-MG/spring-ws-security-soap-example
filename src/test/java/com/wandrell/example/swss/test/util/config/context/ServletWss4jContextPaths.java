@@ -40,32 +40,37 @@ public final class ServletWss4jContextPaths {
     /**
      * Encrypted servlet.
      */
-    public static final String ENCRYPTION            = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
+    public static final String ENCRYPTION             = "classpath:context/servlet/encryption/wss4j/servlet-encryption-wss4j.xml";
 
     /**
      * Digested password servlet.
      */
-    public static final String PASSWORD_DIGEST       = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
+    public static final String PASSWORD_DIGEST        = "classpath:context/servlet/password/digest/wss4j/servlet-password-digest-wss4j.xml";
+
+    /**
+     * Digested password servlet with mocked dependencies.
+     */
+    public static final String PASSWORD_DIGEST_MOCKED = "classpath:context/servlet/password/digest/wss4j/test-servlet-password-digest-wss4j.xml";
 
     /**
      * Plain password servlet.
      */
-    public static final String PASSWORD_PLAIN        = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
+    public static final String PASSWORD_PLAIN         = "classpath:context/servlet/password/plain/wss4j/servlet-password-plain-wss4j.xml";
 
     /**
      * Plain password servlet with mocked dependencies.
      */
-    public static final String PASSWORD_PLAIN_MOCKED = "classpath:context/servlet/password/plain/wss4j/test-servlet-password-plain-wss4j.xml";
+    public static final String PASSWORD_PLAIN_MOCKED  = "classpath:context/servlet/password/plain/wss4j/test-servlet-password-plain-wss4j.xml";
 
     /**
      * Signed servlet.
      */
-    public static final String SIGNATURE             = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
+    public static final String SIGNATURE              = "classpath:context/servlet/signature/wss4j/servlet-signature-wss4j.xml";
 
     /**
      * Unsecure servlet.
      */
-    public static final String UNSECURE              = "classpath:context/servlet/servlet-unsecure.xml";
+    public static final String UNSECURE               = "classpath:context/servlet/servlet-unsecure.xml";
 
     /**
      * Private constructor to avoid initialization.
