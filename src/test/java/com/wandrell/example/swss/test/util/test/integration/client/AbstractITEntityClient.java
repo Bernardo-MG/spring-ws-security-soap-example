@@ -40,7 +40,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * Checks the following cases:
  * <ol>
  * <li>A valid id returns the expected value.</li>
- * <li>An invalid id returns null.</li>
+ * <li>An invalid id returns an empty entity.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running, and a Spring
@@ -83,15 +83,15 @@ public abstract class AbstractITEntityClient
     }
 
     /**
-     * Tests that an invalid id returns null.
+     * Tests that an invalid id returns an empty entity.
      */
     @Test
-    public final void testEndpoint_InvalidId_ReturnsNull() {
+    public final void testEndpoint_InvalidId_ReturnsEmpty() {
         final ExampleEntity entity; // Returned entity
 
-        entity = client.getEntity(wsUrl, -1);
+        entity = client.getEntity(wsUrl, -123);
 
-        Assert.assertNull(entity);
+        Assert.assertEquals(entity.getId(), new Integer(-1));
     }
 
     /**

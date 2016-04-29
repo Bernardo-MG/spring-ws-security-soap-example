@@ -29,7 +29,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.WebServiceMessageCallback;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
@@ -41,23 +40,26 @@ import com.wandrell.example.ws.generated.entity.GetEntityRequest;
 import com.wandrell.example.ws.generated.entity.GetEntityResponse;
 
 /**
- * Client for querying the web service.
+ * Client for querying the web service endpoints.
  * <p>
- * The only operation supported is querying an endpoint by sending an entity's
- * id, and receiving back that entity's data.
+ * It supports the only operation which the
+ * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
+ * ExampleEntityEndpoint} has: querying an entity by its id.
  * <p>
  * As with the endpoint, this client is unsecured. Any security concern is to be
  * taken care by Spring. This means that by default it will only be able to
  * query unsecure endpoints.
  * <p>
- * Some security protocols, such as encryption, may make endpoints unreachable.
- * To solve this a {@link SoapActionCallback} will be used by the client when
- * querying.
+ * There is a problem with some security protocols, such as encryption, which
+ * may make the endpoints unreachable. To solve this a
+ * {@link SoapActionCallback} will be used by the client when querying, this
+ * will add a SOAP action header to the request, which won't disappear even if
+ * the message is modified.
  * <p>
- * If any of the usual SOAP or transmission problems arise, the client will
- * throw an exception. But if for any reason there is no error but no response
- * is received, or an empty one is received, then a {@code null} value will be
- * returned.
+ * Any other problem is taken care in a simple way. No exception is caught by
+ * the client, meaning that any SOAP or transmission exception will leak out to
+ * the main application, but if for some reason there is no exception and the
+ * response is empty then a {@code null} value will be returned.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -77,25 +79,17 @@ public final class EntityClient extends WebServiceGatewaySupport {
     }
 
     /**
-     * Constructs a client with the specified message factory.
-     *
-     * @param factory
-     *            the message factory to use
-     */
-    public EntityClient(final WebServiceMessageFactory factory) {
-        super(factory);
-    }
-
-    /**
-     * Acquires an entity from the web service by sending the id. The default
-     * URI will be used, and should be set before calling the method.
+     * Sends an id to the endpoint and receives back the data for the entity
+     * with that same id. This method makes use of the default URI, which should
+     * be set before calling it.
      * <p>
-     * If the id is invalid then the resulting response will contain an empty
-     * entity, with a negative id.
+     * If for some reason, which may be caused by the id being invalid, an empty
+     * response, or not response at all, is received then an entity with a
+     * negative id will be returned.
      * <p>
-     * The SOAP request will include, in the HTTP header, the SOAP action, to
-     * avoid unreachable endpoints when using some authentication methods such
-     * as encryption.
+     * The SOAP request will include, in the HTTP header, the SOAP action. This
+     * way the unreachable endpoint error caused by some authentication methods,
+     * such as encryption, can be avoided.
      *
      * @param entityId
      *            id of the queried entity
@@ -106,14 +100,16 @@ public final class EntityClient extends WebServiceGatewaySupport {
     }
 
     /**
-     * Acquires an entity from the web service by the id.
+     * Sends an id to the endpoint and receives back the data for the entity
+     * with that same id.
      * <p>
-     * If the id is invalid then the resulting response will contain an empty
-     * entity, with a negative id.
+     * If for some reason, which may be caused by the id being invalid, an empty
+     * response, or not response at all, is received then an entity with a
+     * negative id will be returned.
      * <p>
-     * The SOAP request will include, in the HTTP header, the SOAP action, to
-     * avoid unreachable endpoints when using some authentication methods such
-     * as encryption.
+     * The SOAP request will include, in the HTTP header, the SOAP action. This
+     * way the unreachable endpoint error caused by some authentication methods,
+     * such as encryption, can be avoided.
      *
      * @param uri
      *            URI to the endpoint
@@ -147,13 +143,18 @@ public final class EntityClient extends WebServiceGatewaySupport {
 
         if ((response == null) || (response.getEntity() == null)) {
             // No response was received
-            entity = null;
+            entity = new DefaultExampleEntity();
+            entity.setName("");
+            entity.setId(-1);
 
             LOGGER.debug("No response received");
         } else {
             entity = new DefaultExampleEntity();
             if (response.getEntity().getName() == null) {
                 // The response was empty
+                entity.setName("");
+                entity.setId(-1);
+
                 LOGGER.debug("Received an empty response");
             } else {
                 // The response was not empty
