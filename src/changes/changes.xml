@@ -41,6 +41,9 @@
             <action dev="bmg" type="update">
                 Updated to the new WSS4J classes used on Spring-WS 2.3.0.
             </action>
+            <action dev="bmg" type="update">
+                The entity client no longer can return null values.
+            </action>
             <action dev="bmg" type="fix">
                 The endpoint unit tests now use mocked dependencies.
             </action>

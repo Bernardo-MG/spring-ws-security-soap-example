@@ -154,7 +154,7 @@ public final class ConsoleClient {
         try {
             entity = client.getEntity(uri, id);
 
-            if (entity == null) {
+            if ((entity == null) || (entity.getId() < 0)) {
                 // No entity found
                 output.println(
                         String.format("No entity with id %d exists", id));
