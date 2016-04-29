@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.util.config.mock;
+package com.wandrell.example.swss.test.util.factory;
 
 import java.io.IOException;
 
