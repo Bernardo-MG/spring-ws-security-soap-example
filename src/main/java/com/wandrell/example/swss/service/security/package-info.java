@@ -23,6 +23,11 @@
  */
 /**
  * Security services.
+ * <p>
+ * The
+ * {@link com.wandrell.example.swss.service.security.DefaultUserDetailsService
+ * DefaultUserDetailsService} is used to set up any security protocol which
+ * requires username and password validation.
  */
 
 package com.wandrell.example.swss.service.security;

@@ -39,7 +39,7 @@ public interface ExampleEntity extends Serializable {
     /**
      * Returns the identifier assigned to this entity.
      * <p>
-     * If no identifier has been assigned yet, then the value will be
+     * If no identifier has been assigned yet, then the value is expected to be
      * {@code null} or lower than zero.
      *
      * @return the entity's identifier

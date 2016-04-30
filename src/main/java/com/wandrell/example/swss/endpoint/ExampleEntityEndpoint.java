@@ -45,8 +45,8 @@ import com.wandrell.example.swss.service.domain.ExampleEntityService;
 /**
  * Endpoint for the example entities.
  * <p>
- * It just receives a request with the id for an entity and then returns a
- * response containing the entity for said id.
+ * It just receives a request with the id for a single entity and then returns a
+ * response containing that same entity's data.
  * <p>
  * For both of them the JAXB annotated classes generated from the XSD file,the
  * same file used to create the WSDL for the endpoints, are used.
@@ -66,7 +66,7 @@ import com.wandrell.example.swss.service.domain.ExampleEntityService;
 public class ExampleEntityEndpoint {
 
     /**
-     * The logger used for logging the entity endpoint.
+     * The logger used for logging the endpoint.
      */
     private static final Logger        LOGGER = LoggerFactory
             .getLogger(ExampleEntityEndpoint.class);
@@ -97,16 +97,14 @@ public class ExampleEntityEndpoint {
     }
 
     /**
-     * Receives a query for an entity, identified by its id, and returns the
-     * data for this entity.
+     * Receives a query for an entity and returns the data for said entity.
      * <p>
      * The data to be returned will be acquired from the persistence layer, and
-     * then set into the response. But the domain model classes won't be
-     * returned.
+     * then set into the response.
      * <p>
-     * Instead JAXB beans, generated from the XSD file, will be used both for
-     * mapping the SOAP request payload, and to generate the SOAP response
-     * payload.
+     * But the domain model classes won't be returned. Instead JAXB beans,
+     * generated from the XSD file, will be used both for mapping the SOAP
+     * request payload, and to generate the SOAP response payload.
      *
      * @param request
      *            payload of the SOAP request for the entity
@@ -130,22 +128,14 @@ public class ExampleEntityEndpoint {
         // Acquires the entity
         entity = getExampleEntityService().findById(request.getId());
 
+        // The entity is transformed from the domain model to the JAXB model
+        entityResponse = new Entity();
+        BeanUtils.copyProperties(entity, entityResponse);
+
+        LOGGER.debug(String.format("Found entity with id %1$d and name %2$s",
+                entity.getId(), entity.getName()));
+
         response = new GetEntityResponse();
-        if (entity == null) {
-            entityResponse = null;
-
-            LOGGER.debug("Entity not found");
-        } else {
-            entityResponse = new Entity();
-
-            // The entity is transformed from the domain model to the JAXB model
-            BeanUtils.copyProperties(entity, entityResponse);
-
-            LOGGER.debug(
-                    String.format("Found entity with id %1$d and name %2$s",
-                            entity.getId(), entity.getName()));
-        }
-
         response.setEntity(entityResponse);
 
         return response;

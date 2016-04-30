@@ -99,6 +99,14 @@ public final class DefaultExampleEntity implements ExampleEntity {
         return Objects.equals(id, other.id);
     }
 
+    /**
+     * Returns the identifier assigned to this entity.
+     * <p>
+     * If no identifier has been assigned yet, then the value will be lower than
+     * zero.
+     *
+     * @return the entity's identifier
+     */
     @Override
     public final Integer getId() {
         return id;

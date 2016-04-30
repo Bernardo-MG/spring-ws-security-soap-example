@@ -30,7 +30,7 @@
  * entity and returns it.
  * <p>
  * The various endpoints will extend this one by adding the required
- * authentication methods through the help of Spring.
+ * authentication protocols through the use of Spring.
  */
 
 package com.wandrell.example.swss.endpoint;

@@ -31,9 +31,8 @@
  * the correct interceptors are used for both of them. The context files
  * included in the project make sure of this.
  * <p>
- * But this client is meant purely to be used by an application. For an
- * interactive client, making use of the {@code EntityClient} behind the scenes,
- * take a look at the
+ * But this client is meant purely to be used through code. For an interactive
+ * client take a look at the
  * {@link com.wandrell.example.swss.client.console.ConsoleClient ConsoleClient}.
  */
 

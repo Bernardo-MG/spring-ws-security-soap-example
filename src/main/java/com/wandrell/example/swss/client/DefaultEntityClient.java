@@ -46,9 +46,9 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
  * ExampleEntityEndpoint} has: querying an entity by its id.
  * <p>
- * As with the endpoint, this client is unsecured. Any security concern is to be
- * taken care by Spring. This means that by default it will only be able to
- * query unsecure endpoints.
+ * As with that same endpoint, this client by default is unsecured. Any such
+ * concern is to be taken care by Spring. This means that by default it will
+ * only be able to query unsecure endpoints.
  * <p>
  * There is a problem with some security protocols, such as encryption, which
  * may make the endpoints unreachable. To solve this a
@@ -95,12 +95,13 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
      * way the unreachable endpoint error caused by some authentication methods,
      * such as encryption, can be avoided.
      *
-     * @param entityId
+     * @param identifier
      *            id of the queried entity
      * @return the entity with the received id
      */
-    public final ExampleEntity getEntity(final Integer entityId) {
-        return getEntity(getDefaultUri(), entityId);
+    @Override
+    public final ExampleEntity getEntity(final Integer identifier) {
+        return getEntity(getDefaultUri(), identifier);
     }
 
     /**
@@ -117,26 +118,27 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
      *
      * @param uri
      *            URI to the endpoint
-     * @param entityId
+     * @param identifier
      *            id of the queried entity
      * @return the entity with the received id
      */
+    @Override
     public final ExampleEntity getEntity(final String uri,
-            final Integer entityId) {
+            final Integer identifier) {
         final GetEntityRequest request;     // Request for acquiring the entity
         final GetEntityResponse response;   // Response with the result
         final ExampleEntity entity;         // Entity with the response data
         final WebServiceMessageCallback cb; // Callback with the SOAP action
 
         checkNotNull(uri, "Received a null pointer as URI");
-        checkNotNull(entityId, "Received a null pointer as entity id");
+        checkNotNull(identifier, "Received a null pointer as entity id");
 
-        LOGGER.debug(
-                String.format("Querying URI %1$s for id %2$d", uri, entityId));
+        LOGGER.debug(String.format("Querying URI %1$s for id %2$d", uri,
+                identifier));
 
         // Generates request
         request = new GetEntityRequest();
-        request.setId(entityId);
+        request.setId(identifier);
 
         // Prepares callback
         cb = new SoapActionCallback(ExampleEntityEndpointConstants.ACTION);

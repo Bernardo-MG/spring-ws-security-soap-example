@@ -29,6 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wandrell.example.swss.model.DefaultExampleEntity;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.repository.ExampleEntityRepository;
 
@@ -36,7 +37,9 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
  * Example entity domain service, using an {@link ExampleEntityRepository} for
  * acquiring the entities.
  * <p>
- * This service just wraps and hides the repository.
+ * This service just wraps and hides an instance of the
+ * {@link com.wandrell.example.swss.repository.ExampleEntityRepository
+ * ExampleEntityRepository}.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -63,11 +66,29 @@ public class DefaultExampleEntityService implements ExampleEntityService {
                 "Received a null pointer as repository");
     }
 
+    /**
+     * Returns an entity with the given id.
+     * <p>
+     * If no instance exists with that id then an entity with a negative id is
+     * returned.
+     *
+     * @param identifier
+     *            identifier of the entity to find
+     * @return the entity for the given id
+     */
     @Override
     public final ExampleEntity findById(final Integer identifier) {
+        ExampleEntity entity;
+
         checkNotNull(identifier, "Received a null pointer as identifier");
 
-        return getExampleEntityRepository().findOne(identifier);
+        entity = getExampleEntityRepository().findOne(identifier);
+
+        if (entity == null) {
+            entity = new DefaultExampleEntity();
+        }
+
+        return entity;
     }
 
     /**

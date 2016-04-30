@@ -23,6 +23,16 @@
  */
 /**
  * Domain model services.
+ * <p>
+ * The {@link com.wandrell.example.swss.service.domain.ExampleEntityService
+ * ExampleEntityService} is a simple domain service, meant to allow querying the
+ * entities returned by the endpoints.
+ * <p>
+ * Its default implementation, the
+ * {@link com.wandrell.example.swss.service.domain.DefaultExampleEntityService
+ * DefaultExampleEntityService}, makes use of the
+ * {@link com.wandrell.example.swss.repository.ExampleEntityRepository
+ * ExampleEntityRepository} for this.
  */
 
 package com.wandrell.example.swss.service.domain;

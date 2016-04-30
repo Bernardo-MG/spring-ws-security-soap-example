@@ -31,9 +31,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.NestedRuntimeException;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.ws.client.WebServiceIOException;
 
 import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
@@ -42,49 +43,13 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * Runnable console-based client.
  * <p>
  * Requires a console, such as the ones offered by the most common IDEs, to be
- * used as the UI.
+ * used as the client's UI.
  * <p>
- * After running it a series of instructions will tell how to use the client.
+ * Once it starts just follow the instructions.
  *
  * @author Bernardo Martínez Garrido
  */
 public final class ConsoleClient {
-
-    /**
-     * Enumeration for all the security types supported by the console client.
-     *
-     * @author Bernardo Martínez Garrido
-     */
-    private enum Security {
-        /**
-         * Encryption using WSS4J.
-         */
-        ENCRYPTION_WSS4J, /**
-                           * Encryption using XWSS.
-                           */
-        ENCRYPTION_XWSS, /**
-                          * Digested password using WSS4J.
-                          */
-        PASSWORD_DIGEST_WSS4J, /**
-                                * Digested password using XWSS.
-                                */
-        PASSWORD_DIGEST_XWSS, /**
-                               * Plain password using WSS4J.
-                               */
-        PASSWORD_PLAIN_WSS4J, /**
-                               * Plain password using XWSS.
-                               */
-        PASSWORD_PLAIN_XWSS, /**
-                              * Signature using WSS4J.
-                              */
-        SIGNATURE_WSS4J, /**
-                          * Signature using XWSS.
-                          */
-        SIGNATURE_XWSS, /**
-                         * Unsecure.
-                         */
-        UNSECURE
-    }
 
     /**
      * Template for generating the final endpoint URL.
@@ -98,6 +63,50 @@ public final class ConsoleClient {
      * Property key for the endpoint URI.
      */
     private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
+
+    /**
+     * Enumeration for all the security types supported by the console client.
+     *
+     * @author Bernardo Martínez Garrido
+     */
+    private enum Security {
+        /**
+         * Encryption using WSS4J.
+         */
+        ENCRYPTION_WSS4J,
+        /**
+         * Encryption using XWSS.
+         */
+        ENCRYPTION_XWSS,
+        /**
+         * Digested password using WSS4J.
+         */
+        PASSWORD_DIGEST_WSS4J,
+        /**
+         * Digested password using XWSS.
+         */
+        PASSWORD_DIGEST_XWSS,
+        /**
+         * Plain password using WSS4J.
+         */
+        PASSWORD_PLAIN_WSS4J,
+        /**
+         * Plain password using XWSS.
+         */
+        PASSWORD_PLAIN_XWSS,
+        /**
+         * Signature using WSS4J.
+         */
+        SIGNATURE_WSS4J,
+        /**
+         * Signature using XWSS.
+         */
+        SIGNATURE_XWSS,
+        /**
+         * Unsecure.
+         */
+        UNSECURE
+    }
 
     /**
      * Main runnable method.
@@ -120,15 +129,16 @@ public final class ConsoleClient {
     }
 
     /**
-     * Calls an endpoint by using the specified {@code EntityClient}.
+     * Calls the endpoint in the specified URI by using the received client.
      * <p>
-     * The client should be the correct one for the endpoint. Otherwise an error
-     * may occur.
+     * This client is expected to be prepared for calling the endpoint, which
+     * mostly means being set up for the same security protocol it uses.
      * <p>
-     * If the endpoint can't be reached a warning will be printed on the screen.
+     * If an exception occurs while using the client an error warning will be
+     * printed in the console.
      *
      * @param client
-     *            {@code EntityClient} which will call the endpoint
+     *            client which will call the endpoint
      * @param uri
      *            URI for the endpoint
      * @param output
@@ -166,9 +176,11 @@ public final class ConsoleClient {
                 output.println(
                         String.format("Entity name:\t%s", entity.getName()));
             }
-        } catch (final WebServiceIOException e) {
+        } catch (final NestedRuntimeException e) {
             output.println(String.format("Error: %s",
                     e.getMostSpecificCause().getMessage()));
+        } catch (final Exception e) {
+            output.println(String.format("Error: %s", e.getMessage()));
         }
 
         // Waits so the result information can be checked
@@ -176,13 +188,11 @@ public final class ConsoleClient {
     }
 
     /**
-     * Returns all the {@code EntityClient} instances, one for each security
-     * method.
+     * Returns all the clients, one prepared for each security protocol.
      * <p>
      * These are loaded from Spring context files.
      *
-     * @return a {@code EntityClient} instance for each supported security
-     *         method
+     * @return a client for each supported security protocol
      */
     private static final Map<Security, EntityClient> getClients() {
         final Map<Security, EntityClient> clients; // Returned clients
@@ -211,8 +221,11 @@ public final class ConsoleClient {
     }
 
     /**
-     * Returns the URI for an endpoint. This is created from the path loaded
-     * from a properties file, and the endpoint URL template.
+     * Returns the URIs for an endpoint.
+     * <p>
+     * This is created by combining the common base path all the endpoints use
+     * with the most concrete ending taken from a property in the specified
+     * properties file.
      *
      * @param propertiesPath
      *            path to the properties file with the endpoint path
@@ -232,19 +245,17 @@ public final class ConsoleClient {
     }
 
     /**
-     * Returns a {@code EntityClient} loaded from the context on the specified
-     * file.
-     * <p>
-     * This is loaded from a Spring context file.
+     * Returns a client generated from the Spring context defined in the
+     * specified file.
      *
      * @param contextPath
-     *            path to the context file.
-     * @return a {@code EntityClient} loaded from the specified context
+     *            path to the Spring context file
+     * @return a client loaded from the specified context
      */
     private static final EntityClient
             getEntityClient(final String contextPath) {
-        final ClassPathXmlApplicationContext context;
-        final EntityClient client;
+        final ConfigurableApplicationContext context; // Context
+        final EntityClient client;                    // Client
 
         context = new ClassPathXmlApplicationContext(contextPath);
 
@@ -288,9 +299,9 @@ public final class ConsoleClient {
     }
 
     /**
-     * Returns all the endpoint URIs, one for each security method.
+     * Returns the URIs for all the endpoints.
      *
-     * @return an URI for each supported security method
+     * @return the URIs of all the endpoints
      * @throws IOException
      *             if any error occurs while loading the URIs
      */
@@ -321,7 +332,7 @@ public final class ConsoleClient {
     }
 
     /**
-     * Prints all the main options available to the console client.
+     * Prints all the available options in the main menu to the console client.
      *
      * @param output
      *            output where the options will be printed
@@ -341,7 +352,7 @@ public final class ConsoleClient {
     }
 
     /**
-     * Prints the client help information.
+     * Prints the client help screen.
      *
      * @param output
      *            output where the information will be printed

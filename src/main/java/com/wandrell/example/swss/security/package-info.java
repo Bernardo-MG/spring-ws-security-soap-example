@@ -30,9 +30,10 @@
  * This can be done by using the
  * {@link com.wandrell.example.swss.security.KeystoreGenerator
  * KeystoreGenerator} runnable class, which will overwrite the existing key
- * stores, making use of the
- * {@link com.wandrell.example.swss.security.KeystoreFactory KeystoreFactory}
- * for generating said keys.
+ * stores.
+ * <p>
+ * The actual keystore creation is taken care by the
+ * {@link com.wandrell.example.swss.security.KeystoreFactory KeystoreFactory}.
  */
 
 package com.wandrell.example.swss.security;

@@ -50,11 +50,11 @@ public interface EntityClient {
      * response is empty then an entity with a negative id is expected to be
      * returned. Avoid returning nulls.
      *
-     * @param entityId
+     * @param identifier
      *            id of the queried entity
      * @return the entity with the received id
      */
-    public ExampleEntity getEntity(final Integer entityId);
+    public ExampleEntity getEntity(final Integer identifier);
 
     /**
      * Sends an id to the endpoint and receives back the data for the entity
@@ -66,10 +66,10 @@ public interface EntityClient {
      *
      * @param uri
      *            URI to the endpoint
-     * @param entityId
+     * @param identifier
      *            id of the queried entity
-     * @return the entity with the received id
+     * @return the entity for the given id
      */
-    public ExampleEntity getEntity(final String uri, final Integer entityId);
+    public ExampleEntity getEntity(final String uri, final Integer identifier);
 
 }
