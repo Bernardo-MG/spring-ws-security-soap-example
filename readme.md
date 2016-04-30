@@ -2,7 +2,7 @@
 
 Small web service setting up a SOAP web service using several [WS-Security][ws-security] protocol configurations.
 
-This web service makes use of Spring, more exactly it makes use of the Spring WS Security library, to create and set up endpoints to the diverse authentication methods the security protocol allows.
+This web service makes use of Spring, more exactly it makes use of the [Spring WS Security][spring-ws] library, to create and set up endpoints to the diverse authentication methods the security protocol allows.
 
 For this two implementations of WS-Security are used, the [WSS4J][wss4j] and [XWSS][xwss] ones. While of the achieve the same goals the way they are set up is different for each.
 
