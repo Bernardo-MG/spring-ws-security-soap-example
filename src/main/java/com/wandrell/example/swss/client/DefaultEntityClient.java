@@ -128,7 +128,7 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
         final GetEntityRequest request;     // Request for acquiring the entity
         final GetEntityResponse response;   // Response with the result
         final ExampleEntity entity;         // Entity with the response data
-        final WebServiceMessageCallback cb; // Callback with the SOAP action
+        final WebServiceMessageCallback callback; // SOAP action callback
 
         checkNotNull(uri, "Received a null pointer as URI");
         checkNotNull(identifier, "Received a null pointer as entity id");
@@ -141,11 +141,11 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
         request.setId(identifier);
 
         // Prepares callback
-        cb = new SoapActionCallback(ExampleEntityEndpointConstants.ACTION);
+        callback = new SoapActionCallback(ExampleEntityEndpointConstants.ACTION);
 
         // Sends request and receives response
         response = (GetEntityResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(uri, request, cb);
+                .marshalSendAndReceive(uri, request, callback);
 
         if ((response == null) || (response.getEntity() == null)) {
             // No response was received
