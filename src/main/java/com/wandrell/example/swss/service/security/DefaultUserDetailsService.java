@@ -61,7 +61,6 @@ public final class DefaultUserDetailsService implements UserDetailsService {
      */
     public DefaultUserDetailsService() {
         super();
-        // TODO: Maybe this should receive the valid users and passwords
     }
 
     @Override
