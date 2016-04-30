@@ -39,7 +39,9 @@ import javax.persistence.Transient;
 import com.google.common.base.MoreObjects;
 
 /**
- * JPA annotated implementation of {@link ExampleEntity}.
+ * Persistent entity for the example application.
+ * <p>
+ * This makes use of JPA annotations for the persistence configuration.
  * <p>
  * For the JAXB annotated model check the generated classes folder.
  *
@@ -61,7 +63,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private Integer           entityId;
+    private Integer           id               = -1;
 
     /**
      * Name of the entity.
@@ -70,7 +72,7 @@ public final class DefaultExampleEntity implements ExampleEntity {
      * tests.
      */
     @Column(name = "name", nullable = false)
-    private String            entityName;
+    private String            name             = "";
 
     /**
      * Constructs an example entity.
@@ -94,39 +96,45 @@ public final class DefaultExampleEntity implements ExampleEntity {
         }
 
         final DefaultExampleEntity other = (DefaultExampleEntity) obj;
-        return Objects.equals(entityId, other.entityId);
+        return Objects.equals(id, other.id);
     }
 
+    /**
+     * Returns the identifier assigned to this entity.
+     * <p>
+     * If no identifier has been assigned yet, then the value will be lower than
+     * zero.
+     *
+     * @return the entity's identifier
+     */
     @Override
     public final Integer getId() {
-        return entityId;
+        return id;
     }
 
     @Override
     public final String getName() {
-        return entityName;
+        return name;
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(entityId);
+        return Objects.hash(id);
     }
 
     @Override
-    public final void setId(final Integer identifier) {
-        entityId = checkNotNull(identifier,
-                "Received a null pointer as identifier");
+    public final void setId(final Integer value) {
+        id = checkNotNull(value, "Received a null pointer as identifier");
     }
 
     @Override
-    public final void setName(final String name) {
-        entityName = checkNotNull(name, "Received a null pointer as name");
+    public final void setName(final String value) {
+        name = checkNotNull(value, "Received a null pointer as name");
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("entityId", entityId)
-                .toString();
+        return MoreObjects.toStringHelper(this).add("entityId", id).toString();
     }
 
 }

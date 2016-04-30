@@ -22,15 +22,17 @@
  * SOFTWARE.
  */
 /**
- * Clients for the web services.
+ * Clients for the web service endpoints.
  * <p>
- * The only client included, the
- * {@link com.wandrell.example.swss.client.EntityClient EntityClient}, is
- * prepared for working with the the
+ * The {@link com.wandrell.example.swss.client.DefaultEntityClient
+ * DefaultEntityClient} is prepared for working with the the
  * {@link com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
- * ExampleEntityEndpoint}, no matter the authentication method used.
+ * ExampleEntityEndpoint}, no matter the authentication method used, as long as
+ * the correct interceptors are used for both of them. The context files
+ * included in the project make sure of this.
  * <p>
- * These are basic clients, meant to be used by other applications, such as the
+ * But this client is meant purely to be used through code. For an interactive
+ * client take a look at the
  * {@link com.wandrell.example.swss.client.console.ConsoleClient ConsoleClient}.
  */
 

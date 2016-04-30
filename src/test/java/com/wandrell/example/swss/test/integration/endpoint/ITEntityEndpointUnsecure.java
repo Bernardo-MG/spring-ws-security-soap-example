@@ -38,7 +38,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITEndpoint;
 
 /**
- * Implementation of {@code AbstractITEndpoint} for an unsecured endpoint.
+ * Integration test for an unsecured endpoint.
  * <p>
  * It adds the following cases:
  * <ol>

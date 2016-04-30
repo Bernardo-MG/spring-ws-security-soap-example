@@ -21,12 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/**
- * The services handling business logic.
- * <p>
- * It is divided into a {@link com.wandrell.example.swss.service.domain data
- * package} and a {@link com.wandrell.example.swss.service.security security
- * package}, both with their respective services.
- */
 
-package com.wandrell.example.swss.service;
+package com.wandrell.example.swss.test.util.config.properties;
+
+/**
+ * Paths to the endpoints configuration properties files.
+ * <p>
+ * These are the configuration files shared by all the servlets, not matter
+ * their type.
+ * <p>
+ * These files contain the data required for setting up an endpoint context.
+ *
+ * @author Bernardo Martínez Garrido
+ */
+public final class EndpointPropertiesPaths {
+
+    /**
+     * Common endpoint configuration.
+     */
+    public static final String COMMON = "classpath:config/endpoint/endpoint.properties";
+
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private EndpointPropertiesPaths() {
+        super();
+    }
+
+}

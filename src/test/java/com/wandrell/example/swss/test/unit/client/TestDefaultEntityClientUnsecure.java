@@ -40,14 +40,14 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
+import com.wandrell.example.swss.client.DefaultEntityClient;
+import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.ws.generated.entity.Entity;
 
 /**
- * Unit tests for {@link EntityClient} checking that the client works as
+ * Unit tests for {@link DefaultEntityClient} checking that the client works as
  * expected when not using any security.
  * <p>
  * Checks the following cases:
@@ -61,49 +61,49 @@ import com.wandrell.example.ws.generated.entity.Entity;
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
         SoapPropertiesPaths.UNSECURE })
-public final class TestEntityClientUnsecure
+public final class TestDefaultEntityClientUnsecure
         extends AbstractTestNGSpringContextTests {
 
     /**
      * The client being tested.
      */
     @Autowired
-    private EntityClient client;
+    private DefaultEntityClient client;
 
     /**
      * Expected id for the returned entity.
      */
     @Value("${entity.id}")
-    private Integer      entityId;
+    private Integer             entityId;
 
     /**
      * Expected name for the returned entity.
      */
     @Value("${entity.name}")
-    private String       entityName;
+    private String              entityName;
 
     /**
      * Path to XSD file which validates the SOAP messages.
      */
     @Value("${xsd.entity.path}")
-    private String       entityXsdPath;
+    private String              entityXsdPath;
 
     /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
-    private String       responsePayloadInvalidPath;
+    private String              responsePayloadInvalidPath;
 
     /**
      * Path to the file with the valid response payload.
      */
     @Value("${soap.response.payload.path}")
-    private String       responsePayloadPath;
+    private String              responsePayloadPath;
 
     /**
      * Constructs a {@code TestEntityClientUnsecure}.
      */
-    public TestEntityClientUnsecure() {
+    public TestDefaultEntityClientUnsecure() {
         super();
     }
 
@@ -118,7 +118,7 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -135,8 +135,8 @@ public final class TestEntityClientUnsecure
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), 0);
-        Assert.assertEquals(result.getName(), null);
+        Assert.assertEquals(result.getId(), new Integer(-1));
+        Assert.assertEquals(result.getName(), "");
 
         mockServer.verify();
     }
@@ -152,7 +152,7 @@ public final class TestEntityClientUnsecure
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -169,7 +169,7 @@ public final class TestEntityClientUnsecure
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals((Integer) result.getId(), entityId);
+        Assert.assertEquals(result.getId(), entityId);
         Assert.assertEquals(result.getName(), entityName);
 
         mockServer.verify();

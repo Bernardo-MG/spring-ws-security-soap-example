@@ -40,8 +40,8 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.client.DefaultEntityClient;
+import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
  * Abstract unit tests for an endpoint testing that it handles header-based SOAP
@@ -64,43 +64,43 @@ public abstract class AbstractTestEntityClientHeader
      * The client being tested.
      */
     @Autowired
-    private EntityClient client;
+    private DefaultEntityClient client;
 
     /**
      * Expected id for the returned entity.
      */
     @Value("${entity.id}")
-    private Integer      entityId;
+    private Integer             entityId;
 
     /**
      * Expected name for the returned entity.
      */
     @Value("${entity.name}")
-    private String       entityName;
+    private String              entityName;
 
     /**
      * Path to the file with the invalid response payload.
      */
     @Value("${soap.response.payload.invalid.path}")
-    private String       responsePayloadInvalidPath;
+    private String              responsePayloadInvalidPath;
 
     /**
      * Path to the file with the valid response payload.
      */
     @Value("${soap.response.payload.path}")
-    private String       responsePayloadPath;
+    private String              responsePayloadPath;
 
     /**
      * Security header token name.
      */
     @Value("${soap.header.security.name}")
-    private String       secHeaderLocalPart;
+    private String              secHeaderLocalPart;
 
     /**
      * Security header token URI.
      */
     @Value("${soap.header.security.uri}")
-    private String       secHeaderUri;
+    private String              secHeaderUri;
 
     /**
      * Constructs a {@code AbstractTestEntityClientHeader}.
@@ -120,7 +120,7 @@ public abstract class AbstractTestEntityClientHeader
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -137,8 +137,8 @@ public abstract class AbstractTestEntityClientHeader
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), 0);
-        Assert.assertEquals(result.getName(), null);
+        Assert.assertEquals(result.getId(), new Integer(-1));
+        Assert.assertEquals(result.getName(), "");
 
         mockServer.verify();
     }
@@ -154,7 +154,7 @@ public abstract class AbstractTestEntityClientHeader
         final MockWebServiceServer mockServer; // Mocked server
         final RequestMatcher requestMatcher;   // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final Entity result;                   // Queried entity
+        final ExampleEntity result;            // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -171,7 +171,7 @@ public abstract class AbstractTestEntityClientHeader
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals((Integer) result.getId(), entityId);
+        Assert.assertEquals(result.getId(), entityId);
         Assert.assertEquals(result.getName(), entityName);
 
         mockServer.verify();

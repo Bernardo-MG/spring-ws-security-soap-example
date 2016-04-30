@@ -22,71 +22,61 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.endpoint.password.plain.wss4j;
+package com.wandrell.example.swss.test.unit.endpoint.encryption.xwss;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
-import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
+import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
+import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.TestEndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
-import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a WSS4J plain
- * password protected endpoint.
+ * Unit test for a XWSS encrypted endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletWss4jContextPaths.APPLICATION_COMMON,
-        ServletWss4jContextPaths.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.PASSWORD_PLAIN,
-        InterceptorWss4jPropertiesPaths.PASSWORD_PLAIN,
-        EndpointWss4jPropertiesPaths.PASSWORD_PLAIN,
-        EndpointWss4jPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestEndpointWss4jPropertiesPaths.PASSWORD_PLAIN })
-public final class TestEntityEndpointPasswordPlainWss4j
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
+        ServletXwssContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
+@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
+        SoapPropertiesPaths.ENCRYPTION_XWSS,
+        InterceptorXwssPropertiesPaths.ENCRYPTION,
+        EndpointXwssPropertiesPaths.ENCRYPTION, EndpointPropertiesPaths.COMMON,
+        TestPropertiesPaths.USER, TestEndpointXwssPropertiesPaths.ENCRYPTION,
+        TestPropertiesPaths.KEYSTORE })
+public final class TestEntityEndpointRequestEncryptionXwss
         extends AbstractTestEntityEndpointRequest {
-
-    /**
-     * Password for the passworded message.
-     */
-    @Value("${security.credentials.password}")
-    private String password;
 
     /**
      * Path to the file containing the valid SOAP request.
      */
-    @Value("${soap.request.template.path}")
+    @Value("${soap.request.path}")
     private String pathValid;
 
     /**
-     * Username for the passworded message.
+     * Constructs a {@code TestEntityEndpointEncryptionXWSS}.
      */
-    @Value("${security.credentials.user}")
-    private String username;
-
-    /**
-     * Constructs a {@code TestEntityEndpointPasswordPlainWSS4J}.
-     */
-    public TestEntityEndpointPasswordPlainWss4j() {
+    public TestEntityEndpointRequestEncryptionXwss() {
         super();
     }
 
     @Override
     protected final Source getRequestEnvelope() {
         try {
-            return new StreamSource(SecureSoapMessages
-                    .getPlainPasswordStream(pathValid, username, password));
+            return new StreamSource(
+                    new ClassPathResource(pathValid).getInputStream());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }

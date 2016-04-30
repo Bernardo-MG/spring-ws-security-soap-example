@@ -33,8 +33,8 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEntityClient;
 
 /**
- * Implementation of {@code AbstractITEntityClient} for an encrypted web service
- * using XWSS for both the client and the web service.
+ * Integration test for an encrypted web service using XWSS for both the client
+ * and the web service.
  *
  * @author Bernardo Martínez Garrido
  */

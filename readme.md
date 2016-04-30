@@ -1,6 +1,10 @@
 # Spring Web Services WS-Security Example
 
-Small web service showing the use of Spring WS Security for a SOAP web service.
+Small web service setting up a SOAP web service using several [WS-Security][ws-security] protocol configurations.
+
+This web service makes use of Spring, more exactly it makes use of the [Spring WS Security][spring-ws] library, to create and set up endpoints to the diverse authentication methods the security protocol allows.
+
+For this two implementations of WS-Security are used, the [WSS4J][wss4j] and [XWSS][xwss] ones. While of the achieve the same goals the way they are set up is different for each.
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -10,9 +14,7 @@ Small web service showing the use of Spring WS Security for a SOAP web service.
 
 ## Features
 
-The project offers examples showing how to set up the [WSS4J][wss4j] and [XWSS][xwss] [WS-Security][ws-security] implementations for the [Spring-WS][spring-ws] framework.
-
-The following security protocols are used and applied each to an endpoint:
+The following authentication methods are used:
 
 - Unsecure.
 - Plain password.
@@ -20,9 +22,11 @@ The following security protocols are used and applied each to an endpoint:
 - Signature.
 - Encryption.
 
-WSS4J and XWSS variants are included.
+Each of them includes a WSS4J and XWSS variant with their own endpoint. To find out the URIs where each endpoint is deployed check this same readme below, or the documentation page.
 
-To make sure these are working as expected there are several tests included. These also show how to test secured endpoints.
+There is also a client, an a few context files prepared to set up it to call any of the endpoints.
+
+Several tests are included to make sure all these endpoints and clients work as expected. But they also show how to test secured endpoints.
 
 ## Documentation
 
@@ -131,8 +135,8 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 The project has been released under the [MIT License][license].
 
 [issues]: https://github.com/bernardo-mg/swss-soap-example/issues
-[javadoc-develop]: http://docs.wandrell.com/maven/swss-soap-example/apidocs
-[javadoc-release]: http://docs.wandrell.com/development/maven/swss-soap-example/apidocs
+[javadoc-develop]: http://docs.wandrell.com/development/maven/swss-soap-example/apidocs
+[javadoc-release]: http://docs.wandrell.com/maven/swss-soap-example/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
 [scm]: https://github.com/bernardo-mg/spring-ws-security-soap-example
 [site-develop]: http://docs.wandrell.com/development/maven/swss-soap-example

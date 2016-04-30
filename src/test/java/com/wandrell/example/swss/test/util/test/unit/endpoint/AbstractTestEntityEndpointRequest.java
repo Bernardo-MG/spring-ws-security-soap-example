@@ -47,7 +47,7 @@ import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
  * Checks the following cases:
  * <ol>
  * <li>The endpoint parses SOAP requests with a valid envelope.</li>
- * <li>The endpoint can handle SOAP requests with an invalid envelope.</li>
+ * <li>The endpoint can handle invalid SOAP messages.</li>
  * </ol>
  * <p>
  * This base test is meant for those endpoints where the full envelope is more
@@ -87,6 +87,7 @@ public abstract class AbstractTestEntityEndpointRequest
      */
     public AbstractTestEntityEndpointRequest() {
         super();
+        // TODO: The endpoint dependencies, mostly the service, should be mocked
     }
 
     /**

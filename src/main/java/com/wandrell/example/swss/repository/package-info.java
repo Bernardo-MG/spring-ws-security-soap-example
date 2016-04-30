@@ -24,9 +24,9 @@
 /**
  * Repositories for the persistence layer.
  * <p>
- * The {@link com.wandrell.example.swss.repository.ExampleEntityRepository} is a
- * simple Spring-JPA repository, meant to allow querying the entities returned
- * by the endpoint.
+ * The {@link com.wandrell.example.swss.repository.ExampleEntityRepository
+ * ExampleEntityRepository} is a simple Spring-JPA repository, meant to allow
+ * querying the entities returned by the endpoints.
  */
 
 package com.wandrell.example.swss.repository;

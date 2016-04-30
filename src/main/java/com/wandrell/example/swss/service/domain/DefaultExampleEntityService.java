@@ -29,12 +29,17 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wandrell.example.swss.model.DefaultExampleEntity;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.repository.ExampleEntityRepository;
 
 /**
- * Default implementation of {@link ExampleEntityService}, using an
- * {@link ExampleEntityRepository} for acquiring the entities.
+ * Example entity domain service, using an {@link ExampleEntityRepository} for
+ * acquiring the entities.
+ * <p>
+ * This service just wraps and hides an instance of the
+ * {@link com.wandrell.example.swss.repository.ExampleEntityRepository
+ * ExampleEntityRepository}.
  *
  * @author Bernardo Martínez Garrido
  */
@@ -42,13 +47,12 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
 public class DefaultExampleEntityService implements ExampleEntityService {
 
     /**
-     * Repository for the {@code ExampleEntity} instances handled by the
-     * service.
+     * Repository for the domain entities handled by the service.
      */
     private final ExampleEntityRepository entityRepository;
 
     /**
-     * Constructs an entities service.
+     * Constructs an entities service with the specified repository.
      *
      * @param repository
      *            the repository for the entity instances
@@ -62,19 +66,35 @@ public class DefaultExampleEntityService implements ExampleEntityService {
                 "Received a null pointer as repository");
     }
 
+    /**
+     * Returns an entity with the given id.
+     * <p>
+     * If no instance exists with that id then an entity with a negative id is
+     * returned.
+     *
+     * @param identifier
+     *            identifier of the entity to find
+     * @return the entity for the given id
+     */
     @Override
     public final ExampleEntity findById(final Integer identifier) {
+        ExampleEntity entity;
+
         checkNotNull(identifier, "Received a null pointer as identifier");
 
-        return getExampleEntityRepository().findOne(identifier);
+        entity = getExampleEntityRepository().findOne(identifier);
+
+        if (entity == null) {
+            entity = new DefaultExampleEntity();
+        }
+
+        return entity;
     }
 
     /**
-     * Returns the repository used to acquire the {@code ExampleEntity}
-     * instances.
+     * Returns the repository used to acquire the domain entities.
      *
-     * @return the repository used to acquire the {@code ExampleEntity}
-     *         instances
+     * @return the repository used to acquire the domain entities
      */
     private final ExampleEntityRepository getExampleEntityRepository() {
         return entityRepository;

@@ -38,8 +38,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITEndpoint;
 
 /**
- * Implementation of {@code AbstractITEndpoint} for an encryption protected
- * endpoint using XWSS.
+ * Integration test for an encryption protected endpoint using XWSS.
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *

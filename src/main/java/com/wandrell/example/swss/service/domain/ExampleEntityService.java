@@ -27,23 +27,24 @@ package com.wandrell.example.swss.service.domain;
 import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
- * Interface for the service to access {@link ExampleEntity} instances.
+ * Service for the example entity domain.
  * <p>
- * As it is meant for the endpoint, it just allows finding an entity by the id.
+ * This is a domain service just to allow the endpoints querying the entities
+ * they are asked for.
  *
  * @author Bernardo Martínez Garrido
  */
 public interface ExampleEntityService {
 
     /**
-     * Returns a {@code ExampleEntity} with the given id.
+     * Returns an entity with the given id.
      * <p>
-     * If no instance exists with that id then the value {@code null} is
-     * returned.
+     * If no instance exists with that id then an entity with a negative id is
+     * expected to be returned. Avoid returning nulls.
      *
      * @param identifier
-     *            identifier of the {@code ExampleEntity} to find
-     * @return the {@code ExampleEntity} with the given id or {@code null}
+     *            identifier of the entity to find
+     * @return the entity for the given id
      */
     public ExampleEntity findById(final Integer identifier);
 

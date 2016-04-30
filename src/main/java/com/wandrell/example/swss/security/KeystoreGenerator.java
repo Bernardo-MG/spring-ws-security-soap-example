@@ -140,9 +140,8 @@ public final class KeystoreGenerator {
      *             if an I/O error occurs
      */
     private static final void saveToFile(final KeyStore keyStore,
-            final String path, final char[] password)
-                    throws KeyStoreException, NoSuchAlgorithmException,
-                    CertificateException, IOException {
+            final String path, final char[] password) throws KeyStoreException,
+            NoSuchAlgorithmException, CertificateException, IOException {
         FileOutputStream output = null; // Output stream for the keystore
 
         try {

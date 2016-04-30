@@ -34,8 +34,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
- * Implementation of {@code AbstractTestEntityClientHeader} for a WSS4J signed
- * client.
+ * Unit test for a WSS4J signed client.
  *
  * @author Bernardo Martínez Garrido
  */

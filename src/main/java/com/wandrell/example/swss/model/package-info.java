@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * The model for the application.
+ * Model for the application.
  * <p>
  * This consists just on a very simple entity, containing an id and a name.
  * <p>

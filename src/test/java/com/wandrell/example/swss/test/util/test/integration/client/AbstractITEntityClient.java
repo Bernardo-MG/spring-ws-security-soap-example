@@ -31,16 +31,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
-import com.wandrell.example.ws.generated.entity.Entity;
+import com.wandrell.example.swss.model.ExampleEntity;
 
 /**
- * Abstract integration tests for {@link EntityClient} testing that it handles
- * messages correctly.
+ * Abstract integration tests for an {@link EntityClient} testing that it
+ * handles messages correctly.
  * <p>
  * Checks the following cases:
  * <ol>
  * <li>A valid id returns the expected value.</li>
- * <li>An invalid id returns null.</li>
+ * <li>An invalid id returns an empty entity.</li>
  * </ol>
  * <p>
  * Pay attention to the fact that it requires the WS to be running, and a Spring
@@ -83,15 +83,15 @@ public abstract class AbstractITEntityClient
     }
 
     /**
-     * Tests that an invalid id returns null.
+     * Tests that an invalid id returns an empty entity.
      */
     @Test
-    public final void testEndpoint_InvalidId_ReturnsNull() {
-        final Entity entity; // Returned entity
+    public final void testEndpoint_InvalidId_ReturnsEmpty() {
+        final ExampleEntity entity; // Returned entity
 
-        entity = client.getEntity(wsUrl, -1);
+        entity = client.getEntity(wsUrl, -123);
 
-        Assert.assertNull(entity);
+        Assert.assertEquals(entity.getId(), new Integer(-1));
     }
 
     /**
@@ -99,11 +99,11 @@ public abstract class AbstractITEntityClient
      */
     @Test
     public final void testEndpoint_ValidId_ReturnsValid() {
-        final Entity entity; // Returned entity
+        final ExampleEntity entity; // Returned entity
 
         entity = client.getEntity(wsUrl, 1);
 
-        Assert.assertEquals((Integer) entity.getId(), entityId);
+        Assert.assertEquals(entity.getId(), entityId);
         Assert.assertEquals(entity.getName(), entityName);
     }
 

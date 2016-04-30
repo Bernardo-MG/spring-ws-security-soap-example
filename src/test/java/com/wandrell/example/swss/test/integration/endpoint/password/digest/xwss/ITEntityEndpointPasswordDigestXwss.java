@@ -41,8 +41,7 @@ import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITEndpoint;
 
 /**
- * Implementation of {@code AbstractITEndpoint} for a password protected
- * endpoint using XWSS.
+ * Integration test for a password protected endpoint using XWSS.
  * <p>
  * It adds the following cases:
  * <ol>

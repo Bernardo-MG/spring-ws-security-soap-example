@@ -25,11 +25,11 @@
 package com.wandrell.example.swss.endpoint;
 
 /**
- * Constants for the {@link ExampleEntityEndpoint}.
+ * Constants for the example web service endpoints.
  * <p>
- * These define such things as the namespace of the SOAP action used, and match
- * the data on the generated WSDL.
- * 
+ * These define such things as the namespaces or the SOAP action used, and match
+ * the data found in the generated WSDL.
+ *
  * @author Bernardo Martínez Garrido
  */
 public final class ExampleEntityEndpointConstants {

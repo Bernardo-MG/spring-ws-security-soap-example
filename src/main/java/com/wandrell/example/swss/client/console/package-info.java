@@ -22,10 +22,11 @@
  * SOFTWARE.
  */
 /**
- * Console-based runnable clients to access the web services.
+ * Console-based client to call the web service endpoints.
  * <p>
  * Only a single client is included, the
  * {@link com.wandrell.example.swss.client.console.ConsoleClient ConsoleClient}.
+ * This is a simple runnable client which should work on any IDE.
  */
 
 package com.wandrell.example.swss.client.console;

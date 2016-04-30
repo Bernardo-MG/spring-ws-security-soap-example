@@ -36,8 +36,8 @@ import javax.xml.soap.SOAPMessage;
 
 import org.springframework.core.io.ClassPathResource;
 
-import com.wandrell.example.ws.generated.entity.Entity;
-import com.wandrell.example.ws.generated.entity.GetEntityResponse;
+import com.wandrell.example.swss.generated.entity.Entity;
+import com.wandrell.example.swss.generated.entity.GetEntityResponse;
 
 /**
  * SOAP message generation utils.
@@ -77,7 +77,7 @@ public final class SoapMessageUtils {
      * Creates a {@code SOAPMessage} from the contents of a text file.
      * <p>
      * This file should contain a valid SOAP message.
-     * 
+     *
      * @param path
      *            the path to the file
      * @return a {@code SOAPMessage} parsed from the contents of the file

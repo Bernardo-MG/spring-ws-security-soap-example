@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.endpoint.encryption.xwss;
+package com.wandrell.example.swss.test.unit.endpoint.encryption.wss4j;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -32,30 +32,33 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.test.util.config.context.ServletXwssContextPaths;
+import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
+import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.InterceptorXwssPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestEndpointXwssPropertiesPaths;
+import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
 /**
- * Implementation of {@code AbstractTestEntityEndpointRequest} for a XWSS
- * encrypted endpoint.
+ * Unit test for a XWSS encrypted endpoint.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletXwssContextPaths.BASE,
-        ServletXwssContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
+@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
+        ServletWss4jContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
+        TestContextPaths.KEYSTORE_WSS4J })
 @TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
-        SoapPropertiesPaths.ENCRYPTION_XWSS,
-        InterceptorXwssPropertiesPaths.ENCRYPTION,
-        EndpointXwssPropertiesPaths.ENCRYPTION,
-        EndpointXwssPropertiesPaths.COMMON, TestPropertiesPaths.USER,
-        TestEndpointXwssPropertiesPaths.ENCRYPTION })
-public final class TestEntityEndpointEncryptionXwss
+        SoapPropertiesPaths.ENCRYPTION_WSS4J,
+        InterceptorWss4jPropertiesPaths.ENCRYPTION,
+        EndpointWss4jPropertiesPaths.ENCRYPTION, EndpointPropertiesPaths.COMMON,
+        TestPropertiesPaths.USER, TestPropertiesPaths.KEYSTORE,
+        TestPropertiesPaths.KEYSTORE_WSS4J,
+        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
+public final class TestEntityEndpointRequestEncryptionWss4j
         extends AbstractTestEntityEndpointRequest {
 
     /**
@@ -65,9 +68,9 @@ public final class TestEntityEndpointEncryptionXwss
     private String pathValid;
 
     /**
-     * Constructs a {@code TestEntityEndpointEncryptionXWSS}.
+     * Constructs a {@code TestEntityEndpointEncryptionWSS4J}.
      */
-    public TestEntityEndpointEncryptionXwss() {
+    public TestEntityEndpointRequestEncryptionWss4j() {
         super();
     }
 

@@ -31,8 +31,8 @@ import com.wandrell.example.swss.model.DefaultExampleEntity;
 /**
  * Spring-JPA repository for {@link DefaultExampleEntity}.
  * <p>
- * This is a simple repository meant just to allow acquiring the entities
- * returned by the endpoint.
+ * This is a simple repository just to allow the endpoints querying the entities
+ * they are asked for.
  *
  * @author Bernardo Martínez Garrido
  */
