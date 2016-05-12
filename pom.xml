@@ -24,7 +24,7 @@
     <packaging>war</packaging>
 
     <name>Spring Web Services WS-Security Example</name>
-    <description>An example showing how to configure Spring-WS Security for a SOAP web service</description>
+    <description>An example showing how to set up secured SOAP web services in Spring</description>
     <url>https://github.com/bernardo-mg/spring-ws-security-soap-example</url>
     <inceptionYear>2015</inceptionYear>
 
