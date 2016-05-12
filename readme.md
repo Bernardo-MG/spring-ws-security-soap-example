@@ -1,10 +1,10 @@
 # Spring Web Services WS-Security Example
 
-Small web service setting up a SOAP web service using several [WS-Security][ws-security] protocol configurations.
+[Spring WS][spring-ws] SOAP web service setting up the various [WS-Security][ws-security] protocols.
 
-This web service makes use of Spring, more exactly it makes use of the [Spring WS Security][spring-ws] library, to create and set up endpoints to the diverse authentication methods the security protocol allows.
+The project prepares several endpoints, one for each security protocol (unsecured, plain password, digested password, signed and encrypted). Two implementations of WS-Security, [WSS4J][wss4j] and [XWSS][xwss], are used for this.
 
-For this two implementations of WS-Security are used, the [WSS4J][wss4j] and [XWSS][xwss] ones. While of the achieve the same goals the way they are set up is different for each.
+All these endpoint are based on the same structure: an annotated class, a XSD file used to generate the WSDL and a simple model. Only the actual Spring configuration varies from one another.
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -68,9 +68,7 @@ To run the example just use the following Maven command:
 $ mvn clean package jetty:run-war
 ```
 
-After this the endpoints can be accessed directly, but using the URLs given
-lower, or through the console client, which will make use of the client
-class included in the project.
+After this all the endpoint URLs are accessible. These can be found below, and require some sort of SOAP client, such as the console one included in the project.
 
 This console client can be used by just running the ConsoleClient class,
 located in the com.wandrell.example.swss.client.console folder.
