@@ -248,7 +248,7 @@
         <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
         <plugin.changes.version>2.12</plugin.changes.version>
         <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
-        <plugin.jetty.version>9.3.8.v20160314</plugin.jetty.version>
+        <plugin.jetty.version>9.1.5.v20140505</plugin.jetty.version>
         <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
         <plugin.war.version>2.6</plugin.war.version>
         <!-- Maven Site -->
