@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <description>
-        Context for the WSS4J signature secured client.
+   <description>
+      Context for the WSS4J signature secured client.
 
-        A normal key store and a WSS4J one are required for this to work, such as the
-        ones provided by the key stores context files.
-    </description>
+      A normal key store and a WSS4J one are required for this to work, such
+      as the ones provided by the key stores context files.
+   </description>
 
-    <!-- Properties -->
-    <context:property-placeholder
-        location="classpath:config/client/client.properties, config/keystore/keystore.properties, classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties, classpath:config/keystore/keystore-wss4j.properties" />
+   <!-- Properties -->
+   <context:property-placeholder
+      location="classpath:config/client/client.properties, config/keystore/keystore.properties, classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties, classpath:config/keystore/keystore-wss4j.properties" />
 
-    <!-- Imports base context -->
-    <import resource="classpath:context/keystore/keystore-wss4j.xml" />
-    <import resource="classpath:context/client/client.xml" />
-    <import resource="classpath:context/interceptor/signature/wss4j/interceptor-signature-wss4j.xml" />
+   <!-- Imports base context -->
+   <import resource="classpath:context/keystore/keystore-wss4j.xml" />
+   <import resource="classpath:context/client/client.xml" />
+   <import
+      resource="classpath:context/interceptor/signature/wss4j/interceptor-signature-wss4j.xml" />
 
-    <!-- Extends client -->
-    <bean id="signatureWss4jClient" parent="baseClient" />
+   <!-- Extends client -->
+   <bean id="signatureWss4jClient" parent="baseClient" />
 
 </beans>

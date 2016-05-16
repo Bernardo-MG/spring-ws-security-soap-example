@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <description>
-        Context for the signature protected servlet using XWSS.
-    </description>
+   <description>
+      Context for the signature protected servlet using XWSS.
+   </description>
 
-    <!-- Scans for endpoints -->
-    <context:component-scan base-package="com.wandrell.example.swss.endpoint" />
+   <!-- Scans for endpoints -->
+   <context:component-scan base-package="com.wandrell.example.swss.endpoint" />
 
-    <!-- Properties -->
-    <context:property-placeholder
-        location="classpath:config/keystore/keystore.properties, classpath:config/endpoint/endpoint.properties, classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, classpath:config/endpoint/signature/xwss/endpoint-signature-xwss.properties" />
+   <!-- Properties -->
+   <context:property-placeholder
+      location="classpath:config/keystore/keystore.properties, classpath:config/endpoint/endpoint.properties, classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, classpath:config/endpoint/signature/xwss/endpoint-signature-xwss.properties" />
 
-    <!-- Imports -->
-    <import resource="classpath:context/endpoint/signature/xwss/endpoint-signature-xwss.xml" />
+   <!-- Imports -->
+   <import
+      resource="classpath:context/endpoint/signature/xwss/endpoint-signature-xwss.xml" />
 
 </beans>

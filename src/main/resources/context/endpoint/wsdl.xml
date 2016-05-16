@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context" xmlns:sws="http://www.springframework.org/schema/web-services"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context.xsd
-                        http://www.springframework.org/schema/web-services
-                        http://www.springframework.org/schema/web-services/web-services.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sws="http://www.springframework.org/schema/web-services"
+   xsi:schemaLocation="http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <description>
-        WSDL configuration context.
+   <description>
+      WSDL configuration context.
 
-        This will create the WSDL for an endpoint.
-    </description>
+      This will create the WSDL for an endpoint.
+   </description>
 
-    <!-- WSDL -->
-    <sws:dynamic-wsdl id="entities" portTypeName="${wsdl.portTypeName}"
-        locationUri="${wsdl.locationUri}" targetNamespace="${wsdl.targetNamespace}">
-        <sws:xsd location="${wsdl.path}" />
-    </sws:dynamic-wsdl>
+   <!-- WSDL -->
+   <sws:dynamic-wsdl id="entities" portTypeName="${wsdl.portTypeName}"
+      locationUri="${wsdl.locationUri}" targetNamespace="${wsdl.targetNamespace}">
+      <sws:xsd location="${wsdl.path}" />
+   </sws:dynamic-wsdl>
 
 </beans>
