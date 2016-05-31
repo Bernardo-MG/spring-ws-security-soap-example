@@ -70,5 +70,10 @@
             The readme description has been rewritten.
          </action>
       </release>
+      <release version="1.1.2" date="2016-05-31" description="Updated Maven Skin">
+         <action dev="bmg" type="update">
+            Updated the Maven Skin.
+         </action>
+      </release>
    </body>
 </document>

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <description>
-        Service layer context.
+   <description>
+      Service layer context.
 
-        Contains all the services required by the web services and is meant to be shared
-        between them.
-    </description>
+      Contains all the services required by the web services and is meant to be
+      shared between them.
+   </description>
 
-    <!-- Scans for data access services -->
-    <context:component-scan base-package="com.wandrell.example.swss.service.domain" />
+   <!-- Scans for data access services -->
+   <context:component-scan base-package="com.wandrell.example.swss.service.domain" />
 
 </beans>

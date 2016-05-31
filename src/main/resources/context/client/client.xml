@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <description>
-        Base context for the web service clients.
+   <description>
+      Base context for the web service clients.
 
-        This is to be extended for each client, which should define the security
-        interceptor to use.
-    </description>
+      This is to be extended for each client, which should define the security
+      interceptor to use.
+   </description>
 
-    <!-- Client -->
-    <bean id="baseClient" class="${client.class}" scope="prototype" abstract="true">
-        <property name="marshaller" ref="marshaller" />
-        <property name="unmarshaller" ref="marshaller" />
-        <property name="interceptors">
-            <list>
-                <ref bean="payloadValidatingInterceptor" />
-                <ref bean="securityInterceptor" />
-            </list>
-        </property>
-    </bean>
+   <!-- Client -->
+   <bean id="baseClient" class="${client.class}" scope="prototype"
+      abstract="true">
+      <property name="marshaller" ref="marshaller" />
+      <property name="unmarshaller" ref="marshaller" />
+      <property name="interceptors">
+         <list>
+            <ref bean="payloadValidatingInterceptor" />
+            <ref bean="securityInterceptor" />
+         </list>
+      </property>
+   </bean>
 
-    <!-- Marshaller -->
-    <bean id="marshaller" class="${marshaller.class}">
-        <property name="packagesToScan" value="${marshaller.packagesToScan}" />
-    </bean>
+   <!-- Marshaller -->
+   <bean id="marshaller" class="${marshaller.class}">
+      <property name="packagesToScan" value="${marshaller.packagesToScan}" />
+   </bean>
 
-    <!-- Payload validator interceptor -->
-    <bean id="payloadValidatingInterceptor" class="${interceptor.payloadValidator.class}">
-        <property name="schema" value="${schema.path}" />
-        <property name="validateRequest"
-            value="${interceptor.payloadValidator.validateRequest}" />
-        <property name="validateResponse"
-            value="${interceptor.payloadValidator.validateResponse}" />
-    </bean>
+   <!-- Payload validator interceptor -->
+   <bean id="payloadValidatingInterceptor" class="${interceptor.payloadValidator.class}">
+      <property name="schema" value="${schema.path}" />
+      <property name="validateRequest"
+         value="${interceptor.payloadValidator.validateRequest}" />
+      <property name="validateResponse"
+         value="${interceptor.payloadValidator.validateResponse}" />
+   </bean>
 
 </beans>
