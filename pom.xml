@@ -252,7 +252,7 @@
         <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
         <plugin.war.version>2.6</plugin.war.version>
         <!-- Maven Site -->
-        <site.skin.version>0.2.4</site.skin.version>
+        <site.skin.version>0.3.0</site.skin.version>
         <!-- Testing server -->
         <server.test.path>/swss</server.test.path>
     </properties>
