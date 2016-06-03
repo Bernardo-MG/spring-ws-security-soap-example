@@ -43,7 +43,7 @@ public final class ServletContextPaths {
      * This is the application context used for real web services, and shared by
      * all the servlets.
      */
-    public static final String APPLICATION        = "classpath:context/webService.xml";
+    public static final String APPLICATION        = "classpath:context/web-service.xml";
 
     /**
      * Mocked application context configuration.
