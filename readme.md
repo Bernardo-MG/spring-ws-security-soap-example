@@ -99,7 +99,7 @@ With this, by running the project the following endpoints are mapped each to the
 |Digested Password|XWSS|[http://localhost:8080/swss/password/digest/xwss/entities.wsdl](http://localhost:8080/swss/password/digest/xwss/entities.wsdl)|
 |Digested Password|WSS4J|[http://localhost:8080/swss/password/digest/wss4j/entities.wsdl](http://localhost:8080/swss/password/digest/wss4j/entities.wsdl)|
 |Signature|XWSS|[http://localhost:8080/swss/signature/xwss/entities.wsdl](http://localhost:8080/swss/signature/xwss/entities.wsdl)|
-|Signature|WSS4J|[http://localhost:8080/wss4j/signature/xwss/entities.wsdl](http://localhost:8080/swss/signature/wss4j/entities.wsdl)|
+|Signature|WSS4J|[http://localhost:8080/swss/signature/wss4j/entities.wsdl](http://localhost:8080/swss/signature/wss4j/entities.wsdl)|
 |Encryption|XWSS|[http://localhost:8080/swss/encryption/xwss/entities.wsdl](http://localhost:8080/swss/encryption/xwss/entities.wsdl)|
 |Encryption|WSS4J|[http://localhost:8080/swss/encryption/wss4j/entities.wsdl](http://localhost:8080/swss/encryption/wss4j/entities.wsdl)|
 
