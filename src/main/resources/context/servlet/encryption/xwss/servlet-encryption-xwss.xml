@@ -15,7 +15,10 @@
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/keystore/keystore.properties, classpath:config/endpoint/endpoint.properties, classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties, classpath:config/endpoint/encryption/xwss/endpoint-encryption-xwss.properties" />
+      location="classpath:config/keystore/keystore.properties, 
+         classpath:config/endpoint/endpoint.properties, 
+         classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties, 
+         classpath:config/endpoint/encryption/xwss/endpoint-encryption-xwss.properties" />
 
    <!-- Imports -->
    <import

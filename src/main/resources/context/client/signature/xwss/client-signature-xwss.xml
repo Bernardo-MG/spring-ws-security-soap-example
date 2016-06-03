@@ -15,7 +15,10 @@
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/client/client.properties, config/keystore/keystore.properties, classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, classpath:config/client/signature/xwss/client-signature-xwss.properties" />
+      location="classpath:config/client/client.properties, 
+         config/keystore/keystore.properties, 
+         classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, 
+         classpath:config/client/signature/xwss/client-signature-xwss.properties" />
 
    <!-- Imports base context -->
    <import resource="classpath:context/keystore/keystore.xml" />

@@ -15,7 +15,10 @@
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/client/client.properties, config/keystore/keystore.properties, classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties, classpath:config/client/encryption/xwss/client-encryption-xwss.properties" />
+      location="classpath:config/client/client.properties, 
+         config/keystore/keystore.properties, 
+         classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties, 
+         classpath:config/client/encryption/xwss/client-encryption-xwss.properties" />
 
    <!-- Imports base context -->
    <import resource="classpath:context/keystore/keystore.xml" />
