@@ -15,7 +15,8 @@
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/endpoint/endpoint.properties, classpath:config/endpoint/endpoint-unsecure.properties" />
+      location="classpath:config/endpoint/endpoint.properties, 
+         classpath:config/endpoint/endpoint-unsecure.properties" />
 
    <!-- Imports -->
    <import resource="classpath:context/endpoint/endpoint-unsecure.xml" />

@@ -15,7 +15,10 @@
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/keystore/keystore.properties, classpath:config/endpoint/endpoint.properties, classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties, classpath:config/endpoint/signature/wss4j/endpoint-signature-wss4j.properties" />
+      location="classpath:config/keystore/keystore.properties, 
+         classpath:config/endpoint/endpoint.properties, 
+         classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties, 
+         classpath:config/endpoint/signature/wss4j/endpoint-signature-wss4j.properties" />
 
    <!-- Imports -->
    <import

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
    xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context
@@ -15,7 +15,10 @@
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/keystore/keystore.properties, classpath:config/endpoint/endpoint.properties, classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, classpath:config/endpoint/signature/xwss/endpoint-signature-xwss.properties" />
+      location="classpath:config/keystore/keystore.properties, 
+         classpath:config/endpoint/endpoint.properties, 
+         classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, 
+         classpath:config/endpoint/signature/xwss/endpoint-signature-xwss.properties" />
 
    <!-- Imports -->
    <import
