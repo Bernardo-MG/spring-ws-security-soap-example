@@ -141,7 +141,8 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
         request.setId(identifier);
 
         // Prepares callback
-        callback = new SoapActionCallback(ExampleEntityEndpointConstants.ACTION);
+        callback = new SoapActionCallback(
+                ExampleEntityEndpointConstants.ACTION);
 
         // Sends request and receives response
         response = (GetEntityResponse) getWebServiceTemplate()
