@@ -1,3 +1,7 @@
+# Travis CI Configuration file
+# @link https://travis-ci.org/
+
+# Using Java for the project
 language: java
 jdk:
 # JDK 8 is not supported
