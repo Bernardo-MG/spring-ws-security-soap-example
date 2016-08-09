@@ -242,7 +242,7 @@
         <wsdl4j.version>1.6.3</wsdl4j.version>
         <wss4j.version>2.1.7</wss4j.version>
         <xmlapis.version>2.0.2</xmlapis.version>
-        <xmlsec.version>2.0.6</xmlsec.version>
+        <xmlsec.version>2.0.7</xmlsec.version>
         <xwssecurity.version>3.0</xwssecurity.version>
         <!-- Plugins versions -->
         <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
