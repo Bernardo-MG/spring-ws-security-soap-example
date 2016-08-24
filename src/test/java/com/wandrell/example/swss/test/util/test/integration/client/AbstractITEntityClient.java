@@ -26,12 +26,14 @@ package com.wandrell.example.swss.test.util.test.integration.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
+import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
 /**
  * Abstract integration tests for an {@link EntityClient} testing that it
@@ -48,6 +50,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  *
  * @author Bernardo Martínez Garrido
  */
+@TestPropertySource({ TestPropertiesPaths.ENTITY })
 public abstract class AbstractITEntityClient
         extends AbstractTestNGSpringContextTests {
 

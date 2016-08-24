@@ -48,9 +48,8 @@ import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITE
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(
-        locations = { TestContextPaths.DEFAULT, TestContextPaths.KEYSTORE })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
+@ContextConfiguration(locations = { TestContextPaths.KEYSTORE })
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE,
         SoapPropertiesPaths.SIGNATURE,
         TestEndpointXwssPropertiesPaths.SIGNATURE })
 public final class ITEntityEndpointSignatureXwss extends AbstractITEndpoint {

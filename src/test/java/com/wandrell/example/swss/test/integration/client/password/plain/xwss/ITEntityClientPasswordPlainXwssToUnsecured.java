@@ -29,7 +29,6 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ClientXwssContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointXwssPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEntityClientInvalid;
 
 /**
@@ -39,8 +38,7 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_PLAIN })
-@TestPropertySource({ TestPropertiesPaths.ENTITY,
-        TestEndpointXwssPropertiesPaths.UNSECURE })
+@TestPropertySource({ TestEndpointXwssPropertiesPaths.UNSECURE })
 public final class ITEntityClientPasswordPlainXwssToUnsecured
         extends AbstractITEntityClientInvalid {
 

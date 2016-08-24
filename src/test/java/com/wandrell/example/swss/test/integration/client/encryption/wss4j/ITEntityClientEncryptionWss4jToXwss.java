@@ -39,7 +39,7 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.ENCRYPTION })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE,
         TestEndpointXwssPropertiesPaths.ENCRYPTION })
 public final class ITEntityClientEncryptionWss4jToXwss
         extends AbstractITEntityClient {

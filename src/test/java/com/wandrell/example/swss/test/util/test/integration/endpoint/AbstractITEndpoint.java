@@ -39,6 +39,8 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -49,6 +51,8 @@ import org.xml.sax.SAXException;
 
 import com.wandrell.example.swss.generated.entity.Entity;
 import com.wandrell.example.swss.test.util.SoapMessageUtils;
+import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
+import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
 /**
  * Abstract integration tests for an endpoint testing that it handles messages
@@ -67,6 +71,8 @@ import com.wandrell.example.swss.test.util.SoapMessageUtils;
  *
  * @author Bernardo Martínez Garrido
  */
+@ContextConfiguration(locations = { TestContextPaths.DEFAULT })
+@TestPropertySource({ TestPropertiesPaths.ENTITY })
 public abstract class AbstractITEndpoint
         extends AbstractTestNGSpringContextTests {
 
