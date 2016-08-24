@@ -17,7 +17,7 @@ matrix:
 
 before_install:
   # Gets scripts
-  - git clone -b v0.1.4 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v0.1.6 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
@@ -30,4 +30,4 @@ script:
   - mvn clean verify
 after_success:
   # Documentation deployment script
-  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS
+  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment
