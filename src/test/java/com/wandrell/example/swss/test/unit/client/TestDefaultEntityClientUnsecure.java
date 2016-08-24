@@ -31,7 +31,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
@@ -44,7 +43,7 @@ import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
+import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityClient;
 
 /**
  * Unit tests for {@link DefaultEntityClient} checking that the client works as
@@ -59,10 +58,9 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.UNSECURE })
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE })
 public final class TestDefaultEntityClientUnsecure
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractTestEntityClient {
 
     /**
      * The client being tested.

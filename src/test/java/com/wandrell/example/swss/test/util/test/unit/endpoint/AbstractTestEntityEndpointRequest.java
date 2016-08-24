@@ -85,7 +85,7 @@ public abstract class AbstractTestEntityEndpointRequest
     private String             soapAction;
 
     /**
-     * Constructs an {@code AbstractTestEntityEndpointRequest}.
+     * Default constructor.
      */
     public AbstractTestEntityEndpointRequest() {
         super();

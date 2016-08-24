@@ -31,7 +31,7 @@ import javax.xml.namespace.QName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
@@ -42,6 +42,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
+import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 
 /**
  * Abstract unit tests for an endpoint testing that it handles header-based SOAP
@@ -57,8 +58,9 @@ import com.wandrell.example.swss.model.ExampleEntity;
  *
  * @author Bernardo Martínez Garrido
  */
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE })
 public abstract class AbstractTestEntityClientHeader
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractTestEntityClient {
 
     /**
      * The client being tested.
@@ -103,7 +105,7 @@ public abstract class AbstractTestEntityClientHeader
     private String              secHeaderUri;
 
     /**
-     * Constructs a {@code AbstractTestEntityClientHeader}.
+     * Default constructor.
      */
     public AbstractTestEntityClientHeader() {
         super();

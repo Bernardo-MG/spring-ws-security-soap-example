@@ -22,31 +22,26 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.test.unit.client.signature.wss4j;
+package com.wandrell.example.swss.test.util.test.unit.client;
 
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
-import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
-import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityClientHeader;
+import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
 /**
- * Unit test for a WSS4J signed client.
+ * Abstract unit tests for setting up client tests.
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ClientWss4jContextPaths.SIGNATURE,
-        TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
-@TestPropertySource({ SoapPropertiesPaths.SIGNATURE })
-public final class TestEntityClientSignatureWss4j
-        extends AbstractTestEntityClientHeader {
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL })
+public abstract class AbstractTestEntityClient
+        extends AbstractTestNGSpringContextTests {
 
     /**
-     * Constructs a {@code TestEntityClientSignatureWSS4J}.
+     * Default constructor.
      */
-    public TestEntityClientSignatureWss4j() {
+    public AbstractTestEntityClient() {
         super();
     }
 

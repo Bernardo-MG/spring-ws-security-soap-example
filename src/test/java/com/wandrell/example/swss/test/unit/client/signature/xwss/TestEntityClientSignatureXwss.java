@@ -30,7 +30,6 @@ import org.springframework.test.context.TestPropertySource;
 import com.wandrell.example.swss.test.util.config.context.ClientXwssContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
@@ -40,8 +39,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.SIGNATURE,
         TestContextPaths.KEYSTORE })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.SIGNATURE })
+@TestPropertySource({ SoapPropertiesPaths.SIGNATURE })
 public final class TestEntityClientSignatureXwss
         extends AbstractTestEntityClientHeader {
 

@@ -30,7 +30,6 @@ import org.springframework.test.context.TestPropertySource;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityClientHeader;
 
 /**
@@ -40,8 +39,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.ENCRYPTION,
         TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.ENCRYPTION_XWSS })
+@TestPropertySource({ SoapPropertiesPaths.ENCRYPTION_XWSS })
 public final class TestEntityClientEncryptionWss4j
         extends AbstractTestEntityClientHeader {
 

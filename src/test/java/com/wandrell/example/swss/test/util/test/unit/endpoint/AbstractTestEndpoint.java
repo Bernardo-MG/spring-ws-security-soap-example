@@ -33,7 +33,7 @@ import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesP
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
 /**
- * Abstract unit tests for setting up and endpoint test.
+ * Abstract unit tests for setting up endpoint tests.
  *
  * @author Bernardo Martínez Garrido
  */
