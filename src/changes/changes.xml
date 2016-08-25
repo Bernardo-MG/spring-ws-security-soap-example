@@ -80,5 +80,10 @@
             Corrected links in the readme.
          </action>
       </release>
+      <release version="1.2.0" date="2016-08-25" description="Added support for Tomcat">
+         <action dev="bmg" type="fix">
+            The project can be run with an embedded Tomcat 7, in addition to Jetty.
+         </action>
+      </release>
    </body>
 </document>
