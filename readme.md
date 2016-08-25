@@ -62,10 +62,22 @@ All other dependencies are handled through Maven, and noted in the included POM 
 
 ### Running the example
 
-To run the example just use the following Maven command:
+To run the example just use the following Maven command for Jetty:
 
 ```
-$ mvn clean package jetty:run-war -P jetty
+$ mvn jetty:run-war -P jetty
+```
+
+Or this one for Tomcat:
+
+```
+$ mvn tomcat7:run-war -P tomcat7
+```
+
+Of course, you can always package it and deploy the WAR manually in your preferred server:
+
+```
+$ mvn package
 ```
 
 After this all the endpoint URLs are accessible. These can be found below, and require some sort of SOAP client, such as the console one included in the project.

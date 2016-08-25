@@ -219,6 +219,44 @@
             </plugins>
          </build>
       </profile>
+      <profile>
+         <!-- Tomcat 7 profile -->
+         <!-- Sets ups Tomcat 7 for testing and local deployment -->
+         <id>tomcat7</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <!-- Tomcat 7 -->
+                  <!-- Tomcat 7 will run the web service during the integration tests -->
+                  <groupId>org.apache.tomcat.maven</groupId>
+                  <artifactId>tomcat7-maven-plugin</artifactId>
+                  <version>${plugin.tomcat7.version}</version>
+                  <configuration>
+                     <path>${server.test.path}</path>
+                  </configuration>
+                  <executions>
+                     <execution>
+                        <id>start-tomcat</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                           <goal>run</goal>
+                        </goals>
+                        <configuration>
+                           <fork>true</fork>
+                        </configuration>
+                     </execution>
+                     <execution>
+                        <id>stop-tomcat</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                           <goal>shutdown</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
    </profiles>
 
    <!-- ********************************************** -->
@@ -295,6 +333,7 @@
       <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
       <plugin.jetty.version>9.1.6.v20160112</plugin.jetty.version>
       <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
+      <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <plugin.war.version>2.6</plugin.war.version>
       <!-- Maven Site -->
       <site.skin.version>0.3.0</site.skin.version>
