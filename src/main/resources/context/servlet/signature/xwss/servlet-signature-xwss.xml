@@ -20,7 +20,7 @@
          classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, 
          classpath:config/endpoint/signature/xwss/endpoint-signature-xwss.properties" />
 
-   <!-- Imports -->
+   <!-- Imports the XWSS signed endpoint context -->
    <import
       resource="classpath:context/endpoint/signature/xwss/endpoint-signature-xwss.xml" />
 

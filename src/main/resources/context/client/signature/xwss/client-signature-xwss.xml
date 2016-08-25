@@ -21,10 +21,12 @@
          classpath:config/client/signature/xwss/client-signature-xwss.properties" />
 
    <!-- Imports base context -->
-   <import resource="classpath:context/keystore/keystore.xml" />
    <import resource="classpath:context/client/client.xml" />
+   <!-- Imports interceptor -->
    <import
       resource="classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.xml" />
+   <!-- Imports key store -->
+   <import resource="classpath:context/keystore/keystore.xml" />
 
    <!-- Extends client -->
    <bean id="signatureXwssClient" parent="baseClient" />

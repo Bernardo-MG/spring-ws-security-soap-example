@@ -18,9 +18,11 @@
          classpath:config/keystore/keystore.properties, 
          classpath:config/keystore/keystore-wss4j.properties" />
 
-   <!-- Imports -->
+   <!-- Imports persistence configuration -->
    <import resource="classpath:context/persistence.xml" />
+   <!-- Imports common services -->
    <import resource="classpath:context/service.xml" />
+   <!-- Imports keystores -->
    <import resource="classpath:context/keystore/keystore.xml" />
    <import resource="classpath:context/keystore/keystore-wss4j.xml" />
 
