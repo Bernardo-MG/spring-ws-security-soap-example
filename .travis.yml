@@ -9,11 +9,16 @@ jdk:
 # JDK 7 is set to deploy the docs in the configuration matrix
 #  - oraclejdk7
   - openjdk7
+env:
+  - SERVER=jetty
+  - SERVER=tomcat7
 matrix:
   include:
     # Documentation deployed with JDK7
     - jdk: oraclejdk7
-      env: DEPLOY_DOCS=true
+      env: DEPLOY_DOCS=true SERVER=jetty
+    - jdk: oraclejdk7
+      env: SERVER=tomcat7
 
 before_install:
   # Gets scripts
@@ -27,7 +32,7 @@ before_script:
   - ~/.scripts/java/maven/create-maven-settings.sh $VERSION_TYPE
 script:
   # Unit and integration tests are run
-  - mvn clean verify -P tomcat7
+  - mvn clean verify -P $SERVER
 after_success:
   # Documentation deployment script
-  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment,jetty
+  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment,$SERVER
