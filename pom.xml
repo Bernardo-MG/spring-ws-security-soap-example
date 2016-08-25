@@ -293,9 +293,7 @@
       <manifest.name>com/wandrell/example/spring/wss</manifest.name>
       <!-- Dependencies versions -->
       <ant.version>1.9.7</ant.version>
-      <bouncycastle.version>1.54</bouncycastle.version>
       <commons.codec.version>1.10</commons.codec.version>
-      <commons.io.version>2.5</commons.io.version>
       <commons.logging.version>1.2</commons.logging.version>
       <ehcache.version>2.10.2</ehcache.version>
       <freemarker.version>2.3.23</freemarker.version>
@@ -443,18 +441,6 @@
       <!-- ================= SECURITY =================== -->
       <!-- ============================================== -->
       <dependency>
-         <!-- Bouncy Castle Certificate Generation -->
-         <groupId>org.bouncycastle</groupId>
-         <artifactId>bcpkix-jdk15on</artifactId>
-         <version>${bouncycastle.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Bouncy Castle Provider -->
-         <groupId>org.bouncycastle</groupId>
-         <artifactId>bcprov-jdk15on</artifactId>
-         <version>${bouncycastle.version}</version>
-      </dependency>
-      <dependency>
          <!-- Commons Codec -->
          <groupId>commons-codec</groupId>
          <artifactId>commons-codec</artifactId>
@@ -529,12 +515,6 @@
       <!-- ============================================== -->
       <!-- ============ OTHER DEPENDENCIES ============== -->
       <!-- ============================================== -->
-      <dependency>
-         <!-- Commons IO -->
-         <groupId>commons-io</groupId>
-         <artifactId>commons-io</artifactId>
-         <version>${commons.io.version}</version>
-      </dependency>
       <dependency>
          <!-- Guava -->
          <groupId>com.google.guava</groupId>
