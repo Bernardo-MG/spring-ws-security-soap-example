@@ -30,4 +30,4 @@ script:
   - mvn clean verify
 after_success:
   # Documentation deployment script
-  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment
+  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment,jetty
