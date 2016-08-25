@@ -16,7 +16,7 @@ matrix:
   include:
     # Documentation deployed with JDK7
     - jdk: oraclejdk7
-      env: DEPLOY_DOCS=true SERVER=jetty
+      env: SERVER=jetty DEPLOY_DOCS=true
     - jdk: oraclejdk7
       env: SERVER=tomcat7
 

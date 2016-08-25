@@ -4,8 +4,6 @@ The [Spring-WS][spring-ws] framework allows creating new SOAP-based web services
 
 Among these the most important, the one being showcased by the project, is adding security with ease. Spring allows by default using the two most common [WS-Security][ws-security] implementations: [WSS4J][wss4j] and [XWSS][xwss].
 
----
-
 ## What will you find in this example?
 
 The project just wants to show how to set up WS-Security for a Spring-based web service. And as a side effect it also shows how to prepare a Spring-based web service and client.
