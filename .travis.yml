@@ -27,7 +27,7 @@ before_script:
   - ~/.scripts/java/maven/create-maven-settings.sh $VERSION_TYPE
 script:
   # Unit and integration tests are run
-  - mvn clean verify
+  - mvn clean verify -P jetty
 after_success:
   # Documentation deployment script
   - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment,jetty
