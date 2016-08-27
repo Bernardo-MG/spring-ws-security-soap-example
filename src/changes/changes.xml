@@ -80,9 +80,15 @@
             Corrected links in the readme.
          </action>
       </release>
-      <release version="1.2.0" date="2016-08-25" description="Added support for Tomcat">
+      <release version="1.2.0" date="2016-08-27" description="Added support for Tomcat">
          <action dev="bmg" type="fix">
             The project can be run with an embedded Tomcat 7, in addition to Jetty.
+         </action>
+         <action dev="bmg" type="update">
+            Moved keystore generator to its own project.
+         </action>
+         <action dev="bmg" type="update">
+            CI scripts are now taken from a repository.
          </action>
       </release>
    </body>
