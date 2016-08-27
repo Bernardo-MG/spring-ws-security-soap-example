@@ -32,10 +32,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
-import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -48,14 +46,12 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
-        ServletWss4jContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
-        TestContextPaths.KEYSTORE_WSS4J })
-@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
+@ContextConfiguration(locations = { ServletWss4jContextPaths.ENCRYPTION,
+        TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE,
         SoapPropertiesPaths.ENCRYPTION_WSS4J,
         InterceptorWss4jPropertiesPaths.ENCRYPTION,
-        EndpointWss4jPropertiesPaths.ENCRYPTION, EndpointPropertiesPaths.COMMON,
-        TestPropertiesPaths.USER, TestPropertiesPaths.KEYSTORE,
+        EndpointWss4jPropertiesPaths.ENCRYPTION, TestPropertiesPaths.KEYSTORE,
         TestPropertiesPaths.KEYSTORE_WSS4J,
         TestEndpointWss4jPropertiesPaths.ENCRYPTION })
 public final class TestEntityEndpointRequestEncryptionWss4j

@@ -38,8 +38,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.PASSWORD_DIGEST })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.PASSWORD_DIGEST,
+@TestPropertySource({ SoapPropertiesPaths.PASSWORD_DIGEST,
         TestPropertiesPaths.USER })
 public final class TestEntityClientPasswordDigestWss4j
         extends AbstractTestEntityClientHeader {

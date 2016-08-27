@@ -29,7 +29,6 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.wandrell.example.swss.test.util.config.context.ClientXwssContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEntityClient;
 
 /**
@@ -39,8 +38,7 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_DIGEST })
-@TestPropertySource({ TestPropertiesPaths.ENTITY,
-        TestEndpointWss4jPropertiesPaths.PASSWORD_DIGEST })
+@TestPropertySource({ TestEndpointWss4jPropertiesPaths.PASSWORD_DIGEST })
 public final class ITEntityClientPasswordDigestXwssToWss4j
         extends AbstractITEntityClient {
 

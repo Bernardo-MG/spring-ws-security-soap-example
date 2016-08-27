@@ -27,13 +27,11 @@ package com.wandrell.example.swss.test.integration.endpoint.password.plain.wss4j
 import javax.xml.soap.SOAPMessage;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.test.util.SoapMessageUtils;
-import com.wandrell.example.swss.test.util.config.context.TestContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
@@ -53,8 +51,7 @@ import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITE
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { TestContextPaths.DEFAULT })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.USER,
+@TestPropertySource({ TestPropertiesPaths.USER,
         SoapPropertiesPaths.PASSWORD_PLAIN,
         TestEndpointWss4jPropertiesPaths.PASSWORD_PLAIN })
 public final class ITEntityEndpointPasswordPlainWss4j

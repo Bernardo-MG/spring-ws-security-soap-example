@@ -30,7 +30,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
@@ -38,12 +37,10 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
-import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
-import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
+import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEndpoint;
 
 /**
  * Unit tests for an unsecured endpoint testing that it handles payload-based
@@ -57,12 +54,10 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
-        ServletWss4jContextPaths.UNSECURE })
-@TestPropertySource({ TestPropertiesPaths.WSDL, SoapPropertiesPaths.UNSECURE,
-        EndpointXwssPropertiesPaths.UNSECURE, EndpointPropertiesPaths.COMMON })
-public final class TestEntityEndpointUnsecure
-        extends AbstractTestNGSpringContextTests {
+@ContextConfiguration(locations = { ServletWss4jContextPaths.UNSECURE })
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE,
+        EndpointXwssPropertiesPaths.UNSECURE })
+public final class TestEntityEndpointUnsecure extends AbstractTestEndpoint {
 
     /**
      * Application context to be used for creating the client mock.

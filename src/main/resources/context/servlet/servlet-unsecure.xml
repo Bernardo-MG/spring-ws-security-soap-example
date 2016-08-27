@@ -18,7 +18,7 @@
       location="classpath:config/endpoint/endpoint.properties, 
          classpath:config/endpoint/endpoint-unsecure.properties" />
 
-   <!-- Imports -->
+   <!-- Imports the unsecure endpoint context -->
    <import resource="classpath:context/endpoint/endpoint-unsecure.xml" />
 
 </beans>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
    xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context
@@ -9,8 +9,10 @@
    <description>
       Context for the WSS4J encrypted client.
 
-      A normal key store and a WSS4J one are required for this to work, such
-      as the ones provided by the key stores context files.
+      A normal key store and a
+      WSS4J one are required for this to work, such
+      as the ones provided by the
+      key stores context files.
    </description>
 
    <!-- Properties -->
@@ -21,11 +23,13 @@
          classpath:config/keystore/keystore-wss4j.properties" />
 
    <!-- Imports base context -->
-   <import resource="classpath:context/keystore/keystore.xml" />
-   <import resource="classpath:context/keystore/keystore-wss4j.xml" />
    <import resource="classpath:context/client/client.xml" />
+   <!-- Imports interceptor -->
    <import
       resource="classpath:context/interceptor/encryption/wss4j/interceptor-encryption-wss4j.xml" />
+   <!-- Imports key store -->
+   <import resource="classpath:context/keystore/keystore.xml" />
+   <import resource="classpath:context/keystore/keystore-wss4j.xml" />
 
    <!-- Extends client -->
    <bean id="encryptionWss4jClient" parent="baseClient" />

@@ -20,7 +20,7 @@
          classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties, 
          classpath:config/endpoint/signature/wss4j/endpoint-signature-wss4j.properties" />
 
-   <!-- Imports -->
+   <!-- Imports the WSS4J signed endpoint context -->
    <import
       resource="classpath:context/endpoint/signature/wss4j/endpoint-signature-wss4j.xml" />
 

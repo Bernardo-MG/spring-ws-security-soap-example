@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
@@ -38,6 +38,7 @@ import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
+import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
 
 /**
@@ -55,8 +56,9 @@ import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
  *
  * @author Bernardo Martínez Garrido
  */
+@TestPropertySource({ TestPropertiesPaths.USER })
 public abstract class AbstractTestEntityEndpointRequest
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractTestEndpoint {
 
     /**
      * Application context to be used for creating the client mock.
@@ -83,7 +85,7 @@ public abstract class AbstractTestEntityEndpointRequest
     private String             soapAction;
 
     /**
-     * Constructs an {@code AbstractTestEntityEndpointRequest}.
+     * Default constructor.
      */
     public AbstractTestEntityEndpointRequest() {
         super();

@@ -21,19 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/**
- * Factories for generating key stores.
- * <p>
- * These classes are to be used only when fresh key stores are required for the
- * project.
- * <p>
- * This can be done by using the
- * {@link com.wandrell.example.swss.security.KeystoreGenerator
- * KeystoreGenerator} runnable class, which will overwrite the existing key
- * stores.
- * <p>
- * The actual keystore creation is taken care by the
- * {@link com.wandrell.example.swss.security.KeystoreFactory KeystoreFactory}.
- */
 
-package com.wandrell.example.swss.security;
+package com.wandrell.example.swss.test.util.test.unit.client;
+
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+
+import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
+
+/**
+ * Abstract unit tests for setting up client tests.
+ *
+ * @author Bernardo Martínez Garrido
+ */
+@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL })
+public abstract class AbstractTestEntityClient
+        extends AbstractTestNGSpringContextTests {
+
+    /**
+     * Default constructor.
+     */
+    public AbstractTestEntityClient() {
+        super();
+    }
+
+}

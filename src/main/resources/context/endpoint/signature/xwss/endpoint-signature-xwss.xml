@@ -13,6 +13,7 @@
 
    <!-- Imports base context -->
    <import resource="classpath:context/endpoint/endpoint.xml" />
+   <!-- Imports interceptor -->
    <import
       resource="classpath:context/interceptor/signature/xwss/interceptor-signature-xwss.xml" />
 

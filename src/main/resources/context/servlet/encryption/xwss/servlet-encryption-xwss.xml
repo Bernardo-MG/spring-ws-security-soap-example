@@ -20,7 +20,7 @@
          classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties, 
          classpath:config/endpoint/encryption/xwss/endpoint-encryption-xwss.properties" />
 
-   <!-- Imports -->
+   <!-- Imports the XWSS encrypted endpoint context -->
    <import
       resource="classpath:context/endpoint/encryption/xwss/endpoint-encryption-xwss.xml" />
 

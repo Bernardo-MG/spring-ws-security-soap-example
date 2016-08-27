@@ -43,10 +43,10 @@ Documentation is also generated from the latest snapshot, taken from the 'develo
 The documentation site sources come along the source code (as it is a Maven site), so it is always possible to generate them using the following Maven command:
 
 ```
-$ mvn verify site
+$ mvn verify site -P jetty
 ```
 
-The verify phase is required, as otherwise some of the reports won't be created.
+The verify phase is required, as otherwise some of the reports won't be created, while the jetty profile is used to run the tests with Jetty.
 
 ## Usage
 
@@ -62,10 +62,22 @@ All other dependencies are handled through Maven, and noted in the included POM 
 
 ### Running the example
 
-To run the example just use the following Maven command:
+To run the example just use the following Maven command for Jetty:
 
 ```
-$ mvn clean package jetty:run-war
+$ mvn jetty:run-war -P jetty
+```
+
+Or this one for Tomcat:
+
+```
+$ mvn tomcat7:run-war -P tomcat7
+```
+
+Of course, you can always package it and deploy the WAR manually in your preferred server:
+
+```
+$ mvn package
 ```
 
 After this all the endpoint URLs are accessible. These can be found below, and require some sort of SOAP client, such as the console one included in the project.

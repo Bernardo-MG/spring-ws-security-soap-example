@@ -38,7 +38,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Martínez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.ENCRYPTION })
-@TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE,
         TestEndpointWss4jPropertiesPaths.ENCRYPTION })
 public final class ITEntityClientEncryptionXwssToWss4j {
 

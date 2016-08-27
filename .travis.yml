@@ -1,3 +1,7 @@
+# Travis CI Configuration file
+# @link https://travis-ci.org/
+
+# Using Java for the project
 language: java
 jdk:
 # JDK 8 is not supported
@@ -5,27 +9,30 @@ jdk:
 # JDK 7 is set to deploy the docs in the configuration matrix
 #  - oraclejdk7
   - openjdk7
+env:
+  - SERVER=jetty
+  - SERVER=tomcat7
 matrix:
   include:
     # Documentation deployed with JDK7
     - jdk: oraclejdk7
-      env: DEPLOY_DOCS=true
+      env: SERVER=jetty DEPLOY_DOCS=true
+    - jdk: oraclejdk7
+      env: SERVER=tomcat7
 
 before_install:
-  # Scripts are set as executable
-  - chmod +x ./.scripts/load-travis-environment.sh
-  - chmod +x ./.scripts/create-maven-settings.sh
-  - chmod +x ./.scripts/deploy.sh
-  - chmod +x ./.scripts/deploy-site.sh
+  # Gets scripts
+  - git clone -b v0.1.6 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  # Sets scripts as executable
+  - chmod -R +x ~/.scripts/*
   # Prepares CI environment
-  - source ./.scripts/load-travis-environment.sh
+  - source ~/.scripts/travis/load-travis-environment.sh
+before_script:
   # Creates Maven settings
-  - ./.scripts/create-maven-settings.sh
+  - ~/.scripts/java/maven/create-maven-settings.sh $VERSION_TYPE
 script:
   # Unit and integration tests are run
-  - mvn clean verify
+  - mvn clean verify -P $SERVER
 after_success:
   # Documentation deployment script
-  - ./.scripts/deploy-site.sh
-  # Code artifacts deployment script
-  - ./.scripts/deploy.sh
+  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment,$SERVER

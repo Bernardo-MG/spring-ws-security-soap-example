@@ -31,14 +31,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
-import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
-import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.InterceptorWss4jPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
 import com.wandrell.example.swss.test.util.config.properties.TestEndpointWss4jPropertiesPaths;
-import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.factory.SecureSoapMessages;
 import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntityEndpointRequest;
 
@@ -47,13 +44,11 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Martínez Garrido
  */
-@ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED,
-        ServletWss4jContextPaths.PASSWORD_PLAIN_MOCKED })
-@TestPropertySource({ TestPropertiesPaths.WSDL,
-        SoapPropertiesPaths.PASSWORD_PLAIN,
+@ContextConfiguration(
+        locations = { ServletWss4jContextPaths.PASSWORD_PLAIN_MOCKED })
+@TestPropertySource({ SoapPropertiesPaths.PASSWORD_PLAIN,
         InterceptorWss4jPropertiesPaths.PASSWORD_PLAIN,
         EndpointWss4jPropertiesPaths.PASSWORD_PLAIN,
-        EndpointPropertiesPaths.COMMON, TestPropertiesPaths.USER,
         TestEndpointWss4jPropertiesPaths.PASSWORD_PLAIN })
 public final class TestEntityEndpointRequestPasswordPlainWss4j
         extends AbstractTestEntityEndpointRequest {

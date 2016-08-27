@@ -98,7 +98,7 @@ public abstract class AbstractTestEntityClientEnvelope
     private String              responsePayloadPath;
 
     /**
-     * Constructs a {@code AbstractTestEntityClientHeader}.
+     * Default constructor.
      */
     public AbstractTestEntityClientEnvelope() {
         super();
