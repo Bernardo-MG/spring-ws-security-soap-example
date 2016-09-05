@@ -334,7 +334,7 @@
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <plugin.war.version>2.6</plugin.war.version>
       <!-- Maven Site -->
-      <site.skin.version>0.3.0</site.skin.version>
+      <site.skin.version>0.4.0</site.skin.version>
       <!-- Testing server -->
       <server.test.path>/swss</server.test.path>
    </properties>
