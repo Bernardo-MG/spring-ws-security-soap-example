@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.5</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -20,7 +20,7 @@
 
    <groupId>com.wandrell.example</groupId>
    <artifactId>swss-soap-example</artifactId>
-   <version>1.2.0</version>
+   <version>1.2.1</version>
    <packaging>war</packaging>
 
    <name>Spring Web Services WS-Security Example</name>
@@ -149,7 +149,7 @@
             <site>
                <id>site</id>
                <name>Project Documentation Site</name>
-               <url>ftp://docs.wandrell.com/swss-soap-example</url>
+               <url>scp://docs.wandrell.com:2222/home1/duenco/www/maven/swss-soap-example</url>
             </site>
          </distributionManagement>
       </profile>
@@ -161,7 +161,7 @@
             <site>
                <id>site-development</id>
                <name>Project Development Documentation Site</name>
-               <url>ftp://docs.wandrell.com/swss-soap-example</url>
+               <url>scp://docs.wandrell.com:2222/home1/duenco/www/development/maven/swss-soap-example</url>
             </site>
          </distributionManagement>
       </profile>
@@ -332,9 +332,9 @@
       <plugin.jetty.version>9.1.6.v20160112</plugin.jetty.version>
       <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
-      <plugin.war.version>2.6</plugin.war.version>
+      <plugin.war.version>3.0.0</plugin.war.version>
       <!-- Maven Site -->
-      <site.skin.version>0.3.0</site.skin.version>
+      <site.skin.version>0.4.0</site.skin.version>
       <!-- Testing server -->
       <server.test.path>/swss</server.test.path>
    </properties>
