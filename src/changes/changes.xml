@@ -91,5 +91,10 @@
             CI scripts are now taken from a repository.
          </action>
       </release>
+      <release version="1.2.1" date="2016-09-28" description="Site deployment">
+         <action dev="bmg" type="update">
+            Maven site is now deployed through SSH.
+         </action>
+      </release>
    </body>
 </document>
