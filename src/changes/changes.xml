@@ -96,5 +96,10 @@
             Maven site is now deployed through SSH.
          </action>
       </release>
+      <release version="1.2.2" date="2016-12-09" description="Minor changes">
+         <action dev="bmg" type="update">
+            Updated Maven configuration.
+         </action>
+      </release>
    </body>
 </document>
