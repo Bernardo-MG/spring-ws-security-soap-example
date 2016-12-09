@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.0.5</version>
+      <version>1.1.0</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -20,7 +20,7 @@
 
    <groupId>com.wandrell.example</groupId>
    <artifactId>swss-soap-example</artifactId>
-   <version>1.2.1</version>
+   <version>1.2.2</version>
    <packaging>war</packaging>
 
    <name>Spring Web Services WS-Security Example</name>
@@ -330,11 +330,10 @@
       <plugin.changes.version>2.12</plugin.changes.version>
       <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
       <plugin.jetty.version>9.1.6.v20160112</plugin.jetty.version>
-      <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <plugin.war.version>3.0.0</plugin.war.version>
       <!-- Maven Site -->
-      <site.skin.version>0.4.0</site.skin.version>
+      <site.skin.version>0.5.0</site.skin.version>
       <!-- Testing server -->
       <server.test.path>/swss</server.test.path>
    </properties>
@@ -684,12 +683,6 @@
                   <groupId>com.wandrell.maven.skins</groupId>
                   <artifactId>docs-maven-skin</artifactId>
                   <version>${site.skin.version}</version>
-               </dependency>
-               <dependency>
-                  <!-- Velocity -->
-                  <groupId>org.apache.velocity</groupId>
-                  <artifactId>velocity</artifactId>
-                  <version>${plugin.site.velocity.version}</version>
                </dependency>
             </dependencies>
          </plugin>

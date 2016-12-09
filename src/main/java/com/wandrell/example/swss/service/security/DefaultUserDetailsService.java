@@ -26,8 +26,8 @@ package com.wandrell.example.swss.service.security;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,7 +74,7 @@ public final class DefaultUserDetailsService implements UserDetailsService {
 
         if ("myUser".equalsIgnoreCase(username)) {
             // User for password-based security
-            authorities = new LinkedList<SimpleGrantedAuthority>();
+            authorities = new ArrayList<SimpleGrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
             user = new User(username, "myPassword", authorities);
