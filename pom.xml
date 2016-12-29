@@ -320,7 +320,7 @@
       <spring.data.version>1.10.6.RELEASE</spring.data.version>
       <spring.version>4.3.2.RELEASE</spring.version>
       <spring.security.version>4.1.1.RELEASE</spring.security.version>
-      <spring.ws.version>2.3.0.RELEASE</spring.ws.version>
+      <spring.ws.version>2.4.0.RELEASE</spring.ws.version>
       <stax.api.version>1.0.1</stax.api.version>
       <stax.impl.version>1.2.0</stax.impl.version>
       <testng.version>6.10</testng.version>
