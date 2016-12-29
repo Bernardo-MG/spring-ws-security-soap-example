@@ -62,7 +62,7 @@ All other dependencies are handled through Maven, and noted in the included POM 
 
 ### Running the example
 
-To run the example just use the following Maven command for Jetty:
+To run the example locally just use the following Maven command for Jetty:
 
 ```
 $ mvn jetty:run-war -P jetty
@@ -82,10 +82,9 @@ $ mvn package
 
 After this all the endpoint URLs are accessible. These can be found below, and require some sort of SOAP client, such as the console one included in the project.
 
-This console client can be used by just running the ConsoleClient class,
-located in the com.wandrell.example.swss.client.console folder.
+This console client can be used by just running the ConsoleClient class, located in the com.wandrell.example.swss.client.console folder.
 
-### Running the example on Java 8
+### Running the example with Java 8
 
 Sadly, the example currently can't be run on Java 8. This is due a compatibility issue with Spring-WS and the security implementations.
 
