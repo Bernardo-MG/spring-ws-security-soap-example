@@ -24,7 +24,7 @@
 
    <groupId>com.wandrell.example</groupId>
    <artifactId>swss-soap-example</artifactId>
-   <version>1.2.3-SNAPSHOT</version>
+   <version>1.2.3</version>
    <packaging>war</packaging>
 
    <name>Spring Web Services WS-Security Example</name>
