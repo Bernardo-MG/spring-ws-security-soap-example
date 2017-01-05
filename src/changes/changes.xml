@@ -101,5 +101,10 @@
             Updated Maven configuration.
          </action>
       </release>
+      <release version="1.2.3" date="2016-01-05" description="Updated dependencies">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+      </release>
    </body>
 </document>
