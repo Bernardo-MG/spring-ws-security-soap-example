@@ -68,6 +68,12 @@ The project has been tested on the following Java versions:
 
 All other dependencies are handled through Maven, and noted in the included POM file. This includes the plugins used for running the example in an embedded web server.
 
+### Generated code
+
+The project includes generated code. This is handled automatically by Maven, but if for some reason the generation fails then there will be missing classes in the project.
+
+If that happens clean and rebuild with Maven.
+
 ### Running the example
 
 To run the example locally just use the following Maven command for Jetty:
