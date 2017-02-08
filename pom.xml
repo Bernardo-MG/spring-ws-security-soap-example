@@ -69,10 +69,10 @@
    <profiles>
       <profile>
          <!-- Profile for the Eclipse Maven plugin -->
-         <!-- Sets the POM so this plugin does not give the usual unregistered goals 
-            errors -->
-         <!-- It will be activated automatically on Eclipse if this has the m2e plugin, 
-            by detecting the version property -->
+         <!-- Sets the POM so this plugin does not give the usual unregistered 
+            goals errors -->
+         <!-- It will be activated automatically on Eclipse if this has the 
+            m2e plugin, by detecting the version property -->
          <id>eclipse-maven</id>
          <activation>
             <property>
@@ -84,9 +84,10 @@
                <plugins>
                   <plugin>
                      <!-- m2e lifecycle mapping -->
-                     <!-- This is used to configure the Maven plugin for Eclipse. -->
-                     <!-- Among other things, it allows registering goals, which 
-                        Eclipse would otherwise reject. -->
+                     <!-- This is used to configure the Maven plugin for 
+                        Eclipse. -->
+                     <!-- Among other things, it allows registering goals, 
+                        which Eclipse would otherwise reject. -->
                      <!-- It has no real effect on Maven. -->
                      <groupId>org.eclipse.m2e</groupId>
                      <artifactId>lifecycle-mapping</artifactId>
@@ -186,7 +187,8 @@
             <plugins>
                <plugin>
                   <!-- Jetty -->
-                  <!-- Jetty will run the web service during the integration tests -->
+                  <!-- Jetty will run the web service during the integration 
+                     tests -->
                   <groupId>org.eclipse.jetty</groupId>
                   <artifactId>jetty-maven-plugin</artifactId>
                   <version>${plugin.jetty.version}</version>
@@ -231,7 +233,8 @@
             <plugins>
                <plugin>
                   <!-- Tomcat 7 -->
-                  <!-- Tomcat 7 will run the web service during the integration tests -->
+                  <!-- Tomcat 7 will run the web service during the integration 
+                     tests -->
                   <groupId>org.apache.tomcat.maven</groupId>
                   <artifactId>tomcat7-maven-plugin</artifactId>
                   <version>${plugin.tomcat7.version}</version>
@@ -331,7 +334,6 @@
       <xwssecurity.version>3.0</xwssecurity.version>
       <!-- Plugins versions -->
       <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
-      <plugin.changes.version>2.12.1</plugin.changes.version>
       <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
       <plugin.jetty.version>9.1.6.v20160112</plugin.jetty.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
@@ -635,14 +637,51 @@
 
    <build>
       <defaultGoal>clean package</defaultGoal>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <!-- Build helper -->
+               <!-- Adds the generated files to the Maven classpath -->
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>build-helper-maven-plugin</artifactId>
+               <version>${plugin.buildhelp.version}</version>
+            </plugin>
+            <plugin>
+               <!-- JAXB2 -->
+               <!-- Generates source code from the WSDL files -->
+               <groupId>org.jvnet.jaxb2.maven2</groupId>
+               <artifactId>maven-jaxb2-plugin</artifactId>
+               <version>${plugin.jaxb2.version}</version>
+            </plugin>
+         </plugins>
+      </pluginManagement>
       <plugins>
+         <plugin>
+            <!-- Build helper -->
+            <!-- Adds the generated files to the Maven classpath -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>add-source</id>
+                  <goals>
+                     <goal>add-source</goal>
+                  </goals>
+                  <configuration>
+                     <sources>
+                        <!-- JAXB generated sources -->
+                        <source>${project.build.directory}/generated-sources/xjc</source>
+                     </sources>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
          <plugin>
             <!-- Changes -->
             <!-- Takes care of the changes log -->
             <!-- It is set to also validate the changes log file -->
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-changes-plugin</artifactId>
-            <version>${plugin.changes.version}</version>
             <executions>
                <!-- Changes plugin is bound to the pre-site phase -->
                <execution>
@@ -677,65 +716,10 @@
             </configuration>
          </plugin>
          <plugin>
-            <!-- Site -->
-            <!-- Generates the Maven Site -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <dependencies>
-               <dependency>
-                  <!-- Docs Maven Skin -->
-                  <groupId>com.wandrell.maven.skins</groupId>
-                  <artifactId>docs-maven-skin</artifactId>
-                  <version>${site.skin.version}</version>
-               </dependency>
-            </dependencies>
-         </plugin>
-         <plugin>
-            <!-- Surefire -->
-            <!-- Runs unit tests -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-               <suiteXmlFiles>
-                  <!-- Path to the unit tests suite file -->
-                  <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
-               </suiteXmlFiles>
-            </configuration>
-         </plugin>
-         <plugin>
-            <!-- WAR -->
-            <!-- Generates the WAR file -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>${plugin.war.version}</version>
-         </plugin>
-         <plugin>
-            <!-- Build helper -->
-            <!-- Adds the generated files to the Maven classpath -->
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <version>${plugin.buildhelp.version}</version>
-            <executions>
-               <execution>
-                  <id>add-source</id>
-                  <goals>
-                     <goal>add-source</goal>
-                  </goals>
-                  <configuration>
-                     <sources>
-                        <!-- JAXB generated sources -->
-                        <source>${project.build.directory}/generated-sources/xjc</source>
-                     </sources>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
             <!-- JAXB2 -->
             <!-- Generates source code from the WSDL files -->
             <groupId>org.jvnet.jaxb2.maven2</groupId>
             <artifactId>maven-jaxb2-plugin</artifactId>
-            <version>${plugin.jaxb2.version}</version>
             <executions>
                <execution>
                   <id>generate-jaxb</id>
@@ -768,6 +752,39 @@
                   <version>${jaxb.version}</version>
                </dependency>
             </dependencies>
+         </plugin>
+         <plugin>
+            <!-- Site -->
+            <!-- Generates the Maven Site -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <dependencies>
+               <dependency>
+                  <!-- Docs Maven Skin -->
+                  <groupId>com.wandrell.maven.skins</groupId>
+                  <artifactId>docs-maven-skin</artifactId>
+                  <version>${site.skin.version}</version>
+               </dependency>
+            </dependencies>
+         </plugin>
+         <plugin>
+            <!-- Surefire -->
+            <!-- Runs unit tests -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <suiteXmlFiles>
+                  <!-- Path to the unit tests suite file -->
+                  <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
+               </suiteXmlFiles>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- WAR -->
+            <!-- Generates the WAR file -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${plugin.war.version}</version>
          </plugin>
       </plugins>
    </build>
@@ -813,7 +830,8 @@
          </plugin>
          <plugin>
             <!-- PMD -->
-            <!-- Checks that the code complies with a series of code quality rules -->
+            <!-- Checks that the code complies with a series of code quality 
+               rules -->
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
             <configuration>
