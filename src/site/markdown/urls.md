@@ -1,6 +1,6 @@
 # URLs
 
-The web service uses the following base URL: [http://localhost:8080/swss/](http://localhost:8080/swss/).
+Once it is running the web service will be accessible from the following base URL: [http://localhost:8080/swss/](http://localhost:8080/swss/).
 
 But this is just an empty URL leading nowhere. To actually use the web service one of the endpoints should be queried.
 

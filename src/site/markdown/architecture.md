@@ -1,7 +1,5 @@
 # Configuration info
 
-While the architecture tries to be very simple there are some things which require a bit of detailing.
-
 ## Spring usage
 
 As the project is based on [Spring-WS][spring-ws] it makes a heavy use of [Spring][spring]. All the components are loaded and connected inside Spring contexts.

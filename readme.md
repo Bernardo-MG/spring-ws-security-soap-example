@@ -1,10 +1,18 @@
 # Spring Web Services WS-Security Example
 
-[Spring WS][spring-ws] SOAP web service setting up the various [WS-Security][ws-security] protocols.
+Sample [Spring WS][spring-ws] SOAP web service which sets up various [WS-Security][ws-security] protocols.
 
-The project prepares several endpoints, one for each security protocol (unsecured, plain password, digested password, signed and encrypted). Two implementations of WS-Security, [WSS4J][wss4j] and [XWSS][xwss], are used for this.
+Two implementations of WS-Security, [WSS4J][wss4j] and [XWSS][xwss], are supported. For each of them there will be a different endpoint for each authentication methods:
+
+- Unsecure.
+- Plain password.
+- Digested password.
+- Signature.
+- Encryption.
 
 All these endpoint are based on the same structure: an annotated class, a XSD file used to generate the WSDL and a simple model. Only the actual Spring configuration varies from one another.
+
+The configuration makes use of XML and properties files. This way it is easier noticing what is the actual reusable code, and what is just part of the configuration.
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
