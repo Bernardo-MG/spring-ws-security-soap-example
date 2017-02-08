@@ -106,5 +106,13 @@
             Updated dependencies.
          </action>
       </release>
+      <release version="1.2.4" date="2016-02-08" description="Updated configuration">
+         <action dev="bmg" type="update">
+            Updated base POM.
+         </action>
+         <action dev="bmg" type="update">
+            Updated docs.
+         </action>
+      </release>
    </body>
 </document>
