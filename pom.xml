@@ -333,7 +333,7 @@
       <xmlsec.version>2.0.8</xmlsec.version>
       <xwssecurity.version>3.0</xwssecurity.version>
       <!-- Plugins versions -->
-      <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
+      <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
       <plugin.jetty.version>9.1.6.v20160112</plugin.jetty.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
