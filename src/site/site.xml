@@ -36,6 +36,7 @@
             <item name="Endpoint URLs" href="./urls.html" />
             <item name="Clients" href="./client.html" />
             <item name="Key stores" href="./keystore.html" />
+            <item name="Generated code" href="./generated.html" />
             <item name="Logging" href="./log.html" />
 		</menu>
 		<menu name="Info and reports" inherit="bottom">
