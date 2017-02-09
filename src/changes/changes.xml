@@ -106,7 +106,7 @@
             Updated dependencies.
          </action>
       </release>
-      <release version="1.2.4" date="2016-02-08" description="Updated configuration">
+      <release version="1.2.4" date="2016-02-09" description="Updated configuration">
          <action dev="bmg" type="update">
             Updated base POM.
          </action>
