@@ -101,17 +101,22 @@
             Updated Maven configuration.
          </action>
       </release>
-      <release version="1.2.3" date="2016-01-06" description="Updated dependencies">
+      <release version="1.2.3" date="2017-01-06" description="Updated dependencies">
          <action dev="bmg" type="update">
             Updated dependencies.
          </action>
       </release>
-      <release version="1.2.4" date="2016-02-09" description="Updated configuration">
+      <release version="1.2.4" date="2017-02-09" description="Updated configuration">
          <action dev="bmg" type="update">
             Updated base POM.
          </action>
          <action dev="bmg" type="update">
             Updated docs.
+         </action>
+      </release>
+      <release version="1.2.5" date="2017-03-31" description="Updated configuration">
+         <action dev="bmg" type="update">
+            Updated base POM and project configuration.
          </action>
       </release>
    </body>
