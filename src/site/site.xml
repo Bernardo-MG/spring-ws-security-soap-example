@@ -20,7 +20,11 @@
 			</topNav>
 			<bottomNav>
 				<menu>General Info</menu>
+            <menu>Code</menu>
 			</bottomNav>
+         <iconNav>
+            <menu>Icons</menu>
+         </iconNav>
 		</skinConfig>
 	</custom>
 
@@ -44,6 +48,20 @@
 			<item name="Reports" href="./reports.html" />
 			<item name="JavaDocs" href="./apidocs/" />
 		</menu>
+      <menu name="Code" inherit="bottom">
+         <item name="SCM" href="${project.scm.url}">
+            <description>GitHub</description>
+         </item>
+         <item name="CI" href="${project.ciManagement.url}">
+            <description>${project.ciManagement.system}</description>
+         </item>
+         <item name="Issues" href="${project.issueManagement.url}">
+            <description>${project.issueManagement.system}</description>
+         </item>
+      </menu>
+      <menu name="Icons" inherit="bottom">
+         <item name="Github" img="github" href="${project.scm.url}" />
+      </menu>
 	</body>
 
 </project>
