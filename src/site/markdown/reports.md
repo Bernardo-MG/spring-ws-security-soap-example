@@ -39,6 +39,7 @@
 [checkstyle]: ./checkstyle.html
 [cpd]: ./cpd.html
 [dependencies]: ./dependencies.html
+[dependencies-check]: ./dependency-check-report.html
 [dependency-analysis]: ./dependency-analysis.html
 [failsafe]: ./failsafe-report.html
 [findbugs]: ./findbugs.html
