@@ -804,8 +804,9 @@
             <artifactId>maven-javadoc-plugin</artifactId>
             <configuration>
                <links>
-                  <link>http://docs.spring.io/spring-ws/site/apidocs/</link>
                   <link>http://docs.oracle.com/javaee/7/api/</link>
+                  <link>http://docs.spring.io/spring-framework/docs/current/javadoc-api/</link>
+                  <link>http://docs.spring.io/spring-ws/site/apidocs/</link>
                </links>
                <!-- Excludes generated code -->
                <excludePackageNames>*.generated.*</excludePackageNames>
