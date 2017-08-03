@@ -15,7 +15,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.1.4</version>
+      <version>1.1.5</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -342,7 +342,7 @@
          generation with an error -->
       <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
       <!-- Maven Site -->
-      <site.skin.version>0.6.0</site.skin.version>
+      <site.skin.version>1.0.0</site.skin.version>
       <!-- Testing server -->
       <server.test.path>/swss</server.test.path>
    </properties>
