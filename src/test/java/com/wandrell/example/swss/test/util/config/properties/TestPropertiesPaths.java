@@ -29,7 +29,7 @@ package com.wandrell.example.swss.test.util.config.properties;
  * <p>
  * These contain generic data required in several tests.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestPropertiesPaths {
 

@@ -36,7 +36,7 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * Integration test for a plain password protected web service using XWSS for
  * the client and WSS4J for the web service.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestPropertiesPaths.SECURITY_PASSWORD_PLAIN_INVALID,

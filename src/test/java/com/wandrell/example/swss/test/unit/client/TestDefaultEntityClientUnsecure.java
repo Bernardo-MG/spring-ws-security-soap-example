@@ -55,7 +55,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  * <li>The client can handle incorrectly formed SOAP messages.</li>
  * </ol>
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ SoapPropertiesPaths.UNSECURE })

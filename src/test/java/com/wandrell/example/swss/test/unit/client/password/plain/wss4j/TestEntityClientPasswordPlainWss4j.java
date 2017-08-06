@@ -34,7 +34,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
 /**
  * Unit test for a WSS4J plain password protected client.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ SoapPropertiesPaths.PASSWORD_PLAIN })

@@ -45,7 +45,7 @@ import com.wandrell.example.swss.client.EntityClient;
  * Pay attention to the fact that it requires the WS to be running, and a Spring
  * context to populate the test data.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public abstract class AbstractITEntityClientInvalid
         extends AbstractTestNGSpringContextTests {

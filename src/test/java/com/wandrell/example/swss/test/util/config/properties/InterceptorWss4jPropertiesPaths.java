@@ -29,7 +29,7 @@ package com.wandrell.example.swss.test.util.config.properties;
  * <p>
  * These files contain the data required for setting up an interceptor context.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class InterceptorWss4jPropertiesPaths {
 

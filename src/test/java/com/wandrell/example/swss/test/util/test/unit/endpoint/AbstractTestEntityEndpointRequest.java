@@ -54,7 +54,7 @@ import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
  * This base test is meant for those endpoints where the full envelope is more
  * important than the payload, which is the case of the secured endpoints.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.USER })
 public abstract class AbstractTestEntityEndpointRequest

@@ -29,7 +29,7 @@ package com.wandrell.example.swss.test.util.config.context;
  * <p>
  * These are generic context configurations required by some of the tests.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestContextPaths {
 

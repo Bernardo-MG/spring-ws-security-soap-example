@@ -46,7 +46,7 @@ import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITE
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { TestContextPaths.KEYSTORE })
 @TestPropertySource({ TestPropertiesPaths.KEYSTORE,

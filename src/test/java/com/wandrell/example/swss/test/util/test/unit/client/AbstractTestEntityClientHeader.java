@@ -56,7 +56,7 @@ import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths
  * <p>
  * This base test is meant for those clients securing the SOAP message.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ SoapPropertiesPaths.UNSECURE })
 public abstract class AbstractTestEntityClientHeader

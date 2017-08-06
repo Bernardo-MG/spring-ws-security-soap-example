@@ -36,7 +36,7 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * Integration test for a signed web service using WSS4J for both the client and
  * the web service.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.SIGNATURE })
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.KEYSTORE,

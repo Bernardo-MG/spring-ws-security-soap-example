@@ -48,7 +48,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * Pay attention to the fact that it requires the WS to be running, and a Spring
  * context to populate the test data.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.ENTITY })
 public abstract class AbstractITEntityClient

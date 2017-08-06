@@ -42,7 +42,7 @@ import com.wandrell.example.swss.generated.entity.GetEntityResponse;
 /**
  * SOAP message generation utils.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SoapMessageUtils {
 

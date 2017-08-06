@@ -30,7 +30,7 @@ package com.wandrell.example.swss.test.util.config.properties;
  * These files contain the URL for an endpoint and its WSDL, each with their own
  * security protocol, and the SOAP action for the tested operation.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestEndpointWss4jPropertiesPaths {
 

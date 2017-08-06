@@ -56,7 +56,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  * mismatch fault.</li>
  * </ol>
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 public final class TestDefaultEntityClientExceptionSoap

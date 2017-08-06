@@ -41,7 +41,7 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
  * {@link com.wandrell.example.swss.repository.ExampleEntityRepository
  * ExampleEntityRepository}.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service
 public class DefaultExampleEntityService implements ExampleEntityService {

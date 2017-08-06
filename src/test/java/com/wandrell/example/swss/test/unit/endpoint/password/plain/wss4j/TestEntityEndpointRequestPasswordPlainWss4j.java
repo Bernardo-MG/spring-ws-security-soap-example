@@ -42,7 +42,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
 /**
  * Unit test for a WSS4J plain password protected endpoint.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(
         locations = { ServletWss4jContextPaths.PASSWORD_PLAIN_MOCKED })

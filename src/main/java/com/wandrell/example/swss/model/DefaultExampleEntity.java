@@ -45,7 +45,7 @@ import com.google.common.base.MoreObjects;
  * <p>
  * For the JAXB annotated model check the generated classes folder.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @Entity(name = "ExampleEntity")
 @Table(name = "example_entities")

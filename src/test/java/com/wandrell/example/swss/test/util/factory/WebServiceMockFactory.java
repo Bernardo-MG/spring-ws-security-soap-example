@@ -46,7 +46,7 @@ import com.wandrell.example.swss.service.domain.ExampleEntityService;
 /**
  * Factory which creates mocked dependencies for the web service endpoints.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class WebServiceMockFactory {
 

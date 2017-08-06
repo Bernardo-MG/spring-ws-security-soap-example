@@ -36,7 +36,7 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * Integration test for a digested password protected web service using WSS4J
  * for both the client and the web service.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.PASSWORD_DIGEST })
 @TestPropertySource({ TestPropertiesPaths.USER,

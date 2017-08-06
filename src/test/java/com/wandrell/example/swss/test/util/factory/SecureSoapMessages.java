@@ -84,7 +84,7 @@ import freemarker.template.Template;
  * {@code InputStream}. In the second case the {@code InputStream} will point to
  * a string containing the full message.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SecureSoapMessages {
 

@@ -32,7 +32,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 /**
  * Abstract unit tests for setting up client tests.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL })
 public abstract class AbstractTestEntityClient

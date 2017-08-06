@@ -46,7 +46,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * To make it as simple as possible, the users are not loaded from anywhere,
  * instead the validation is hardcoded inside the service.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultUserDetailsService implements UserDetailsService {
 

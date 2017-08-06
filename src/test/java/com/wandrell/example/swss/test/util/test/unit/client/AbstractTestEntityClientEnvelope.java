@@ -56,7 +56,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * <p>
  * This base test is meant for those clients securing the SOAP message.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public abstract class AbstractTestEntityClientEnvelope
         extends AbstractTestNGSpringContextTests {

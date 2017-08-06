@@ -34,7 +34,7 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
 /**
  * Integration test for an unsecured web service.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ TestEndpointXwssPropertiesPaths.UNSECURE })

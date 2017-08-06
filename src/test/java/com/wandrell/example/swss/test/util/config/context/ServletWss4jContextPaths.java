@@ -33,7 +33,7 @@ package com.wandrell.example.swss.test.util.config.context;
  * These are the same context configurations as the ones used for the
  * application servlets.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ServletWss4jContextPaths {
 

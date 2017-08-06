@@ -32,7 +32,7 @@ import java.io.Serializable;
  * This is meant to be the internal domain model used by the web service. The
  * one for the SOAP messages is in the JAXB generated classes package.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface ExampleEntity extends Serializable {
 

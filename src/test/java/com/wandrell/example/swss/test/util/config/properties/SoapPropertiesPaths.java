@@ -30,7 +30,7 @@ package com.wandrell.example.swss.test.util.config.properties;
  * Each file contains the information for finding or generating SOAP messages
  * for the tests.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SoapPropertiesPaths {
 

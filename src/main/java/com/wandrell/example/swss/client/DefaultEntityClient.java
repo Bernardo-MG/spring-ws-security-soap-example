@@ -61,7 +61,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * the main application, but if for some reason there is no exception and the
  * response is empty then a {@code null} value will be returned.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see ExampleEntity
  * @see com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
  *      ExampleEntityEndpoint

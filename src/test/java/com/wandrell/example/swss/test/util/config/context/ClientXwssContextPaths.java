@@ -33,7 +33,7 @@ package com.wandrell.example.swss.test.util.config.context;
  * These context files already include the required properties placeholders to
  * make them work.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ClientXwssContextPaths {
 

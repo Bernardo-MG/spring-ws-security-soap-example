@@ -47,7 +47,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * <p>
  * Once it starts just follow the instructions.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ConsoleClient {
 
@@ -67,7 +67,7 @@ public final class ConsoleClient {
     /**
      * Enumeration for all the security types supported by the console client.
      *
-     * @author Bernardo Martínez Garrido
+     * @author Bernardo Mart&iacute;nez Garrido
      */
     private enum Security {
         /**

@@ -52,7 +52,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEndpoi
  * <li>The endpoint can handle SOAP requests with an invalid payload.</li>
  * </ol>
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ServletWss4jContextPaths.UNSECURE })
 @TestPropertySource({ SoapPropertiesPaths.UNSECURE,

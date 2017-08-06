@@ -57,7 +57,7 @@ import com.wandrell.example.swss.service.domain.ExampleEntityService;
  * For this same reason the endpoint is annotated with Spring annotations, and
  * meant to be wired by this framework.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see GetEntityResponse
  * @see GetEntityRequest
  * @see Entity

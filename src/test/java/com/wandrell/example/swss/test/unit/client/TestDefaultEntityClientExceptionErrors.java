@@ -42,7 +42,7 @@ import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPath
  * <li>The client throws an exception when connecting to an invalid URL.</li>
  * </ol>
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 public final class TestDefaultEntityClientExceptionErrors

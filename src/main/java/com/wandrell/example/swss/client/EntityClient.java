@@ -36,7 +36,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * Implementations are expected to take care of any security protocol used by
  * the queried endpoint. After all this example is about web service security.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see ExampleEntity
  */
 public interface EntityClient {

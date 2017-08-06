@@ -34,7 +34,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
 /**
  * Unit test for a XWSS plain password protected client.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ SoapPropertiesPaths.PASSWORD_PLAIN })

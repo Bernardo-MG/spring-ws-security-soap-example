@@ -35,7 +35,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
 /**
  * Unit test for a WSS4J encrypted client.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.ENCRYPTION,
         TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
