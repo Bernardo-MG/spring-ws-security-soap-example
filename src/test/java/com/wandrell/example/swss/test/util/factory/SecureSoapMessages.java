@@ -38,7 +38,7 @@ import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -208,9 +208,10 @@ public final class SecureSoapMessages {
             final String certificateAlias, final KeyStore keystore)
             throws Exception {
         Element root = null;
-        String BaseURI = new ClassPathResource(pathBase).getURI().toString();
+        final String BaseURI = new ClassPathResource(pathBase).getURI()
+                .toString();
         SOAPMessage soapMessage;
-        Base64Converter base64 = new Base64Converter();
+        final Base64Converter base64 = new Base64Converter();
         String token;
         Node binaryToken;
         X509Certificate cert;
@@ -225,7 +226,7 @@ public final class SecureSoapMessages {
         cert = (X509Certificate) keystore.getCertificate(certificateAlias);
 
         // create basic structure of signature
-        Document doc = toDocument(soapMessage);
+        final Document doc = toDocument(soapMessage);
 
         org.apache.xml.security.Init.init();
 
@@ -272,11 +273,11 @@ public final class SecureSoapMessages {
             final String privateKeyAlias, final String privateKeyPass,
             final String certificateAlias, final KeyStore keystore)
             throws Exception {
-        SOAPMessage msg = SecureSoapMessages.getSignedMessage(pathBase,
+        final SOAPMessage msg = SecureSoapMessages.getSignedMessage(pathBase,
                 privateKeyAlias, privateKeyPass, certificateAlias, keystore);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
         msg.writeTo(out);
-        String strMsg = new String(out.toByteArray());
+        final String strMsg = new String(out.toByteArray());
         return new ByteArrayInputStream(strMsg.getBytes());
     }
 
@@ -364,7 +365,7 @@ public final class SecureSoapMessages {
         digest = generateDigest(password, date, nonce);
 
         // Prepares the data for the template
-        data = new LinkedHashMap<String, Object>();
+        data = new HashMap<String, Object>();
         data.put("user", user);
         data.put("password", password);
         data.put("nonce", nonce);
@@ -450,7 +451,7 @@ public final class SecureSoapMessages {
         final ByteArrayOutputStream out; // Steam with the message
 
         // Prepares the data for the template
-        data = new LinkedHashMap<String, Object>();
+        data = new HashMap<String, Object>();
         data.put("user", user);
         data.put("password", password);
 
@@ -471,7 +472,7 @@ public final class SecureSoapMessages {
         sig = new XMLSignature(doc, BaseURI,
                 XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1);
 
-        Transforms transforms = new Transforms(doc);
+        final Transforms transforms = new Transforms(doc);
         transforms.addTransform(Transforms.TRANSFORM_C14N_OMIT_COMMENTS);
         // Sign the content of SOAP Envelope
         sig.addDocument("", transforms, Constants.ALGO_ID_DIGEST_SHA1);
@@ -483,21 +484,22 @@ public final class SecureSoapMessages {
         return sig;
     }
 
-    private static final Document toDocument(SOAPMessage soapMsg)
+    private static final Document toDocument(final SOAPMessage soapMsg)
             throws TransformerConfigurationException, TransformerException,
             SOAPException, IOException {
-        Source src = soapMsg.getSOAPPart().getContent();
-        TransformerFactory tf = TransformerFactory.newInstance();
-        Transformer transformer = tf.newTransformer();
-        DOMResult result = new DOMResult();
+        final Source src = soapMsg.getSOAPPart().getContent();
+        final TransformerFactory tf = TransformerFactory.newInstance();
+        final Transformer transformer = tf.newTransformer();
+        final DOMResult result = new DOMResult();
         transformer.transform(src, result);
         return (Document) result.getNode();
     }
 
-    private static final SOAPMessage toMessage(Document jdomDocument)
+    private static final SOAPMessage toMessage(final Document jdomDocument)
             throws IOException, SOAPException {
-        SOAPMessage message = MessageFactory.newInstance().createMessage();
-        SOAPPart sp = message.getSOAPPart();
+        final SOAPMessage message = MessageFactory.newInstance()
+                .createMessage();
+        final SOAPPart sp = message.getSOAPPart();
         sp.setContent(new DOMSource(jdomDocument.getFirstChild()));
 
         return message;
