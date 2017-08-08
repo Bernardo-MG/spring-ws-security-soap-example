@@ -26,6 +26,7 @@ package com.wandrell.example.swss.client.console;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -197,7 +198,7 @@ public final class ConsoleClient {
     private static final Map<Security, EntityClient> getClients() {
         final Map<Security, EntityClient> clients; // Returned clients
 
-        clients = new LinkedHashMap<Security, EntityClient>();
+        clients = new HashMap<Security, EntityClient>();
         clients.put(Security.UNSECURE,
                 getEntityClient("context/client/client-unsecure.xml"));
         clients.put(Security.PASSWORD_PLAIN_XWSS, getEntityClient(
@@ -308,7 +309,7 @@ public final class ConsoleClient {
     private static final Map<Security, String> getUris() throws IOException {
         final Map<Security, String> uris; // Returned URIs
 
-        uris = new LinkedHashMap<Security, String>();
+        uris = new HashMap<Security, String>();
         uris.put(Security.UNSECURE,
                 getEndpointUri("config/endpoint/endpoint-unsecure.properties"));
         uris.put(Security.PASSWORD_PLAIN_XWSS, getEndpointUri(
