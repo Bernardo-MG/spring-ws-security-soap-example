@@ -64,7 +64,7 @@ public final class TestDefaultEntityClientExceptionErrors
     /**
      * The client throws an exception when connecting to an invalid URL.
      */
-    @Test(expectedExceptions = WebServiceTransportException.class)
+    @Test(expectedExceptions = Exception.class)
     public final void testClient_InvalidURL() {
         client.getEntity("http://www.somewhere.com", 0);
     }
