@@ -33,36 +33,36 @@ package com.wandrell.example.swss.test.util.config.properties;
  */
 public final class EndpointXwssPropertiesPaths {
 
-    /**
-     * Encrypted endpoint.
-     */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/encryption/xwss/endpoint-encryption-xwss.properties";
+	/**
+	 * Encrypted endpoint.
+	 */
+	public static final String ENCRYPTION = "classpath:config/endpoint/encryption/xwss/endpoint-encryption-xwss.properties";
 
-    /**
-     * Digested password endpoint.
-     */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/password/digest/xwss/endpoint-password-digest-xwss.properties";
+	/**
+	 * Digested password endpoint.
+	 */
+	public static final String PASSWORD_DIGEST = "classpath:config/endpoint/password/digest/xwss/endpoint-password-digest-xwss.properties";
 
-    /**
-     * Plain password endpoint.
-     */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties";
+	/**
+	 * Plain password endpoint.
+	 */
+	public static final String PASSWORD_PLAIN = "classpath:config/endpoint/password/plain/xwss/endpoint-password-plain-xwss.properties";
 
-    /**
-     * Signed endpoint.
-     */
-    public static final String SIGNATURE       = "classpath:config/endpoint/signature/xwss/endpoint-signature-xwss.properties";
+	/**
+	 * Signed endpoint.
+	 */
+	public static final String SIGNATURE = "classpath:config/endpoint/signature/xwss/endpoint-signature-xwss.properties";
 
-    /**
-     * Unsecure endpoint.
-     */
-    public static final String UNSECURE        = "classpath:config/endpoint/endpoint-unsecure.properties";
+	/**
+	 * Unsecure endpoint.
+	 */
+	public static final String UNSECURE = "classpath:config/endpoint/endpoint-unsecure.properties";
 
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private EndpointXwssPropertiesPaths() {
-        super();
-    }
+	/**
+	 * Private constructor to avoid initialization.
+	 */
+	private EndpointXwssPropertiesPaths() {
+		super();
+	}
 
 }

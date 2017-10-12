@@ -33,33 +33,33 @@ package com.wandrell.example.swss.test.util.config.context;
  */
 public final class TestContextPaths {
 
-    /**
-     * Default test context.
-     * <p>
-     * For those test which don't need any context configuration but require
-     * loading Spring properties.
-     */
-    public static final String DEFAULT        = "classpath:context/test-default.xml";
+	/**
+	 * Default test context.
+	 * <p>
+	 * For those test which don't need any context configuration but require
+	 * loading Spring properties.
+	 */
+	public static final String DEFAULT = "classpath:context/test-default.xml";
 
-    /**
-     * Key stores.
-     * <p>
-     * Contains the configuration for the basic Java key stores.
-     */
-    public static final String KEYSTORE       = "classpath:context/keystore/keystore.xml";
+	/**
+	 * Key stores.
+	 * <p>
+	 * Contains the configuration for the basic Java key stores.
+	 */
+	public static final String KEYSTORE = "classpath:context/keystore/keystore.xml";
 
-    /**
-     * WSS4J key stores.
-     * <p>
-     * Contains the configuration for the WSS4J Java key stores.
-     */
-    public static final String KEYSTORE_WSS4J = "classpath:context/keystore/keystore-wss4j.xml";
+	/**
+	 * WSS4J key stores.
+	 * <p>
+	 * Contains the configuration for the WSS4J Java key stores.
+	 */
+	public static final String KEYSTORE_WSS4J = "classpath:context/keystore/keystore-wss4j.xml";
 
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private TestContextPaths() {
-        super();
-    }
+	/**
+	 * Private constructor to avoid initialization.
+	 */
+	private TestContextPaths() {
+		super();
+	}
 
 }

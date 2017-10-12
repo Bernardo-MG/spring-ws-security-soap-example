@@ -57,93 +57,89 @@ import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.USER })
-public abstract class AbstractTestEntityEndpointRequest
-        extends AbstractTestEndpoint {
+public abstract class AbstractTestEntityEndpointRequest extends AbstractTestEndpoint {
 
-    /**
-     * Application context to be used for creating the client mock.
-     */
-    @Autowired
-    private ApplicationContext applicationContext;
+	/**
+	 * Application context to be used for creating the client mock.
+	 */
+	@Autowired
+	private ApplicationContext applicationContext;
 
-    /**
-     * Path to XSD file which validates the SOAP messages.
-     */
-    @Value("${xsd.entity.path}")
-    private String             entityXsdPath;
+	/**
+	 * Path to XSD file which validates the SOAP messages.
+	 */
+	@Value("${xsd.entity.path}")
+	private String entityXsdPath;
 
-    /**
-     * Path to the file with the invalid request payload.
-     */
-    @Value("${soap.request.invalid.path}")
-    private String             requestEnvelopeInvalidPath;
+	/**
+	 * Path to the file with the invalid request payload.
+	 */
+	@Value("${soap.request.invalid.path}")
+	private String requestEnvelopeInvalidPath;
 
-    /**
-     * SOAP action for the tested message.
-     */
-    @Value("${endpoint.action}")
-    private String             soapAction;
+	/**
+	 * SOAP action for the tested message.
+	 */
+	@Value("${endpoint.action}")
+	private String soapAction;
 
-    /**
-     * Default constructor.
-     */
-    public AbstractTestEntityEndpointRequest() {
-        super();
-        // TODO: The endpoint dependencies, mostly the service, should be mocked
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AbstractTestEntityEndpointRequest() {
+		super();
+		// TODO: The endpoint dependencies, mostly the service, should be mocked
+	}
 
-    /**
-     * Tests that the endpoint parses SOAP requests with a valid envelope.
-     */
-    @Test
-    public final void testEndpoint_Envelope_Valid() throws Exception {
-        final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
-        final ResponseMatcher responseMatcher; // Matcher for the response
+	/**
+	 * Returns a valid SOAP request envelope in a {@code Source} class.
+	 *
+	 * @return a valid SOAP request envelope
+	 */
+	protected abstract Source getRequestEnvelope();
 
-        // Creates the request
-        requestCreator = SoapActionRequestCreators.withSoapEnvelope(soapAction,
-                getRequestEnvelope());
+	/**
+	 * Tests that the endpoint parses SOAP requests with a valid envelope.
+	 */
+	@Test
+	public final void testEndpoint_Envelope_Valid() throws Exception {
+		final MockWebServiceClient mockClient; // Mocked client
+		final RequestCreator requestCreator; // Creator for the request
+		final ResponseMatcher responseMatcher; // Matcher for the response
 
-        // Creates the response matcher
-        responseMatcher = ResponseMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+		// Creates the request
+		requestCreator = SoapActionRequestCreators.withSoapEnvelope(soapAction, getRequestEnvelope());
 
-        // Creates the client mock
-        mockClient = MockWebServiceClient.createClient(applicationContext);
+		// Creates the response matcher
+		responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(entityXsdPath));
 
-        // Calls the endpoint
-        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
-    }
+		// Creates the client mock
+		mockClient = MockWebServiceClient.createClient(applicationContext);
 
-    /**
-     * Tests that the endpoint can handle invalid SOAP messages.
-     */
-    @Test
-    public final void testEndpoint_Invalid() throws Exception {
-        final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
-        final ResponseMatcher responseMatcher; // Matcher for the response
+		// Calls the endpoint
+		mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
+	}
 
-        // Creates the request
-        requestCreator = RequestCreators.withSoapEnvelope(
-                new ClassPathResource(requestEnvelopeInvalidPath));
+	/**
+	 * Tests that the endpoint can handle invalid SOAP messages.
+	 */
+	@Test
+	public final void testEndpoint_Invalid() throws Exception {
+		final MockWebServiceClient mockClient; // Mocked client
+		final RequestCreator requestCreator; // Creator for the request
+		final ResponseMatcher responseMatcher; // Matcher for the response
 
-        // Creates the response matcher
-        responseMatcher = ResponseMatchers.clientOrSenderFault();
+		// Creates the request
+		requestCreator = RequestCreators.withSoapEnvelope(new ClassPathResource(requestEnvelopeInvalidPath));
 
-        // Creates the client mock
-        mockClient = MockWebServiceClient.createClient(applicationContext);
+		// Creates the response matcher
+		responseMatcher = ResponseMatchers.clientOrSenderFault();
 
-        // Calls the endpoint
-        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
-    }
+		// Creates the client mock
+		mockClient = MockWebServiceClient.createClient(applicationContext);
 
-    /**
-     * Returns a valid SOAP request envelope in a {@code Source} class.
-     *
-     * @return a valid SOAP request envelope
-     */
-    protected abstract Source getRequestEnvelope();
+		// Calls the endpoint
+		mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
+	}
 
 }

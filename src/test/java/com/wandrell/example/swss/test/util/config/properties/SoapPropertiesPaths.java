@@ -34,41 +34,41 @@ package com.wandrell.example.swss.test.util.config.properties;
  */
 public final class SoapPropertiesPaths {
 
-    /**
-     * Encrypted SOAP messages for the WSS4J interceptors.
-     */
-    public static final String ENCRYPTION_WSS4J = "classpath:config/soap/test-soap-encryption-wss4j.properties";
+	/**
+	 * Encrypted SOAP messages for the WSS4J interceptors.
+	 */
+	public static final String ENCRYPTION_WSS4J = "classpath:config/soap/test-soap-encryption-wss4j.properties";
 
-    /**
-     * Encrypted SOAP messages for the XWSS interceptors.
-     */
-    public static final String ENCRYPTION_XWSS  = "classpath:config/soap/test-soap-encryption-xwss.properties";
+	/**
+	 * Encrypted SOAP messages for the XWSS interceptors.
+	 */
+	public static final String ENCRYPTION_XWSS = "classpath:config/soap/test-soap-encryption-xwss.properties";
 
-    /**
-     * Digested password SOAP messages.
-     */
-    public static final String PASSWORD_DIGEST  = "classpath:config/soap/test-soap-password-digest.properties";
+	/**
+	 * Digested password SOAP messages.
+	 */
+	public static final String PASSWORD_DIGEST = "classpath:config/soap/test-soap-password-digest.properties";
 
-    /**
-     * Plain password SOAP messages.
-     */
-    public static final String PASSWORD_PLAIN   = "classpath:config/soap/test-soap-password-plain.properties";
+	/**
+	 * Plain password SOAP messages.
+	 */
+	public static final String PASSWORD_PLAIN = "classpath:config/soap/test-soap-password-plain.properties";
 
-    /**
-     * Signed SOAP messages.
-     */
-    public static final String SIGNATURE        = "classpath:config/soap/test-soap-signature.properties";
+	/**
+	 * Signed SOAP messages.
+	 */
+	public static final String SIGNATURE = "classpath:config/soap/test-soap-signature.properties";
 
-    /**
-     * Unsecure SOAP messages.
-     */
-    public static final String UNSECURE         = "classpath:config/soap/test-soap-unsecure.properties";
+	/**
+	 * Unsecure SOAP messages.
+	 */
+	public static final String UNSECURE = "classpath:config/soap/test-soap-unsecure.properties";
 
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private SoapPropertiesPaths() {
-        super();
-    }
+	/**
+	 * Private constructor to avoid initialization.
+	 */
+	private SoapPropertiesPaths() {
+		super();
+	}
 
 }

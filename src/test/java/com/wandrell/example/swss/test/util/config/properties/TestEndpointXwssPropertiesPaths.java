@@ -34,36 +34,36 @@ package com.wandrell.example.swss.test.util.config.properties;
  */
 public final class TestEndpointXwssPropertiesPaths {
 
-    /**
-     * Encrypted endpoint.
-     */
-    public static final String ENCRYPTION      = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
+	/**
+	 * Encrypted endpoint.
+	 */
+	public static final String ENCRYPTION = "classpath:config/endpoint/test-endpoint-encryption-xwss.properties";
 
-    /**
-     * Digested password endpoint.
-     */
-    public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
+	/**
+	 * Digested password endpoint.
+	 */
+	public static final String PASSWORD_DIGEST = "classpath:config/endpoint/test-endpoint-password-digest-xwss.properties";
 
-    /**
-     * Plain password endpoint.
-     */
-    public static final String PASSWORD_PLAIN  = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
+	/**
+	 * Plain password endpoint.
+	 */
+	public static final String PASSWORD_PLAIN = "classpath:config/endpoint/test-endpoint-password-plain-xwss.properties";
 
-    /**
-     * Signed endpoint.
-     */
-    public static final String SIGNATURE       = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
+	/**
+	 * Signed endpoint.
+	 */
+	public static final String SIGNATURE = "classpath:config/endpoint/test-endpoint-signature-xwss.properties";
 
-    /**
-     * Unsecure endpoint.
-     */
-    public static final String UNSECURE        = "classpath:config/endpoint/test-endpoint-unsecure.properties";
+	/**
+	 * Unsecure endpoint.
+	 */
+	public static final String UNSECURE = "classpath:config/endpoint/test-endpoint-unsecure.properties";
 
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private TestEndpointXwssPropertiesPaths() {
-        super();
-    }
+	/**
+	 * Private constructor to avoid initialization.
+	 */
+	private TestEndpointXwssPropertiesPaths() {
+		super();
+	}
 
 }

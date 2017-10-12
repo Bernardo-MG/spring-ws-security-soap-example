@@ -36,16 +36,16 @@ import com.wandrell.example.swss.model.ExampleEntity;
  */
 public interface ExampleEntityService {
 
-    /**
-     * Returns an entity with the given id.
-     * <p>
-     * If no instance exists with that id then an entity with a negative id is
-     * expected to be returned. Avoid returning nulls.
-     *
-     * @param identifier
-     *            identifier of the entity to find
-     * @return the entity for the given id
-     */
-    public ExampleEntity findById(final Integer identifier);
+	/**
+	 * Returns an entity with the given id.
+	 * <p>
+	 * If no instance exists with that id then an entity with a negative id is
+	 * expected to be returned. Avoid returning nulls.
+	 *
+	 * @param identifier
+	 *            identifier of the entity to find
+	 * @return the entity for the given id
+	 */
+	public ExampleEntity findById(final Integer identifier);
 
 }

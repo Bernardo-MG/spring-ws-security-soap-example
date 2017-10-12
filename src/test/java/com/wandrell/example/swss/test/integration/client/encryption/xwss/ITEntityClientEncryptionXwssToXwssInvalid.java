@@ -39,16 +39,14 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.ENCRYPTION })
-@TestPropertySource({ TestPropertiesPaths.KEYSTORE_INVALID,
-        TestEndpointXwssPropertiesPaths.ENCRYPTION })
-public final class ITEntityClientEncryptionXwssToXwssInvalid
-        extends AbstractITEntityClientInvalid {
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE_INVALID, TestEndpointXwssPropertiesPaths.ENCRYPTION })
+public final class ITEntityClientEncryptionXwssToXwssInvalid extends AbstractITEntityClientInvalid {
 
-    /**
-     * Default constructor.
-     */
-    public ITEntityClientEncryptionXwssToXwssInvalid() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public ITEntityClientEncryptionXwssToXwssInvalid() {
+		super();
+	}
 
 }

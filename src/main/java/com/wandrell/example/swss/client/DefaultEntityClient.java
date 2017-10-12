@@ -66,115 +66,108 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * @see com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
  *      ExampleEntityEndpoint
  */
-public final class DefaultEntityClient extends WebServiceGatewaySupport
-        implements EntityClient {
+public final class DefaultEntityClient extends WebServiceGatewaySupport implements EntityClient {
 
-    /**
-     * The logger used for logging the entity client.
-     */
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(DefaultEntityClient.class);
+	/**
+	 * The logger used for logging the entity client.
+	 */
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultEntityClient.class);
 
-    /**
-     * Default constructor.
-     */
-    public DefaultEntityClient() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public DefaultEntityClient() {
+		super();
+	}
 
-    /**
-     * Sends an id to the endpoint and receives back the data for the entity
-     * with that same id. This method makes use of the default URI, which should
-     * be set before calling it.
-     * <p>
-     * If for some reason, which may be caused by the id being invalid, an empty
-     * response, or not response at all, is received then an entity with a
-     * negative id will be returned.
-     * <p>
-     * The SOAP request will include, in the HTTP header, the SOAP action. This
-     * way the unreachable endpoint error caused by some authentication methods,
-     * such as encryption, can be avoided.
-     *
-     * @param identifier
-     *            id of the queried entity
-     * @return the entity with the received id
-     */
-    @Override
-    public final ExampleEntity getEntity(final Integer identifier) {
-        return getEntity(getDefaultUri(), identifier);
-    }
+	/**
+	 * Sends an id to the endpoint and receives back the data for the entity
+	 * with that same id. This method makes use of the default URI, which should
+	 * be set before calling it.
+	 * <p>
+	 * If for some reason, which may be caused by the id being invalid, an empty
+	 * response, or not response at all, is received then an entity with a
+	 * negative id will be returned.
+	 * <p>
+	 * The SOAP request will include, in the HTTP header, the SOAP action. This
+	 * way the unreachable endpoint error caused by some authentication methods,
+	 * such as encryption, can be avoided.
+	 *
+	 * @param identifier
+	 *            id of the queried entity
+	 * @return the entity with the received id
+	 */
+	@Override
+	public final ExampleEntity getEntity(final Integer identifier) {
+		return getEntity(getDefaultUri(), identifier);
+	}
 
-    /**
-     * Sends an id to the endpoint and receives back the data for the entity
-     * with that same id.
-     * <p>
-     * If for some reason, which may be caused by the id being invalid, an empty
-     * response, or not response at all, is received then an entity with a
-     * negative id will be returned.
-     * <p>
-     * The SOAP request will include, in the HTTP header, the SOAP action. This
-     * way the unreachable endpoint error caused by some authentication methods,
-     * such as encryption, can be avoided.
-     *
-     * @param uri
-     *            URI to the endpoint
-     * @param identifier
-     *            id of the queried entity
-     * @return the entity with the received id
-     */
-    @Override
-    public final ExampleEntity getEntity(final String uri,
-            final Integer identifier) {
-        final GetEntityRequest request;     // Request for acquiring the entity
-        final GetEntityResponse response;   // Response with the result
-        final ExampleEntity entity;         // Entity with the response data
-        final WebServiceMessageCallback callback; // SOAP action callback
+	/**
+	 * Sends an id to the endpoint and receives back the data for the entity
+	 * with that same id.
+	 * <p>
+	 * If for some reason, which may be caused by the id being invalid, an empty
+	 * response, or not response at all, is received then an entity with a
+	 * negative id will be returned.
+	 * <p>
+	 * The SOAP request will include, in the HTTP header, the SOAP action. This
+	 * way the unreachable endpoint error caused by some authentication methods,
+	 * such as encryption, can be avoided.
+	 *
+	 * @param uri
+	 *            URI to the endpoint
+	 * @param identifier
+	 *            id of the queried entity
+	 * @return the entity with the received id
+	 */
+	@Override
+	public final ExampleEntity getEntity(final String uri, final Integer identifier) {
+		final GetEntityRequest request; // Request for acquiring the entity
+		final GetEntityResponse response; // Response with the result
+		final ExampleEntity entity; // Entity with the response data
+		final WebServiceMessageCallback callback; // SOAP action callback
 
-        checkNotNull(uri, "Received a null pointer as URI");
-        checkNotNull(identifier, "Received a null pointer as entity id");
+		checkNotNull(uri, "Received a null pointer as URI");
+		checkNotNull(identifier, "Received a null pointer as entity id");
 
-        LOGGER.debug(String.format("Querying URI %1$s for id %2$d", uri,
-                identifier));
+		LOGGER.debug(String.format("Querying URI %1$s for id %2$d", uri, identifier));
 
-        // Generates request
-        request = new GetEntityRequest();
-        request.setId(identifier);
+		// Generates request
+		request = new GetEntityRequest();
+		request.setId(identifier);
 
-        // Prepares callback
-        callback = new SoapActionCallback(
-                ExampleEntityEndpointConstants.ACTION);
+		// Prepares callback
+		callback = new SoapActionCallback(ExampleEntityEndpointConstants.ACTION);
 
-        // Sends request and receives response
-        response = (GetEntityResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(uri, request, callback);
+		// Sends request and receives response
+		response = (GetEntityResponse) getWebServiceTemplate().marshalSendAndReceive(uri, request, callback);
 
-        if ((response == null) || (response.getEntity() == null)) {
-            // No response was received
-            entity = new DefaultExampleEntity();
-            entity.setName("");
-            entity.setId(-1);
+		if ((response == null) || (response.getEntity() == null)) {
+			// No response was received
+			entity = new DefaultExampleEntity();
+			entity.setName("");
+			entity.setId(-1);
 
-            LOGGER.debug("No response received");
-        } else {
-            entity = new DefaultExampleEntity();
-            if (response.getEntity().getName() == null) {
-                // The response was empty
-                entity.setName("");
-                entity.setId(-1);
+			LOGGER.debug("No response received");
+		} else {
+			entity = new DefaultExampleEntity();
+			if (response.getEntity().getName() == null) {
+				// The response was empty
+				entity.setName("");
+				entity.setId(-1);
 
-                LOGGER.debug("Received an empty response");
-            } else {
-                // The response was not empty
-                BeanUtils.copyProperties(response.getEntity(), entity);
+				LOGGER.debug("Received an empty response");
+			} else {
+				// The response was not empty
+				BeanUtils.copyProperties(response.getEntity(), entity);
 
-                LOGGER.debug(String.format(
-                        "Received response with id %1$d and name %2$s",
-                        entity.getId(), entity.getName()));
-            }
+				LOGGER.debug(String.format("Received response with id %1$d and name %2$s", entity.getId(),
+						entity.getName()));
+			}
 
-        }
+		}
 
-        return entity;
-    }
+		return entity;
+	}
 
 }

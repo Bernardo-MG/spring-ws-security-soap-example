@@ -38,16 +38,15 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.ENCRYPTION })
-@TestPropertySource({ TestPropertiesPaths.KEYSTORE,
-        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE, TestEndpointWss4jPropertiesPaths.ENCRYPTION })
 public final class ITEntityClientEncryptionXwssToWss4j {
 
-    /**
-     * Default constructor.
-     */
-    public ITEntityClientEncryptionXwssToWss4j() {
-        super();
-        // TODO: Make this work
-    }
+	/**
+	 * Default constructor.
+	 */
+	public ITEntityClientEncryptionXwssToWss4j() {
+		super();
+		// TODO: Make this work
+	}
 
 }

@@ -50,46 +50,42 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  */
 public final class DefaultUserDetailsService implements UserDetailsService {
 
-    /**
-     * The logger used for logging the user details service usage.
-     */
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(DefaultUserDetailsService.class);
+	/**
+	 * The logger used for logging the user details service usage.
+	 */
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUserDetailsService.class);
 
-    /**
-     * Constructs a user details service.
-     */
-    public DefaultUserDetailsService() {
-        super();
-    }
+	/**
+	 * Constructs a user details service.
+	 */
+	public DefaultUserDetailsService() {
+		super();
+	}
 
-    @Override
-    public final UserDetails loadUserByUsername(final String username)
-            throws UsernameNotFoundException {
-        final UserDetails user; // Details for the user
-        final Collection<SimpleGrantedAuthority> authorities; // Privileges of
-                                                              // the user
+	@Override
+	public final UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+		final UserDetails user; // Details for the user
+		final Collection<SimpleGrantedAuthority> authorities; // Privileges of
+																// the user
 
-        checkNotNull(username, "Received a null pointer as username");
+		checkNotNull(username, "Received a null pointer as username");
 
-        if ("myUser".equalsIgnoreCase(username)) {
-            // User for password-based security
-            authorities = new ArrayList<SimpleGrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		if ("myUser".equalsIgnoreCase(username)) {
+			// User for password-based security
+			authorities = new ArrayList<SimpleGrantedAuthority>();
+			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
-            user = new User(username, "myPassword", authorities);
-        } else {
-            // User not found
-            LOGGER.debug(
-                    String.format("User for username %s not found", username));
+			user = new User(username, "myPassword", authorities);
+		} else {
+			// User not found
+			LOGGER.debug(String.format("User for username %s not found", username));
 
-            throw new UsernameNotFoundException(
-                    String.format("Invalid username '%s'", username));
-        }
+			throw new UsernameNotFoundException(String.format("Invalid username '%s'", username));
+		}
 
-        LOGGER.debug(String.format("Found user for username %s", username));
+		LOGGER.debug(String.format("Found user for username %s", username));
 
-        return user;
-    }
+		return user;
+	}
 
 }

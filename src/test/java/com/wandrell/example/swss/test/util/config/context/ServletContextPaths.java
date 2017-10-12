@@ -37,26 +37,26 @@ package com.wandrell.example.swss.test.util.config.context;
  */
 public final class ServletContextPaths {
 
-    /**
-     * Application-wide context configuration.
-     * <p>
-     * This is the application context used for real web services, and shared by
-     * all the servlets.
-     */
-    public static final String APPLICATION        = "classpath:context/web-service.xml";
+	/**
+	 * Application-wide context configuration.
+	 * <p>
+	 * This is the application context used for real web services, and shared by
+	 * all the servlets.
+	 */
+	public static final String APPLICATION = "classpath:context/web-service.xml";
 
-    /**
-     * Mocked application context configuration.
-     * <p>
-     * This is an application context using mocked dependencies.
-     */
-    public static final String APPLICATION_MOCKED = "classpath:context/test-web-service.xml";
+	/**
+	 * Mocked application context configuration.
+	 * <p>
+	 * This is an application context using mocked dependencies.
+	 */
+	public static final String APPLICATION_MOCKED = "classpath:context/test-web-service.xml";
 
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private ServletContextPaths() {
-        super();
-    }
+	/**
+	 * Private constructor to avoid initialization.
+	 */
+	private ServletContextPaths() {
+		super();
+	}
 
 }

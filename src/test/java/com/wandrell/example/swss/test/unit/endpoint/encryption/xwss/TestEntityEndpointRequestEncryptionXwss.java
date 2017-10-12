@@ -46,38 +46,32 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@ContextConfiguration(locations = { ServletXwssContextPaths.ENCRYPTION,
-        TestContextPaths.KEYSTORE })
-@TestPropertySource({ SoapPropertiesPaths.UNSECURE,
-        SoapPropertiesPaths.ENCRYPTION_XWSS,
-        InterceptorXwssPropertiesPaths.ENCRYPTION,
-        EndpointXwssPropertiesPaths.ENCRYPTION,
-        TestEndpointXwssPropertiesPaths.ENCRYPTION,
-        TestPropertiesPaths.KEYSTORE })
-public final class TestEntityEndpointRequestEncryptionXwss
-        extends AbstractTestEntityEndpointRequest {
+@ContextConfiguration(locations = { ServletXwssContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE })
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.ENCRYPTION_XWSS,
+		InterceptorXwssPropertiesPaths.ENCRYPTION, EndpointXwssPropertiesPaths.ENCRYPTION,
+		TestEndpointXwssPropertiesPaths.ENCRYPTION, TestPropertiesPaths.KEYSTORE })
+public final class TestEntityEndpointRequestEncryptionXwss extends AbstractTestEntityEndpointRequest {
 
-    /**
-     * Path to the file containing the valid SOAP request.
-     */
-    @Value("${soap.request.path}")
-    private String pathValid;
+	/**
+	 * Path to the file containing the valid SOAP request.
+	 */
+	@Value("${soap.request.path}")
+	private String pathValid;
 
-    /**
-     * Constructs a {@code TestEntityEndpointEncryptionXWSS}.
-     */
-    public TestEntityEndpointRequestEncryptionXwss() {
-        super();
-    }
+	/**
+	 * Constructs a {@code TestEntityEndpointEncryptionXWSS}.
+	 */
+	public TestEntityEndpointRequestEncryptionXwss() {
+		super();
+	}
 
-    @Override
-    protected final Source getRequestEnvelope() {
-        try {
-            return new StreamSource(
-                    new ClassPathResource(pathValid).getInputStream());
-        } catch (final Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+	@Override
+	protected final Source getRequestEnvelope() {
+		try {
+			return new StreamSource(new ClassPathResource(pathValid).getInputStream());
+		} catch (final Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

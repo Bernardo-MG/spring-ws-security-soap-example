@@ -38,16 +38,14 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_DIGEST })
-@TestPropertySource({ SoapPropertiesPaths.PASSWORD_DIGEST,
-        TestPropertiesPaths.USER })
-public final class TestEntityClientPasswordDigestXwss
-        extends AbstractTestEntityClientHeader {
+@TestPropertySource({ SoapPropertiesPaths.PASSWORD_DIGEST, TestPropertiesPaths.USER })
+public final class TestEntityClientPasswordDigestXwss extends AbstractTestEntityClientHeader {
 
-    /**
-     * Constructs a {@code TestEntityClientPasswordDigestXWSS}.
-     */
-    public TestEntityClientPasswordDigestXwss() {
-        super();
-    }
+	/**
+	 * Constructs a {@code TestEntityClientPasswordDigestXWSS}.
+	 */
+	public TestEntityClientPasswordDigestXwss() {
+		super();
+	}
 
 }

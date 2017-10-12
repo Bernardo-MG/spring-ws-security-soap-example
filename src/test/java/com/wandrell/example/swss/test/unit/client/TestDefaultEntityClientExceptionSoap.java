@@ -59,100 +59,93 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
-public final class TestDefaultEntityClientExceptionSoap
-        extends AbstractTestEntityClient {
+public final class TestDefaultEntityClientExceptionSoap extends AbstractTestEntityClient {
 
-    /**
-     * The client being tested.
-     */
-    @Autowired
-    private DefaultEntityClient client;
+	/**
+	 * The client being tested.
+	 */
+	@Autowired
+	private DefaultEntityClient client;
 
-    /**
-     * Valid entity id.
-     */
-    @Value("${entity.id}")
-    private Integer             entityId;
+	/**
+	 * Valid entity id.
+	 */
+	@Value("${entity.id}")
+	private Integer entityId;
 
-    /**
-     * Constructs a {@code TestEntityClientExceptionSOAP}.
-     */
-    public TestDefaultEntityClientExceptionSoap() {
-        super();
-    }
+	/**
+	 * Constructs a {@code TestEntityClientExceptionSOAP}.
+	 */
+	public TestDefaultEntityClientExceptionSoap() {
+		super();
+	}
 
-    /**
-     * Tests that the client throws an exception when receiving an error
-     * message.
-     *
-     * @throws IOException
-     *             if there is any problem loading the entity schema file
-     */
-    @Test(expectedExceptions = WebServiceTransportException.class)
-    public final void testClient_Error_Exception() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final ResponseCreator responseCreator; // Creator for the response
+	/**
+	 * Tests that the client throws an exception when receiving an error
+	 * message.
+	 *
+	 * @throws IOException
+	 *             if there is any problem loading the entity schema file
+	 */
+	@Test(expectedExceptions = WebServiceTransportException.class)
+	public final void testClient_Error_Exception() throws IOException {
+		final MockWebServiceServer mockServer; // Mocked server
+		final ResponseCreator responseCreator; // Creator for the response
 
-        // Creates the response
-        responseCreator = ResponseCreators.withError("Error");
+		// Creates the response
+		responseCreator = ResponseCreators.withError("Error");
 
-        // Creates the server mock
-        mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(RequestMatchers.anything())
-                .andRespond(responseCreator);
+		// Creates the server mock
+		mockServer = MockWebServiceServer.createServer(client);
+		mockServer.expect(RequestMatchers.anything()).andRespond(responseCreator);
 
-        // Calls the server mock
-        client.getEntity("http:somewhere.com", entityId);
-    }
+		// Calls the server mock
+		client.getEntity("http:somewhere.com", entityId);
+	}
 
-    /**
-     * Tests that the client throws an exception when receiving a SOAP fault.
-     *
-     * @throws IOException
-     *             if there is any problem loading the entity schema file
-     */
-    @Test(expectedExceptions = { SoapFaultClientException.class })
-    public final void testClient_Fault_Exception() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final ResponseCreator responseCreator; // Creator for the response
+	/**
+	 * Tests that the client throws an exception when receiving a SOAP fault.
+	 *
+	 * @throws IOException
+	 *             if there is any problem loading the entity schema file
+	 */
+	@Test(expectedExceptions = { SoapFaultClientException.class })
+	public final void testClient_Fault_Exception() throws IOException {
+		final MockWebServiceServer mockServer; // Mocked server
+		final ResponseCreator responseCreator; // Creator for the response
 
-        // Creates the response
-        responseCreator = ResponseCreators
-                .withServerOrReceiverFault("FAULT:Server", Locale.ENGLISH);
+		// Creates the response
+		responseCreator = ResponseCreators.withServerOrReceiverFault("FAULT:Server", Locale.ENGLISH);
 
-        // Creates the server mock
-        mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(RequestMatchers.anything())
-                .andRespond(responseCreator);
+		// Creates the server mock
+		mockServer = MockWebServiceServer.createServer(client);
+		mockServer.expect(RequestMatchers.anything()).andRespond(responseCreator);
 
-        // Calls the server mock
-        client.getEntity("http:somewhere.com", entityId);
-    }
+		// Calls the server mock
+		client.getEntity("http:somewhere.com", entityId);
+	}
 
-    /**
-     * Tests that the client throws an exception when receiving a SOAP version
-     * mismatch fault.
-     *
-     * @throws IOException
-     *             if there is any problem loading the entity schema file
-     */
-    @Test(expectedExceptions = { SoapFaultClientException.class })
-    public final void testClient_VersionMismatch_Exception()
-            throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final ResponseCreator responseCreator; // Creator for the response
+	/**
+	 * Tests that the client throws an exception when receiving a SOAP version
+	 * mismatch fault.
+	 *
+	 * @throws IOException
+	 *             if there is any problem loading the entity schema file
+	 */
+	@Test(expectedExceptions = { SoapFaultClientException.class })
+	public final void testClient_VersionMismatch_Exception() throws IOException {
+		final MockWebServiceServer mockServer; // Mocked server
+		final ResponseCreator responseCreator; // Creator for the response
 
-        // Creates the response
-        responseCreator = ResponseCreators.withVersionMismatchFault(
-                "FAULT:Version mismatch", Locale.ENGLISH);
+		// Creates the response
+		responseCreator = ResponseCreators.withVersionMismatchFault("FAULT:Version mismatch", Locale.ENGLISH);
 
-        // Creates the server mock
-        mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(RequestMatchers.anything())
-                .andRespond(responseCreator);
+		// Creates the server mock
+		mockServer = MockWebServiceServer.createServer(client);
+		mockServer.expect(RequestMatchers.anything()).andRespond(responseCreator);
 
-        // Calls the server mock
-        client.getEntity("http:somewhere.com", entityId);
-    }
+		// Calls the server mock
+		client.getEntity("http:somewhere.com", entityId);
+	}
 
 }

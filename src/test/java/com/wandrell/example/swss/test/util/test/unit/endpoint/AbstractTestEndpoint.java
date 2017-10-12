@@ -38,16 +38,14 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED })
-@TestPropertySource({ TestPropertiesPaths.WSDL,
-        EndpointPropertiesPaths.COMMON })
-public abstract class AbstractTestEndpoint
-        extends AbstractTestNGSpringContextTests {
+@TestPropertySource({ TestPropertiesPaths.WSDL, EndpointPropertiesPaths.COMMON })
+public abstract class AbstractTestEndpoint extends AbstractTestNGSpringContextTests {
 
-    /**
-     * Default constructor.
-     */
-    public AbstractTestEndpoint() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AbstractTestEndpoint() {
+		super();
+	}
 
 }

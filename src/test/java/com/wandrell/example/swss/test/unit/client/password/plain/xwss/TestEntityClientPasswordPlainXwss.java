@@ -38,14 +38,13 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ SoapPropertiesPaths.PASSWORD_PLAIN })
-public final class TestEntityClientPasswordPlainXwss
-        extends AbstractTestEntityClientHeader {
+public final class TestEntityClientPasswordPlainXwss extends AbstractTestEntityClientHeader {
 
-    /**
-     * Constructs a {@code TestEntityClientPasswordPlainXWSS}.
-     */
-    public TestEntityClientPasswordPlainXwss() {
-        super();
-    }
+	/**
+	 * Constructs a {@code TestEntityClientPasswordPlainXWSS}.
+	 */
+	public TestEntityClientPasswordPlainXwss() {
+		super();
+	}
 
 }

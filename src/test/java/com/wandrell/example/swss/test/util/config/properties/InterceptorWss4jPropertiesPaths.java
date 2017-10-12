@@ -33,31 +33,31 @@ package com.wandrell.example.swss.test.util.config.properties;
  */
 public final class InterceptorWss4jPropertiesPaths {
 
-    /**
-     * Encryption interceptor.
-     */
-    public static final String ENCRYPTION      = "classpath:config/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties";
+	/**
+	 * Encryption interceptor.
+	 */
+	public static final String ENCRYPTION = "classpath:config/interceptor/encryption/wss4j/interceptor-encryption-wss4j.properties";
 
-    /**
-     * Digested password interceptor.
-     */
-    public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/wss4j/interceptor-password-digest-wss4j.properties";
+	/**
+	 * Digested password interceptor.
+	 */
+	public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/wss4j/interceptor-password-digest-wss4j.properties";
 
-    /**
-     * Plain password interceptor.
-     */
-    public static final String PASSWORD_PLAIN  = "classpath:config/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
+	/**
+	 * Plain password interceptor.
+	 */
+	public static final String PASSWORD_PLAIN = "classpath:config/interceptor/password/plain/wss4j/interceptor-password-plain-wss4j.properties";
 
-    /**
-     * Signature interceptor.
-     */
-    public static final String SIGNATURE       = "classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties";
+	/**
+	 * Signature interceptor.
+	 */
+	public static final String SIGNATURE = "classpath:config/interceptor/signature/wss4j/interceptor-signature-wss4j.properties";
 
-    /**
-     * Private constructor to avoid initialization.
-     */
-    private InterceptorWss4jPropertiesPaths() {
-        super();
-    }
+	/**
+	 * Private constructor to avoid initialization.
+	 */
+	private InterceptorWss4jPropertiesPaths() {
+		super();
+	}
 
 }

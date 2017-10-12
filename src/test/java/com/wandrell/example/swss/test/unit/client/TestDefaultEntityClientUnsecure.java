@@ -59,118 +59,113 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ SoapPropertiesPaths.UNSECURE })
-public final class TestDefaultEntityClientUnsecure
-        extends AbstractTestEntityClient {
+public final class TestDefaultEntityClientUnsecure extends AbstractTestEntityClient {
 
-    /**
-     * The client being tested.
-     */
-    @Autowired
-    private DefaultEntityClient client;
+	/**
+	 * The client being tested.
+	 */
+	@Autowired
+	private DefaultEntityClient client;
 
-    /**
-     * Expected id for the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer             entityId;
+	/**
+	 * Expected id for the returned entity.
+	 */
+	@Value("${entity.id}")
+	private Integer entityId;
 
-    /**
-     * Expected name for the returned entity.
-     */
-    @Value("${entity.name}")
-    private String              entityName;
+	/**
+	 * Expected name for the returned entity.
+	 */
+	@Value("${entity.name}")
+	private String entityName;
 
-    /**
-     * Path to XSD file which validates the SOAP messages.
-     */
-    @Value("${xsd.entity.path}")
-    private String              entityXsdPath;
+	/**
+	 * Path to XSD file which validates the SOAP messages.
+	 */
+	@Value("${xsd.entity.path}")
+	private String entityXsdPath;
 
-    /**
-     * Path to the file with the invalid response payload.
-     */
-    @Value("${soap.response.payload.invalid.path}")
-    private String              responsePayloadInvalidPath;
+	/**
+	 * Path to the file with the invalid response payload.
+	 */
+	@Value("${soap.response.payload.invalid.path}")
+	private String responsePayloadInvalidPath;
 
-    /**
-     * Path to the file with the valid response payload.
-     */
-    @Value("${soap.response.payload.path}")
-    private String              responsePayloadPath;
+	/**
+	 * Path to the file with the valid response payload.
+	 */
+	@Value("${soap.response.payload.path}")
+	private String responsePayloadPath;
 
-    /**
-     * Constructs a {@code TestEntityClientUnsecure}.
-     */
-    public TestDefaultEntityClientUnsecure() {
-        super();
-    }
+	/**
+	 * Constructs a {@code TestEntityClientUnsecure}.
+	 */
+	public TestDefaultEntityClientUnsecure() {
+		super();
+	}
 
-    /**
-     * Tests that the client can handle incorrectly formed SOAP messages.
-     *
-     * @throws IOException
-     *             if there is any problem loading the entity schema file
-     */
-    @Test
-    public final void testClient_Payload_Invalid() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
-        final ResponseCreator responseCreator; // Creator for the response
-        final ExampleEntity result;            // Queried entity
+	/**
+	 * Tests that the client can handle incorrectly formed SOAP messages.
+	 *
+	 * @throws IOException
+	 *             if there is any problem loading the entity schema file
+	 */
+	@Test
+	public final void testClient_Payload_Invalid() throws IOException {
+		final MockWebServiceServer mockServer; // Mocked server
+		final RequestMatcher requestMatcher; // Matcher for the request
+		final ResponseCreator responseCreator; // Creator for the response
+		final ExampleEntity result; // Queried entity
 
-        // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+		// Creates the request matcher
+		requestMatcher = RequestMatchers.validPayload(new ClassPathResource(entityXsdPath));
 
-        // Creates the response
-        responseCreator = ResponseCreators
-                .withPayload(new ClassPathResource(responsePayloadInvalidPath));
+		// Creates the response
+		responseCreator = ResponseCreators.withPayload(new ClassPathResource(responsePayloadInvalidPath));
 
-        // Creates the server mock
-        mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(requestMatcher).andRespond(responseCreator);
+		// Creates the server mock
+		mockServer = MockWebServiceServer.createServer(client);
+		mockServer.expect(requestMatcher).andRespond(responseCreator);
 
-        // Calls the server mock
-        result = client.getEntity("http:somewhere.com", entityId);
+		// Calls the server mock
+		result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), new Integer(-1));
-        Assert.assertEquals(result.getName(), "");
+		Assert.assertEquals(result.getId(), new Integer(-1));
+		Assert.assertEquals(result.getName(), "");
 
-        mockServer.verify();
-    }
+		mockServer.verify();
+	}
 
-    /**
-     * Tests that the client parses correctly formed SOAP messages.
-     *
-     * @throws IOException
-     *             if there is any problem loading the entity schema file
-     */
-    @Test
-    public final void testClient_Payload_Valid() throws IOException {
-        final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
-        final ResponseCreator responseCreator; // Creator for the response
-        final ExampleEntity result;            // Queried entity
+	/**
+	 * Tests that the client parses correctly formed SOAP messages.
+	 *
+	 * @throws IOException
+	 *             if there is any problem loading the entity schema file
+	 */
+	@Test
+	public final void testClient_Payload_Valid() throws IOException {
+		final MockWebServiceServer mockServer; // Mocked server
+		final RequestMatcher requestMatcher; // Matcher for the request
+		final ResponseCreator responseCreator; // Creator for the response
+		final ExampleEntity result; // Queried entity
 
-        // Creates the request matcher
-        requestMatcher = RequestMatchers
-                .validPayload(new ClassPathResource(entityXsdPath));
+		// Creates the request matcher
+		requestMatcher = RequestMatchers.validPayload(new ClassPathResource(entityXsdPath));
 
-        // Creates the response
-        responseCreator = ResponseCreators
-                .withPayload(new ClassPathResource(responsePayloadPath));
+		// Creates the response
+		responseCreator = ResponseCreators.withPayload(new ClassPathResource(responsePayloadPath));
 
-        // Creates the server mock
-        mockServer = MockWebServiceServer.createServer(client);
-        mockServer.expect(requestMatcher).andRespond(responseCreator);
+		// Creates the server mock
+		mockServer = MockWebServiceServer.createServer(client);
+		mockServer.expect(requestMatcher).andRespond(responseCreator);
 
-        // Calls the server mock
-        result = client.getEntity("http:somewhere.com", entityId);
+		// Calls the server mock
+		result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), entityId);
-        Assert.assertEquals(result.getName(), entityName);
+		Assert.assertEquals(result.getId(), entityId);
+		Assert.assertEquals(result.getName(), entityName);
 
-        mockServer.verify();
-    }
+		mockServer.verify();
+	}
 
 }

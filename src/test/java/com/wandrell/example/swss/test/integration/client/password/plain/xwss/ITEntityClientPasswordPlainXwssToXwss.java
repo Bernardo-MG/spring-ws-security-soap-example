@@ -39,14 +39,13 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_PLAIN })
 @TestPropertySource({ TestEndpointXwssPropertiesPaths.PASSWORD_PLAIN })
-public final class ITEntityClientPasswordPlainXwssToXwss
-        extends AbstractITEntityClient {
+public final class ITEntityClientPasswordPlainXwssToXwss extends AbstractITEntityClient {
 
-    /**
-     * Default constructor.
-     */
-    public ITEntityClientPasswordPlainXwssToXwss() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public ITEntityClientPasswordPlainXwssToXwss() {
+		super();
+	}
 
 }

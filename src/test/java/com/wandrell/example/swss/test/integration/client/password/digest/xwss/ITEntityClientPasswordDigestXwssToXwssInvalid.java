@@ -40,15 +40,14 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  */
 @ContextConfiguration(locations = { ClientXwssContextPaths.PASSWORD_DIGEST })
 @TestPropertySource({ TestPropertiesPaths.SECURITY_PASSWORD_DIGEST_INVALID,
-        TestEndpointXwssPropertiesPaths.PASSWORD_DIGEST })
-public final class ITEntityClientPasswordDigestXwssToXwssInvalid
-        extends AbstractITEntityClientInvalid {
+		TestEndpointXwssPropertiesPaths.PASSWORD_DIGEST })
+public final class ITEntityClientPasswordDigestXwssToXwssInvalid extends AbstractITEntityClientInvalid {
 
-    /**
-     * Default constructor.
-     */
-    public ITEntityClientPasswordDigestXwssToXwssInvalid() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public ITEntityClientPasswordDigestXwssToXwssInvalid() {
+		super();
+	}
 
 }

@@ -73,210 +73,202 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY })
-public abstract class AbstractITEndpoint
-        extends AbstractTestNGSpringContextTests {
+public abstract class AbstractITEndpoint extends AbstractTestNGSpringContextTests {
 
-    /**
-     * Id of the returned entity.
-     */
-    @Value("${entity.id}")
-    private Integer entityId;
+	/**
+	 * Id of the returned entity.
+	 */
+	@Value("${entity.id}")
+	private Integer entityId;
 
-    /**
-     * Name of the returned entity.
-     */
-    @Value("${entity.name}")
-    private String  entityName;
+	/**
+	 * Name of the returned entity.
+	 */
+	@Value("${entity.name}")
+	private String entityName;
 
-    /**
-     * SOAP action for the tested message.
-     */
-    @Value("${endpoint.action}")
-    private String  soapAction;
+	/**
+	 * SOAP action for the tested message.
+	 */
+	@Value("${endpoint.action}")
+	private String soapAction;
 
-    /**
-     * URL to the WSDL of the web service being tested.
-     */
-    @Value("${endpoint.wsdl.url}")
-    private String  wsdlURL;
+	/**
+	 * URL to the WSDL of the web service being tested.
+	 */
+	@Value("${endpoint.wsdl.url}")
+	private String wsdlURL;
 
-    /**
-     * URL to the web service being tested.
-     */
-    @Value("${endpoint.url}")
-    private String  wsURL;
+	/**
+	 * URL to the web service being tested.
+	 */
+	@Value("${endpoint.url}")
+	private String wsURL;
 
-    /**
-     * Default constructor.
-     */
-    public AbstractITEndpoint() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AbstractITEndpoint() {
+		super();
+	}
 
-    /**
-     * Tests that an invalid message returns a fault.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
-        final SOAPMessage message; // Response message
+	/**
+	 * Calls the web service being tested and returns the response.
+	 *
+	 * @param request
+	 *            request to the web service
+	 * @return the web service response
+	 * @throws SOAPException
+	 *             never, this is a required declaration
+	 */
+	protected final SOAPMessage callWebService(final SOAPMessage request) throws SOAPException {
+		final SOAPConnectionFactory soapConnectionFactory; // Connection factory
+		final MimeHeaders headers; // Message headers
 
-        message = callWebService(getInvalidSoapMessage());
+		soapConnectionFactory = SOAPConnectionFactory.newInstance();
 
-        Assert.assertNotNull(
-                message.getSOAPPart().getEnvelope().getBody().getFault());
-    }
+		// Sets the SOAP action
+		headers = request.getMimeHeaders();
+		headers.addHeader("SOAPAction", soapAction);
+		request.saveChanges();
 
-    /**
-     * Tests that a valid message returns the expected value.
-     *
-     * @throws Exception
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_Valid_ReturnsEntity() throws Exception {
-        final SOAPMessage message; // Response message
-        final SOAPMessage req;     // Request message
-        final Entity entity;       // Entity from the response
+		return soapConnectionFactory.createConnection().call(request, wsURL);
+	}
 
-        req = getValidSoapMessage();
-        if (req != null) {
-            // TODO: This is just to avoid problems with the test not yet
-            // working
-            message = callWebService(getValidSoapMessage());
+	/**
+	 * Acquires a child element based on the name.
+	 *
+	 * @param parent
+	 *            the element where the search will be made
+	 * @param name
+	 *            the name of the child to return
+	 * @return the child with the specified name
+	 */
+	private final Element getChild(final Element parent, final String name) {
+		Element result = null; // The wanted child
 
-            Assert.assertNull(
-                    message.getSOAPPart().getEnvelope().getBody().getFault());
+		for (Node child = parent.getFirstChild(); child != null; child = child.getNextSibling()) {
+			if ((child instanceof Element) && (name.equals(child.getNodeName()))) {
+				result = (Element) child;
+			}
+		}
 
-            entity = SoapMessageUtils.getEntity(message);
+		return result;
+	}
 
-            Assert.assertEquals((Integer) entity.getId(), entityId);
-            Assert.assertEquals(entity.getName(), entityName);
-        }
-    }
+	/**
+	 * Returns an invalid SOAP message for the endpoint being tested.
+	 *
+	 * @return an invalid SOAP message
+	 * @throws Exception
+	 *             if any error occurs while preparing the SOAP message
+	 */
+	protected abstract SOAPMessage getInvalidSoapMessage() throws Exception;
 
-    /**
-     * Tests that the WSDL is being generated.
-     *
-     * @throws IOException
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_WSDL_Exists() throws IOException {
-        final URL url;           // URL for the WSDL
-        final BufferedReader in; // Reader for the WSDL
-        final String line;       // First line of the WSDL
+	/**
+	 * Returns a valid SOAP message for the endpoint being tested.
+	 *
+	 * @return a valid SOAP message
+	 * @throws Exception
+	 *             if any error occurs while preparing the SOAP message
+	 */
+	protected abstract SOAPMessage getValidSoapMessage() throws Exception;
 
-        url = new URL(wsdlURL);
-        in = new BufferedReader(new InputStreamReader(url.openStream()));
-        line = in.readLine();
+	/**
+	 * Tests that an invalid message returns a fault.
+	 *
+	 * @throws Exception
+	 *             never, this is a required declaration
+	 */
+	@Test
+	public final void testEndpoint_Invalid_ReturnsFault() throws Exception {
+		final SOAPMessage message; // Response message
 
-        Assert.assertTrue(line.contains("wsdl:definitions"));
-    }
+		message = callWebService(getInvalidSoapMessage());
 
-    /**
-     * Tests that the WSDL contains the correct SOAP address.
-     *
-     * @throws ParserConfigurationException
-     *             never, this is a required declaration
-     * @throws SAXException
-     *             never, this is a required declaration
-     * @throws IOException
-     *             never, this is a required declaration
-     * @throws XPathExpressionException
-     *             never, this is a required declaration
-     */
-    @Test
-    public final void testEndpoint_WSDL_ValidSOAPAddress()
-            throws ParserConfigurationException, SAXException, IOException,
-            XPathExpressionException {
-        final DocumentBuilderFactory factory;   // Factory for the
-                                                // DocumentBuilder
-        final DocumentBuilder builder;          // Document builder
-        final Document doc;                     // Document for the WSDL
-        final Node serviceNode;                 // WSDL service node
-        final Node portNode;                    // WSDL port node
-        final Node addressNode;                 // WSDL address node
+		Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody().getFault());
+	}
 
-        // Creates the document
-        factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
-        builder = factory.newDocumentBuilder();
-        doc = builder.parse(new URL(wsdlURL).openStream());
+	/**
+	 * Tests that a valid message returns the expected value.
+	 *
+	 * @throws Exception
+	 *             never, this is a required declaration
+	 */
+	@Test
+	public final void testEndpoint_Valid_ReturnsEntity() throws Exception {
+		final SOAPMessage message; // Response message
+		final SOAPMessage req; // Request message
+		final Entity entity; // Entity from the response
 
-        serviceNode = getChild((Element) doc.getFirstChild(), "wsdl:service");
-        portNode = getChild((Element) serviceNode, "wsdl:port");
-        addressNode = getChild((Element) portNode, "soap:address");
+		req = getValidSoapMessage();
+		if (req != null) {
+			// TODO: This is just to avoid problems with the test not yet
+			// working
+			message = callWebService(getValidSoapMessage());
 
-        Assert.assertEquals(((Element) addressNode).getAttribute("location"),
-                wsURL);
-    }
+			Assert.assertNull(message.getSOAPPart().getEnvelope().getBody().getFault());
 
-    /**
-     * Acquires a child element based on the name.
-     *
-     * @param parent
-     *            the element where the search will be made
-     * @param name
-     *            the name of the child to return
-     * @return the child with the specified name
-     */
-    private final Element getChild(final Element parent, final String name) {
-        Element result = null;      // The wanted child
+			entity = SoapMessageUtils.getEntity(message);
 
-        for (Node child = parent.getFirstChild(); child != null; child = child
-                .getNextSibling()) {
-            if ((child instanceof Element)
-                    && (name.equals(child.getNodeName()))) {
-                result = (Element) child;
-            }
-        }
+			Assert.assertEquals((Integer) entity.getId(), entityId);
+			Assert.assertEquals(entity.getName(), entityName);
+		}
+	}
 
-        return result;
-    }
+	/**
+	 * Tests that the WSDL is being generated.
+	 *
+	 * @throws IOException
+	 *             never, this is a required declaration
+	 */
+	@Test
+	public final void testEndpoint_WSDL_Exists() throws IOException {
+		final URL url; // URL for the WSDL
+		final BufferedReader in; // Reader for the WSDL
+		final String line; // First line of the WSDL
 
-    /**
-     * Calls the web service being tested and returns the response.
-     *
-     * @param request
-     *            request to the web service
-     * @return the web service response
-     * @throws SOAPException
-     *             never, this is a required declaration
-     */
-    protected final SOAPMessage callWebService(final SOAPMessage request)
-            throws SOAPException {
-        final SOAPConnectionFactory soapConnectionFactory; // Connection factory
-        final MimeHeaders headers;                         // Message headers
+		url = new URL(wsdlURL);
+		in = new BufferedReader(new InputStreamReader(url.openStream()));
+		line = in.readLine();
 
-        soapConnectionFactory = SOAPConnectionFactory.newInstance();
+		Assert.assertTrue(line.contains("wsdl:definitions"));
+	}
 
-        // Sets the SOAP action
-        headers = request.getMimeHeaders();
-        headers.addHeader("SOAPAction", soapAction);
-        request.saveChanges();
+	/**
+	 * Tests that the WSDL contains the correct SOAP address.
+	 *
+	 * @throws ParserConfigurationException
+	 *             never, this is a required declaration
+	 * @throws SAXException
+	 *             never, this is a required declaration
+	 * @throws IOException
+	 *             never, this is a required declaration
+	 * @throws XPathExpressionException
+	 *             never, this is a required declaration
+	 */
+	@Test
+	public final void testEndpoint_WSDL_ValidSOAPAddress()
+			throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+		final DocumentBuilderFactory factory; // Factory for the
+												// DocumentBuilder
+		final DocumentBuilder builder; // Document builder
+		final Document doc; // Document for the WSDL
+		final Node serviceNode; // WSDL service node
+		final Node portNode; // WSDL port node
+		final Node addressNode; // WSDL address node
 
-        return soapConnectionFactory.createConnection().call(request, wsURL);
-    }
+		// Creates the document
+		factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true);
+		builder = factory.newDocumentBuilder();
+		doc = builder.parse(new URL(wsdlURL).openStream());
 
-    /**
-     * Returns an invalid SOAP message for the endpoint being tested.
-     *
-     * @return an invalid SOAP message
-     * @throws Exception
-     *             if any error occurs while preparing the SOAP message
-     */
-    protected abstract SOAPMessage getInvalidSoapMessage() throws Exception;
+		serviceNode = getChild((Element) doc.getFirstChild(), "wsdl:service");
+		portNode = getChild((Element) serviceNode, "wsdl:port");
+		addressNode = getChild((Element) portNode, "soap:address");
 
-    /**
-     * Returns a valid SOAP message for the endpoint being tested.
-     *
-     * @return a valid SOAP message
-     * @throws Exception
-     *             if any error occurs while preparing the SOAP message
-     */
-    protected abstract SOAPMessage getValidSoapMessage() throws Exception;
+		Assert.assertEquals(((Element) addressNode).getAttribute("location"), wsURL);
+	}
 
 }
