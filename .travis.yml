@@ -2,13 +2,15 @@
 # @link https://travis-ci.org/
 
 # Using Java for the project
+sudo: required
+dist: precise
 language: java
 matrix:
   include:
     # Documentation deployed with Open JDK7
-    - jdk: openjdk7
+    - jdk: oraclejdk7
       env: SERVER=jetty DEPLOY_DOCS=true
-    - jdk: openjdk7
+    - jdk: oraclejdk7
       env: SERVER=tomcat7
 
 before_install:
