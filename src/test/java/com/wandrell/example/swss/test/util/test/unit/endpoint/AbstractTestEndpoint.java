@@ -26,7 +26,7 @@ package com.wandrell.example.swss.test.util.test.unit.endpoint;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
@@ -39,7 +39,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  */
 @ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED })
 @TestPropertySource({ TestPropertiesPaths.WSDL, EndpointPropertiesPaths.COMMON })
-public abstract class AbstractTestEndpoint extends AbstractTestNGSpringContextTests {
+public abstract class AbstractTestEndpoint extends AbstractJUnit4SpringContextTests {
 
 	/**
 	 * Default constructor.

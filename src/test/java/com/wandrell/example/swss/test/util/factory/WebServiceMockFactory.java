@@ -79,6 +79,39 @@ public final class WebServiceMockFactory {
 	}
 
 	/**
+	 * Returns a mocked callback handler which validates any data.
+	 *
+	 * @return a mocked callback handler
+	 * @throws PasswordValidationException
+	 *             never, this is a required declaration
+	 */
+	public final CallbackHandler getValidationCallbackHandler() throws PasswordValidationException {
+		final CallbackHandler callbackHandler; // Mocked handler
+		final PasswordValidator passwordValidator; // Mocked validator
+
+		passwordValidator = getPasswordValidator();
+
+		callbackHandler = new AbstractCallbackHandler() {
+
+			@Override
+			protected void handleInternal(final Callback callback) throws IOException, UnsupportedCallbackException {
+				if (callback instanceof PasswordValidationCallback) {
+					((PasswordValidationCallback) callback).setValidator(passwordValidator);
+				} else if (callback instanceof WSPasswordCallback) {
+					// TODO:The callback handler should accept any password
+					// Where is this password being validated?
+					((WSPasswordCallback) callback).setPassword("myPassword");
+				} else if (callback instanceof TimestampValidationCallback) {
+					((TimestampValidationCallback) callback).setValidator(getTimestampValidator());
+				}
+			}
+
+		};
+
+		return callbackHandler;
+	}
+
+	/**
 	 * Returns a mocked password validator.
 	 * <p>
 	 * This validates any password.
@@ -112,39 +145,6 @@ public final class WebServiceMockFactory {
 		passwordValidator = Mockito.mock(TimestampValidator.class);
 
 		return passwordValidator;
-	}
-
-	/**
-	 * Returns a mocked callback handler which validates any data.
-	 *
-	 * @return a mocked callback handler
-	 * @throws PasswordValidationException
-	 *             never, this is a required declaration
-	 */
-	public final CallbackHandler getValidationCallbackHandler() throws PasswordValidationException {
-		final CallbackHandler callbackHandler; // Mocked handler
-		final PasswordValidator passwordValidator; // Mocked validator
-
-		passwordValidator = getPasswordValidator();
-
-		callbackHandler = new AbstractCallbackHandler() {
-
-			@Override
-			protected void handleInternal(final Callback callback) throws IOException, UnsupportedCallbackException {
-				if (callback instanceof PasswordValidationCallback) {
-					((PasswordValidationCallback) callback).setValidator(passwordValidator);
-				} else if (callback instanceof WSPasswordCallback) {
-					// TODO:The callback handler should accept any password
-					// Where is this password being validated?
-					((WSPasswordCallback) callback).setPassword("myPassword");
-				} else if (callback instanceof TimestampValidationCallback) {
-					((TimestampValidationCallback) callback).setValidator(getTimestampValidator());
-				}
-			}
-
-		};
-
-		return callbackHandler;
 	}
 
 }

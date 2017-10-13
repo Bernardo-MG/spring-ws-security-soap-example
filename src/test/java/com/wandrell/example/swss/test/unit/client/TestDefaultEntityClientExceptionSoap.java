@@ -27,6 +27,7 @@ package com.wandrell.example.swss.test.unit.client;
 import java.io.IOException;
 import java.util.Locale;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
@@ -36,7 +37,6 @@ import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
@@ -87,7 +87,7 @@ public final class TestDefaultEntityClientExceptionSoap extends AbstractTestEnti
 	 * @throws IOException
 	 *             if there is any problem loading the entity schema file
 	 */
-	@Test(expectedExceptions = WebServiceTransportException.class)
+	@Test(expected = WebServiceTransportException.class)
 	public final void testClient_Error_Exception() throws IOException {
 		final MockWebServiceServer mockServer; // Mocked server
 		final ResponseCreator responseCreator; // Creator for the response
@@ -109,7 +109,7 @@ public final class TestDefaultEntityClientExceptionSoap extends AbstractTestEnti
 	 * @throws IOException
 	 *             if there is any problem loading the entity schema file
 	 */
-	@Test(expectedExceptions = { SoapFaultClientException.class })
+	@Test(expected = SoapFaultClientException.class)
 	public final void testClient_Fault_Exception() throws IOException {
 		final MockWebServiceServer mockServer; // Mocked server
 		final ResponseCreator responseCreator; // Creator for the response
@@ -132,7 +132,7 @@ public final class TestDefaultEntityClientExceptionSoap extends AbstractTestEnti
 	 * @throws IOException
 	 *             if there is any problem loading the entity schema file
 	 */
-	@Test(expectedExceptions = { SoapFaultClientException.class })
+	@Test(expected = SoapFaultClientException.class)
 	public final void testClient_VersionMismatch_Exception() throws IOException {
 		final MockWebServiceServer mockServer; // Mocked server
 		final ResponseCreator responseCreator; // Creator for the response

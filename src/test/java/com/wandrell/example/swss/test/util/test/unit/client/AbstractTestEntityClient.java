@@ -25,7 +25,7 @@
 package com.wandrell.example.swss.test.util.test.unit.client;
 
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 
@@ -35,7 +35,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL })
-public abstract class AbstractTestEntityClient extends AbstractTestNGSpringContextTests {
+public abstract class AbstractTestEntityClient extends AbstractJUnit4SpringContextTests {
 
 	/**
 	 * Default constructor.

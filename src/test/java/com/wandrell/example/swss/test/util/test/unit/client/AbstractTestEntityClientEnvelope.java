@@ -29,17 +29,17 @@ import java.io.IOException;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
@@ -58,7 +58,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public abstract class AbstractTestEntityClientEnvelope extends AbstractTestNGSpringContextTests {
+public abstract class AbstractTestEntityClientEnvelope extends AbstractJUnit4SpringContextTests {
 
 	/**
 	 * The client being tested.
@@ -104,13 +104,6 @@ public abstract class AbstractTestEntityClientEnvelope extends AbstractTestNGSpr
 	}
 
 	/**
-	 * Returns a valid SOAP request envelope in a {@code Source} class.
-	 *
-	 * @return a valid SOAP request envelope
-	 */
-	protected abstract Source getRequestEnvelope();
-
-	/**
 	 * Tests that the client can handle incorrectly formed SOAP messages.
 	 *
 	 * @throws IOException
@@ -136,8 +129,8 @@ public abstract class AbstractTestEntityClientEnvelope extends AbstractTestNGSpr
 		// Calls the server mock
 		result = client.getEntity("http:somewhere.com", entityId);
 
-		Assert.assertEquals(result.getId(), new Integer(-1));
-		Assert.assertEquals(result.getName(), "");
+		Assert.assertEquals(new Integer(-1), result.getId());
+		Assert.assertEquals("", result.getName());
 
 		mockServer.verify();
 	}
@@ -172,10 +165,17 @@ public abstract class AbstractTestEntityClientEnvelope extends AbstractTestNGSpr
 		// Calls the server mock
 		result = client.getEntity("http:somewhere.com", entityId);
 
-		Assert.assertEquals(result.getId(), entityId);
-		Assert.assertEquals(result.getName(), entityName);
+		Assert.assertEquals(entityId, result.getId());
+		Assert.assertEquals(entityName, result.getName());
 
 		mockServer.verify();
 	}
+
+	/**
+	 * Returns a valid SOAP request envelope in a {@code Source} class.
+	 *
+	 * @return a valid SOAP request envelope
+	 */
+	protected abstract Source getRequestEnvelope();
 
 }

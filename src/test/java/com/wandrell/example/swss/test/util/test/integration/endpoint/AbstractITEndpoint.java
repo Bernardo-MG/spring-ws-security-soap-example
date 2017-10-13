@@ -38,12 +38,12 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -73,7 +73,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY })
-public abstract class AbstractITEndpoint extends AbstractTestNGSpringContextTests {
+public abstract class AbstractITEndpoint extends AbstractJUnit4SpringContextTests {
 
 	/**
 	 * Id of the returned entity.
@@ -113,68 +113,6 @@ public abstract class AbstractITEndpoint extends AbstractTestNGSpringContextTest
 	}
 
 	/**
-	 * Calls the web service being tested and returns the response.
-	 *
-	 * @param request
-	 *            request to the web service
-	 * @return the web service response
-	 * @throws SOAPException
-	 *             never, this is a required declaration
-	 */
-	protected final SOAPMessage callWebService(final SOAPMessage request) throws SOAPException {
-		final SOAPConnectionFactory soapConnectionFactory; // Connection factory
-		final MimeHeaders headers; // Message headers
-
-		soapConnectionFactory = SOAPConnectionFactory.newInstance();
-
-		// Sets the SOAP action
-		headers = request.getMimeHeaders();
-		headers.addHeader("SOAPAction", soapAction);
-		request.saveChanges();
-
-		return soapConnectionFactory.createConnection().call(request, wsURL);
-	}
-
-	/**
-	 * Acquires a child element based on the name.
-	 *
-	 * @param parent
-	 *            the element where the search will be made
-	 * @param name
-	 *            the name of the child to return
-	 * @return the child with the specified name
-	 */
-	private final Element getChild(final Element parent, final String name) {
-		Element result = null; // The wanted child
-
-		for (Node child = parent.getFirstChild(); child != null; child = child.getNextSibling()) {
-			if ((child instanceof Element) && (name.equals(child.getNodeName()))) {
-				result = (Element) child;
-			}
-		}
-
-		return result;
-	}
-
-	/**
-	 * Returns an invalid SOAP message for the endpoint being tested.
-	 *
-	 * @return an invalid SOAP message
-	 * @throws Exception
-	 *             if any error occurs while preparing the SOAP message
-	 */
-	protected abstract SOAPMessage getInvalidSoapMessage() throws Exception;
-
-	/**
-	 * Returns a valid SOAP message for the endpoint being tested.
-	 *
-	 * @return a valid SOAP message
-	 * @throws Exception
-	 *             if any error occurs while preparing the SOAP message
-	 */
-	protected abstract SOAPMessage getValidSoapMessage() throws Exception;
-
-	/**
 	 * Tests that an invalid message returns a fault.
 	 *
 	 * @throws Exception
@@ -211,8 +149,8 @@ public abstract class AbstractITEndpoint extends AbstractTestNGSpringContextTest
 
 			entity = SoapMessageUtils.getEntity(message);
 
-			Assert.assertEquals((Integer) entity.getId(), entityId);
-			Assert.assertEquals(entity.getName(), entityName);
+			Assert.assertEquals(entityId, (Integer) entity.getId());
+			Assert.assertEquals(entityName, entity.getName());
 		}
 	}
 
@@ -268,7 +206,69 @@ public abstract class AbstractITEndpoint extends AbstractTestNGSpringContextTest
 		portNode = getChild((Element) serviceNode, "wsdl:port");
 		addressNode = getChild((Element) portNode, "soap:address");
 
-		Assert.assertEquals(((Element) addressNode).getAttribute("location"), wsURL);
+		Assert.assertEquals(wsURL, ((Element) addressNode).getAttribute("location"));
 	}
+
+	/**
+	 * Acquires a child element based on the name.
+	 *
+	 * @param parent
+	 *            the element where the search will be made
+	 * @param name
+	 *            the name of the child to return
+	 * @return the child with the specified name
+	 */
+	private final Element getChild(final Element parent, final String name) {
+		Element result = null; // The wanted child
+
+		for (Node child = parent.getFirstChild(); child != null; child = child.getNextSibling()) {
+			if ((child instanceof Element) && (name.equals(child.getNodeName()))) {
+				result = (Element) child;
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Calls the web service being tested and returns the response.
+	 *
+	 * @param request
+	 *            request to the web service
+	 * @return the web service response
+	 * @throws SOAPException
+	 *             never, this is a required declaration
+	 */
+	protected final SOAPMessage callWebService(final SOAPMessage request) throws SOAPException {
+		final SOAPConnectionFactory soapConnectionFactory; // Connection factory
+		final MimeHeaders headers; // Message headers
+
+		soapConnectionFactory = SOAPConnectionFactory.newInstance();
+
+		// Sets the SOAP action
+		headers = request.getMimeHeaders();
+		headers.addHeader("SOAPAction", soapAction);
+		request.saveChanges();
+
+		return soapConnectionFactory.createConnection().call(request, wsURL);
+	}
+
+	/**
+	 * Returns an invalid SOAP message for the endpoint being tested.
+	 *
+	 * @return an invalid SOAP message
+	 * @throws Exception
+	 *             if any error occurs while preparing the SOAP message
+	 */
+	protected abstract SOAPMessage getInvalidSoapMessage() throws Exception;
+
+	/**
+	 * Returns a valid SOAP message for the endpoint being tested.
+	 *
+	 * @return a valid SOAP message
+	 * @throws Exception
+	 *             if any error occurs while preparing the SOAP message
+	 */
+	protected abstract SOAPMessage getValidSoapMessage() throws Exception;
 
 }

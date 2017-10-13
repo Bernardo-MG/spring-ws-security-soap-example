@@ -24,12 +24,12 @@
 
 package com.wandrell.example.swss.test.util.test.integration.client;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.wandrell.example.swss.client.EntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
@@ -51,7 +51,7 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.ENTITY })
-public abstract class AbstractITEntityClient extends AbstractTestNGSpringContextTests {
+public abstract class AbstractITEntityClient extends AbstractJUnit4SpringContextTests {
 
 	/**
 	 * Client being tested.
@@ -93,7 +93,7 @@ public abstract class AbstractITEntityClient extends AbstractTestNGSpringContext
 
 		entity = client.getEntity(wsUrl, -123);
 
-		Assert.assertEquals(entity.getId(), new Integer(-1));
+		Assert.assertEquals(new Integer(-1), entity.getId());
 	}
 
 	/**
@@ -105,8 +105,8 @@ public abstract class AbstractITEntityClient extends AbstractTestNGSpringContext
 
 		entity = client.getEntity(wsUrl, 1);
 
-		Assert.assertEquals(entity.getId(), entityId);
-		Assert.assertEquals(entity.getName(), entityName);
+		Assert.assertEquals(entityId, entity.getId());
+		Assert.assertEquals(entityName, entity.getName());
 	}
 
 }

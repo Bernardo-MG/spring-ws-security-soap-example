@@ -26,6 +26,7 @@ package com.wandrell.example.swss.test.util.test.unit.endpoint;
 
 import javax.xml.transform.Source;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -36,7 +37,6 @@ import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
 import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
@@ -92,13 +92,6 @@ public abstract class AbstractTestEntityEndpointRequest extends AbstractTestEndp
 	}
 
 	/**
-	 * Returns a valid SOAP request envelope in a {@code Source} class.
-	 *
-	 * @return a valid SOAP request envelope
-	 */
-	protected abstract Source getRequestEnvelope();
-
-	/**
 	 * Tests that the endpoint parses SOAP requests with a valid envelope.
 	 */
 	@Test
@@ -141,5 +134,12 @@ public abstract class AbstractTestEntityEndpointRequest extends AbstractTestEndp
 		// Calls the endpoint
 		mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
 	}
+
+	/**
+	 * Returns a valid SOAP request envelope in a {@code Source} class.
+	 *
+	 * @return a valid SOAP request envelope
+	 */
+	protected abstract Source getRequestEnvelope();
 
 }

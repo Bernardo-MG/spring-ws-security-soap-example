@@ -26,10 +26,10 @@ package com.wandrell.example.swss.test.integration.endpoint.password.digest.wss4
 
 import javax.xml.soap.SOAPMessage;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.TestPropertySource;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.test.util.SoapMessageUtils;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -86,16 +86,6 @@ public final class ITEntityEndpointPasswordDigestWss4j extends AbstractITEndpoin
 		super();
 	}
 
-	@Override
-	protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-		return SoapMessageUtils.getMessage(pathInvalid);
-	}
-
-	@Override
-	protected final SOAPMessage getValidSoapMessage() throws Exception {
-		return SecureSoapMessages.getDigestedPasswordMessage(pathValid, username, password);
-	}
-
 	/**
 	 * Tests that a message with a wrong password returns a fault.
 	 *
@@ -126,6 +116,16 @@ public final class ITEntityEndpointPasswordDigestWss4j extends AbstractITEndpoin
 				SecureSoapMessages.getDigestedPasswordMessage(pathValid, username + "abc123", password));
 
 		Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody().getFault());
+	}
+
+	@Override
+	protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+		return SoapMessageUtils.getMessage(pathInvalid);
+	}
+
+	@Override
+	protected final SOAPMessage getValidSoapMessage() throws Exception {
+		return SecureSoapMessages.getDigestedPasswordMessage(pathValid, username, password);
 	}
 
 }

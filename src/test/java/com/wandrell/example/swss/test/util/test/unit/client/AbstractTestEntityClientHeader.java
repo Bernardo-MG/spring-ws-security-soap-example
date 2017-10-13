@@ -28,6 +28,8 @@ import java.io.IOException;
 
 import javax.xml.namespace.QName;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -37,8 +39,6 @@ import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
@@ -136,8 +136,8 @@ public abstract class AbstractTestEntityClientHeader extends AbstractTestEntityC
 		// Calls the server mock
 		result = client.getEntity("http:somewhere.com", entityId);
 
-		Assert.assertEquals(result.getId(), new Integer(-1));
-		Assert.assertEquals(result.getName(), "");
+		Assert.assertEquals(new Integer(-1), result.getId());
+		Assert.assertEquals("", result.getName());
 
 		mockServer.verify();
 	}
@@ -168,8 +168,8 @@ public abstract class AbstractTestEntityClientHeader extends AbstractTestEntityC
 		// Calls the server mock
 		result = client.getEntity("http:somewhere.com", entityId);
 
-		Assert.assertEquals(result.getId(), entityId);
-		Assert.assertEquals(result.getName(), entityName);
+		Assert.assertEquals(entityId, result.getId());
+		Assert.assertEquals(entityName, result.getName());
 
 		mockServer.verify();
 	}

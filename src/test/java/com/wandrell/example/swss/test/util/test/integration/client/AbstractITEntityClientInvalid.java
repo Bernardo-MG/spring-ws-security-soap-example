@@ -24,11 +24,11 @@
 
 package com.wandrell.example.swss.test.util.test.integration.client;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.ws.soap.client.SoapFaultClientException;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
 
@@ -47,7 +47,7 @@ import com.wandrell.example.swss.client.EntityClient;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public abstract class AbstractITEntityClientInvalid extends AbstractTestNGSpringContextTests {
+public abstract class AbstractITEntityClientInvalid extends AbstractJUnit4SpringContextTests {
 
 	/**
 	 * Client being tested.
@@ -72,7 +72,7 @@ public abstract class AbstractITEntityClientInvalid extends AbstractTestNGSpring
 	 * Tests that an invalid message causes a {@code SoapFaultClientException}
 	 * to be thrown.
 	 */
-	@Test(expectedExceptions = SoapFaultClientException.class)
+	@Test(expected = SoapFaultClientException.class)
 	public final void testEndpoint_InvalidMessage_Exception() {
 		client.getEntity(wsUrl, 1);
 	}

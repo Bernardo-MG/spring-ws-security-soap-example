@@ -24,10 +24,10 @@
 
 package com.wandrell.example.swss.test.unit.client;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.Test;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
@@ -44,7 +44,7 @@ import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPath
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
-public final class TestDefaultEntityClientExceptionErrors extends AbstractTestNGSpringContextTests {
+public final class TestDefaultEntityClientExceptionErrors extends AbstractJUnit4SpringContextTests {
 
 	/**
 	 * The client being tested.
@@ -62,7 +62,7 @@ public final class TestDefaultEntityClientExceptionErrors extends AbstractTestNG
 	/**
 	 * The client throws an exception when connecting to an invalid URL.
 	 */
-	@Test(expectedExceptions = Exception.class)
+	@Test(expected = Exception.class)
 	public final void testClient_InvalidURL() {
 		client.getEntity("http://www.somewhere.com", 0);
 	}
