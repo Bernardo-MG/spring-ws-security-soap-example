@@ -38,7 +38,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
- * Users authentication service.
+ * Users authentication service with hardcoded data.
  * <p>
  * This is used by the the user-based authentication systems, and for that
  * reason implements an interface from the Spring framework.
@@ -48,18 +48,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultUserDetailsService implements UserDetailsService {
+public final class HardcodedUserDetailsService implements UserDetailsService {
 
     /**
      * The logger used for logging the user details service usage.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(DefaultUserDetailsService.class);
+            .getLogger(HardcodedUserDetailsService.class);
 
     /**
      * Constructs a user details service.
      */
-    public DefaultUserDetailsService() {
+    public HardcodedUserDetailsService() {
         super();
     }
 

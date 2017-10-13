@@ -29,7 +29,7 @@
  * entities returned by the endpoints.
  * <p>
  * Its default implementation, the
- * {@link com.wandrell.example.swss.service.domain.DefaultExampleEntityService
+ * {@link com.wandrell.example.swss.service.domain.RepositoryExampleEntityService
  * DefaultExampleEntityService}, makes use of the
  * {@link com.wandrell.example.swss.repository.ExampleEntityRepository
  * ExampleEntityRepository} for this.
