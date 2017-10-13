@@ -51,62 +51,63 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.ENTITY })
-public abstract class AbstractITEntityClient extends AbstractJUnit4SpringContextTests {
+public abstract class AbstractITEntityClient
+        extends AbstractJUnit4SpringContextTests {
 
-	/**
-	 * Client being tested.
-	 */
-	@Autowired
-	private EntityClient client;
+    /**
+     * Client being tested.
+     */
+    @Autowired
+    private EntityClient client;
 
-	/**
-	 * Id of the returned entity.
-	 */
-	@Value("${entity.id}")
-	private Integer entityId;
+    /**
+     * Id of the returned entity.
+     */
+    @Value("${entity.id}")
+    private Integer      entityId;
 
-	/**
-	 * Name of the returned entity.
-	 */
-	@Value("${entity.name}")
-	private String entityName;
+    /**
+     * Name of the returned entity.
+     */
+    @Value("${entity.name}")
+    private String       entityName;
 
-	/**
-	 * URL for the WS.
-	 */
-	@Value("${endpoint.url}")
-	private String wsUrl;
+    /**
+     * URL for the WS.
+     */
+    @Value("${endpoint.url}")
+    private String       wsUrl;
 
-	/**
-	 * Default constructor.
-	 */
-	public AbstractITEntityClient() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public AbstractITEntityClient() {
+        super();
+    }
 
-	/**
-	 * Tests that an invalid id returns an empty entity.
-	 */
-	@Test
-	public final void testEndpoint_InvalidId_ReturnsEmpty() {
-		final ExampleEntity entity; // Returned entity
+    /**
+     * Tests that an invalid id returns an empty entity.
+     */
+    @Test
+    public final void testEndpoint_InvalidId_ReturnsEmpty() {
+        final ExampleEntity entity; // Returned entity
 
-		entity = client.getEntity(wsUrl, -123);
+        entity = client.getEntity(wsUrl, -123);
 
-		Assert.assertEquals(new Integer(-1), entity.getId());
-	}
+        Assert.assertEquals(new Integer(-1), entity.getId());
+    }
 
-	/**
-	 * Tests that a valid id returns the expected value.
-	 */
-	@Test
-	public final void testEndpoint_ValidId_ReturnsValid() {
-		final ExampleEntity entity; // Returned entity
+    /**
+     * Tests that a valid id returns the expected value.
+     */
+    @Test
+    public final void testEndpoint_ValidId_ReturnsValid() {
+        final ExampleEntity entity; // Returned entity
 
-		entity = client.getEntity(wsUrl, 1);
+        entity = client.getEntity(wsUrl, 1);
 
-		Assert.assertEquals(entityId, entity.getId());
-		Assert.assertEquals(entityName, entity.getName());
-	}
+        Assert.assertEquals(entityId, entity.getId());
+        Assert.assertEquals(entityName, entity.getName());
+    }
 
 }

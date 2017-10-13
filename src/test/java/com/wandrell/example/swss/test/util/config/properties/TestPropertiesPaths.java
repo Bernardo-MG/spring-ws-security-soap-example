@@ -33,56 +33,56 @@ package com.wandrell.example.swss.test.util.config.properties;
  */
 public final class TestPropertiesPaths {
 
-	/**
-	 * Test entity information.
-	 */
-	public static final String ENTITY = "classpath:config/test-entity.properties";
+    /**
+     * Test entity information.
+     */
+    public static final String ENTITY                           = "classpath:config/test-entity.properties";
 
-	/**
-	 * Key stores access and configuration.
-	 */
-	public static final String KEYSTORE = "classpath:config/keystore/keystore.properties";
+    /**
+     * Key stores access and configuration.
+     */
+    public static final String KEYSTORE                         = "classpath:config/keystore/keystore.properties";
 
-	/**
-	 * Invalid key stores access and configuration.
-	 */
-	public static final String KEYSTORE_INVALID = "classpath:config/keystore/keystore2.properties";
+    /**
+     * Invalid key stores access and configuration.
+     */
+    public static final String KEYSTORE_INVALID                 = "classpath:config/keystore/keystore2.properties";
 
-	/**
-	 * WSS4J key stores access and configuration.
-	 */
-	public static final String KEYSTORE_WSS4J = "classpath:config/keystore/keystore-wss4j.properties";
+    /**
+     * WSS4J key stores access and configuration.
+     */
+    public static final String KEYSTORE_WSS4J                   = "classpath:config/keystore/keystore-wss4j.properties";
 
-	/**
-	 * Invalid digested password configuration.
-	 */
-	public static final String SECURITY_PASSWORD_DIGEST_INVALID = "classpath:config/security/test-security-password-digest-invalid.properties";
+    /**
+     * Invalid digested password configuration.
+     */
+    public static final String SECURITY_PASSWORD_DIGEST_INVALID = "classpath:config/security/test-security-password-digest-invalid.properties";
 
-	/**
-	 * Invalid plain password configuration.
-	 */
-	public static final String SECURITY_PASSWORD_PLAIN_INVALID = "classpath:config/security/test-security-password-plain-invalid.properties";
+    /**
+     * Invalid plain password configuration.
+     */
+    public static final String SECURITY_PASSWORD_PLAIN_INVALID  = "classpath:config/security/test-security-password-plain-invalid.properties";
 
-	/**
-	 * Test user authentication data.
-	 */
-	public static final String USER = "classpath:config/user/test-user.properties";
+    /**
+     * Test user authentication data.
+     */
+    public static final String USER                             = "classpath:config/user/test-user.properties";
 
-	/**
-	 * Invalid test user authentication data.
-	 */
-	public static final String USER_INVALID = "classpath:config/user/test-user-invalid.properties";
+    /**
+     * Invalid test user authentication data.
+     */
+    public static final String USER_INVALID                     = "classpath:config/user/test-user-invalid.properties";
 
-	/**
-	 * WSDL data.
-	 */
-	public static final String WSDL = "classpath:config/endpoint/test-wsdl.properties";
+    /**
+     * WSDL data.
+     */
+    public static final String WSDL                             = "classpath:config/endpoint/test-wsdl.properties";
 
-	/**
-	 * Private constructor to avoid initialization.
-	 */
-	private TestPropertiesPaths() {
-		super();
-	}
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private TestPropertiesPaths() {
+        super();
+    }
 
 }

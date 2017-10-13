@@ -44,43 +44,48 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@ContextConfiguration(locations = { ServletXwssContextPaths.PASSWORD_DIGEST_MOCKED })
-@TestPropertySource({ SoapPropertiesPaths.PASSWORD_DIGEST, InterceptorXwssPropertiesPaths.PASSWORD_DIGEST,
-		EndpointXwssPropertiesPaths.PASSWORD_DIGEST, TestEndpointXwssPropertiesPaths.PASSWORD_DIGEST })
-public final class TestEntityEndpointRequestPasswordDigestXwss extends AbstractTestEntityEndpointRequest {
+@ContextConfiguration(
+        locations = { ServletXwssContextPaths.PASSWORD_DIGEST_MOCKED })
+@TestPropertySource({ SoapPropertiesPaths.PASSWORD_DIGEST,
+        InterceptorXwssPropertiesPaths.PASSWORD_DIGEST,
+        EndpointXwssPropertiesPaths.PASSWORD_DIGEST,
+        TestEndpointXwssPropertiesPaths.PASSWORD_DIGEST })
+public final class TestEntityEndpointRequestPasswordDigestXwss
+        extends AbstractTestEntityEndpointRequest {
 
-	/**
-	 * Password for the passworded message.
-	 */
-	@Value("${security.credentials.password}")
-	private String password;
+    /**
+     * Password for the passworded message.
+     */
+    @Value("${security.credentials.password}")
+    private String password;
 
-	/**
-	 * Path to the file containing the valid SOAP request.
-	 */
-	@Value("${soap.request.template.path}")
-	private String pathValid;
+    /**
+     * Path to the file containing the valid SOAP request.
+     */
+    @Value("${soap.request.template.path}")
+    private String pathValid;
 
-	/**
-	 * Username for the passworded message.
-	 */
-	@Value("${security.credentials.user}")
-	private String username;
+    /**
+     * Username for the passworded message.
+     */
+    @Value("${security.credentials.user}")
+    private String username;
 
-	/**
-	 * Constructs a {@code TestEntityEndpointPasswordDigestXWSS}.
-	 */
-	public TestEntityEndpointRequestPasswordDigestXwss() {
-		super();
-	}
+    /**
+     * Constructs a {@code TestEntityEndpointPasswordDigestXWSS}.
+     */
+    public TestEntityEndpointRequestPasswordDigestXwss() {
+        super();
+    }
 
-	@Override
-	protected final Source getRequestEnvelope() {
-		try {
-			return new StreamSource(SecureSoapMessages.getDigestedPasswordStream(pathValid, username, password));
-		} catch (final Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+    @Override
+    protected final Source getRequestEnvelope() {
+        try {
+            return new StreamSource(SecureSoapMessages
+                    .getDigestedPasswordStream(pathValid, username, password));
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

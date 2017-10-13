@@ -41,20 +41,20 @@ import com.wandrell.example.swss.model.ExampleEntity;
  */
 public interface EntityClient {
 
-	/**
-	 * Sends an id to the endpoint and receives back the entity with that same
-	 * id.
-	 * <p>
-	 * The method is expected to never return a null. Instead it should return
-	 * an entity with a negative id. This may happen for example if the response
-	 * was empty, or the id was not for a valid entity.
-	 *
-	 * @param uri
-	 *            URI to the endpoint
-	 * @param identifier
-	 *            id of the queried entity
-	 * @return the entity for the given id
-	 */
-	public ExampleEntity getEntity(final String uri, final Integer identifier);
+    /**
+     * Sends an id to the endpoint and receives back the entity with that same
+     * id.
+     * <p>
+     * The method is expected to never return a null. Instead it should return
+     * an entity with a negative id. This may happen for example if the response
+     * was empty, or the id was not for a valid entity.
+     *
+     * @param uri
+     *            URI to the endpoint
+     * @param identifier
+     *            id of the queried entity
+     * @return the entity for the given id
+     */
+    public ExampleEntity getEntity(final String uri, final Integer identifier);
 
 }

@@ -36,37 +36,37 @@ import java.io.Serializable;
  */
 public interface ExampleEntity extends Serializable {
 
-	/**
-	 * Returns the identifier assigned to this entity.
-	 * <p>
-	 * If no identifier has been assigned yet, then the value is expected to be
-	 * {@code null} or lower than zero.
-	 *
-	 * @return the entity's identifier
-	 */
-	public Integer getId();
+    /**
+     * Returns the identifier assigned to this entity.
+     * <p>
+     * If no identifier has been assigned yet, then the value is expected to be
+     * {@code null} or lower than zero.
+     *
+     * @return the entity's identifier
+     */
+    public Integer getId();
 
-	/**
-	 * Returns the name of the entity.
-	 *
-	 * @return the entity's name
-	 */
-	public String getName();
+    /**
+     * Returns the name of the entity.
+     *
+     * @return the entity's name
+     */
+    public String getName();
 
-	/**
-	 * Sets the identifier assigned to this entity.
-	 *
-	 * @param identifier
-	 *            the identifier for the entity
-	 */
-	public void setId(final Integer identifier);
+    /**
+     * Sets the identifier assigned to this entity.
+     *
+     * @param identifier
+     *            the identifier for the entity
+     */
+    public void setId(final Integer identifier);
 
-	/**
-	 * Changes the name of the entity.
-	 *
-	 * @param name
-	 *            the name to set on the entity
-	 */
-	public void setName(final String name);
+    /**
+     * Changes the name of the entity.
+     *
+     * @param name
+     *            the name to set on the entity
+     */
+    public void setName(final String name);
 
 }

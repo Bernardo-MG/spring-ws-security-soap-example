@@ -44,27 +44,28 @@ import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPath
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
-public final class TestDefaultEntityClientExceptionErrors extends AbstractJUnit4SpringContextTests {
+public final class TestDefaultEntityClientExceptionErrors
+        extends AbstractJUnit4SpringContextTests {
 
-	/**
-	 * The client being tested.
-	 */
-	@Autowired
-	private DefaultEntityClient client;
+    /**
+     * The client being tested.
+     */
+    @Autowired
+    private DefaultEntityClient client;
 
-	/**
-	 * Constructs a {@code TestEntityClientExceptionErrors}.
-	 */
-	public TestDefaultEntityClientExceptionErrors() {
-		super();
-	}
+    /**
+     * Constructs a {@code TestEntityClientExceptionErrors}.
+     */
+    public TestDefaultEntityClientExceptionErrors() {
+        super();
+    }
 
-	/**
-	 * The client throws an exception when connecting to an invalid URL.
-	 */
-	@Test(expected = Exception.class)
-	public final void testClient_InvalidURL() {
-		client.getEntity("http://www.somewhere.com", 0);
-	}
+    /**
+     * The client throws an exception when connecting to an invalid URL.
+     */
+    @Test(expected = Exception.class)
+    public final void testClient_InvalidURL() {
+        client.getEntity("http://www.somewhere.com", 0);
+    }
 
 }

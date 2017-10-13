@@ -46,56 +46,58 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
 @Service
 public class DefaultExampleEntityService implements ExampleEntityService {
 
-	/**
-	 * Repository for the domain entities handled by the service.
-	 */
-	private final ExampleEntityRepository entityRepository;
+    /**
+     * Repository for the domain entities handled by the service.
+     */
+    private final ExampleEntityRepository entityRepository;
 
-	/**
-	 * Constructs an entities service with the specified repository.
-	 *
-	 * @param repository
-	 *            the repository for the entity instances
-	 */
-	@Autowired
-	public DefaultExampleEntityService(final ExampleEntityRepository repository) {
-		super();
+    /**
+     * Constructs an entities service with the specified repository.
+     *
+     * @param repository
+     *            the repository for the entity instances
+     */
+    @Autowired
+    public DefaultExampleEntityService(
+            final ExampleEntityRepository repository) {
+        super();
 
-		this.entityRepository = checkNotNull(repository, "Received a null pointer as repository");
-	}
+        this.entityRepository = checkNotNull(repository,
+                "Received a null pointer as repository");
+    }
 
-	/**
-	 * Returns an entity with the given id.
-	 * <p>
-	 * If no instance exists with that id then an entity with a negative id is
-	 * returned.
-	 *
-	 * @param identifier
-	 *            identifier of the entity to find
-	 * @return the entity for the given id
-	 */
-	@Override
-	public final ExampleEntity findById(final Integer identifier) {
-		ExampleEntity entity;
+    /**
+     * Returns an entity with the given id.
+     * <p>
+     * If no instance exists with that id then an entity with a negative id is
+     * returned.
+     *
+     * @param identifier
+     *            identifier of the entity to find
+     * @return the entity for the given id
+     */
+    @Override
+    public final ExampleEntity findById(final Integer identifier) {
+        ExampleEntity entity;
 
-		checkNotNull(identifier, "Received a null pointer as identifier");
+        checkNotNull(identifier, "Received a null pointer as identifier");
 
-		entity = getExampleEntityRepository().findOne(identifier);
+        entity = getExampleEntityRepository().findOne(identifier);
 
-		if (entity == null) {
-			entity = new DefaultExampleEntity();
-		}
+        if (entity == null) {
+            entity = new DefaultExampleEntity();
+        }
 
-		return entity;
-	}
+        return entity;
+    }
 
-	/**
-	 * Returns the repository used to acquire the domain entities.
-	 *
-	 * @return the repository used to acquire the domain entities
-	 */
-	private final ExampleEntityRepository getExampleEntityRepository() {
-		return entityRepository;
-	}
+    /**
+     * Returns the repository used to acquire the domain entities.
+     *
+     * @return the repository used to acquire the domain entities
+     */
+    private final ExampleEntityRepository getExampleEntityRepository() {
+        return entityRepository;
+    }
 
 }

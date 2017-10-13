@@ -46,59 +46,62 @@ import com.wandrell.example.swss.generated.entity.GetEntityResponse;
  */
 public final class SoapMessageUtils {
 
-	/**
-	 * Creates an {@code Entity} from the received {@code SOAPMessage}.
-	 * <p>
-	 * The message should be valid and contain a {@code GetEntityResponse}.
-	 *
-	 * @param message
-	 *            the SOAP message
-	 * @return an {@code Entity} parsed from the {@code SOAPMessage}
-	 * @throws JAXBException
-	 *             if there is any problem when unmarshalling the data
-	 * @throws SOAPException
-	 *             if there is any problem when reading the SOAP message
-	 */
-	public static final Entity getEntity(final SOAPMessage message) throws JAXBException, SOAPException {
-		final JAXBContext jc; // Context for unmarshalling
-		final Unmarshaller um; // Unmarshaller for the SOAP message
-		final GetEntityResponse response; // Unmarshalled response
+    /**
+     * Creates an {@code Entity} from the received {@code SOAPMessage}.
+     * <p>
+     * The message should be valid and contain a {@code GetEntityResponse}.
+     *
+     * @param message
+     *            the SOAP message
+     * @return an {@code Entity} parsed from the {@code SOAPMessage}
+     * @throws JAXBException
+     *             if there is any problem when unmarshalling the data
+     * @throws SOAPException
+     *             if there is any problem when reading the SOAP message
+     */
+    public static final Entity getEntity(final SOAPMessage message)
+            throws JAXBException, SOAPException {
+        final JAXBContext jc; // Context for unmarshalling
+        final Unmarshaller um; // Unmarshaller for the SOAP message
+        final GetEntityResponse response; // Unmarshalled response
 
-		jc = JAXBContext.newInstance(GetEntityResponse.class);
-		um = jc.createUnmarshaller();
-		response = (GetEntityResponse) um.unmarshal(message.getSOAPBody().extractContentAsDocument());
+        jc = JAXBContext.newInstance(GetEntityResponse.class);
+        um = jc.createUnmarshaller();
+        response = (GetEntityResponse) um
+                .unmarshal(message.getSOAPBody().extractContentAsDocument());
 
-		return response.getEntity();
-	}
+        return response.getEntity();
+    }
 
-	/**
-	 * Creates a {@code SOAPMessage} from the contents of a text file.
-	 * <p>
-	 * This file should contain a valid SOAP message.
-	 *
-	 * @param path
-	 *            the path to the file
-	 * @return a {@code SOAPMessage} parsed from the contents of the file
-	 * @throws SOAPException
-	 *             if there is any problem when generating the SOAP message
-	 * @throws IOException
-	 *             if there is any problem when reading the file
-	 */
-	public static final SOAPMessage getMessage(final String path) throws SOAPException, IOException {
-		final MessageFactory factory; // Factory for generating the message
-		final InputStream streamFile; // Stream for the file contents
+    /**
+     * Creates a {@code SOAPMessage} from the contents of a text file.
+     * <p>
+     * This file should contain a valid SOAP message.
+     *
+     * @param path
+     *            the path to the file
+     * @return a {@code SOAPMessage} parsed from the contents of the file
+     * @throws SOAPException
+     *             if there is any problem when generating the SOAP message
+     * @throws IOException
+     *             if there is any problem when reading the file
+     */
+    public static final SOAPMessage getMessage(final String path)
+            throws SOAPException, IOException {
+        final MessageFactory factory; // Factory for generating the message
+        final InputStream streamFile; // Stream for the file contents
 
-		streamFile = new ClassPathResource(path).getInputStream();
-		factory = MessageFactory.newInstance();
+        streamFile = new ClassPathResource(path).getInputStream();
+        factory = MessageFactory.newInstance();
 
-		return factory.createMessage(null, streamFile);
-	}
+        return factory.createMessage(null, streamFile);
+    }
 
-	/**
-	 * Private constructor to avoid initialization.
-	 */
-	private SoapMessageUtils() {
-		super();
-	}
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private SoapMessageUtils() {
+        super();
+    }
 
 }

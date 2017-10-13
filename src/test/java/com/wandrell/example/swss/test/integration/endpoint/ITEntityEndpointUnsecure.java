@@ -47,36 +47,37 @@ import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITE
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@TestPropertySource({ SoapPropertiesPaths.UNSECURE, TestEndpointXwssPropertiesPaths.UNSECURE })
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE,
+        TestEndpointXwssPropertiesPaths.UNSECURE })
 public final class ITEntityEndpointUnsecure extends AbstractITEndpoint {
 
-	/**
-	 * Path to the file containing the invalid SOAP request.
-	 */
-	@Value("${soap.request.invalid.path}")
-	private String pathInvalid;
+    /**
+     * Path to the file containing the invalid SOAP request.
+     */
+    @Value("${soap.request.invalid.path}")
+    private String pathInvalid;
 
-	/**
-	 * Path to the file containing the valid SOAP request.
-	 */
-	@Value("${soap.request.path}")
-	private String pathValid;
+    /**
+     * Path to the file containing the valid SOAP request.
+     */
+    @Value("${soap.request.path}")
+    private String pathValid;
 
-	/**
-	 * Constructs a {@code ITEntityEndpointUnsecure}.
-	 */
-	public ITEntityEndpointUnsecure() {
-		super();
-	}
+    /**
+     * Constructs a {@code ITEntityEndpointUnsecure}.
+     */
+    public ITEntityEndpointUnsecure() {
+        super();
+    }
 
-	@Override
-	protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-		return SoapMessageUtils.getMessage(pathInvalid);
-	}
+    @Override
+    protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+        return SoapMessageUtils.getMessage(pathInvalid);
+    }
 
-	@Override
-	protected final SOAPMessage getValidSoapMessage() throws Exception {
-		return SoapMessageUtils.getMessage(pathValid);
-	}
+    @Override
+    protected final SOAPMessage getValidSoapMessage() throws Exception {
+        return SoapMessageUtils.getMessage(pathValid);
+    }
 
 }

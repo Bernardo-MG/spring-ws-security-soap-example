@@ -47,34 +47,35 @@ import com.wandrell.example.swss.client.EntityClient;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public abstract class AbstractITEntityClientInvalid extends AbstractJUnit4SpringContextTests {
+public abstract class AbstractITEntityClientInvalid
+        extends AbstractJUnit4SpringContextTests {
 
-	/**
-	 * Client being tested.
-	 */
-	@Autowired
-	private EntityClient client;
+    /**
+     * Client being tested.
+     */
+    @Autowired
+    private EntityClient client;
 
-	/**
-	 * URL for the WS.
-	 */
-	@Value("${endpoint.url}")
-	private String wsUrl;
+    /**
+     * URL for the WS.
+     */
+    @Value("${endpoint.url}")
+    private String       wsUrl;
 
-	/**
-	 * Default constructor.
-	 */
-	public AbstractITEntityClientInvalid() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public AbstractITEntityClientInvalid() {
+        super();
+    }
 
-	/**
-	 * Tests that an invalid message causes a {@code SoapFaultClientException}
-	 * to be thrown.
-	 */
-	@Test(expected = SoapFaultClientException.class)
-	public final void testEndpoint_InvalidMessage_Exception() {
-		client.getEntity(wsUrl, 1);
-	}
+    /**
+     * Tests that an invalid message causes a {@code SoapFaultClientException}
+     * to be thrown.
+     */
+    @Test(expected = SoapFaultClientException.class)
+    public final void testEndpoint_InvalidMessage_Exception() {
+        client.getEntity(wsUrl, 1);
+    }
 
 }

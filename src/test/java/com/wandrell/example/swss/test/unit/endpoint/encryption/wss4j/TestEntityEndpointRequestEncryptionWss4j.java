@@ -46,33 +46,38 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@ContextConfiguration(locations = { ServletWss4jContextPaths.ENCRYPTION, TestContextPaths.KEYSTORE,
-		TestContextPaths.KEYSTORE_WSS4J })
-@TestPropertySource({ SoapPropertiesPaths.UNSECURE, SoapPropertiesPaths.ENCRYPTION_WSS4J,
-		InterceptorWss4jPropertiesPaths.ENCRYPTION, EndpointWss4jPropertiesPaths.ENCRYPTION,
-		TestPropertiesPaths.KEYSTORE, TestPropertiesPaths.KEYSTORE_WSS4J, TestEndpointWss4jPropertiesPaths.ENCRYPTION })
-public final class TestEntityEndpointRequestEncryptionWss4j extends AbstractTestEntityEndpointRequest {
+@ContextConfiguration(locations = { ServletWss4jContextPaths.ENCRYPTION,
+        TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE,
+        SoapPropertiesPaths.ENCRYPTION_WSS4J,
+        InterceptorWss4jPropertiesPaths.ENCRYPTION,
+        EndpointWss4jPropertiesPaths.ENCRYPTION, TestPropertiesPaths.KEYSTORE,
+        TestPropertiesPaths.KEYSTORE_WSS4J,
+        TestEndpointWss4jPropertiesPaths.ENCRYPTION })
+public final class TestEntityEndpointRequestEncryptionWss4j
+        extends AbstractTestEntityEndpointRequest {
 
-	/**
-	 * Path to the file containing the valid SOAP request.
-	 */
-	@Value("${soap.request.path}")
-	private String pathValid;
+    /**
+     * Path to the file containing the valid SOAP request.
+     */
+    @Value("${soap.request.path}")
+    private String pathValid;
 
-	/**
-	 * Constructs a {@code TestEntityEndpointEncryptionWSS4J}.
-	 */
-	public TestEntityEndpointRequestEncryptionWss4j() {
-		super();
-	}
+    /**
+     * Constructs a {@code TestEntityEndpointEncryptionWSS4J}.
+     */
+    public TestEntityEndpointRequestEncryptionWss4j() {
+        super();
+    }
 
-	@Override
-	protected final Source getRequestEnvelope() {
-		try {
-			return new StreamSource(new ClassPathResource(pathValid).getInputStream());
-		} catch (final Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+    @Override
+    protected final Source getRequestEnvelope() {
+        try {
+            return new StreamSource(
+                    new ClassPathResource(pathValid).getInputStream());
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

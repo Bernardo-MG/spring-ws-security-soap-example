@@ -33,31 +33,31 @@ package com.wandrell.example.swss.test.util.config.properties;
  */
 public final class InterceptorXwssPropertiesPaths {
 
-	/**
-	 * Encryption interceptor.
-	 */
-	public static final String ENCRYPTION = "classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
+    /**
+     * Encryption interceptor.
+     */
+    public static final String ENCRYPTION      = "classpath:config/interceptor/encryption/xwss/interceptor-encryption-xwss.properties";
 
-	/**
-	 * Digested password interceptor.
-	 */
-	public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
+    /**
+     * Digested password interceptor.
+     */
+    public static final String PASSWORD_DIGEST = "classpath:config/interceptor/password/digest/xwss/interceptor-password-digest-xwss.properties";
 
-	/**
-	 * Plain password interceptor.
-	 */
-	public static final String PASSWORD_PLAIN = "classpath:config/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
+    /**
+     * Plain password interceptor.
+     */
+    public static final String PASSWORD_PLAIN  = "classpath:config/interceptor/password/plain/xwss/interceptor-password-plain-xwss.properties";
 
-	/**
-	 * Signature interceptor.
-	 */
-	public static final String SIGNATURE = "classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties";
+    /**
+     * Signature interceptor.
+     */
+    public static final String SIGNATURE       = "classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties";
 
-	/**
-	 * Private constructor to avoid initialization.
-	 */
-	private InterceptorXwssPropertiesPaths() {
-		super();
-	}
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private InterceptorXwssPropertiesPaths() {
+        super();
+    }
 
 }

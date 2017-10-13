@@ -36,16 +36,16 @@ package com.wandrell.example.swss.test.util.config.properties;
  */
 public final class EndpointPropertiesPaths {
 
-	/**
-	 * Common endpoint configuration.
-	 */
-	public static final String COMMON = "classpath:config/endpoint/endpoint.properties";
+    /**
+     * Common endpoint configuration.
+     */
+    public static final String COMMON = "classpath:config/endpoint/endpoint.properties";
 
-	/**
-	 * Private constructor to avoid initialization.
-	 */
-	private EndpointPropertiesPaths() {
-		super();
-	}
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private EndpointPropertiesPaths() {
+        super();
+    }
 
 }

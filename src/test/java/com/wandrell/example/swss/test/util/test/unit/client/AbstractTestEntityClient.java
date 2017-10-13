@@ -35,13 +35,14 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.ENTITY, TestPropertiesPaths.WSDL })
-public abstract class AbstractTestEntityClient extends AbstractJUnit4SpringContextTests {
+public abstract class AbstractTestEntityClient
+        extends AbstractJUnit4SpringContextTests {
 
-	/**
-	 * Default constructor.
-	 */
-	public AbstractTestEntityClient() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public AbstractTestEntityClient() {
+        super();
+    }
 
 }

@@ -37,16 +37,17 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@ContextConfiguration(locations = { ClientWss4jContextPaths.SIGNATURE, TestContextPaths.KEYSTORE,
-		TestContextPaths.KEYSTORE_WSS4J })
+@ContextConfiguration(locations = { ClientWss4jContextPaths.SIGNATURE,
+        TestContextPaths.KEYSTORE, TestContextPaths.KEYSTORE_WSS4J })
 @TestPropertySource({ SoapPropertiesPaths.SIGNATURE })
-public final class TestEntityClientSignatureWss4j extends AbstractTestEntityClientHeader {
+public final class TestEntityClientSignatureWss4j
+        extends AbstractTestEntityClientHeader {
 
-	/**
-	 * Constructs a {@code TestEntityClientSignatureWSS4J}.
-	 */
-	public TestEntityClientSignatureWss4j() {
-		super();
-	}
+    /**
+     * Constructs a {@code TestEntityClientSignatureWSS4J}.
+     */
+    public TestEntityClientSignatureWss4j() {
+        super();
+    }
 
 }

@@ -51,79 +51,87 @@ import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITE
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@TestPropertySource({ TestPropertiesPaths.USER, SoapPropertiesPaths.PASSWORD_PLAIN,
-		TestEndpointXwssPropertiesPaths.PASSWORD_PLAIN })
-public final class ITEntityEndpointPasswordPlainXwss extends AbstractITEndpoint {
+@TestPropertySource({ TestPropertiesPaths.USER,
+        SoapPropertiesPaths.PASSWORD_PLAIN,
+        TestEndpointXwssPropertiesPaths.PASSWORD_PLAIN })
+public final class ITEntityEndpointPasswordPlainXwss
+        extends AbstractITEndpoint {
 
-	/**
-	 * Password for the passworded message.
-	 */
-	@Value("${security.credentials.password}")
-	private String password;
+    /**
+     * Password for the passworded message.
+     */
+    @Value("${security.credentials.password}")
+    private String password;
 
-	/**
-	 * Path to the file containing the invalid SOAP request.
-	 */
-	@Value("${soap.request.invalid.path}")
-	private String pathInvalid;
+    /**
+     * Path to the file containing the invalid SOAP request.
+     */
+    @Value("${soap.request.invalid.path}")
+    private String pathInvalid;
 
-	/**
-	 * Path to the file containing the valid SOAP request.
-	 */
-	@Value("${soap.request.template.path}")
-	private String pathValid;
+    /**
+     * Path to the file containing the valid SOAP request.
+     */
+    @Value("${soap.request.template.path}")
+    private String pathValid;
 
-	/**
-	 * Username for the passworded message.
-	 */
-	@Value("${security.credentials.user}")
-	private String username;
+    /**
+     * Username for the passworded message.
+     */
+    @Value("${security.credentials.user}")
+    private String username;
 
-	/**
-	 * Default constructor.
-	 */
-	public ITEntityEndpointPasswordPlainXwss() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public ITEntityEndpointPasswordPlainXwss() {
+        super();
+    }
 
-	/**
-	 * Tests that a message with a wrong password returns a fault.
-	 *
-	 * @throws Exception
-	 *             never, this is a required declaration
-	 */
-	@Test
-	public final void testEndpoint_InvalidPassword_ReturnsFault() throws Exception {
-		final SOAPMessage message; // Response message
+    /**
+     * Tests that a message with a wrong password returns a fault.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_InvalidPassword_ReturnsFault()
+            throws Exception {
+        final SOAPMessage message; // Response message
 
-		message = callWebService(SecureSoapMessages.getPlainPasswordMessage(pathValid, username, password + "abc123"));
+        message = callWebService(SecureSoapMessages.getPlainPasswordMessage(
+                pathValid, username, password + "abc123"));
 
-		Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody().getFault());
-	}
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
+    }
 
-	/**
-	 * Tests that a message with a wrong user returns a fault.
-	 *
-	 * @throws Exception
-	 *             never, this is a required declaration
-	 */
-	@Test
-	public final void testEndpoint_InvalidUser_ReturnsFault() throws Exception {
-		final SOAPMessage message; // Response message
+    /**
+     * Tests that a message with a wrong user returns a fault.
+     *
+     * @throws Exception
+     *             never, this is a required declaration
+     */
+    @Test
+    public final void testEndpoint_InvalidUser_ReturnsFault() throws Exception {
+        final SOAPMessage message; // Response message
 
-		message = callWebService(SecureSoapMessages.getPlainPasswordMessage(pathValid, username + "abc123", password));
+        message = callWebService(SecureSoapMessages.getPlainPasswordMessage(
+                pathValid, username + "abc123", password));
 
-		Assert.assertNotNull(message.getSOAPPart().getEnvelope().getBody().getFault());
-	}
+        Assert.assertNotNull(
+                message.getSOAPPart().getEnvelope().getBody().getFault());
+    }
 
-	@Override
-	protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-		return SoapMessageUtils.getMessage(pathInvalid);
-	}
+    @Override
+    protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+        return SoapMessageUtils.getMessage(pathInvalid);
+    }
 
-	@Override
-	protected final SOAPMessage getValidSoapMessage() throws Exception {
-		return SecureSoapMessages.getPlainPasswordMessage(pathValid, username, password);
-	}
+    @Override
+    protected final SOAPMessage getValidSoapMessage() throws Exception {
+        return SecureSoapMessages.getPlainPasswordMessage(pathValid, username,
+                password);
+    }
 
 }

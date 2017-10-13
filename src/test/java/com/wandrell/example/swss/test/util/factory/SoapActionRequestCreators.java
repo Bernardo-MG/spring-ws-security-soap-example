@@ -51,117 +51,126 @@ import org.springframework.xml.transform.ResourceSource;
  */
 public final class SoapActionRequestCreators {
 
-	/**
-	 * Adapts a {@link WebServiceMessageCreator} to the {@link RequestCreator}
-	 * contract including a SOAP action.
-	 * 
-	 * @author Bernardo Mart&iacute;nez Garrido
-	 */
-	private static class SoapActionWebServiceMessageCreatorAdapter implements RequestCreator {
+    /**
+     * Adapts a {@link WebServiceMessageCreator} to the {@link RequestCreator}
+     * contract including a SOAP action.
+     * 
+     * @author Bernardo Mart&iacute;nez Garrido
+     */
+    private static class SoapActionWebServiceMessageCreatorAdapter
+            implements RequestCreator {
 
-		/**
-		 * Action to be added into the request.
-		 */
-		private final String action;
+        /**
+         * Action to be added into the request.
+         */
+        private final String                   action;
 
-		/**
-		 * Adapted message creator.
-		 */
-		private final WebServiceMessageCreator adaptee;
+        /**
+         * Adapted message creator.
+         */
+        private final WebServiceMessageCreator adaptee;
 
-		/**
-		 * Creates an adapter with for the specified
-		 * {@code WebServiceMessageCreator} and adding the received SOAP action.
-		 * 
-		 * @param action
-		 *            the SOAP action to add into the request
-		 * @param adaptee
-		 *            the message creator to adapt
-		 */
-		public SoapActionWebServiceMessageCreatorAdapter(final String action, final WebServiceMessageCreator adaptee) {
-			this.adaptee = adaptee;
-			this.action = action;
-		}
+        /**
+         * Creates an adapter with for the specified
+         * {@code WebServiceMessageCreator} and adding the received SOAP action.
+         * 
+         * @param action
+         *            the SOAP action to add into the request
+         * @param adaptee
+         *            the message creator to adapt
+         */
+        public SoapActionWebServiceMessageCreatorAdapter(final String action,
+                final WebServiceMessageCreator adaptee) {
+            this.adaptee = adaptee;
+            this.action = action;
+        }
 
-		@Override
-		public final WebServiceMessage createRequest(WebServiceMessageFactory messageFactory) throws IOException {
-			final WebServiceMessage message; // Message to create
+        @Override
+        public final WebServiceMessage createRequest(
+                WebServiceMessageFactory messageFactory) throws IOException {
+            final WebServiceMessage message; // Message to create
 
-			message = adaptee.createMessage(messageFactory);
-			if (message instanceof SoapMessage) {
-				((SoapMessage) message).setSoapAction(action);
-			}
+            message = adaptee.createMessage(messageFactory);
+            if (message instanceof SoapMessage) {
+                ((SoapMessage) message).setSoapAction(action);
+            }
 
-			return message;
-		}
+            return message;
+        }
 
-	}
+    }
 
-	/**
-	 * Create a request with the given {@link Resource} XML as payload, and the
-	 * received string as action.
-	 *
-	 * @param action
-	 *            the SOAP action
-	 * @param payload
-	 *            the request payload
-	 * @return the request creator
-	 */
-	public static RequestCreator withPayload(final String action, final Resource payload) throws IOException {
-		return withPayload(action, new ResourceSource(payload));
-	}
+    /**
+     * Create a request with the given {@link Resource} XML as payload, and the
+     * received string as action.
+     *
+     * @param action
+     *            the SOAP action
+     * @param payload
+     *            the request payload
+     * @return the request creator
+     */
+    public static RequestCreator withPayload(final String action,
+            final Resource payload) throws IOException {
+        return withPayload(action, new ResourceSource(payload));
+    }
 
-	/**
-	 * Create a request with the given {@link Source} XML as payload, and the
-	 * received string as action.
-	 *
-	 * @param action
-	 *            the SOAP action
-	 * @param payload
-	 *            the request payload
-	 * @return the request creator
-	 */
-	public static RequestCreator withPayload(final String action, final Source payload) throws IOException {
-		Assert.notNull(action, "Received a null pointer as action");
-		Assert.notNull(payload, "Received a null pointer as payload");
-		return new SoapActionWebServiceMessageCreatorAdapter(action, new PayloadMessageCreator(payload));
-	}
+    /**
+     * Create a request with the given {@link Source} XML as payload, and the
+     * received string as action.
+     *
+     * @param action
+     *            the SOAP action
+     * @param payload
+     *            the request payload
+     * @return the request creator
+     */
+    public static RequestCreator withPayload(final String action,
+            final Source payload) throws IOException {
+        Assert.notNull(action, "Received a null pointer as action");
+        Assert.notNull(payload, "Received a null pointer as payload");
+        return new SoapActionWebServiceMessageCreatorAdapter(action,
+                new PayloadMessageCreator(payload));
+    }
 
-	/**
-	 * Create a request with the given {@link Resource} XML as SOAP envelope,
-	 * and the received string as action.
-	 *
-	 * @param action
-	 *            the SOAP action
-	 * @param soapEnvelope
-	 *            the request SOAP envelope
-	 * @return the request creator
-	 */
-	public static RequestCreator withSoapEnvelope(final String action, final Resource soapEnvelope) throws IOException {
-		return withSoapEnvelope(action, new ResourceSource(soapEnvelope));
-	}
+    /**
+     * Create a request with the given {@link Resource} XML as SOAP envelope,
+     * and the received string as action.
+     *
+     * @param action
+     *            the SOAP action
+     * @param soapEnvelope
+     *            the request SOAP envelope
+     * @return the request creator
+     */
+    public static RequestCreator withSoapEnvelope(final String action,
+            final Resource soapEnvelope) throws IOException {
+        return withSoapEnvelope(action, new ResourceSource(soapEnvelope));
+    }
 
-	/**
-	 * Create a request with the given {@link Source} XML as SOAP envelope, and
-	 * the received string as action.
-	 *
-	 * @param action
-	 *            the SOAP action
-	 * @param soapEnvelope
-	 *            the request SOAP envelope
-	 * @return the request creator
-	 */
-	public static RequestCreator withSoapEnvelope(final String action, final Source soapEnvelope) throws IOException {
-		Assert.notNull(action, "Received a null pointer as action");
-		Assert.notNull(soapEnvelope, "Received a null pointer as envelope");
-		return new SoapActionWebServiceMessageCreatorAdapter(action, new SoapEnvelopeMessageCreator(soapEnvelope));
-	}
+    /**
+     * Create a request with the given {@link Source} XML as SOAP envelope, and
+     * the received string as action.
+     *
+     * @param action
+     *            the SOAP action
+     * @param soapEnvelope
+     *            the request SOAP envelope
+     * @return the request creator
+     */
+    public static RequestCreator withSoapEnvelope(final String action,
+            final Source soapEnvelope) throws IOException {
+        Assert.notNull(action, "Received a null pointer as action");
+        Assert.notNull(soapEnvelope, "Received a null pointer as envelope");
+        return new SoapActionWebServiceMessageCreatorAdapter(action,
+                new SoapEnvelopeMessageCreator(soapEnvelope));
+    }
 
-	/**
-	 * Private constructor to avoid initialization.
-	 */
-	private SoapActionRequestCreators() {
-		super();
-	}
+    /**
+     * Private constructor to avoid initialization.
+     */
+    private SoapActionRequestCreators() {
+        super();
+    }
 
 }

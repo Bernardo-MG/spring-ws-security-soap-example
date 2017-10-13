@@ -39,14 +39,16 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.SIGNATURE })
-@TestPropertySource({ TestPropertiesPaths.KEYSTORE_INVALID, TestEndpointXwssPropertiesPaths.SIGNATURE })
-public final class ITEntityClientSignatureWss4jToXwssInvalid extends AbstractITEntityClientInvalid {
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE_INVALID,
+        TestEndpointXwssPropertiesPaths.SIGNATURE })
+public final class ITEntityClientSignatureWss4jToXwssInvalid
+        extends AbstractITEntityClientInvalid {
 
-	/**
-	 * Default constructor.
-	 */
-	public ITEntityClientSignatureWss4jToXwssInvalid() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public ITEntityClientSignatureWss4jToXwssInvalid() {
+        super();
+    }
 
 }

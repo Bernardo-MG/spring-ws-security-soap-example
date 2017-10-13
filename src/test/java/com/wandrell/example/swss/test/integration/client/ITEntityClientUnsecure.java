@@ -40,11 +40,11 @@ import com.wandrell.example.swss.test.util.test.integration.client.AbstractITEnt
 @TestPropertySource({ TestEndpointXwssPropertiesPaths.UNSECURE })
 public final class ITEntityClientUnsecure extends AbstractITEntityClient {
 
-	/**
-	 * Default constructor.
-	 */
-	public ITEntityClientUnsecure() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public ITEntityClientUnsecure() {
+        super();
+    }
 
 }

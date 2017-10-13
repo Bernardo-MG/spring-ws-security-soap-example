@@ -50,101 +50,107 @@ import com.wandrell.example.swss.service.domain.ExampleEntityService;
  */
 public final class WebServiceMockFactory {
 
-	/**
-	 * Default constructor.
-	 */
-	public WebServiceMockFactory() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public WebServiceMockFactory() {
+        super();
+    }
 
-	/**
-	 * Returns a mocked example entity domain service.
-	 *
-	 * @return a mocked domain service
-	 */
-	public final ExampleEntityService getExampleEntityService() {
-		final ExampleEntityService service; // Mocked service
-		final ExampleEntity entity; // Mocked returned entity
+    /**
+     * Returns a mocked example entity domain service.
+     *
+     * @return a mocked domain service
+     */
+    public final ExampleEntityService getExampleEntityService() {
+        final ExampleEntityService service; // Mocked service
+        final ExampleEntity entity; // Mocked returned entity
 
-		// Mocks the entity
-		entity = Mockito.mock(ExampleEntity.class);
-		Mockito.when(entity.getId()).thenReturn(1);
-		Mockito.when(entity.getName()).thenReturn("name");
+        // Mocks the entity
+        entity = Mockito.mock(ExampleEntity.class);
+        Mockito.when(entity.getId()).thenReturn(1);
+        Mockito.when(entity.getName()).thenReturn("name");
 
-		// Mocks the service
-		service = Mockito.mock(ExampleEntityService.class);
-		Mockito.when(service.findById(Matchers.anyInt())).thenReturn(entity);
+        // Mocks the service
+        service = Mockito.mock(ExampleEntityService.class);
+        Mockito.when(service.findById(Matchers.anyInt())).thenReturn(entity);
 
-		return service;
-	}
+        return service;
+    }
 
-	/**
-	 * Returns a mocked callback handler which validates any data.
-	 *
-	 * @return a mocked callback handler
-	 * @throws PasswordValidationException
-	 *             never, this is a required declaration
-	 */
-	public final CallbackHandler getValidationCallbackHandler() throws PasswordValidationException {
-		final CallbackHandler callbackHandler; // Mocked handler
-		final PasswordValidator passwordValidator; // Mocked validator
+    /**
+     * Returns a mocked callback handler which validates any data.
+     *
+     * @return a mocked callback handler
+     * @throws PasswordValidationException
+     *             never, this is a required declaration
+     */
+    public final CallbackHandler getValidationCallbackHandler()
+            throws PasswordValidationException {
+        final CallbackHandler callbackHandler; // Mocked handler
+        final PasswordValidator passwordValidator; // Mocked validator
 
-		passwordValidator = getPasswordValidator();
+        passwordValidator = getPasswordValidator();
 
-		callbackHandler = new AbstractCallbackHandler() {
+        callbackHandler = new AbstractCallbackHandler() {
 
-			@Override
-			protected void handleInternal(final Callback callback) throws IOException, UnsupportedCallbackException {
-				if (callback instanceof PasswordValidationCallback) {
-					((PasswordValidationCallback) callback).setValidator(passwordValidator);
-				} else if (callback instanceof WSPasswordCallback) {
-					// TODO:The callback handler should accept any password
-					// Where is this password being validated?
-					((WSPasswordCallback) callback).setPassword("myPassword");
-				} else if (callback instanceof TimestampValidationCallback) {
-					((TimestampValidationCallback) callback).setValidator(getTimestampValidator());
-				}
-			}
+            @Override
+            protected void handleInternal(final Callback callback)
+                    throws IOException, UnsupportedCallbackException {
+                if (callback instanceof PasswordValidationCallback) {
+                    ((PasswordValidationCallback) callback)
+                            .setValidator(passwordValidator);
+                } else if (callback instanceof WSPasswordCallback) {
+                    // TODO:The callback handler should accept any password
+                    // Where is this password being validated?
+                    ((WSPasswordCallback) callback).setPassword("myPassword");
+                } else if (callback instanceof TimestampValidationCallback) {
+                    ((TimestampValidationCallback) callback)
+                            .setValidator(getTimestampValidator());
+                }
+            }
 
-		};
+        };
 
-		return callbackHandler;
-	}
+        return callbackHandler;
+    }
 
-	/**
-	 * Returns a mocked password validator.
-	 * <p>
-	 * This validates any password.
-	 *
-	 * @return a mocked password validator
-	 * @throws PasswordValidationException
-	 *             never, this is a required declaration
-	 */
-	private final PasswordValidator getPasswordValidator() throws PasswordValidationException {
-		final PasswordValidator passwordValidator; // Mocked validator
+    /**
+     * Returns a mocked password validator.
+     * <p>
+     * This validates any password.
+     *
+     * @return a mocked password validator
+     * @throws PasswordValidationException
+     *             never, this is a required declaration
+     */
+    private final PasswordValidator getPasswordValidator()
+            throws PasswordValidationException {
+        final PasswordValidator passwordValidator; // Mocked validator
 
-		passwordValidator = Mockito.mock(PasswordValidator.class);
-		Mockito.when(passwordValidator.validate(Matchers.any(PasswordValidationCallback.Request.class)))
-				.thenReturn(true);
+        passwordValidator = Mockito.mock(PasswordValidator.class);
+        Mockito.when(passwordValidator.validate(
+                Matchers.any(PasswordValidationCallback.Request.class)))
+                .thenReturn(true);
 
-		return passwordValidator;
-	}
+        return passwordValidator;
+    }
 
-	/**
-	 * Returns a mocked timestamp validator.
-	 * <p>
-	 * This validates any timestamp.
-	 *
-	 * @return a mocked timestamp validator
-	 * @throws PasswordValidationException
-	 *             never, this is a required declaration
-	 */
-	private final TimestampValidator getTimestampValidator() {
-		final TimestampValidator passwordValidator; // Mocked validator
+    /**
+     * Returns a mocked timestamp validator.
+     * <p>
+     * This validates any timestamp.
+     *
+     * @return a mocked timestamp validator
+     * @throws PasswordValidationException
+     *             never, this is a required declaration
+     */
+    private final TimestampValidator getTimestampValidator() {
+        final TimestampValidator passwordValidator; // Mocked validator
 
-		passwordValidator = Mockito.mock(TimestampValidator.class);
+        passwordValidator = Mockito.mock(TimestampValidator.class);
 
-		return passwordValidator;
-	}
+        return passwordValidator;
+    }
 
 }

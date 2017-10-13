@@ -55,82 +55,86 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEndpoi
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ServletWss4jContextPaths.UNSECURE })
-@TestPropertySource({ SoapPropertiesPaths.UNSECURE, EndpointXwssPropertiesPaths.UNSECURE })
+@TestPropertySource({ SoapPropertiesPaths.UNSECURE,
+        EndpointXwssPropertiesPaths.UNSECURE })
 public final class TestEntityEndpointUnsecure extends AbstractTestEndpoint {
 
-	/**
-	 * Application context to be used for creating the client mock.
-	 */
-	@Autowired
-	private ApplicationContext applicationContext;
+    /**
+     * Application context to be used for creating the client mock.
+     */
+    @Autowired
+    private ApplicationContext applicationContext;
 
-	/**
-	 * Path to XSD file which validates the SOAP messages.
-	 */
-	@Value("${xsd.entity.path}")
-	private String entityXsdPath;
+    /**
+     * Path to XSD file which validates the SOAP messages.
+     */
+    @Value("${xsd.entity.path}")
+    private String             entityXsdPath;
 
-	/**
-	 * Path to the file with the invalid request payload.
-	 */
-	@Value("${soap.request.payload.invalid.path}")
-	private String requestPayloadInvalidPath;
+    /**
+     * Path to the file with the invalid request payload.
+     */
+    @Value("${soap.request.payload.invalid.path}")
+    private String             requestPayloadInvalidPath;
 
-	/**
-	 * Path to the file with the valid request payload.
-	 */
-	@Value("${soap.request.payload.path}")
-	private String requestPayloadPath;
+    /**
+     * Path to the file with the valid request payload.
+     */
+    @Value("${soap.request.payload.path}")
+    private String             requestPayloadPath;
 
-	/**
-	 * Constructs a {@code TestEntityEndpointUnsecure}.
-	 */
-	public TestEntityEndpointUnsecure() {
-		super();
-	}
+    /**
+     * Constructs a {@code TestEntityEndpointUnsecure}.
+     */
+    public TestEntityEndpointUnsecure() {
+        super();
+    }
 
-	/**
-	 * Tests that the endpoint can handle SOAP requests with a valid payload.
-	 */
-	@Test
-	public final void testEndpoint_Payload_Invalid() throws Exception {
-		final MockWebServiceClient mockClient; // Mocked client
-		final RequestCreator requestCreator; // Creator for the request
-		final ResponseMatcher responseMatcher; // Matcher for the response
+    /**
+     * Tests that the endpoint can handle SOAP requests with a valid payload.
+     */
+    @Test
+    public final void testEndpoint_Payload_Invalid() throws Exception {
+        final MockWebServiceClient mockClient; // Mocked client
+        final RequestCreator requestCreator; // Creator for the request
+        final ResponseMatcher responseMatcher; // Matcher for the response
 
-		// Creates the request
-		requestCreator = RequestCreators.withPayload(new ClassPathResource(requestPayloadInvalidPath));
+        // Creates the request
+        requestCreator = RequestCreators
+                .withPayload(new ClassPathResource(requestPayloadInvalidPath));
 
-		// Creates the response matcher
-		responseMatcher = ResponseMatchers.clientOrSenderFault();
+        // Creates the response matcher
+        responseMatcher = ResponseMatchers.clientOrSenderFault();
 
-		// Creates the client mock
-		mockClient = MockWebServiceClient.createClient(applicationContext);
+        // Creates the client mock
+        mockClient = MockWebServiceClient.createClient(applicationContext);
 
-		// Calls the endpoint
-		mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
-	}
+        // Calls the endpoint
+        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
+    }
 
-	/**
-	 * Tests that the endpoint parses SOAP requests with a valid payload.
-	 */
-	@Test
-	public final void testEndpoint_Payload_Valid() throws Exception {
-		final MockWebServiceClient mockClient; // Mocked client
-		final RequestCreator requestCreator; // Creator for the request
-		final ResponseMatcher responseMatcher; // Matcher for the response
+    /**
+     * Tests that the endpoint parses SOAP requests with a valid payload.
+     */
+    @Test
+    public final void testEndpoint_Payload_Valid() throws Exception {
+        final MockWebServiceClient mockClient; // Mocked client
+        final RequestCreator requestCreator; // Creator for the request
+        final ResponseMatcher responseMatcher; // Matcher for the response
 
-		// Creates the request
-		requestCreator = RequestCreators.withPayload(new ClassPathResource(requestPayloadPath));
+        // Creates the request
+        requestCreator = RequestCreators
+                .withPayload(new ClassPathResource(requestPayloadPath));
 
-		// Creates the response matcher
-		responseMatcher = ResponseMatchers.validPayload(new ClassPathResource(entityXsdPath));
+        // Creates the response matcher
+        responseMatcher = ResponseMatchers
+                .validPayload(new ClassPathResource(entityXsdPath));
 
-		// Creates the client mock
-		mockClient = MockWebServiceClient.createClient(applicationContext);
+        // Creates the client mock
+        mockClient = MockWebServiceClient.createClient(applicationContext);
 
-		// Calls the endpoint
-		mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
-	}
+        // Calls the endpoint
+        mockClient.sendRequest(requestCreator).andExpect(responseMatcher);
+    }
 
 }

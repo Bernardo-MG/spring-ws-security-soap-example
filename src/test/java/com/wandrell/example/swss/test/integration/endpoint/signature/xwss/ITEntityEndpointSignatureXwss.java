@@ -49,54 +49,55 @@ import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITE
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { TestContextPaths.KEYSTORE })
-@TestPropertySource({ TestPropertiesPaths.KEYSTORE, SoapPropertiesPaths.SIGNATURE,
-		TestEndpointXwssPropertiesPaths.SIGNATURE })
+@TestPropertySource({ TestPropertiesPaths.KEYSTORE,
+        SoapPropertiesPaths.SIGNATURE,
+        TestEndpointXwssPropertiesPaths.SIGNATURE })
 public final class ITEntityEndpointSignatureXwss extends AbstractITEndpoint {
 
-	/**
-	 * Alias for the certificate for signing messages.
-	 */
-	@Value("${keystore.alias}")
-	private String alias;
+    /**
+     * Alias for the certificate for signing messages.
+     */
+    @Value("${keystore.alias}")
+    private String   alias;
 
-	/**
-	 * Key store for signing messages.
-	 */
-	@Autowired
-	@Qualifier("keyStore")
-	private KeyStore keystore;
+    /**
+     * Key store for signing messages.
+     */
+    @Autowired
+    @Qualifier("keyStore")
+    private KeyStore keystore;
 
-	/**
-	 * Password for the certificate for signing messages.
-	 */
-	@Value("${keystore.password}")
-	private String password;
+    /**
+     * Password for the certificate for signing messages.
+     */
+    @Value("${keystore.password}")
+    private String   password;
 
-	/**
-	 * Path to the file containing the invalid SOAP request.
-	 */
-	@Value("${soap.request.invalid.path}")
-	private String pathInvalid;
+    /**
+     * Path to the file containing the invalid SOAP request.
+     */
+    @Value("${soap.request.invalid.path}")
+    private String   pathInvalid;
 
-	/**
-	 * Default constructor.
-	 */
-	public ITEntityEndpointSignatureXwss() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public ITEntityEndpointSignatureXwss() {
+        super();
+    }
 
-	@Override
-	protected final SOAPMessage getInvalidSoapMessage() throws Exception {
-		return SoapMessageUtils.getMessage(pathInvalid);
-	}
+    @Override
+    protected final SOAPMessage getInvalidSoapMessage() throws Exception {
+        return SoapMessageUtils.getMessage(pathInvalid);
+    }
 
-	@Override
-	protected final SOAPMessage getValidSoapMessage() throws Exception {
-		// TODO: Get a valid signed SOAP message
+    @Override
+    protected final SOAPMessage getValidSoapMessage() throws Exception {
+        // TODO: Get a valid signed SOAP message
 
-		// return SecurityUtils.getSignedMessage(pathUnsigned,
-		// alias, password, alias, keystore);
-		return null;
-	}
+        // return SecurityUtils.getSignedMessage(pathUnsigned,
+        // alias, password, alias, keystore);
+        return null;
+    }
 
 }
