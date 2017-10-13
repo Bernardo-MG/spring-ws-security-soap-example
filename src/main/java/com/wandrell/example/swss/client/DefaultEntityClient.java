@@ -130,7 +130,7 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport implemen
 		checkNotNull(uri, "Received a null pointer as URI");
 		checkNotNull(identifier, "Received a null pointer as entity id");
 
-		LOGGER.debug(String.format("Querying URI %1$s for id %2$d", uri, identifier));
+		LOGGER.debug("Querying URI {} for id {}", uri, identifier);
 
 		// Generates request
 		request = new GetEntityRequest();
@@ -161,8 +161,8 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport implemen
 				// The response was not empty
 				BeanUtils.copyProperties(response.getEntity(), entity);
 
-				LOGGER.debug(String.format("Received response with id %1$d and name %2$s", entity.getId(),
-						entity.getName()));
+				LOGGER.debug("Received response with id {} and name {}", entity.getId(),
+						entity.getName());
 			}
 
 		}

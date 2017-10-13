@@ -118,7 +118,7 @@ public class ExampleEntityEndpoint {
 
 		checkNotNull(request, "Received a null pointer as request");
 
-		LOGGER.debug(String.format("Received request for id %d", request.getId()));
+		LOGGER.debug("Received request for id {}", request.getId());
 
 		// Acquires the entity
 		entity = getExampleEntityService().findById(request.getId());
@@ -127,7 +127,7 @@ public class ExampleEntityEndpoint {
 		entityResponse = new Entity();
 		BeanUtils.copyProperties(entity, entityResponse);
 
-		LOGGER.debug(String.format("Found entity with id %1$d and name %2$s", entity.getId(), entity.getName()));
+		LOGGER.debug("Found entity with id {} and name {}", entity.getId(), entity.getName());
 
 		response = new GetEntityResponse();
 		response.setEntity(entityResponse);

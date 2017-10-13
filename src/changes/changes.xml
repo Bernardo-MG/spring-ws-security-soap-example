@@ -126,6 +126,9 @@
          <action dev="bmg" type="fix">
             Corrections to tests.
          </action>
+         <action dev="bmg" type="fix">
+            Corrections to logger templates.
+         </action>
          <action dev="bmg" type="update">
             Linked Javadocs to the dependencies Javadocs.
          </action>

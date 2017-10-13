@@ -78,12 +78,12 @@ public final class DefaultUserDetailsService implements UserDetailsService {
 			user = new User(username, "myPassword", authorities);
 		} else {
 			// User not found
-			LOGGER.debug(String.format("User for username %s not found", username));
+			LOGGER.debug("User for username {} not found", username);
 
 			throw new UsernameNotFoundException(String.format("Invalid username '%s'", username));
 		}
 
-		LOGGER.debug(String.format("Found user for username %s", username));
+		LOGGER.debug("Found user for username {}", username);
 
 		return user;
 	}
