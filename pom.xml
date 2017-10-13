@@ -331,10 +331,10 @@
 		<xwssecurity.version>3.0</xwssecurity.version>
 		<!-- Plugins versions -->
 		<plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
-		<plugin.jaxb2.version>0.13.1</plugin.jaxb2.version>
+		<plugin.jaxb2.version>0.13.2</plugin.jaxb2.version>
 		<plugin.jetty.version>9.1.6.v20160112</plugin.jetty.version>
 		<plugin.tomcat7.version>2.2</plugin.tomcat7.version>
-		<plugin.war.version>3.0.0</plugin.war.version>
+		<plugin.war.version>3.2.0</plugin.war.version>
 		<!-- Spring is using the Repeatable annotation, which breaks the Javadoc 
 			generation with an error -->
 		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
