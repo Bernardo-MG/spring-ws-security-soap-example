@@ -109,6 +109,26 @@ public final class ConsoleClient {
 	private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
 
 	/**
+	 * Main runnable method.
+	 *
+	 * @param args
+	 *            command line arguments
+	 * @throws IOException
+	 *             if any error occurs while loading the client
+	 */
+	public static void main(final String[] args) throws IOException {
+		final PrintStream output; // Output for the client information
+
+		output = System.out;
+
+		// The client header is printed
+		printTitle(output);
+		printHelp(output);
+
+		runMainLoop(output, getClients(), getUris());
+	}
+
+	/**
 	 * Calls the endpoint in the specified URI by using the received client.
 	 * <p>
 	 * This client is expected to be prepared for calling the endpoint, which
@@ -301,26 +321,6 @@ public final class ConsoleClient {
 				getEndpointUri("config/endpoint/encryption/wss4j/endpoint-encryption-wss4j.properties"));
 
 		return uris;
-	}
-
-	/**
-	 * Main runnable method.
-	 *
-	 * @param args
-	 *            command line arguments
-	 * @throws IOException
-	 *             if any error occurs while loading the client
-	 */
-	public static void main(final String[] args) throws IOException {
-		final PrintStream output; // Output for the client information
-
-		output = System.out;
-
-		// The client header is printed
-		printTitle(output);
-		printHelp(output);
-
-		runMainLoop(output, getClients(), getUris());
 	}
 
 	/**

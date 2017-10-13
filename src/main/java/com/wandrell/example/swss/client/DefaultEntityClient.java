@@ -82,28 +82,6 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport implemen
 
 	/**
 	 * Sends an id to the endpoint and receives back the data for the entity
-	 * with that same id. This method makes use of the default URI, which should
-	 * be set before calling it.
-	 * <p>
-	 * If for some reason, which may be caused by the id being invalid, an empty
-	 * response, or not response at all, is received then an entity with a
-	 * negative id will be returned.
-	 * <p>
-	 * The SOAP request will include, in the HTTP header, the SOAP action. This
-	 * way the unreachable endpoint error caused by some authentication methods,
-	 * such as encryption, can be avoided.
-	 *
-	 * @param identifier
-	 *            id of the queried entity
-	 * @return the entity with the received id
-	 */
-	@Override
-	public final ExampleEntity getEntity(final Integer identifier) {
-		return getEntity(getDefaultUri(), identifier);
-	}
-
-	/**
-	 * Sends an id to the endpoint and receives back the data for the entity
 	 * with that same id.
 	 * <p>
 	 * If for some reason, which may be caused by the id being invalid, an empty
@@ -161,8 +139,7 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport implemen
 				// The response was not empty
 				BeanUtils.copyProperties(response.getEntity(), entity);
 
-				LOGGER.debug("Received response with id {} and name {}", entity.getId(),
-						entity.getName());
+				LOGGER.debug("Received response with id {} and name {}", entity.getId(), entity.getName());
 			}
 
 		}
