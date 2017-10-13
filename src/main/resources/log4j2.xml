@@ -3,7 +3,7 @@
 <Configuration status="WARN">
 
     <Properties>
-        <Property name="filename">spring-wss.log</Property>
+        <Property name="filename">app.log</Property>
     </Properties>
 
     <Appenders>
@@ -21,47 +21,47 @@
 
     <Loggers>
         <Logger name="com.wandrell" level="debug" additivity="false">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </Logger>
 
         <logger name="com.wandrell.example.swss.security" level="trace"
             additivity="false">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </logger>
 
         <logger name="com.wandrell.example.swss.security.KeystoreGenerator"
             level="trace" additivity="false">
             <AppenderRef ref="console" />
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </logger>
 
         <logger name="org.springframework.security" level="trace"
             additivity="false">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </logger>
 
         <logger name="org.springframework.ws.soap.security" level="trace"
             additivity="false">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </logger>
 
         <logger name="org.springframework.ws.client.MessageTracing"
             level="trace" additivity="false">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </logger>
 
         <logger name="org.springframework.ws.server.MessageTracing"
             level="trace" additivity="false">
             <AppenderRef ref="console" />
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </logger>
 
         <logger name="org.eclipse.jetty" level="trace" additivity="false">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </logger>
 
         <Root level="error">
-            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
         </Root>
     </Loggers>
 

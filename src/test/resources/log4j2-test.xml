@@ -3,7 +3,7 @@
 <Configuration status="WARN" shutdownHook="disable">
 
     <Properties>
-        <Property name="filename">spring-wss_test.log</Property>
+        <Property name="filename">testing.log</Property>
     </Properties>
 
     <Appenders>
