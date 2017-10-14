@@ -45,6 +45,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * <p>
  * To make it as simple as possible, the users are not loaded from anywhere,
  * instead the validation is hardcoded inside the service.
+ * <p>
+ * The only valid user is as follows:
+ * <p>
+ * <table>
+ * <tr>
+ * <th>Username</th>
+ * <th>Password</th>
+ * </tr>
+ * <tr>
+ * <td>myUser</td>
+ * <td>myPassword</td>
+ * </tr>
+ * </table>
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
