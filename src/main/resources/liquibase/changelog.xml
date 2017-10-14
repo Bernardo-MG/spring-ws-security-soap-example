@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet author="Bernardo" id="security_tables">
+      <createTable tableName="users">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" />
+         </column>
+         <column name="name" type="VARCHAR(50)">
+            <constraints nullable="false" unique="true" />
+         </column>
+         <column name="password" type="VARCHAR(50)">
+            <constraints nullable="false" />
+         </column>
+         <column name="enabled" type="boolean" defaultValue="true">
+            <constraints nullable="false" />
+         </column>
+         <column name="locked" type="boolean" defaultValue="false">
+            <constraints nullable="false" />
+         </column>
+         <column name="expired" type="boolean" defaultValue="false">
+            <constraints nullable="false" />
+         </column>
+      </createTable>
+      <createTable tableName="authorities">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" />
+         </column>
+         <column name="authority" type="VARCHAR(50)">
+            <constraints nullable="false" unique="true" />
+         </column>
+      </createTable>
+      <createTable tableName="user_authorities">
+         <column name="user_id" type="BIGINT">
+            <constraints nullable="false"
+               foreignKeyName="fk_user_authorities_user_id" references="users(id)" />
+         </column>
+         <column name="authority_id" type="BIGINT">
+            <constraints nullable="false"
+               foreignKeyName="fk_user_authorities_authority_id"
+               references="authorities(id)" />
+         </column>
+      </createTable>
+   </changeSet>
+
+   <changeSet author="Bernardo" id="data_tables">
+      <createTable tableName="example_entities">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" />
+         </column>
+         <column name="name" type="VARCHAR(50)">
+            <constraints nullable="false" />
+         </column>
+      </createTable>
+   </changeSet>
+
+   <changeSet author="Bernardo" id="initial_security_data">
+      <insert tableName="users">
+         <column name="name">myUser</column>
+         <column name="password">myPassword</column>
+      </insert>
+   </changeSet>
+
+   <changeSet author="Bernardo" id="initial_data">
+      <insert tableName="example_entities">
+         <column name="name">entity_1</column>
+      </insert>
+      <insert tableName="example_entities">
+         <column name="name">entity_2</column>
+      </insert>
+      <insert tableName="example_entities">
+         <column name="name">entity_3</column>
+      </insert>
+      <insert tableName="example_entities">
+         <column name="name">entity_4</column>
+      </insert>
+   </changeSet>
+
+</databaseChangeLog>

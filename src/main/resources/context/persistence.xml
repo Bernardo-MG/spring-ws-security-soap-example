@@ -72,10 +72,11 @@
       <property name="password" value="${jdbc.password}" />
    </bean>
 
-   <!-- Database initializer -->
-   <jdbc:initialize-database data-source="dataSource">
-      <jdbc:script location="${jdbc.initLocation}" />
-      <jdbc:script location="${jdbc.dataLocation}" />
-   </jdbc:initialize-database>
+   <!-- ======================= LIQUIBASE DB VERSIONING ========================= -->
+
+   <bean id="liquibase" class="${liquibase.integration.class}">
+      <property name="dataSource" ref="dataSource" />
+      <property name="changeLog" value="${liquibase.changelog.path}" />
+   </bean>
 
 </beans>
