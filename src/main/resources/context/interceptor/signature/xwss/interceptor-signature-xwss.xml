@@ -54,7 +54,4 @@
       <property name="userDetailsService" ref="userDetailsService" />
    </bean>
 
-   <!-- Security service -->
-   <bean id="userDetailsService" class="${service.userDetails.class}" />
-
 </beans>

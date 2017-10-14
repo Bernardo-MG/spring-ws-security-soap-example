@@ -45,7 +45,7 @@ import com.wandrell.example.swss.repository.ExampleEntityRepository;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service
+@Service("exampleEntityService")
 public class RepositoryExampleEntityService implements ExampleEntityService {
 
     /**

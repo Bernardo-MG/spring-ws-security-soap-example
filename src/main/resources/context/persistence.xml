@@ -21,6 +21,7 @@
 
    <!-- Scans for repositories -->
    <jpa:repositories base-package="com.wandrell.example.swss.repository" />
+   <jpa:repositories base-package="com.wandrell.example.swss.auth.repository" />
 
    <!-- ================================== JPA ================================== -->
 

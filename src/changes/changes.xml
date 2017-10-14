@@ -121,6 +121,9 @@
       </release>
       <release version="1.2.6" date="2017-04-24" description="Updated configuration">
          <action dev="bmg" type="add">
+            Using persisted authentication data.
+         </action>
+         <action dev="bmg" type="add">
             Using JUnit for the tests instead of TestNG.
          </action>
          <action dev="bmg" type="fix">

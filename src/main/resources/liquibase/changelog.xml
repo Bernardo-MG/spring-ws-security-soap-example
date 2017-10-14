@@ -59,7 +59,7 @@
 
    <changeSet author="Bernardo" id="initial_security_data">
       <insert tableName="users">
-         <column name="name">myUser</column>
+         <column name="name">myuser</column>
          <column name="password">myPassword</column>
       </insert>
    </changeSet>

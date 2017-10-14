@@ -18,7 +18,8 @@
       location="classpath:config/client/client.properties, 
          config/keystore/keystore.properties, 
          classpath:config/interceptor/signature/xwss/interceptor-signature-xwss.properties, 
-         classpath:config/client/signature/xwss/client-signature-xwss.properties" />
+         classpath:config/client/signature/xwss/client-signature-xwss.properties,
+         classpath:config/persistence.properties" />
 
    <!-- Imports base context -->
    <import resource="classpath:context/client/client.xml" />
@@ -30,5 +31,10 @@
 
    <!-- Extends client -->
    <bean id="signatureXwssClient" parent="baseClient" />
+
+   <!-- Imports persistence configuration -->
+   <import resource="classpath:context/persistence.xml" />
+   <!-- Scans for security services -->
+   <context:component-scan base-package="com.wandrell.example.swss.auth.service" />
 
 </beans>
