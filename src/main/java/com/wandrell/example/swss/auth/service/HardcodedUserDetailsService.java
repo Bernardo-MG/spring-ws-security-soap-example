@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.wandrell.example.swss.service.security;
+package com.wandrell.example.swss.auth.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

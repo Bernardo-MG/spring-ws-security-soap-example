@@ -25,9 +25,9 @@
  * Security services.
  * <p>
  * The
- * {@link com.wandrell.example.swss.service.security.HardcodedUserDetailsService
+ * {@link com.wandrell.example.swss.auth.service.HardcodedUserDetailsService
  * DefaultUserDetailsService} is used to set up any security protocol which
  * requires username and password validation.
  */
 
-package com.wandrell.example.swss.service.security;
+package com.wandrell.example.swss.auth.service;
