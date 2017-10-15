@@ -22,7 +22,10 @@
  * SOFTWARE.
  */
 /**
- * Security entities.
+ * Authentication data entities.
+ * <p>
+ * These include persistent implementations of {@code UserDetails} and
+ * {@code GrantedAuthority}.
  */
 
 package com.wandrell.example.swss.auth.model;

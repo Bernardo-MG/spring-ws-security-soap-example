@@ -46,7 +46,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.google.common.base.MoreObjects;
 
 /**
- * User detail prepared to be persisted.
+ * Persistent implementation of {@code UserDetails}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
