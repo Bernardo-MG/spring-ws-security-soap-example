@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Security repositories.
+ * Authentication data repositories.
  */
 
 package com.wandrell.example.swss.auth.repository;

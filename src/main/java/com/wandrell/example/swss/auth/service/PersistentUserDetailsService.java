@@ -89,10 +89,10 @@ public final class PersistentUserDetailsService implements UserDetailsService {
                 .findOneByUsername(username.toLowerCase());
 
         if (user == null) {
-            LOGGER.debug("Username not found in DB");
+            LOGGER.debug("Username {} not found in DB", username);
             throw new UsernameNotFoundException(username);
         } else {
-            LOGGER.debug("Username found in DB");
+            LOGGER.debug("Username {} found in DB", username);
         }
 
         return user;

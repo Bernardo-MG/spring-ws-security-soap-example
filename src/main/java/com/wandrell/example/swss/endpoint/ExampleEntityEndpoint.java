@@ -117,8 +117,8 @@ public class ExampleEntityEndpoint {
     public final GetEntityResponse
             getEntity(@RequestPayload final GetEntityRequest request) {
         final GetEntityResponse response; // SOAP response with the result
-        final ExampleEntity entity; // Found entity
-        final Entity entityResponse; // Entity to return
+        final ExampleEntity entity;       // Found entity
+        final Entity entityResponse;      // Entity to return
 
         checkNotNull(request, "Received a null pointer as request");
 

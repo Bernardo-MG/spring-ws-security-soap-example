@@ -86,7 +86,7 @@ public class RepositoryExampleEntityService implements ExampleEntityService {
      */
     @Override
     public final ExampleEntity findById(final Integer identifier) {
-        ExampleEntity entity;
+        ExampleEntity entity; // Entity to return
 
         checkNotNull(identifier, "Received a null pointer as identifier");
 
