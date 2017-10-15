@@ -12,6 +12,10 @@ matrix:
       env: SERVER=jetty DEPLOY_DOCS=true
     - jdk: oraclejdk7
       env: SERVER=tomcat7
+    - jdk: openjdk7
+      env: SERVER=jetty
+    - jdk: openjdk7
+      env: SERVER=tomcat7
 
 before_install:
   # Gets scripts
