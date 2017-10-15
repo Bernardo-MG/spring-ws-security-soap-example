@@ -2,56 +2,57 @@
 <!DOCTYPE xml>
 <Configuration status="WARN">
 
-    <Properties>
-        <Property name="filename">app.log</Property>
-    </Properties>
+   <Properties>
+      <Property name="filename">app.log</Property>
+   </Properties>
 
-    <Appenders>
-        <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-        </Console>
+   <Appenders>
+      <Console name="console" target="SYSTEM_OUT">
+         <PatternLayout
+            pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+      </Console>
 
-        <File name="file" fileName="${filename}">
-            <PatternLayout>
-                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
-                </Pattern>
-            </PatternLayout>
-        </File>
-    </Appenders>
+      <File name="file" fileName="${filename}">
+         <PatternLayout>
+            <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+            </Pattern>
+         </PatternLayout>
+      </File>
+   </Appenders>
 
-    <Loggers>
-        <Logger name="com.wandrell" level="error" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
+   <Loggers>
+      <Logger name="com.wandrell" level="error" additivity="false">
+         <AppenderRef ref="console" />
+      </Logger>
 
-        <logger name="org.springframework.security" level="error"
-            additivity="false">
-            <AppenderRef ref="console" />
-        </logger>
+      <logger name="org.springframework.security" level="error"
+         additivity="false">
+         <AppenderRef ref="console" />
+      </logger>
 
-        <logger name="org.springframework.ws.soap.security" level="error"
-            additivity="false">
-            <AppenderRef ref="console" />
-        </logger>
+      <logger name="org.springframework.ws.soap.security" level="error"
+         additivity="false">
+         <AppenderRef ref="console" />
+      </logger>
 
-        <logger name="org.springframework.ws.client.MessageTracing"
-            level="error" additivity="false">
-            <AppenderRef ref="console" />
-        </logger>
+      <logger name="org.springframework.ws.client.MessageTracing"
+         level="error" additivity="false">
+         <AppenderRef ref="console" />
+      </logger>
 
-        <logger name="org.springframework.ws.server.MessageTracing"
-            level="error" additivity="false">
-            <AppenderRef ref="console" />
-            <AppenderRef ref="console" />
-        </logger>
+      <logger name="org.springframework.ws.server.MessageTracing"
+         level="error" additivity="false">
+         <AppenderRef ref="console" />
+         <AppenderRef ref="console" />
+      </logger>
 
-        <logger name="org.eclipse.jetty" level="error" additivity="false">
-            <AppenderRef ref="console" />
-        </logger>
+      <logger name="org.eclipse.jetty" level="error" additivity="false">
+         <AppenderRef ref="console" />
+      </logger>
 
-        <Root level="error">
-            <AppenderRef ref="console" />
-        </Root>
-    </Loggers>
+      <Root level="error">
+         <AppenderRef ref="console" />
+      </Root>
+   </Loggers>
 
 </Configuration>
