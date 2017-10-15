@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -61,7 +61,7 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * the main application, but if for some reason there is no exception and the
  * response is empty then a {@code null} value will be returned.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see ExampleEntity
  * @see com.wandrell.example.swss.endpoint.ExampleEntityEndpoint
  *      ExampleEntityEndpoint
@@ -80,28 +80,6 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
      */
     public DefaultEntityClient() {
         super();
-    }
-
-    /**
-     * Sends an id to the endpoint and receives back the data for the entity
-     * with that same id. This method makes use of the default URI, which should
-     * be set before calling it.
-     * <p>
-     * If for some reason, which may be caused by the id being invalid, an empty
-     * response, or not response at all, is received then an entity with a
-     * negative id will be returned.
-     * <p>
-     * The SOAP request will include, in the HTTP header, the SOAP action. This
-     * way the unreachable endpoint error caused by some authentication methods,
-     * such as encryption, can be avoided.
-     *
-     * @param identifier
-     *            id of the queried entity
-     * @return the entity with the received id
-     */
-    @Override
-    public final ExampleEntity getEntity(final Integer identifier) {
-        return getEntity(getDefaultUri(), identifier);
     }
 
     /**
@@ -125,16 +103,15 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
     @Override
     public final ExampleEntity getEntity(final String uri,
             final Integer identifier) {
-        final GetEntityRequest request;     // Request for acquiring the entity
-        final GetEntityResponse response;   // Response with the result
-        final ExampleEntity entity;         // Entity with the response data
+        final GetEntityRequest request; // Request for acquiring the entity
+        final GetEntityResponse response; // Response with the result
+        final ExampleEntity entity; // Entity with the response data
         final WebServiceMessageCallback callback; // SOAP action callback
 
         checkNotNull(uri, "Received a null pointer as URI");
         checkNotNull(identifier, "Received a null pointer as entity id");
 
-        LOGGER.debug(String.format("Querying URI %1$s for id %2$d", uri,
-                identifier));
+        LOGGER.debug("Querying URI {} for id {}", uri, identifier);
 
         // Generates request
         request = new GetEntityRequest();
@@ -167,9 +144,8 @@ public final class DefaultEntityClient extends WebServiceGatewaySupport
                 // The response was not empty
                 BeanUtils.copyProperties(response.getEntity(), entity);
 
-                LOGGER.debug(String.format(
-                        "Received response with id %1$d and name %2$s",
-                        entity.getId(), entity.getName()));
+                LOGGER.debug("Received response with id {} and name {}",
+                        entity.getId(), entity.getName());
             }
 
         }

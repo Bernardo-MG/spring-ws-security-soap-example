@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@
 
 package com.wandrell.example.swss.test.unit.endpoint;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -35,7 +36,6 @@ import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
 import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.test.util.config.context.ServletWss4jContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointXwssPropertiesPaths;
@@ -52,7 +52,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEndpoi
  * <li>The endpoint can handle SOAP requests with an invalid payload.</li>
  * </ol>
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ServletWss4jContextPaths.UNSECURE })
 @TestPropertySource({ SoapPropertiesPaths.UNSECURE,
@@ -96,7 +96,7 @@ public final class TestEntityEndpointUnsecure extends AbstractTestEndpoint {
     @Test
     public final void testEndpoint_Payload_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
+        final RequestCreator requestCreator; // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
 
         // Creates the request
@@ -119,7 +119,7 @@ public final class TestEntityEndpointUnsecure extends AbstractTestEndpoint {
     @Test
     public final void testEndpoint_Payload_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
+        final RequestCreator requestCreator; // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
 
         // Creates the request

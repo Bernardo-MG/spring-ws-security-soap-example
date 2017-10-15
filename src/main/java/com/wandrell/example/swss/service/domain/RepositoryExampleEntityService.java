@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,8 @@ package com.wandrell.example.swss.service.domain;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,17 +36,23 @@ import com.wandrell.example.swss.model.ExampleEntity;
 import com.wandrell.example.swss.repository.ExampleEntityRepository;
 
 /**
- * Example entity domain service, using an {@link ExampleEntityRepository} for
- * acquiring the entities.
+ * Example entity domain service implementation, using an
+ * {@link ExampleEntityRepository} for acquiring the entities.
  * <p>
  * This service just wraps and hides an instance of the
  * {@link com.wandrell.example.swss.repository.ExampleEntityRepository
  * ExampleEntityRepository}.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service
-public class DefaultExampleEntityService implements ExampleEntityService {
+@Service("exampleEntityService")
+public class RepositoryExampleEntityService implements ExampleEntityService {
+
+    /**
+     * The logger used for logging the user details service usage.
+     */
+    private static final Logger           LOGGER = LoggerFactory
+            .getLogger(RepositoryExampleEntityService.class);
 
     /**
      * Repository for the domain entities handled by the service.
@@ -58,7 +66,7 @@ public class DefaultExampleEntityService implements ExampleEntityService {
      *            the repository for the entity instances
      */
     @Autowired
-    public DefaultExampleEntityService(
+    public RepositoryExampleEntityService(
             final ExampleEntityRepository repository) {
         super();
 
@@ -78,13 +86,15 @@ public class DefaultExampleEntityService implements ExampleEntityService {
      */
     @Override
     public final ExampleEntity findById(final Integer identifier) {
-        ExampleEntity entity;
+        ExampleEntity entity; // Entity to return
 
         checkNotNull(identifier, "Received a null pointer as identifier");
 
         entity = getExampleEntityRepository().findOne(identifier);
 
         if (entity == null) {
+            // No entity found for the id
+            LOGGER.debug("No entity found for id {}", identifier);
             entity = new DefaultExampleEntity();
         }
 

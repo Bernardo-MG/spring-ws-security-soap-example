@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Security services.
- * <p>
- * The
- * {@link com.wandrell.example.swss.service.security.DefaultUserDetailsService
- * DefaultUserDetailsService} is used to set up any security protocol which
- * requires username and password validation.
+ * Authentication services.
  */
 
-package com.wandrell.example.swss.service.security;
+package com.wandrell.example.swss.auth.service;

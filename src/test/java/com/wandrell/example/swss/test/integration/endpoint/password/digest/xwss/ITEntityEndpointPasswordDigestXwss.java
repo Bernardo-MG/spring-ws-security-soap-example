@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +26,10 @@ package com.wandrell.example.swss.test.integration.endpoint.password.digest.xwss
 
 import javax.xml.soap.SOAPMessage;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.TestPropertySource;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.test.util.SoapMessageUtils;
 import com.wandrell.example.swss.test.util.config.properties.SoapPropertiesPaths;
@@ -49,7 +49,7 @@ import com.wandrell.example.swss.test.util.test.integration.endpoint.AbstractITE
  * <p>
  * Pay attention to the fact that it requires the WS to be running.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.USER,
         SoapPropertiesPaths.PASSWORD_DIGEST,

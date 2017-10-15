@@ -30,7 +30,7 @@ package com.wandrell.example.swss.endpoint;
  * These define such things as the namespaces or the SOAP action used, and match
  * the data found in the generated WSDL.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ExampleEntityEndpointConstants {
 

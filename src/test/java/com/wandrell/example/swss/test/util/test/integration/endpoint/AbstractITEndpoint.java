@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,12 +38,12 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -69,12 +69,12 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
  * Pay attention to the fact that it requires the WS to be running, and a Spring
  * context to populate the test data.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { TestContextPaths.DEFAULT })
 @TestPropertySource({ TestPropertiesPaths.ENTITY })
 public abstract class AbstractITEndpoint
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractJUnit4SpringContextTests {
 
     /**
      * Id of the returned entity.
@@ -138,8 +138,8 @@ public abstract class AbstractITEndpoint
     @Test
     public final void testEndpoint_Valid_ReturnsEntity() throws Exception {
         final SOAPMessage message; // Response message
-        final SOAPMessage req;     // Request message
-        final Entity entity;       // Entity from the response
+        final SOAPMessage req; // Request message
+        final Entity entity; // Entity from the response
 
         req = getValidSoapMessage();
         if (req != null) {
@@ -152,8 +152,8 @@ public abstract class AbstractITEndpoint
 
             entity = SoapMessageUtils.getEntity(message);
 
-            Assert.assertEquals((Integer) entity.getId(), entityId);
-            Assert.assertEquals(entity.getName(), entityName);
+            Assert.assertEquals(entityId, (Integer) entity.getId());
+            Assert.assertEquals(entityName, entity.getName());
         }
     }
 
@@ -165,9 +165,9 @@ public abstract class AbstractITEndpoint
      */
     @Test
     public final void testEndpoint_WSDL_Exists() throws IOException {
-        final URL url;           // URL for the WSDL
+        final URL url; // URL for the WSDL
         final BufferedReader in; // Reader for the WSDL
-        final String line;       // First line of the WSDL
+        final String line; // First line of the WSDL
 
         url = new URL(wsdlURL);
         in = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -192,13 +192,13 @@ public abstract class AbstractITEndpoint
     public final void testEndpoint_WSDL_ValidSOAPAddress()
             throws ParserConfigurationException, SAXException, IOException,
             XPathExpressionException {
-        final DocumentBuilderFactory factory;   // Factory for the
-                                                // DocumentBuilder
-        final DocumentBuilder builder;          // Document builder
-        final Document doc;                     // Document for the WSDL
-        final Node serviceNode;                 // WSDL service node
-        final Node portNode;                    // WSDL port node
-        final Node addressNode;                 // WSDL address node
+        final DocumentBuilderFactory factory; // Factory for the
+                                              // DocumentBuilder
+        final DocumentBuilder builder; // Document builder
+        final Document doc; // Document for the WSDL
+        final Node serviceNode; // WSDL service node
+        final Node portNode; // WSDL port node
+        final Node addressNode; // WSDL address node
 
         // Creates the document
         factory = DocumentBuilderFactory.newInstance();
@@ -210,8 +210,8 @@ public abstract class AbstractITEndpoint
         portNode = getChild((Element) serviceNode, "wsdl:port");
         addressNode = getChild((Element) portNode, "soap:address");
 
-        Assert.assertEquals(((Element) addressNode).getAttribute("location"),
-                wsURL);
+        Assert.assertEquals(wsURL,
+                ((Element) addressNode).getAttribute("location"));
     }
 
     /**
@@ -224,7 +224,7 @@ public abstract class AbstractITEndpoint
      * @return the child with the specified name
      */
     private final Element getChild(final Element parent, final String name) {
-        Element result = null;      // The wanted child
+        Element result = null; // The wanted child
 
         for (Node child = parent.getFirstChild(); child != null; child = child
                 .getNextSibling()) {
@@ -249,7 +249,7 @@ public abstract class AbstractITEndpoint
     protected final SOAPMessage callWebService(final SOAPMessage request)
             throws SOAPException {
         final SOAPConnectionFactory soapConnectionFactory; // Connection factory
-        final MimeHeaders headers;                         // Message headers
+        final MimeHeaders headers; // Message headers
 
         soapConnectionFactory = SOAPConnectionFactory.newInstance();
 

@@ -26,7 +26,7 @@ package com.wandrell.example.swss.client.console;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
@@ -47,27 +47,14 @@ import com.wandrell.example.swss.model.ExampleEntity;
  * <p>
  * Once it starts just follow the instructions.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ConsoleClient {
 
     /**
-     * Template for generating the final endpoint URL.
-     * <p>
-     * This is just the default URI for the web service, to which the endpoint
-     * path is to be added.
-     */
-    private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
-
-    /**
-     * Property key for the endpoint URI.
-     */
-    private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
-
-    /**
      * Enumeration for all the security types supported by the console client.
      *
-     * @author Bernardo Martínez Garrido
+     * @author Bernardo Mart&iacute;nez Garrido
      */
     private enum Security {
         /**
@@ -107,6 +94,19 @@ public final class ConsoleClient {
          */
         UNSECURE
     }
+
+    /**
+     * Template for generating the final endpoint URL.
+     * <p>
+     * This is just the default URI for the web service, to which the endpoint
+     * path is to be added.
+     */
+    private static final String ENDPOINT_URL_TEMPLATE = "http://localhost:8080/swss%s";
+
+    /**
+     * Property key for the endpoint URI.
+     */
+    private static final String PROPERTY_ENDPOINT_URI = "wsdl.locationUri";
 
     /**
      * Main runnable method.
@@ -149,7 +149,7 @@ public final class ConsoleClient {
     private static final void callEndpoint(final EntityClient client,
             final String uri, final PrintStream output, final Scanner scanner) {
         final ExampleEntity entity; // Queried entity
-        final Integer id;           // Id for the query
+        final Integer id; // Id for the query
 
         output.println("------------------------------------");
         output.println("Write the id of the entity to query.");
@@ -197,7 +197,7 @@ public final class ConsoleClient {
     private static final Map<Security, EntityClient> getClients() {
         final Map<Security, EntityClient> clients; // Returned clients
 
-        clients = new LinkedHashMap<Security, EntityClient>();
+        clients = new HashMap<Security, EntityClient>();
         clients.put(Security.UNSECURE,
                 getEntityClient("context/client/client-unsecure.xml"));
         clients.put(Security.PASSWORD_PLAIN_XWSS, getEntityClient(
@@ -255,7 +255,7 @@ public final class ConsoleClient {
     private static final EntityClient
             getEntityClient(final String contextPath) {
         final ConfigurableApplicationContext context; // Context
-        final EntityClient client;                    // Client
+        final EntityClient client; // Client
 
         context = new ClassPathXmlApplicationContext(contextPath);
 
@@ -278,7 +278,7 @@ public final class ConsoleClient {
      */
     private static final Integer getInteger(final Scanner scanner) {
         Integer integer; // Parsed integer
-        Boolean valid;   // Status flag for the loop
+        Boolean valid; // Status flag for the loop
 
         valid = false;
         integer = null;
@@ -308,7 +308,7 @@ public final class ConsoleClient {
     private static final Map<Security, String> getUris() throws IOException {
         final Map<Security, String> uris; // Returned URIs
 
-        uris = new LinkedHashMap<Security, String>();
+        uris = new HashMap<Security, String>();
         uris.put(Security.UNSECURE,
                 getEndpointUri("config/endpoint/endpoint-unsecure.properties"));
         uris.put(Security.PASSWORD_PLAIN_XWSS, getEndpointUri(
@@ -455,10 +455,10 @@ public final class ConsoleClient {
             final Map<Security, EntityClient> clients,
             final Map<Security, String> uris) {
         final Scanner scanner; // Scanner for reading the input
-        Security security;     // Selected security method
-        EntityClient client;   // Client for the selected security
-        String uri;            // Endpoint for the selected security
-        String command;        // Current user command
+        Security security; // Selected security method
+        EntityClient client; // Client for the selected security
+        String uri; // Endpoint for the selected security
+        String command; // Current user command
 
         scanner = new Scanner(System.in, "UTF-8");
         // The main loop

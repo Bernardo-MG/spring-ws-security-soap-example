@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ import com.wandrell.example.swss.test.util.test.unit.endpoint.AbstractTestEntity
 /**
  * Unit test for a XWSS digested password protected endpoint.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(
         locations = { ServletWss4jContextPaths.PASSWORD_DIGEST_MOCKED })

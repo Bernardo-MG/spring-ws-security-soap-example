@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ import com.wandrell.example.swss.generated.entity.GetEntityResponse;
 /**
  * SOAP message generation utils.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SoapMessageUtils {
 
@@ -61,8 +61,8 @@ public final class SoapMessageUtils {
      */
     public static final Entity getEntity(final SOAPMessage message)
             throws JAXBException, SOAPException {
-        final JAXBContext jc;             // Context for unmarshalling
-        final Unmarshaller um;            // Unmarshaller for the SOAP message
+        final JAXBContext jc; // Context for unmarshalling
+        final Unmarshaller um; // Unmarshaller for the SOAP message
         final GetEntityResponse response; // Unmarshalled response
 
         jc = JAXBContext.newInstance(GetEntityResponse.class);

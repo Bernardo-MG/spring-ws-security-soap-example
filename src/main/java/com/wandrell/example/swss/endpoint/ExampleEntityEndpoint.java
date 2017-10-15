@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,7 +57,7 @@ import com.wandrell.example.swss.service.domain.ExampleEntityService;
  * For this same reason the endpoint is annotated with Spring annotations, and
  * meant to be wired by this framework.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see GetEntityResponse
  * @see GetEntityRequest
  * @see Entity
@@ -122,8 +122,7 @@ public class ExampleEntityEndpoint {
 
         checkNotNull(request, "Received a null pointer as request");
 
-        LOGGER.debug(
-                String.format("Received request for id %d", request.getId()));
+        LOGGER.debug("Received request for id {}", request.getId());
 
         // Acquires the entity
         entity = getExampleEntityService().findById(request.getId());
@@ -132,8 +131,8 @@ public class ExampleEntityEndpoint {
         entityResponse = new Entity();
         BeanUtils.copyProperties(entity, entityResponse);
 
-        LOGGER.debug(String.format("Found entity with id %1$d and name %2$s",
-                entity.getId(), entity.getName()));
+        LOGGER.debug("Found entity with id {} and name {}", entity.getId(),
+                entity.getName());
 
         response = new GetEntityResponse();
         response.setEntity(entityResponse);

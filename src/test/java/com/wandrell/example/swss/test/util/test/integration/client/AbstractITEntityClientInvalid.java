@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +24,11 @@
 
 package com.wandrell.example.swss.test.util.test.integration.client;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.ws.soap.client.SoapFaultClientException;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.EntityClient;
 
@@ -45,10 +45,10 @@ import com.wandrell.example.swss.client.EntityClient;
  * Pay attention to the fact that it requires the WS to be running, and a Spring
  * context to populate the test data.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public abstract class AbstractITEntityClientInvalid
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractJUnit4SpringContextTests {
 
     /**
      * Client being tested.
@@ -73,7 +73,7 @@ public abstract class AbstractITEntityClientInvalid
      * Tests that an invalid message causes a {@code SoapFaultClientException}
      * to be thrown.
      */
-    @Test(expectedExceptions = SoapFaultClientException.class)
+    @Test(expected = SoapFaultClientException.class)
     public final void testEndpoint_InvalidMessage_Exception() {
         client.getEntity(wsUrl, 1);
     }

@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +24,10 @@
 
 package com.wandrell.example.swss.test.unit.client;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.ws.client.WebServiceTransportException;
-import org.testng.annotations.Test;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPaths;
@@ -42,11 +41,11 @@ import com.wandrell.example.swss.test.util.config.context.ClientWss4jContextPath
  * <li>The client throws an exception when connecting to an invalid URL.</li>
  * </ol>
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 public final class TestDefaultEntityClientExceptionErrors
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractJUnit4SpringContextTests {
 
     /**
      * The client being tested.
@@ -64,7 +63,7 @@ public final class TestDefaultEntityClientExceptionErrors
     /**
      * The client throws an exception when connecting to an invalid URL.
      */
-    @Test(expectedExceptions = WebServiceTransportException.class)
+    @Test(expected = Exception.class)
     public final void testClient_InvalidURL() {
         client.getEntity("http://www.somewhere.com", 0);
     }

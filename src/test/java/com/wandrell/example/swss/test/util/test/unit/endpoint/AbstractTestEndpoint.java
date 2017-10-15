@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ package com.wandrell.example.swss.test.util.test.unit.endpoint;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.wandrell.example.swss.test.util.config.context.ServletContextPaths;
 import com.wandrell.example.swss.test.util.config.properties.EndpointPropertiesPaths;
@@ -35,13 +35,13 @@ import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths
 /**
  * Abstract unit tests for setting up endpoint tests.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ServletContextPaths.APPLICATION_MOCKED })
 @TestPropertySource({ TestPropertiesPaths.WSDL,
         EndpointPropertiesPaths.COMMON })
 public abstract class AbstractTestEndpoint
-        extends AbstractTestNGSpringContextTests {
+        extends AbstractJUnit4SpringContextTests {
 
     /**
      * Default constructor.

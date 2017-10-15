@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ import com.wandrell.example.swss.service.domain.ExampleEntityService;
 /**
  * Factory which creates mocked dependencies for the web service endpoints.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class WebServiceMockFactory {
 
@@ -64,7 +64,7 @@ public final class WebServiceMockFactory {
      */
     public final ExampleEntityService getExampleEntityService() {
         final ExampleEntityService service; // Mocked service
-        final ExampleEntity entity;         // Mocked returned entity
+        final ExampleEntity entity; // Mocked returned entity
 
         // Mocks the entity
         entity = Mockito.mock(ExampleEntity.class);
@@ -87,7 +87,7 @@ public final class WebServiceMockFactory {
      */
     public final CallbackHandler getValidationCallbackHandler()
             throws PasswordValidationException {
-        final CallbackHandler callbackHandler;     // Mocked handler
+        final CallbackHandler callbackHandler; // Mocked handler
         final PasswordValidator passwordValidator; // Mocked validator
 
         passwordValidator = getPasswordValidator();

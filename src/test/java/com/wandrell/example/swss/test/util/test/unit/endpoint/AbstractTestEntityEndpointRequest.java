@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@ package com.wandrell.example.swss.test.util.test.unit.endpoint;
 
 import javax.xml.transform.Source;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -36,7 +37,6 @@ import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
 import org.springframework.ws.test.server.ResponseMatcher;
 import org.springframework.ws.test.server.ResponseMatchers;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.test.util.config.properties.TestPropertiesPaths;
 import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
@@ -54,7 +54,7 @@ import com.wandrell.example.swss.test.util.factory.SoapActionRequestCreators;
  * This base test is meant for those endpoints where the full envelope is more
  * important than the payload, which is the case of the secured endpoints.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @TestPropertySource({ TestPropertiesPaths.USER })
 public abstract class AbstractTestEntityEndpointRequest
@@ -98,7 +98,7 @@ public abstract class AbstractTestEntityEndpointRequest
     @Test
     public final void testEndpoint_Envelope_Valid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
+        final RequestCreator requestCreator; // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
 
         // Creates the request
@@ -122,7 +122,7 @@ public abstract class AbstractTestEntityEndpointRequest
     @Test
     public final void testEndpoint_Invalid() throws Exception {
         final MockWebServiceClient mockClient; // Mocked client
-        final RequestCreator requestCreator;   // Creator for the request
+        final RequestCreator requestCreator; // Creator for the request
         final ResponseMatcher responseMatcher; // Matcher for the response
 
         // Creates the request

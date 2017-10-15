@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ import org.springframework.xml.transform.ResourceSource;
  * protocols, mostly the encrypted SOAP messages, work. Without a SOAP action
  * the endpoint won't recognize the request.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SoapActionRequestCreators {
 
@@ -55,7 +55,7 @@ public final class SoapActionRequestCreators {
      * Adapts a {@link WebServiceMessageCreator} to the {@link RequestCreator}
      * contract including a SOAP action.
      * 
-     * @author Bernardo Martínez Garrido
+     * @author Bernardo Mart&iacute;nez Garrido
      */
     private static class SoapActionWebServiceMessageCreatorAdapter
             implements RequestCreator {

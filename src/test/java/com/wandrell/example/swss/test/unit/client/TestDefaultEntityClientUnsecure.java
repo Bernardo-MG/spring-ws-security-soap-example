@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,8 @@ package com.wandrell.example.swss.test.unit.client;
 
 import java.io.IOException;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -36,8 +38,6 @@ import org.springframework.ws.test.client.RequestMatcher;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.wandrell.example.swss.client.DefaultEntityClient;
 import com.wandrell.example.swss.model.ExampleEntity;
@@ -55,7 +55,7 @@ import com.wandrell.example.swss.test.util.test.unit.client.AbstractTestEntityCl
  * <li>The client can handle incorrectly formed SOAP messages.</li>
  * </ol>
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { ClientWss4jContextPaths.UNSECURE })
 @TestPropertySource({ SoapPropertiesPaths.UNSECURE })
@@ -114,9 +114,9 @@ public final class TestDefaultEntityClientUnsecure
     @Test
     public final void testClient_Payload_Invalid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
+        final RequestMatcher requestMatcher; // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final ExampleEntity result;            // Queried entity
+        final ExampleEntity result; // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -133,8 +133,8 @@ public final class TestDefaultEntityClientUnsecure
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), new Integer(-1));
-        Assert.assertEquals(result.getName(), "");
+        Assert.assertEquals(new Integer(-1), result.getId());
+        Assert.assertEquals("", result.getName());
 
         mockServer.verify();
     }
@@ -148,9 +148,9 @@ public final class TestDefaultEntityClientUnsecure
     @Test
     public final void testClient_Payload_Valid() throws IOException {
         final MockWebServiceServer mockServer; // Mocked server
-        final RequestMatcher requestMatcher;   // Matcher for the request
+        final RequestMatcher requestMatcher; // Matcher for the request
         final ResponseCreator responseCreator; // Creator for the response
-        final ExampleEntity result;            // Queried entity
+        final ExampleEntity result; // Queried entity
 
         // Creates the request matcher
         requestMatcher = RequestMatchers
@@ -167,8 +167,8 @@ public final class TestDefaultEntityClientUnsecure
         // Calls the server mock
         result = client.getEntity("http:somewhere.com", entityId);
 
-        Assert.assertEquals(result.getId(), entityId);
-        Assert.assertEquals(result.getName(), entityName);
+        Assert.assertEquals(entityId, result.getId());
+        Assert.assertEquals(entityName, result.getName());
 
         mockServer.verify();
     }

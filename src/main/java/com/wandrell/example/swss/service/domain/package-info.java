@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2015 the original author or authors.
+ * Copyright (c) 2015-2017 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * entities returned by the endpoints.
  * <p>
  * Its default implementation, the
- * {@link com.wandrell.example.swss.service.domain.DefaultExampleEntityService
+ * {@link com.wandrell.example.swss.service.domain.RepositoryExampleEntityService
  * DefaultExampleEntityService}, makes use of the
  * {@link com.wandrell.example.swss.repository.ExampleEntityRepository
  * ExampleEntityRepository} for this.
