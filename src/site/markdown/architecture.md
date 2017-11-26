@@ -47,9 +47,9 @@ The clients work in a similar way to the endpoint, as they are based on a simple
 [spring-ws]: http://projects.spring.io/spring-ws/
 [spring-jpa]: http://projects.spring.io/spring-data-jpa/
 
-[entity-endpoint]: ./apidocs/com/wandrell/example/swss/endpoint/ExampleEntityEndpoint.html
-[entity-client]: ./apidocs/com/wandrell/example/swss/client/EntityClient.html
-[entity-service]: ./apidocs/com/wandrell/example/swss/service/data/ExampleEntityService.html
-[entity-repository]: ./apidocs/com/wandrell/example/swss/repository/ExampleEntityRepository.html
+[entity-endpoint]: ./apidocs/com/bernardomg/example/swss/endpoint/ExampleEntityEndpoint.html
+[entity-client]: ./apidocs/com/bernardomg/example/swss/client/EntityClient.html
+[entity-service]: ./apidocs/com/bernardomg/example/swss/service/data/ExampleEntityService.html
+[entity-repository]: ./apidocs/com/bernardomg/example/swss/repository/ExampleEntityRepository.html
 
 [ws-structure]: ./images/web_service_structure.png

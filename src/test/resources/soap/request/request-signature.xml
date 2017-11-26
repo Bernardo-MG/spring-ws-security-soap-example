@@ -26,7 +26,7 @@ swzEdVFKltmQiermAw6m21fse6kYU9gVHaSftmwP9wdmiVPa5RKnB0FMQZiAfPHiRRl0BehblxnU
       </wsse:Security>
    </SOAP-ENV:Header>
    <SOAP-ENV:Body xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="XWSSGID-1457342963300-1654704555">
-      <ent:getEntityRequest xmlns:ent="http://wandrell.com/example/ws/entity">
+      <ent:getEntityRequest xmlns:ent="http://bernardomg.com/example/ws/entity">
          <ent:id>1</ent:id>
       </ent:getEntityRequest>
    </SOAP-ENV:Body>

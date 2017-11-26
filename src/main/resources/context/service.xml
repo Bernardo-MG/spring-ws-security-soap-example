@@ -12,9 +12,9 @@
    </description>
 
    <!-- Scans for security services -->
-   <context:component-scan base-package="com.wandrell.example.swss.auth.service" />
+   <context:component-scan base-package="com.bernardomg.example.swss.auth.service" />
 
    <!-- Scans for domain services -->
-   <context:component-scan base-package="com.wandrell.example.swss.service.domain" />
+   <context:component-scan base-package="com.bernardomg.example.swss.service.domain" />
 
 </beans>

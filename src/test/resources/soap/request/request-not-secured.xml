@@ -1,7 +1,7 @@
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header />
     <soapenv:Body>
-        <ent:getEntityRequest xmlns:ent="http://wandrell.com/example/ws/entity">
+        <ent:getEntityRequest xmlns:ent="http://bernardomg.com/example/ws/entity">
             <ent:id>1</ent:id>
         </ent:getEntityRequest>
     </soapenv:Body>

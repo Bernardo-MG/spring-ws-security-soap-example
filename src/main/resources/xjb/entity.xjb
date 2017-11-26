@@ -6,7 +6,7 @@
 
    <jxb:bindings schemaLocation="file:../xsd/entity.xsd">
       <jxb:schemaBindings>
-         <jxb:package name="com.wandrell.example.swss.generated.entity">
+         <jxb:package name="com.bernardomg.example.swss.generated.entity">
             <jxb:javadoc><![CDATA[Provides classes generated from the test entities schema.]]></jxb:javadoc>
          </jxb:package>
       </jxb:schemaBindings>

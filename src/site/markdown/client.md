@@ -8,5 +8,5 @@ This single client is the [EntityClient][entity-client], and the configuration f
 
 To ease the use of these clients where is the [ConsoleClient][console-client], offering, as the name implies, a console-based UI for all the others. To make use of it just run the ConsoleClient class in an environment with access to a command console.
 
-[entity-client]: ./apidocs/com/wandrell/example/swss/client/EntityClient.html
-[console-client]: ./apidocs/com/wandrell/example/swss/client/console/ConsoleClient.html
+[entity-client]: ./apidocs/com/bernardomg/example/swss/client/EntityClient.html
+[console-client]: ./apidocs/com/bernardomg/example/swss/client/console/ConsoleClient.html
