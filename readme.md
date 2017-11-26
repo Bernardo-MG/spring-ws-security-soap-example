@@ -1,4 +1,4 @@
-# Spring Web Services WS-Security Example
+# Spring Web Services WS-Security Example [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Spring%20Web%20Services%20WS-Security%20Example%204&url=https://github.com/Bernardo-MG/spring-ws-security-soap-example&via=BernardoMartG&hashtags=spring,web-service,swss,soap,example)
 
 Sample [Spring WS][spring-ws] SOAP web service which sets up various [WS-Security][ws-security] protocols.
 
