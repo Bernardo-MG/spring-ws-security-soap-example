@@ -6,6 +6,6 @@ This code is kept inside the Maven target folder. While this means they are not 
 
 The XSD file used for generating the code is the same one used for generating the WSDL, and the generated classes are an integral part of the [ExampleEntityEndpoint][entity-endpoint]. Thanks to this the endpoint API will always match its WSDL.
 
-[entity-endpoint]: ./apidocs/com/wandrell/example/swss/endpoint/ExampleEntityEndpoint.html
+[entity-endpoint]: ./apidocs/com/bernardomg/example/swss/endpoint/ExampleEntityEndpoint.html
 
 [maven-jaxb2]: https://java.net/projects/maven-jaxb2-plugin

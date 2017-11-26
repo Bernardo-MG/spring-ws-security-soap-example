@@ -8,7 +8,7 @@
       </wsse:Security>
    </soap-env:Header>
    <soap-env:Body>
-      <ent:getEntityRequest xmlns:ent="http://wandrell.com/example/ws/entity">
+      <ent:getEntityRequest xmlns:ent="http://bernardomg.com/example/ws/entity">
          <ent:id>1</ent:id>
       </ent:getEntityRequest>
    </soap-env:Body>

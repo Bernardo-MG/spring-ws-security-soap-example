@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-<ent:getEntityRequest xmlns:ent='http://wandrell.com/example/ws/entity'>
+<ent:getEntityRequest xmlns:ent='http://bernardomg.com/example/ws/entity'>
     <ent:abcd />
 </ent:getEntityRequest>

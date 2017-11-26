@@ -1,6 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-   xmlns:tns="http://wandrell.com/example/ws/entity" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
-   targetNamespace="http://wandrell.com/example/ws/entity"
+   xmlns:tns="http://bernardomg.com/example/ws/entity" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+   targetNamespace="http://bernardomg.com/example/ws/entity"
    elementFormDefault="qualified" jxb:version="1.0">
 
    <xs:element name="getEntityRequest">

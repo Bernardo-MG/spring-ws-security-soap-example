@@ -1,4 +1,4 @@
-# Spring Web Services WS-Security Example
+# Spring Web Services WS-Security Example [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Spring%20Web%20Services%20WS-Security%20Example%204&url=https://github.com/Bernardo-MG/spring-ws-security-soap-example&via=BernardoMartG&hashtags=spring-ws,wss,soap)
 
 Sample [Spring WS][spring-ws] SOAP web service which sets up various [WS-Security][ws-security] protocols.
 
@@ -95,7 +95,7 @@ $ mvn package
 
 After this all the endpoint URLs are accessible. These can be found below, and require some sort of SOAP client, such as the console one included in the project.
 
-This console client can be used by just running the ConsoleClient class, located in the com.wandrell.example.swss.client.console folder.
+This console client can be used by just running the ConsoleClient class, located in the com.bernardomg.example.swss.client.console folder.
 
 ### Running the example with Java 8
 
@@ -147,12 +147,12 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 The project has been released under the [MIT License][license].
 
 [issues]: https://github.com/bernardo-mg/swss-soap-example/issues
-[javadoc-develop]: http://docs.wandrell.com/development/maven/swss-soap-example/apidocs
-[javadoc-release]: http://docs.wandrell.com/maven/swss-soap-example/apidocs
+[javadoc-develop]: http://docs.bernardomg.com/development/maven/swss-soap-example/apidocs
+[javadoc-release]: http://docs.bernardomg.com/maven/swss-soap-example/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
 [scm]: https://github.com/bernardo-mg/spring-ws-security-soap-example
-[site-develop]: http://docs.wandrell.com/development/maven/swss-soap-example
-[site-release]: http://docs.wandrell.com/maven/swss-soap-example
+[site-develop]: http://docs.bernardomg.com/development/maven/swss-soap-example
+[site-release]: http://docs.bernardomg.com/maven/swss-soap-example
 
 [ws-security]: https://www.oasis-open.org/committees/wss/
 [xwss]: https://docs.oracle.com/cd/E17802_01/webservices/webservices/docs/1.6/tutorial/doc/XWS-SecurityIntro4.html

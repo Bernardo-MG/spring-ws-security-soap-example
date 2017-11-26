@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-<ent:getEntityResponse xmlns:ent='http://wandrell.com/example/ws/entity'>
+<ent:getEntityResponse xmlns:ent='http://bernardomg.com/example/ws/entity'>
     <ent:entity>
         <ent:id>1</ent:id>
         <ent:name>entity_1</ent:name>

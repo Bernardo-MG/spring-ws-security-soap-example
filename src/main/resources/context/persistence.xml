@@ -20,8 +20,8 @@
    </description>
 
    <!-- Scans for repositories -->
-   <jpa:repositories base-package="com.wandrell.example.swss.repository" />
-   <jpa:repositories base-package="com.wandrell.example.swss.auth.repository" />
+   <jpa:repositories base-package="com.bernardomg.example.swss.repository" />
+   <jpa:repositories base-package="com.bernardomg.example.swss.auth.repository" />
 
    <!-- ================================== JPA ================================== -->
 
