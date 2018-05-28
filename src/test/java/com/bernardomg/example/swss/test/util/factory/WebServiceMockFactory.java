@@ -31,7 +31,7 @@ import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;
 
 import org.apache.wss4j.common.ext.WSPasswordCallback;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.ws.soap.security.callback.AbstractCallbackHandler;
 
@@ -73,7 +73,7 @@ public final class WebServiceMockFactory {
 
         // Mocks the service
         service = Mockito.mock(ExampleEntityService.class);
-        Mockito.when(service.findById(Matchers.anyInt())).thenReturn(entity);
+        Mockito.when(service.findById(ArgumentMatchers.anyInt())).thenReturn(entity);
 
         return service;
     }
@@ -130,7 +130,7 @@ public final class WebServiceMockFactory {
 
         passwordValidator = Mockito.mock(PasswordValidator.class);
         Mockito.when(passwordValidator.validate(
-                Matchers.any(PasswordValidationCallback.Request.class)))
+                ArgumentMatchers.any(PasswordValidationCallback.Request.class)))
                 .thenReturn(true);
 
         return passwordValidator;
